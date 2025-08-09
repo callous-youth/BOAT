@@ -226,7 +226,6 @@ class Problem:
 
         :rtype: tuple
         """
-        dynamic_results = []
 
         if self.boat_configs["fo_gm"] is not None:
             start_time = time.perf_counter()
@@ -455,6 +454,54 @@ class Problem:
         plt.draw()
         plt.pause(0.01)
         return 0
+    # def plot_losses(self, save_path=None):
+    #     """
+    #     Plot the recorded lower and upper loss values.
+    #     :param save_path:
+    #     :return:
+    #     """
+    #     import os
+    #     import numpy as np
+    #     import matplotlib.pyplot as plt
+    #
+    #     try:
+    #         lower = np.load(self._lower_loss_dir)['losses']
+    #     except (FileNotFoundError, KeyError, ValueError, OSError) as e:
+    #         print(f"Error loading lower losses: {e}")
+    #         lower = None  # 或其他默认值
+    #
+    #     try:
+    #         upper = np.load(self._upper_loss_dir)['losses']
+    #     except (FileNotFoundError, KeyError, ValueError, OSError) as e:
+    #         print(f"Error loading upper losses: {e}")
+    #         upper = None
+    #
+    #     plt.clf()  # 清除当前图像
+    #
+    #     # 子图 1：Lower Loss
+    #     plt.subplot(1, 2, 1)
+    #     plt.plot(lower, 'b-')
+    #     plt.title('Lower Loss')
+    #     plt.xlabel('Iteration')
+    #     plt.ylabel('Lower-Level Objective')
+    #     plt.grid(True)
+    #
+    #     # 子图 2：Upper Loss
+    #     plt.subplot(1, 2, 2)
+    #     plt.plot(upper, 'r-')
+    #     plt.title('Upper Loss')
+    #     plt.xlabel('Iteration')
+    #     plt.ylabel('Upper-Level Objective')
+    #     plt.grid(True)
+    #
+    #     plt.tight_layout()
+    #
+    #     if save_path:
+    #         plt.savefig(save_path, dpi=300)
+    #
+    #     plt.draw()
+    #     plt.pause(0.01)
+    #     return 0
 
 
 
