@@ -10,8 +10,6 @@ import higher
 from boat_torch.operation_registry import get_registered_operation
 from boat_torch.dynamic_ol import makes_functional_dynamical_system
 from boat_torch.hyper_ol import makes_functional_hyper_operation
-import os
-import numpy as np
 
 importlib = __import__("importlib")
 
@@ -89,9 +87,6 @@ class Problem:
         self._lower_init_opt = None
         self._fo_gm_solver = None
         self._track_opt_traj = False
-        self._lower_loss_dir = os.path.join(config.get("lower_loss_dir"), "lower_loss.npz") if config.get("lower_loss_dir") else None
-        self._upper_loss_dir = os.path.join(config.get("upper_loss_dir"), "upper_loss.npz") if config.get("upper_loss_dir") else None
-        #self._img_state = None
         if config["dynamic_op"] is not None:
             if "GDA" in config["dynamic_op"]:
                 assert (
@@ -314,12 +309,7 @@ class Problem:
             self._upper_opt.zero_grad()
         else:
             return [var.grad for var in list(self._ul_var)], run_time
-        lower_loss = list(dynamic_results[-1].values())[-1]
-        #upper_loss = list(self._log_results[-1].values())[-1]
-        upper_result = {} if len(self._log_results) == 0 else self._log_results[-1][-1]
-        upper_loss = upper_result.get('gradient_operator_results_0', {}).get('upper_loss', None)
-        self.record_loss(lower_loss.detach().cpu().item(), upper_loss)
-        self.plot_losses(save_path="loss_plot.png")#save_path="img.png")
+
         return self._log_results, run_time
 
     def set_track_trajectory(self, track_traj=True):
@@ -373,135 +363,3 @@ class Problem:
         assert (
             self.boat_configs["RGT"]["truncate_iter"] < self.boat_configs["lower_iters"]
         ), "The value of 'truncate_iter' shouldn't be greater than 'lower_loop'."
-
-    def record_loss(self,
-        lower_loss: float,
-        upper_loss: float,
-    ):
-        """
-        Record the loss values for the current iteration.
-        :returns: None
-        """
-        def append_loss(path, new_value):
-            if os.path.exists(path):
-                data = np.load(path)
-                old_losses = data['losses']
-                losses = np.append(old_losses, new_value)
-            else:
-                losses = np.array([new_value])
-            np.savez(path, losses=losses)
-
-        append_loss(self._lower_loss_dir, lower_loss)
-        append_loss(self._upper_loss_dir, upper_loss)
-
-    def plot_losses(self, save_path=None):
-        """
-        Plot the recorded lower and/or upper loss values.
-        :param save_path: Optional path to save the plot image.
-        :return: 0 if plotted, -1 if no data available.
-        """
-        import os
-        import numpy as np
-        import matplotlib.pyplot as plt
-
-        # 加载 lower 和 upper
-        try:
-            lower = np.load(self._lower_loss_dir)['losses']
-        except (FileNotFoundError, KeyError, ValueError, OSError) as e:
-            print(f"Error loading lower losses: {e}")
-            lower = None
-
-        try:
-            upper = np.load(self._upper_loss_dir)['losses']
-        except (FileNotFoundError, KeyError, ValueError, OSError) as e:
-            print(f"Error loading upper losses: {e}")
-            upper = None
-
-        # 判断可用数据数量
-        n_plots = int(lower is not None) + int(upper is not None)
-
-        if n_plots == 0:
-            print("No valid loss data available to plot.")
-            return -1
-
-        plt.clf()
-        plt.figure(figsize=(10, 4))
-
-        subplot_idx = 1
-
-        if lower is not None:
-            plt.subplot(1, n_plots, subplot_idx)
-            plt.plot(lower, 'b-')
-            plt.title('Lower Loss')
-            plt.xlabel('Iteration')
-            plt.ylabel('Lower-Level Objective')
-            plt.grid(True)
-            subplot_idx += 1
-
-        if upper is not None:
-            plt.subplot(1, n_plots, subplot_idx)
-            plt.plot(upper, 'r-')
-            plt.title('Upper Loss')
-            plt.xlabel('Iteration')
-            plt.ylabel('Upper-Level Objective')
-            plt.grid(True)
-
-        plt.tight_layout()
-
-        if save_path:
-            plt.savefig(save_path, dpi=300)
-
-        plt.draw()
-        plt.pause(0.01)
-        return 0
-    # def plot_losses(self, save_path=None):
-    #     """
-    #     Plot the recorded lower and upper loss values.
-    #     :param save_path:
-    #     :return:
-    #     """
-    #     import os
-    #     import numpy as np
-    #     import matplotlib.pyplot as plt
-    #
-    #     try:
-    #         lower = np.load(self._lower_loss_dir)['losses']
-    #     except (FileNotFoundError, KeyError, ValueError, OSError) as e:
-    #         print(f"Error loading lower losses: {e}")
-    #         lower = None  # 或其他默认值
-    #
-    #     try:
-    #         upper = np.load(self._upper_loss_dir)['losses']
-    #     except (FileNotFoundError, KeyError, ValueError, OSError) as e:
-    #         print(f"Error loading upper losses: {e}")
-    #         upper = None
-    #
-    #     plt.clf()  # 清除当前图像
-    #
-    #     # 子图 1：Lower Loss
-    #     plt.subplot(1, 2, 1)
-    #     plt.plot(lower, 'b-')
-    #     plt.title('Lower Loss')
-    #     plt.xlabel('Iteration')
-    #     plt.ylabel('Lower-Level Objective')
-    #     plt.grid(True)
-    #
-    #     # 子图 2：Upper Loss
-    #     plt.subplot(1, 2, 2)
-    #     plt.plot(upper, 'r-')
-    #     plt.title('Upper Loss')
-    #     plt.xlabel('Iteration')
-    #     plt.ylabel('Upper-Level Objective')
-    #     plt.grid(True)
-    #
-    #     plt.tight_layout()
-    #
-    #     if save_path:
-    #         plt.savefig(save_path, dpi=300)
-    #
-    #     plt.draw()
-    #     plt.pause(0.01)
-    #     return 0
-
-
-

@@ -158,5 +158,4 @@ class NGD(DynamicalSystem):
             else:
                 loss_f = self.ll_objective(ll_feed_dict, self.ul_model, auxiliary_model)
             auxiliary_opt.step(loss_f, grad_callback=stop_grads if self.foa else None)
-        #return -1
-        return loss_f
+        return -1
