@@ -4,3 +4,4 @@ numpy       # Required for numerical computations
 tqdm        # For displaying progress bars
 scikit-learn >= 1.3  # Machine learning library
 mindspore-dev  # Deep learning framework
+matplotlib
