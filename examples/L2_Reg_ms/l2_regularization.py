@@ -9,7 +9,7 @@ from mindspore.common import COOTensor
 import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
-
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../..")))
 import mindspore as ms
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -170,7 +170,7 @@ def main():
         parser.add_argument(
             "--fo_gm",
             type=str,
-            default=None,
+            default="VFM",
             help="convnet for 4 convs or resnet for Residual blocks",
         )
         args = parser.parse_args()
@@ -329,6 +329,7 @@ def main():
             print(
                 f"[info] epoch {x_itr:5d} te loss {test_loss:10.4f} te acc {test_acc:10.4f} teval loss {teval_loss:10.4f} teval acc {teval_acc:10.4f} time {run_time:8.2f}"
             )
+    b_optimizer.plot_losses()
 
 
 if __name__ == "__main__":
