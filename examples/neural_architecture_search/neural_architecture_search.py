@@ -15,12 +15,12 @@ from model_search import Network  # 假设 model_search 模块已经转换为 Ji
 from jittor.dataset import Dataset
 parser = argparse.ArgumentParser("cifar")
 parser.add_argument("--data", type=str, default="data/", help="location of the data corpus")
-parser.add_argument("--batch_size", type=int, default=4, help="batch size")
+parser.add_argument("--batch_size", type=int, default=1, help="batch size")
 parser.add_argument("--learning_rate", type=float, default=0.025, help="init learning rate")
 parser.add_argument("--learning_rate_min", type=float, default=0.001, help="min learning rate")
 parser.add_argument("--momentum", type=float, default=0.9, help="momentum")
 parser.add_argument("--weight_decay", type=float, default=3e-4, help="weight decay")
-parser.add_argument("--report_freq", type=float, default=50, help="report frequency")
+parser.add_argument("--report_freq", type=float, default=5, help="report frequency")
 parser.add_argument("--gpu", type=int, default=0, help="gpu device id")
 parser.add_argument("--epochs", type=int, default=1, help="num of training epochs")
 parser.add_argument("--init_channels", type=int, default=16, help="num of init channels")
@@ -266,8 +266,9 @@ def train(train_queue, valid_queue, model, criterion, optimizer, boat_optimizer)
                 time.avg,
             )
 
-        if step > 200:
+        if step > 20:
             break
+    boat_optimizer.plot_losses()
     return top1.avg, objs.avg, time.avg
 
 
