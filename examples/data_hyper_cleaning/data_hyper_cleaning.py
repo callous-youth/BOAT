@@ -58,13 +58,13 @@ def main():
     parser.add_argument(
         "--dynamic_method",
         type=str,
-        default=None,
+        default="",
         help="omniglot or miniimagenet or tieredImagenet",
     )
     parser.add_argument(
         "--hyper_method",
         type=str,
-        default=None,
+        default="",
         help="convnet for 4 convs or resnet for Residual blocks",
     )
     parser.add_argument(
@@ -157,6 +157,7 @@ def main():
                         valLoss,
                     )
                 )
+    b_optimizer.plot_losses()
 
 
 if __name__ == "__main__":

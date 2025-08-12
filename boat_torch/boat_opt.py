@@ -10,6 +10,9 @@ import higher
 from boat_torch.operation_registry import get_registered_operation
 from boat_torch.dynamic_ol import makes_functional_dynamical_system
 from boat_torch.hyper_ol import makes_functional_hyper_operation
+import matplotlib.pyplot as plt
+import os
+import json
 
 importlib = __import__("importlib")
 
@@ -95,6 +98,8 @@ class Problem:
                 self.boat_configs["gda_loss"] = _load_loss_function(
                     loss_config["gda_loss"]
                 )
+        self.loss_log_path = config["loss_log_path"]
+        self.loss_history = []
 
     def build_ll_solver(self):
         """
@@ -304,11 +309,28 @@ class Problem:
                     self._lower_init_opt.step()
                     self._lower_init_opt.zero_grad()
                 run_time = forward_time + backward_time
+
+        if isinstance(ll_feed_dict, list):
+            ll_fd = ll_feed_dict[0]
+            ul_fd = ul_feed_dict[0]
+        else:
+            ll_fd = ll_feed_dict
+            ul_fd = ul_feed_dict
+
         if not self.boat_configs["return_grad"]:
             self._upper_opt.step()
             self._upper_opt.zero_grad()
         else:
+            ll_loss = self._ll_loss(ll_fd, self._ul_model, self._ll_model)
+            ul_loss = self._ul_loss(ul_fd, self._ul_model, self._ll_model)
+            print(f"ll_loss: {ll_loss.item()}  ul_loss: {ul_loss.item()}")
+            self.save_losses(current_iter = current_iter, ll_loss = ll_loss, ul_loss = ul_loss)
             return [var.grad for var in list(self._ul_var)], run_time
+
+        ll_loss = self._ll_loss(ll_fd, self._ul_model, self._ll_model)
+        ul_loss = self._ul_loss(ul_fd, self._ul_model, self._ll_model)
+        print(f"ll_loss: {ll_loss.item()}  ul_loss: {ul_loss.item()}")
+        self.save_losses(current_iter = current_iter, ll_loss = ll_loss, ul_loss = ul_loss)
 
         return self._log_results, run_time
 
@@ -363,3 +385,50 @@ class Problem:
         assert (
             self.boat_configs["RGT"]["truncate_iter"] < self.boat_configs["lower_iters"]
         ), "The value of 'truncate_iter' shouldn't be greater than 'lower_loop'."
+
+    def plot_losses(self):
+        iters = [x["iter"] for x in self.loss_history]
+        ll_losses = [x["ll_loss"] for x in self.loss_history]
+        ul_losses = [x["ul_loss"] for x in self.loss_history]
+
+        fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+        # 左图 - 下层 loss
+        axes[0].plot(iters, ll_losses, label="Lower-level Loss", color="blue")
+        axes[0].set_xlabel("Iteration")
+        axes[0].set_ylabel("Loss")
+        axes[0].set_title("Lower-level Loss")
+        axes[0].legend(loc="upper left")  # 图例在左上角
+        axes[0].grid(True)
+
+        # 右图 - 上层 loss
+        axes[1].plot(iters, ul_losses, label="Upper-level Loss", color="orange")
+        axes[1].set_xlabel("Iteration")
+        axes[1].set_ylabel("Loss")
+        axes[1].set_title("Upper-level Loss")
+        axes[1].legend(loc="upper left")  # 图例在左上角
+        axes[1].grid(True)
+
+        # 保存
+        plt.tight_layout()
+        save_path = os.path.join(os.path.dirname(self.loss_log_path), "loss_curve.png")
+        plt.savefig(save_path)
+        plt.close()
+
+    def save_losses(self, current_iter, ll_loss, ul_loss):
+        """
+        Save the losses to a JSON file and update the loss history.
+        :param current_iter:iteration number
+        :param ll_loss:lower loss
+        :param ul_loss:upper loss
+        :return: None
+        """
+        self.loss_history.append({
+            "iter": current_iter,
+            "ll_loss": float(ll_loss.item()),
+            "ul_loss": float(ul_loss.item())
+        })
+
+        # 追加写入文件（每次迭代都更新）
+        with open(self.loss_log_path, "w") as f:
+            json.dump(self.loss_history, f)

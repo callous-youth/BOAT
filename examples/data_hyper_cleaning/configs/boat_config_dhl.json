@@ -7,6 +7,7 @@
     "device": "cpu",
     "accumulate_grad": false,
     "copy_last_param": true,
+    "loss_log_path": "loss_log.json",
     "DI":{"lr": 0.1},
     "GDA":{"alpha_init": 0.5,"alpha_decay": 0.9},
     "DM":{"auxiliary_v_lr": 0.1,"tau":0.01, "p": 100,"mu0": 0.9,"eta0": 0.5,  "strategy": "s1"},
