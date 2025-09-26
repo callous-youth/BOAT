@@ -6,7 +6,7 @@ import torch
 import math
 from torch import nn
 
-
+random.seed(2424)
 def accuary(out, target):
     pred = out.argmax(dim=1, keepdim=True)
     acc = pred.eq(target.view_as(pred)).sum().item() / len(target)

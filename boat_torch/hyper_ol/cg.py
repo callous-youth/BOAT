@@ -177,7 +177,7 @@ class CG(HyperGradient):
         upper_loss = self.ul_objective(
             ul_feed_dict, self.ul_model, auxiliary_model, params=lower_model_params
         )
-        print("step 1 time:", time.time() - starttime)
+        #print("step 1 time:", time.time() - starttime)
         starttime = time.time()
         if self.dynamic_initialization:
             grads_lower = torch.autograd.grad(
@@ -193,7 +193,7 @@ class CG(HyperGradient):
             fp_map,
             self.tolerance,
         )
-        print("step 6 time:", time.time() - starttime)
+        #print("step 6 time:", time.time() - starttime)
         update_tensor_grads(self.ul_var, upper_grads)
 
         return {"upper_loss": upper_loss.item(), "hyper_gradient_finished": True}

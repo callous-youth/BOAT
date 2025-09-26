@@ -122,15 +122,30 @@ class Problem:
                 lower_loop=self._lower_loop,
                 solver_config=self.boat_configs,
             )
+            # if "DI" in self.boat_configs["dynamic_op"]:
+            #     self._lower_init_opt = copy.deepcopy(self._lower_opt)
+            #     for _ in range(len(self._lower_init_opt.param_groups)):
+            #         self._lower_init_opt.param_groups[_]["params"] = (
+            #             self._lower_opt.param_groups[_]["params"]
+            #         )
+            #         self._lower_init_opt.param_groups[_]["lr"] = self.boat_configs[
+            #             "DI"
+            #         ]["lr"]
             if "DI" in self.boat_configs["dynamic_op"]:
-                self._lower_init_opt = copy.deepcopy(self._lower_opt)
-                for _ in range(len(self._lower_init_opt.param_groups)):
-                    self._lower_init_opt.param_groups[_]["params"] = (
-                        self._lower_opt.param_groups[_]["params"]
-                    )
-                    self._lower_init_opt.param_groups[_]["lr"] = self.boat_configs[
-                        "DI"
-                    ]["lr"]
+                # 用与 upper_opt 相同的优化器类型
+                opt_cls = type(self._upper_opt)
+                di_lr = float(self.boat_configs["DI"]["lr"])
+
+                # 构造新的 param_groups，保留除 lr 外的其他超参数
+                new_groups = []
+                for g in self._lower_opt.param_groups:
+                    ng = {k: v for k, v in g.items() if k != "params"}
+                    ng["params"] = g["params"]
+                    ng["lr"] = di_lr  # 覆盖学习率
+                    new_groups.append(ng)
+
+                # 创建新的优化器实例
+                self._lower_init_opt = opt_cls(new_groups)
 
         else:
             self._fo_gm_solver = get_registered_operation(
@@ -227,14 +242,29 @@ class Problem:
         :rtype: tuple
         """
 
+        # if self.boat_configs["fo_gm"] is not None:
+        #     start_time = time.perf_counter()
+        #     self._log_results.append(
+        #         self._fo_gm_solver.optimize(ll_feed_dict, ul_feed_dict, current_iter)
+        #     )
+        #     run_time = time.perf_counter() - start_time
         if self.boat_configs["fo_gm"] is not None:
             start_time = time.perf_counter()
-            self._log_results.append(
-                self._fo_gm_solver.optimize(ll_feed_dict, ul_feed_dict, current_iter)
-            )
+            if self.boat_configs["fogm_batch_input"]:
+                for batch_ll_feed_dict, batch_ul_feed_dict in zip(
+                        ll_feed_dict, ul_feed_dict
+                ):
+                    self._log_results.append(
+                        self._fo_gm_solver.optimize(batch_ll_feed_dict, batch_ul_feed_dict, current_iter)
+                    ) #meta_learning
+            else:
+                self._log_results.append(
+                       self._fo_gm_solver.optimize(ll_feed_dict, ul_feed_dict, current_iter)
+                   )
             run_time = time.perf_counter() - start_time
         else:
             run_time = 0
+
             if self.boat_configs["accumulate_grad"]:
                 for batch_ll_feed_dict, batch_ul_feed_dict in zip(
                     ll_feed_dict, ul_feed_dict
@@ -242,7 +272,7 @@ class Problem:
                     with higher.innerloop_ctx(
                         self._ll_model,
                         self._lower_opt,
-                        copy_initial_weights=False,
+                        copy_initial_weights=True,
                         device=self._device,
                         track_higher_grads=self._track_opt_traj,
                     ) as (auxiliary_model, auxiliary_opt):
@@ -258,17 +288,18 @@ class Problem:
                         max_loss_iter = list(dynamic_results[-1].values())[-1]
                         forward_time = time.perf_counter() - forward_time
                         backward_time = time.perf_counter()
-                        self._log_results.append(
-                            self._ul_solver.compute_gradients(
-                                ll_feed_dict=batch_ll_feed_dict,
-                                ul_feed_dict=batch_ll_feed_dict,
-                                auxiliary_model=auxiliary_model,
-                                max_loss_iter=max_loss_iter,
+                        if self._ul_solver is not None:
+                            self._log_results.append(
+                                self._ul_solver.compute_gradients(
+                                    ll_feed_dict=batch_ll_feed_dict,
+                                    ul_feed_dict=batch_ul_feed_dict,
+                                    auxiliary_model=auxiliary_model,
+                                    max_loss_iter=max_loss_iter,
+                                )
                             )
-                        )
                         backward_time = time.perf_counter() - backward_time
                     run_time += forward_time + backward_time
-                average_grad(self._ul_model, len(ll_feed_dict))
+                # average_grad(self._ul_model, len(ll_feed_dict))
             else:
                 with higher.innerloop_ctx(
                     self._ll_model,
@@ -287,7 +318,7 @@ class Problem:
                     )
                     max_loss_iter = list(dynamic_results[-1].values())[-1]
                     forward_time = time.perf_counter() - forward_time
-                    print("forward_time", forward_time)
+                    #print("forward_time", forward_time)
                     backward_time = time.perf_counter()
                     if self._ul_solver is not None:
                         self._log_results.append(
@@ -299,17 +330,16 @@ class Problem:
                             )
                         )
                     backward_time = time.perf_counter() - backward_time
-                    print("backward_time", backward_time)
+                    #print("backward_time", backward_time)
                     if self.boat_configs["copy_last_param"]:
                         copy_parameter_from_list(
                             self._ll_model,
                             list(auxiliary_model.parameters(time=-1)),
                         )
-                if "DI" in self.boat_configs["dynamic_op"]:
-                    self._lower_init_opt.step()
-                    self._lower_init_opt.zero_grad()
                 run_time = forward_time + backward_time
-
+            if "DI" in self.boat_configs["dynamic_op"]:
+                self._lower_init_opt.step()
+                self._lower_init_opt.zero_grad()
         if isinstance(ll_feed_dict, list):
             ll_fd = ll_feed_dict[0]
             ul_fd = ul_feed_dict[0]
@@ -323,13 +353,13 @@ class Problem:
         else:
             ll_loss = self._ll_loss(ll_fd, self._ul_model, self._ll_model)
             ul_loss = self._ul_loss(ul_fd, self._ul_model, self._ll_model)
-            print(f"ll_loss: {ll_loss.item()}  ul_loss: {ul_loss.item()}")
+            #print(f"ll_loss: {ll_loss.item()}  ul_loss: {ul_loss.item()}")
             self.save_losses(current_iter = current_iter, ll_loss = ll_loss, ul_loss = ul_loss)
             return [var.grad for var in list(self._ul_var)], run_time
 
         ll_loss = self._ll_loss(ll_fd, self._ul_model, self._ll_model)
         ul_loss = self._ul_loss(ul_fd, self._ul_model, self._ll_model)
-        print(f"ll_loss: {ll_loss.item()}  ul_loss: {ul_loss.item()}")
+        #print(f"ll_loss: {ll_loss.item()}  ul_loss: {ul_loss.item()}")
         self.save_losses(current_iter = current_iter, ll_loss = ll_loss, ul_loss = ul_loss)
 
         return self._log_results, run_time
@@ -348,10 +378,10 @@ class Problem:
             assert (
                 self.boat_configs["RGT"]["truncate_iter"] > 0
             ), "When 'RGT' is chosen, set the 'truncate_iter' properly ."
-        if self.boat_configs["accumulate_grad"]:
-            assert (
-                "IAD" in self.boat_configs["hyper_op"]
-            ), "When using 'accumulate_grad', only 'IAD' based methods are supported."
+        # if self.boat_configs["accumulate_grad"]:
+        #     assert (
+        #         "IAD" in self.boat_configs["hyper_op"]
+        #     ), "When using 'accumulate_grad', only 'IAD' based methods are supported."
         if self.boat_configs["GDA"]["alpha_init"] > 0.0:
             assert (
                 0.0 < self.boat_configs["GDA"]["alpha_decay"] <= 1.0

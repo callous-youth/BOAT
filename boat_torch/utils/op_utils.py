@@ -39,7 +39,7 @@ class DynamicalSystemRules:
     # Default static gradient operator order
     _gradient_order = [
         ["GDA", "DI"],
-        ["DM", "NGD"],
+        ["NGD", "DM"],
     ]
 
     @staticmethod
@@ -287,8 +287,11 @@ def update_tensor_grads(hparams, grads):
     """
     for l, g in zip(hparams, grads):
         if l.grad is None:
-            l.grad = g
-        else:
+            l.grad = torch.zeros_like(l)
+            #print('first_time')
+        # else:
+        if g is not None:
+            #print("accumulate")
             l.grad += g
 
 

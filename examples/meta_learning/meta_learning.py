@@ -99,10 +99,10 @@ import json
 
 base_folder = os.path.dirname(os.path.abspath(__file__))
 parent_folder = os.path.dirname(base_folder)
-with open(os.path.join(base_folder, "configs/boat_config_ml.json"), "r") as f:
+with open(os.path.join(base_folder, "./configs/boat_config_ml.json"), "r") as f:
     boat_config = json.load(f)
 
-with open(os.path.join(base_folder, "configs/loss_config_ml.json"), "r") as f:
+with open(os.path.join(base_folder, "./configs/loss_config_ml.json"), "r") as f:
     loss_config = json.load(f)
 
 
@@ -114,19 +114,19 @@ def main():
     parser.add_argument(
         "--dynamic_method",
         type=str,
-        default="",
+        default=None,
         help="omniglot or miniimagenet or tieredImagenet",
     )
     parser.add_argument(
         "--hyper_method",
         type=str,
-        default="",
+        default=None,
         help="convnet for 4 convs or resnet for Residual blocks",
     )
     parser.add_argument(
         "--fo_gm",
         type=str,
-        default="",
+        default=None,
         help="convnet for 4 convs or resnet for Residual blocks",
     )
     args = parser.parse_args()
@@ -163,15 +163,15 @@ def main():
                 }
                 for k in range(batch_size)
             ]
-            # print(ll_feed_dict[0]['data'].shape,ll_feed_dict[0]['target'].shape)
+            #print(ll_feed_dict[0]['data'].shape,ll_feed_dict[0]['target'].shape)
             loss, run_time = b_optimizer.run_iter(
                 ll_feed_dict, ul_feed_dict, current_iter=meta_iter
             )
-            y_lr_schedular.step()
-            print("validation loss:", loss[-1][-1])
+            #y_lr_schedular.step()
+            #print("validation loss:", loss[-1][-1])
             if meta_iter >= 1:
                 break
-    b_optimizer.plot_losses()
+    #b_optimizer.plot_losses()
 
 
 if __name__ == "__main__":

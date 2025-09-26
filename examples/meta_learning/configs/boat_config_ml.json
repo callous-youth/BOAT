@@ -1,21 +1,24 @@
 {
     "fo_gm": null,
-    "dynamic_op": ["NGD"],
-    "hyper_op":  ["IAD","CG","PTT"],
+    "dynamic_op": null,
+    "hyper_op":  null,
     "return_grad": false,
-    "lower_iters": 5,
+    "lower_iters": 3,
     "device": "cpu",
-    "accumulate_grad": true,    
+    "accumulate_grad": true,
     "copy_last_param": true,
     "loss_log_path": "loss_log.json",
-    "DI":{"lr": 0.1},
-    "GDA":{"alpha_init": 0.5,"alpha_decay": 0.9},
-    "DM":{"auxiliary_v_lr": 0.1,"tau":0.01, "p": 100,"mu0": 0.9,"eta0": 0.5,  "strategy": "s3"},
-    "RGT":{"truncate_iter": 0},
+    "fogm_batch_input": true,
+    "DI":{"lr": 0.01},
+    "GDA":{"alpha_init": 0.5,"alpha_decay": 0.9
+    },
+    "DM":{"auxiliary_v_lr": 0.1,"tau":0.01, "p": 100,"mu0": 0.9,"eta0": 0.5,  "strategy": "s1"
+    },
+    "RGT":{"truncate_iter": 1},
     "CG":{"k": 10, "tolerance": 1e-10},
     "FD":{"r": 1e-2},
-    "VSM":{"z_loop": 5, "z_lr": 0.01, "ll_l2_reg": 0.1, "ul_l2_reg": 0.01, "ul_ln_reg": 10.0, "reg_decay": true},
-    "PGDM":{"y_hat_lr":0.1,"gamma_init": 0.0,"gamma_max": 0.2, "gamma_argmax_step": 50000},
+    "VSM":{"z_loop": 5, "z_lr": 0.01, "ll_l2_reg": 0.1, "ul_l2_reg": 0.01, "ul_ln_reg": 10.0, "reg_decay": 0.001},
+    "PGDM":{"y_hat_lr":0.1,"gamma_init": 0 ,"gamma_max": 0.2, "gamma_argmax_step": 5000, "updata_y_ahead": true, "penalty": "gradient"},
     "VFM":{"eta":  0.5,"u1": 0.1,"y_hat_lr":0.1 },
-    "MESM": {"eta": 0.001,"gamma_1": 0.01,"c0": 0.2,"y_hat_lr":0.1}
+    "MESM": {"eta": 0.001,"gamma_1": 0.001,"c0": 0.2,"y_hat_lr":0.001}
 }

@@ -2,7 +2,6 @@ from boat_torch.utils.op_utils import (
     grad_unused_zero,
     require_model_grad,
     update_tensor_grads,
-    l2_reg
 )
 
 import torch
@@ -73,10 +72,6 @@ class PGDM(DynamicalSystem):
         self.gamma_argmax_step = solver_config["PGDM"]["gamma_argmax_step"]
         self.gam = self.gamma_init
         self.device = solver_config["device"]
-        self.updata_y_ahead = solver_config["PGDM"]["updata_y_ahead"]
-        self.penalty = solver_config["PGDM"]["penalty"]
-        self.y_hat = copy.deepcopy(self.ll_model).to(self.device)
-        self.y_hat_opt = torch.optim.SGD(list(self.y_hat.parameters()), lr=self.y_hat_lr)  # , momentum=0.9)
 
     def optimize(self, ll_feed_dict: Dict, ul_feed_dict: Dict, current_iter: int):
         """
@@ -97,7 +92,8 @@ class PGDM(DynamicalSystem):
             A dictionary containing the upper-level objective and the status of hypergradient computation.
         """
 
-
+        y_hat = copy.deepcopy(self.ll_model).to(self.device)
+        y_hat_opt = torch.optim.SGD(list(y_hat.parameters()), lr=self.y_hat_lr)
 
         if self.gamma_init > self.gamma_max:
             self.gamma_max = self.gamma_init
@@ -106,47 +102,26 @@ class PGDM(DynamicalSystem):
             )
         step_gam = (self.gamma_max - self.gamma_init) / self.gamma_argmax_step
         lr_decay = min(1 / (self.gam + 1e-8), 1)
-
-        if self.updata_y_ahead: # meta_learning need
-            for y_itr in range(self.lower_loop):
-                self.ll_opt.zero_grad()
-                tr_loss = self.ll_objective(ll_feed_dict, self.ul_model, self.ll_model)
-                grads_hat = grad_unused_zero(tr_loss, list(self.ll_model.parameters()))
-                update_tensor_grads(list(self.ll_model.parameters()), grads_hat)
-                self.ll_opt.step() # meta
-
-        require_model_grad(self.y_hat)
+        require_model_grad(y_hat)
         for y_itr in range(self.lower_loop):
-            self.y_hat_opt.zero_grad()
-            tr_loss_hat = self.ll_objective(ll_feed_dict, self.ul_model, self.y_hat)
-            grads_hat = grad_unused_zero(tr_loss_hat, list(self.y_hat.parameters()))
-            update_tensor_grads(list(self.y_hat.parameters()), grads_hat)
-            self.y_hat_opt.step()
+            y_hat_opt.zero_grad()
+            tr_loss = self.ll_objective(ll_feed_dict, self.ul_model, y_hat)
+            grads_hat = grad_unused_zero(tr_loss, y_hat.parameters())
+            update_tensor_grads(list(y_hat.parameters()), grads_hat)
+            y_hat_opt.step()
 
         self.ll_opt.zero_grad()
         F_y = self.ul_objective(ul_feed_dict, self.ul_model, self.ll_model)
-        assert self.penalty in ["difference", "gradient"], "Set 'penalty' properly."
-        if self.penalty == "difference":
-            loss = lr_decay * (
-                    F_y
-                    + self.gam
-                    * (
-                            self.ll_objective(ll_feed_dict, self.ul_model, self.ll_model)
-                            - self.ll_objective(ll_feed_dict, self.ul_model, self.y_hat)
-                    )
+        loss = lr_decay * (
+            F_y
+            + self.gam
+            * (
+                self.ll_objective(ll_feed_dict, self.ul_model, self.ll_model)
+                - self.ll_objective(ll_feed_dict, self.ul_model, y_hat)
             )
-        elif self.penalty == "gradient":
-            tr_loss = self.ll_objective(ll_feed_dict, self.ul_model, self.ll_model)
-            g_y = grad_unused_zero(tr_loss, list(self.ll_model.parameters()))
-            loss = lr_decay * (
-                    F_y
-                    + self.gam
-                    * l2_reg(g_y)
-            )
-
+        )
         loss.backward()
         self.gam += step_gam
         self.gam = min(self.gamma_max, self.gam)
-        self.ll_objective(ll_feed_dict, self.ul_model, self.y_hat)
-        self.ll_opt.step()# meta
+        self.ll_opt.step()
         return {"upper_loss": F_y.item()}

@@ -65,7 +65,7 @@ class SequentialDS:
 
         for idx, gradient_instance in enumerate(self.gradient_instances):
             # Compute the gradient, passing the intermediate result as input
-            result = gradient_instance.optimize(
+            intermediate_result = gradient_instance.optimize(
                 **(kwargs if idx == 0 else intermediate_result),
                 next_operation=(
                     self.custom_order[idx + 1]
@@ -74,9 +74,9 @@ class SequentialDS:
                 ),
             )
             # Store the result
-            self.result_store.add(f"dynamic_results_{idx}", result)
-            intermediate_result = result
-
+            # self.result_store.add(f"dynamic_results_{idx}", result)
+            # intermediate_result = result
+        self.result_store.add(f"dynamic_results_{idx}", intermediate_result)
         return self.result_store.get_results()
 
 
