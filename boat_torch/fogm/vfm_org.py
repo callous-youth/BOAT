@@ -104,16 +104,6 @@ class VFM(DynamicalSystem):
             grad_y = grad_unused_zero(loss, list(y.parameters()), retain_graph=True)
             grad_x = grad_unused_zero(loss, list(x.parameters()))
             return loss, grad_y, grad_x
-        
-        require_model_grad(self.ll_model)
-        for y_itr in range(self.lower_loop):
-            self.ll_opt.zero_grad()
-            tr_loss = self.ll_objective(ll_feed_dict, self.ul_model, self.ll_model)
-            grads_hat = torch.autograd.grad(
-                tr_loss, self.ll_model.parameters(), allow_unused=True
-            )
-            update_tensor_grads(list(self.ll_model.parameters()), grads_hat)
-            self.ll_opt.step()
 
         require_model_grad(y_hat)
         for y_itr in range(self.lower_loop):
