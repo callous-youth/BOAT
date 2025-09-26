@@ -1,24 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>L2 Regularization with MindSpore &mdash; BOAT 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=751030aa" />
+  <title>L2 Regularization with MindSpore &mdash; BOAT-MS 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=4ff932f8" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=d45e8c67"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -34,7 +32,8 @@
           
           
           <a href="index.html" class="icon icon-home">
-            BOAT
+            BOAT-MS
+              <img src="_static/logo.jpg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -95,7 +94,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">BOAT</a>
+          <a href="index.html">BOAT-MS</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -114,11 +113,11 @@
            <div itemprop="articleBody">
              
   <section id="l2-regularization-with-mindspore">
-<h1>L2 Regularization with MindSpore<a class="headerlink" href="#l2-regularization-with-mindspore" title="Link to this heading"></a></h1>
+<h1>L2 Regularization with MindSpore<a class="headerlink" href="#l2-regularization-with-mindspore" title="Permalink to this heading"></a></h1>
 <p>This example demonstrates how to use the BOAT library with MindSpore to perform bi-level optimization with L2 regularization. The example includes data preprocessing, model initialization, and the optimization process.</p>
 <hr class="docutils" />
 <section id="step-1-configuration-loading">
-<h2>Step 1: Configuration Loading<a class="headerlink" href="#step-1-configuration-loading" title="Link to this heading"></a></h2>
+<h2>Step 1: Configuration Loading<a class="headerlink" href="#step-1-configuration-loading" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_folder</span><span class="p">,</span> <span class="s2">&quot;configs_ms/boat_config_l2.json&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">boat_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
@@ -127,7 +126,7 @@
 </pre></div>
 </div>
 <section id="explanation">
-<h3>Explanation:<a class="headerlink" href="#explanation" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#explanation" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">boat_config_l2.json</span></code></strong>: Contains configuration for the bi-level optimization problem.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">loss_config_l2.json</span></code></strong>: Defines the loss functions for both upper-level and lower-level models.</p></li>
@@ -136,14 +135,14 @@
 </section>
 <hr class="docutils" />
 <section id="step-2-data-preparation">
-<h2>Step 2: Data Preparation<a class="headerlink" href="#step-2-data-preparation" title="Link to this heading"></a></h2>
+<h2>Step 2: Data Preparation<a class="headerlink" href="#step-2-data-preparation" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">trainset</span><span class="p">,</span> <span class="n">valset</span><span class="p">,</span> <span class="n">testset</span><span class="p">,</span> <span class="n">tevalset</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 <span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;l2reg.pkl&quot;</span><span class="p">)</span>
 <span class="n">save_data</span><span class="p">((</span><span class="n">trainset</span><span class="p">,</span> <span class="n">valset</span><span class="p">,</span> <span class="n">testset</span><span class="p">,</span> <span class="n">tevalset</span><span class="p">),</span> <span class="n">save_path</span><span class="p">)</span>
 </pre></div>
 </div>
 <section id="id1">
-<h3>Explanation:<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">get_data</span></code> function loads and splits the dataset into training, validation, testing, and evaluation sets.</p></li>
 <li><p>Processed data is saved to the specified <code class="docutils literal notranslate"><span class="pre">data_path</span></code> directory using a custom <code class="docutils literal notranslate"><span class="pre">save_data</span></code> function that supports MindSpore COOTensors.</p></li>
@@ -152,27 +151,27 @@
 </section>
 <hr class="docutils" />
 <section id="step-3-model-initialization">
-<h2>Step 3: Model Initialization<a class="headerlink" href="#step-3-model-initialization" title="Link to this heading"></a></h2>
+<h2>Step 3: Model Initialization<a class="headerlink" href="#step-3-model-initialization" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_feats</span> <span class="o">=</span> <span class="n">trainset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">num_classes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">trainset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span>
 
-<span class="k">class</span> <span class="nc">UpperModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Cell</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_feats</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UpperModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Cell</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_feats</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">UpperModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">ms</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_feats</span><span class="p">),</span> <span class="n">ms</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span>
 
-<span class="k">class</span> <span class="nc">LowerModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Cell</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_feats</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LowerModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Cell</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_feats</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">LowerModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="n">he_normal</span> <span class="o">=</span> <span class="n">HeNormal</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">ms</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span>
             <span class="n">ms</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_feats</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">ms</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="n">he_normal</span><span class="p">)</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span>
 
 <span class="n">upper_model</span> <span class="o">=</span> <span class="n">UpperModel</span><span class="p">(</span><span class="n">n_feats</span><span class="p">)</span>
@@ -180,7 +179,7 @@
 </pre></div>
 </div>
 <section id="id2">
-<h3>Explanation:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">UpperModel</span></code></strong>: Represents the upper-level model, with trainable parameters initialized to zeros.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">LowerModel</span></code></strong>: Represents the lower-level model, with trainable weights initialized using HeNormal.</p></li>
@@ -189,13 +188,13 @@
 </section>
 <hr class="docutils" />
 <section id="step-4-optimizer-setup">
-<h2>Step 4: Optimizer Setup<a class="headerlink" href="#step-4-optimizer-setup" title="Link to this heading"></a></h2>
+<h2>Step 4: Optimizer Setup<a class="headerlink" href="#step-4-optimizer-setup" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">upper_opt</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">upper_model</span><span class="o">.</span><span class="n">trainable_params</span><span class="p">(),</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="n">lower_opt</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">lower_model</span><span class="o">.</span><span class="n">trainable_params</span><span class="p">(),</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 </pre></div>
 </div>
 <section id="id3">
-<h3>Explanation:<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Adam optimizer</strong> is used for the upper-level model.</p></li>
 <li><p><strong>SGD optimizer</strong> is applied to the lower-level model.</p></li>
@@ -204,7 +203,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-5-boat-problem-setup">
-<h2>Step 5: BOAT Problem Setup<a class="headerlink" href="#step-5-boat-problem-setup" title="Link to this heading"></a></h2>
+<h2>Step 5: BOAT Problem Setup<a class="headerlink" href="#step-5-boat-problem-setup" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;lower_level_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lower_model</span>
 <span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;upper_level_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">upper_model</span>
 <span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;lower_level_opt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lower_opt</span>
@@ -218,7 +217,7 @@
 </pre></div>
 </div>
 <section id="id4">
-<h3>Explanation:<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Configures the BOAT library with the models, optimizers, and parameters.</p></li>
 <li><p>Initializes the lower-level and upper-level solvers for bi-level optimization.</p></li>
@@ -227,7 +226,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-6-training-loop">
-<h2>Step 6: Training Loop<a class="headerlink" href="#step-6-training-loop" title="Link to this heading"></a></h2>
+<h2>Step 6: Training Loop<a class="headerlink" href="#step-6-training-loop" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ul_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">trainset</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">trainset</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
 <span class="n">ll_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">valset</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">valset</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
 
@@ -246,7 +245,7 @@
 </pre></div>
 </div>
 <section id="id5">
-<h3>Explanation:<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Input feed dictionaries</strong>: Define data and targets for both lower-level and upper-level optimization.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">run_iter</span></code></strong>: Performs one iteration of bi-level optimization.</p></li>
@@ -256,8 +255,8 @@
 </section>
 <hr class="docutils" />
 <section id="step-7-evaluation">
-<h2>Step 7: Evaluation<a class="headerlink" href="#step-7-evaluation" title="Link to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">testset</span><span class="p">):</span>
+<h2>Step 7: Evaluation<a class="headerlink" href="#step-7-evaluation" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">testset</span><span class="p">):</span>
     <span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">testset</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">ms</span><span class="o">.</span><span class="n">COOTensor</span><span class="p">):</span>
@@ -276,7 +275,7 @@
 </pre></div>
 </div>
 <section id="id6">
-<h3>Explanation:<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Evaluates the model on the test set, computing loss and accuracy.</p></li>
 <li><p>Supports dense and sparse tensors (COOTensor) for input data.</p></li>
@@ -285,13 +284,13 @@
 </section>
 <hr class="docutils" />
 <section id="running-the-example">
-<h2>Running the Example<a class="headerlink" href="#running-the-example" title="Link to this heading"></a></h2>
+<h2>Running the Example<a class="headerlink" href="#running-the-example" title="Permalink to this heading"></a></h2>
 <p>To execute the script, use the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>your_script_name.py<span class="w"> </span>--data_path<span class="w"> </span>./data<span class="w"> </span>--iterations<span class="w"> </span><span class="m">30</span>
 </pre></div>
 </div>
 <section id="key-features">
-<h3>Key Features:<a class="headerlink" href="#key-features" title="Link to this heading"></a></h3>
+<h3>Key Features:<a class="headerlink" href="#key-features" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Configurable via command-line arguments.</p></li>
 <li><p>Supports saving and loading custom data formats with COOTensor for efficient processing.</p></li>

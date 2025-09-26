@@ -9,6 +9,11 @@
     z-index: 1000; /* 确保导航栏位于内容区域之上 */
 }
 
+.logo {
+    height: 50px; /* 设置 logo 高度 */
+    width: auto;  /* 宽度自适应 */
+}
+
 /*!* 可选：设置全局背景颜色或边框，方便调试 *!*/
 /*body {*/
 /*    background-color: #ffffff; !* 可选：设置背景为纯白 *!*/
@@ -69,14 +74,44 @@
 /*    color: #bf616a; !* 柔和的红色 *!*/
 /*}*/
 
-
+/*#eceff4
 /*!* 顶部标题栏 *!*/
-/*.wy-side-nav-search {*/
-/*    background-color: #3b4252;*/
-/*    color: #eceff4;*/
-/*    padding: 10px;*/
-/*    font-weight: bold;*/
-/*}*/
+.wy-side-nav-search {
+   background-color: #dcdddd;
+   color: #3b4252;
+   padding: 5px 10px;     
+   height: auto;            
+   font-weight: bold;
+   display: flex;            /* 使用 flex 布局 */
+   flex-direction: column;   /* 内容垂直排列 */
+   align-items: center;      /* 水平居中对齐 */
+   justify-content: center;  /* 垂直居中对齐 */
+}
+
+/* 设置项目名称的具体样式 */
+.wy-side-nav-search .icon-home {
+    color: #3b4252;          /* 项目名称颜色 */
+    font-weight: bold;       /* 字体加粗 */
+    font-size: 1em;          /* 调整字体大小 */
+    margin-top: 5px;         /* 与 logo 之间的距离 */
+    margin-bottom: 0;        /* 去掉下方空白 */
+    line-height: 1;          /* 减小行高 */
+ }
+
+/* 调整左上角 logo 的样式 */
+.wy-side-nav-search .logo {
+    display: block;
+    margin: 2px 0;           /* 上下间距，减少空白 */
+    max-height: 120px;        /* 限制 logo 的最大高度 */
+    max-width: 95%;          /* 限制 logo 的最大宽度 */
+    object-fit: contain;     /* 保持 logo 的比例 */
+}
+
+/* 隐藏 project 名称，只显示 logo */
+/* .wy-side-nav-search .icon.icon-home { */
+    /* display: none; */
+/* } */
+
 
 /*!* 页脚样式 *!*/
 /*footer {*/
@@ -193,10 +228,10 @@
 
 
 
-.wy-side-nav-search {
-    background-color: #2c3e50; /* 更深的导航栏背景色 */
-    color: #ecf0f1; /* 浅色文字 */
-}
+/* .wy-side-nav-search { */
+    /* background-color: #2c3e50; 更深的导航栏背景色 */
+    /* color: #ecf0f1; 浅色文字 */
+/* } */
 
 .wy-menu-vertical a {
     color: #ecf0f1; /* 链接文字颜色 */
@@ -228,10 +263,10 @@
 }
 
 
-.wy-side-nav-search {
+/* .wy-side-nav-search {
     background-color: #2c3e50; /* 更深的导航栏背景色 */
-    color: #ecf0f1; /* 浅色文字 */
-}
+    /* color: #ecf0f1; 浅色文字 */
+/* } */ 
 
 .wy-menu-vertical a {
     color: #ecf0f1; /* 链接文字颜色 */
@@ -426,7 +461,3 @@ footer a {
 /*.furo-sidebar {*/
 /*    background-color: #f4f4f4;*/
 /*}*/
-
-
-
-
