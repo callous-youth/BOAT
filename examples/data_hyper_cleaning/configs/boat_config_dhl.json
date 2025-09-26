@@ -1,25 +1,21 @@
 {
     "fo_gm": null,
-    "dynamic_op": null,
-    "hyper_op":  null,
+    "dynamic_op": ["NGD","DI","GDA"],
+    "hyper_op":  ["CG","PTT"],
     "return_grad": false,
     "lower_iters": 5,
     "device": "cpu",
     "accumulate_grad": false,
     "copy_last_param": true,
-    "fogm_batch_input": false,
-
     "loss_log_path": "loss_log.json",
-    "DI":{"lr": 0.01},
+    "DI":{"lr": 0.1},
     "GDA":{"alpha_init": 0.5,"alpha_decay": 0.9},
-    "DM":{"auxiliary_v_lr": 0.1,"tau":0.01, "p": 100,"mu0": 0.9,"eta0": 0.5,  "strategy": "s1"
-    },
+    "DM":{"auxiliary_v_lr": 0.1,"tau":0.01, "p": 100,"mu0": 0.9,"eta0": 0.5,  "strategy": "s1"},
     "RGT":{"truncate_iter": 0},
     "CG":{"k": 10, "tolerance": 1e-10},
     "FD":{"r": 1e-2},
     "VSM":{"z_loop": 5, "z_lr": 0.01, "ll_l2_reg": 0.1, "ul_l2_reg": 0.01, "ul_ln_reg": 10.0, "reg_decay": true},
-    "PGDM":{"y_hat_lr":0.01,"gamma_init": 0.0,"gamma_max": 0.2, "gamma_argmax_step": 30000,"updata_y_ahead": false, "penalty": "difference"},
-    "VFM":{"eta":  0.5,"u1": 0.1,"y_hat_lr":0.01 },
+    "PGDM":{"y_hat_lr":0.1,"gamma_init": 0.0,"gamma_max": 0.2, "gamma_argmax_step": 50000},
+    "VFM":{"eta":  0.5,"u1": 0.1,"y_hat_lr":0.1 },
     "MESM": {"eta": 0.001,"gamma_1": 0.01,"c0": 0.2,"y_hat_lr":0.1}
 }
-

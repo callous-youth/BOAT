@@ -92,7 +92,7 @@ class NGD(DynamicalSystem):
         None
         """
 
-        # assert next_operation is None, "NGD does not support next_operation"
+        assert next_operation is None, "NGD does not support next_operation"
         if "gda_loss" in kwargs:
             gda_loss = kwargs["gda_loss"]
             alpha = kwargs["alpha"]
@@ -119,20 +119,12 @@ class NGD(DynamicalSystem):
                 loss_f.backward()
                 self.ll_opt.step()
                 self.ll_opt.zero_grad()
-            # for x, y in zip(self.ll_model.parameters(), auxiliary_model.parameters()):
-            #     y.data = x.data.clone().detach().requires_grad_()
-            # for x, y in zip(ll_backup, self.ll_model.parameters()):
-            #     y.data = x.data.clone().detach().requires_grad_()
-            # 改为（不会制造新存储，也不会挂计算图）
-            with torch.no_grad():
-                for x, y in zip(self.ll_model.parameters(), auxiliary_model.parameters()):
-                    y.copy_(x)
-                for x, y in zip(ll_backup, self.ll_model.parameters()):
-                    y.copy_(x)
-            del ll_backup  # 显式释放临时备份引用
+            for x, y in zip(self.ll_model.parameters(), auxiliary_model.parameters()):
+                y.data = x.data.clone().detach().requires_grad_()
+            for x, y in zip(ll_backup, self.ll_model.parameters()):
+                y.data = x.data.clone().detach().requires_grad_()
 
-
-        # # truncate with PTT method
+        # truncate with PTT method
         if self.truncate_max_loss_iter:
             ul_loss_list = []
             for lower_iter in range(self.lower_loop):
@@ -148,11 +140,11 @@ class NGD(DynamicalSystem):
                         ll_feed_dict, self.ul_model, auxiliary_model
                     )
                 auxiliary_opt.step(loss_f)
-                with torch.no_grad():
-                    upper_loss = self.ul_objective(
-                        ul_feed_dict, self.ul_model, auxiliary_model
-                    )
-                    ul_loss_list.append(upper_loss.item())
+
+                upper_loss = self.ul_objective(
+                    ul_feed_dict, self.ul_model, auxiliary_model
+                )
+                ul_loss_list.append(upper_loss.item())
             ll_step_with_max_ul_loss = ul_loss_list.index(max(ul_loss_list))
             return ll_step_with_max_ul_loss + 1
 
@@ -166,14 +158,4 @@ class NGD(DynamicalSystem):
             else:
                 loss_f = self.ll_objective(ll_feed_dict, self.ul_model, auxiliary_model)
             auxiliary_opt.step(loss_f, grad_callback=stop_grads if self.foa else None)
-        if next_operation is None:
-            return -1
-        else:
-            return {
-                "ll_feed_dict": ll_feed_dict,
-                "ul_feed_dict": ul_feed_dict,
-                "auxiliary_model": auxiliary_model,
-                "auxiliary_opt": auxiliary_opt,
-                "current_iter": current_iter,
-                **kwargs,
-            }
+        return -1

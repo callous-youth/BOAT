@@ -44,7 +44,7 @@ class SequentialHG:
 
         for idx, gradient_instance in enumerate(self.gradient_instances):
             # Compute the gradient, passing the intermediate result as input
-            intermediate_result = gradient_instance.compute_gradients(
+            result = gradient_instance.compute_gradients(
                 **(kwargs if idx == 0 else intermediate_result),
                 next_operation=(
                     self.custom_order[idx + 1]
@@ -53,9 +53,9 @@ class SequentialHG:
                 ),
             )
             # Store the result
-            # self.result_store.add(f"gradient_operator_results_{idx}", result)
-            # intermediate_result = result
-        self.result_store.add(f"gradient_operator_results", intermediate_result)
+            self.result_store.add(f"gradient_operator_results_{idx}", result)
+            intermediate_result = result
+
         return self.result_store.get_results()
 
 

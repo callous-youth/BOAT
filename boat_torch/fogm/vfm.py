@@ -91,7 +91,7 @@ class VFM(DynamicalSystem):
             A dictionary containing the upper-level objective and the status of hypergradient computation.
         """
         y_hat = copy.deepcopy(self.ll_model)
-        y_hat_opt = torch.optim.SGD(y_hat.parameters(), lr=self.y_hat_lr, momentum=0.5)
+        y_hat_opt = torch.optim.SGD(y_hat.parameters(), lr=self.y_hat_lr, momentum=0.9)
         n_params_y = sum([p.numel() for p in self.ll_model.parameters()])
         n_params_x = sum([p.numel() for p in self.ul_model.parameters()])
         delta_f = torch.zeros(n_params_x + n_params_y).to(self.device)
@@ -104,16 +104,6 @@ class VFM(DynamicalSystem):
             grad_y = grad_unused_zero(loss, list(y.parameters()), retain_graph=True)
             grad_x = grad_unused_zero(loss, list(x.parameters()))
             return loss, grad_y, grad_x
-        
-        require_model_grad(self.ll_model)
-        for y_itr in range(self.lower_loop):
-            self.ll_opt.zero_grad()
-            tr_loss = self.ll_objective(ll_feed_dict, self.ul_model, self.ll_model)
-            grads_hat = torch.autograd.grad(
-                tr_loss, self.ll_model.parameters(), allow_unused=True
-            )
-            update_tensor_grads(list(self.ll_model.parameters()), grads_hat)
-            self.ll_opt.step()
 
         require_model_grad(y_hat)
         for y_itr in range(self.lower_loop):

@@ -2,7 +2,7 @@ import sys
 import os
 import json
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 import boat_torch as boat
 import torch
 import torch.nn.functional as F
@@ -43,10 +43,10 @@ y_opt = torch.optim.SGD(y.parameters(), lr=0.01)
 initialize(x)
 initialize(y)
 
-with open(os.path.join(base_folder, "./configs/boat_config_dhl.json"), "r") as f:
+with open(os.path.join(base_folder, "configs/boat_config_dhl.json"), "r") as f:
     boat_config = json.load(f)
 
-with open(os.path.join(base_folder, "./configs/loss_config_dhl.json"), "r") as f:
+with open(os.path.join(base_folder, "configs/loss_config_dhl.json"), "r") as f:
     loss_config = json.load(f)
 
 
@@ -58,13 +58,13 @@ def main():
     parser.add_argument(
         "--dynamic_method",
         type=str,
-        default=None,
+        default="",
         help="omniglot or miniimagenet or tieredImagenet",
     )
     parser.add_argument(
         "--hyper_method",
         type=str,
-        default=None,
+        default="",
         help="convnet for 4 convs or resnet for Residual blocks",
     )
     parser.add_argument(
@@ -90,10 +90,6 @@ def main():
     boat_config["upper_level_opt"] = x_opt
     boat_config["lower_level_var"] = list(y.parameters())
     boat_config["upper_level_var"] = list(x.parameters())
-    if boat_config["dynamic_op"] is not None:
-        if "DM" in boat_config["dynamic_op"] :
-            boat_config["lower_iters"] = 1
-
     b_optimizer = boat.Problem(boat_config, loss_config)
     if boat_config["fo_gm"] is not None and ("PGDM" in boat_config["fo_gm"]):
         boat_config["PGDM"]["gamma_init"] = boat_config["PGDM"]["gamma_max"] + 0.1
@@ -112,10 +108,9 @@ def main():
     DynamicalSystemRules.set_gradient_order(
         [
             ["GDA", "DI"],
-            ["NGD", "DM"],
+            ["DM", "NGD"],
         ]
     )
-
     if boat_config["dynamic_op"] is not None:
         if "DM" in boat_config["dynamic_op"] and ("GDA" in boat_config["dynamic_op"]):
             iterations = 3
@@ -162,7 +157,7 @@ def main():
                         valLoss,
                     )
                 )
-    #b_optimizer.plot_losses()
+    b_optimizer.plot_losses()
 
 
 if __name__ == "__main__":
