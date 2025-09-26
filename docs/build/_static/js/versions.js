@@ -1,6 +1,6 @@
-const themeFlyoutDisplay = "";
-const themeVersionSelector = false;
-const themeLanguageSelector = false;
+const themeFlyoutDisplay = "hidden";
+const themeVersionSelector = true;
+const themeLanguageSelector = true;
 
 if (themeFlyoutDisplay === "attached") {
   function renderLanguages(config) {

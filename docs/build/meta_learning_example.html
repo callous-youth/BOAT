@@ -1,24 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Meta-Learning &mdash; BOAT 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=751030aa" />
+  <title>Meta-Learning &mdash; BOAT-Torch 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dfc096c9" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=d45e8c67"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -34,7 +32,8 @@
           
           
           <a href="index.html" class="icon icon-home">
-            BOAT
+            BOAT-Torch
+              <img src="_static/logo.jpg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -89,7 +88,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">BOAT</a>
+          <a href="index.html">BOAT-Torch</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -108,23 +107,23 @@
            <div itemprop="articleBody">
              
   <section id="meta-learning">
-<h1>Meta-Learning<a class="headerlink" href="#meta-learning" title="Link to this heading"></a></h1>
+<h1>Meta-Learning<a class="headerlink" href="#meta-learning" title="Permalink to this heading"></a></h1>
 <p>This example demonstrates how to use the BOAT library to perform meta-learning tasks, focusing on bi-level optimization using sinusoid functions as the dataset. The explanation is broken down into steps with corresponding code snippets.</p>
 <hr class="docutils" />
 <section id="step-1-importing-libraries-and-dependencies">
-<h2>Step 1: Importing Libraries and Dependencies<a class="headerlink" href="#step-1-importing-libraries-and-dependencies" title="Link to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">boat</span>
-<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
-<span class="kn">from</span> <span class="nn">torchmeta.toy.helpers</span> <span class="kn">import</span> <span class="n">sinusoid</span>
-<span class="kn">from</span> <span class="nn">torchmeta.utils.data</span> <span class="kn">import</span> <span class="n">BatchMetaDataLoader</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="kn">from</span> <span class="nn">examples.meta_learning.util_ml</span> <span class="kn">import</span> <span class="n">get_sinuoid</span>
+<h2>Step 1: Importing Libraries and Dependencies<a class="headerlink" href="#step-1-importing-libraries-and-dependencies" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">boat</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torchmeta.toy.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">sinusoid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torchmeta.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">BatchMetaDataLoader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">examples.meta_learning.util_ml</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_sinuoid</span>
 </pre></div>
 </div>
 <section id="explanation">
-<h3>Explanation:<a class="headerlink" href="#explanation" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#explanation" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Import necessary libraries, including <code class="docutils literal notranslate"><span class="pre">torch</span></code>, <code class="docutils literal notranslate"><span class="pre">boat</span></code>, and <code class="docutils literal notranslate"><span class="pre">torchmeta</span></code>.</p></li>
 </ul>
@@ -132,7 +131,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-2-dataset-preparation">
-<h2>Step 2: Dataset Preparation<a class="headerlink" href="#step-2-dataset-preparation" title="Link to this heading"></a></h2>
+<h2>Step 2: Dataset Preparation<a class="headerlink" href="#step-2-dataset-preparation" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">4</span>
 <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;num_workers&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;pin_memory&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
 <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
@@ -140,7 +139,7 @@
 </pre></div>
 </div>
 <section id="id1">
-<h3>Explanation:<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Dataset</strong>: The <code class="docutils literal notranslate"><span class="pre">sinusoid</span></code> function generates toy sinusoidal data for meta-learning.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">batch_size</span></code></strong>: Number of tasks in each batch.</p></li>
@@ -150,7 +149,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-3-model-and-optimizer-setup">
-<h2>Step 3: Model and Optimizer Setup<a class="headerlink" href="#step-3-model-and-optimizer-setup" title="Link to this heading"></a></h2>
+<h2>Step 3: Model and Optimizer Setup<a class="headerlink" href="#step-3-model-and-optimizer-setup" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">meta_model</span> <span class="o">=</span> <span class="n">get_sinuoid</span><span class="p">()</span>
 <span class="n">dataloader</span> <span class="o">=</span> <span class="n">BatchMetaDataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <span class="n">test_dataloader</span> <span class="o">=</span> <span class="n">BatchMetaDataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -162,7 +161,7 @@
 </pre></div>
 </div>
 <section id="id2">
-<h3>Explanation:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Meta-Model</strong>: Obtain a sinusoid-based meta-model using <code class="docutils literal notranslate"><span class="pre">get_sinuoid</span></code>.</p></li>
 <li><p><strong>DataLoader</strong>: <code class="docutils literal notranslate"><span class="pre">BatchMetaDataLoader</span></code> creates meta-dataset loaders for training and testing.</p></li>
@@ -173,7 +172,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-4-configuration-loading">
-<h2>Step 4: Configuration Loading<a class="headerlink" href="#step-4-configuration-loading" title="Link to this heading"></a></h2>
+<h2>Step 4: Configuration Loading<a class="headerlink" href="#step-4-configuration-loading" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">base_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
 <span class="n">parent_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">base_folder</span><span class="p">)</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parent_folder</span><span class="p">,</span> <span class="s2">&quot;configs/boat_config_ml.json&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -184,7 +183,7 @@
 </pre></div>
 </div>
 <section id="id3">
-<h3>Explanation:<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Load configurations for BOAT and loss functions from JSON files.</p></li>
 </ul>
@@ -192,7 +191,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-5-bi-level-optimization-setup">
-<h2>Step 5: Bi-Level Optimization Setup<a class="headerlink" href="#step-5-bi-level-optimization-setup" title="Link to this heading"></a></h2>
+<h2>Step 5: Bi-Level Optimization Setup<a class="headerlink" href="#step-5-bi-level-optimization-setup" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dynamic_method</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">dynamic_method</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">dynamic_method</span> <span class="k">else</span> <span class="kc">None</span>
 <span class="n">hyper_method</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">hyper_method</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">hyper_method</span> <span class="k">else</span> <span class="kc">None</span>
 <span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;dynamic_op&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dynamic_method</span>
@@ -209,7 +208,7 @@
 </pre></div>
 </div>
 <section id="id4">
-<h3>Explanation:<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Configure and initialize the bi-level optimizer using BOAT.</p></li>
 <li><p>Define models, variables, and optimizers for both levels.</p></li>
@@ -218,7 +217,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-6-main-function">
-<h2>Step 6: Main Function<a class="headerlink" href="#step-6-main-function" title="Link to this heading"></a></h2>
+<h2>Step 6: Main Function<a class="headerlink" href="#step-6-main-function" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dataloader</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Meta Training Phase&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">pbar</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">meta_iter</span><span class="p">,</span> <span class="n">batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pbar</span><span class="p">):</span>
         <span class="n">ul_feed_dict</span> <span class="o">=</span> <span class="p">[</span>
@@ -245,7 +244,7 @@
 </pre></div>
 </div>
 <section id="id5">
-<h3>Explanation:<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Iterate through batches using <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> for progress visualization.</p></li>
 <li><p>Prepare feed dictionaries for lower-level and upper-level optimizations.</p></li>

@@ -7,6 +7,13 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 import os
 import sys
+from pathlib import Path
+
+
+#<project_root>/boat_torch, <project_root>/docs/source/conf.py
+CUR = Path(__file__).resolve()
+PROJECT_ROOT = CUR.parents[2]
+sys.path.insert(0, str(PROJECT_ROOT))
 
 # 将项目的根目录添加到 sys.path
 sys.path.insert(0, os.path.abspath("../../"))
@@ -28,6 +35,15 @@ extensions = [
     "sphinx.ext.viewcode",  # 在文档中生成代码链接
     "myst_parser",  # 支持 Markdown (可选)
 ]
+
+autodoc_mock_imports = [
+    "numpy", "scipy", "sklearn",
+    "torch", "torchvision", "torchmeta", "higher",
+    "matplotlib"
+]
+
+autodoc_typehints = "none"
+
 
 templates_path = ["_templates"]
 exclude_patterns = []

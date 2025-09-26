@@ -1,24 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>boat_torch.fogm &mdash; BOAT 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=751030aa" />
+  <title>boat_torch.fogm &mdash; BOAT-Torch 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dfc096c9" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=d45e8c67"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -35,7 +33,8 @@
           
           
           <a href="index.html" class="icon icon-home">
-            BOAT
+            BOAT-Torch
+              <img src="_static/logo.jpg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -82,7 +81,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">BOAT</a>
+          <a href="index.html">BOAT-Torch</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -102,15 +101,15 @@
            <div itemprop="articleBody">
              
   <section id="boat-torch-fogm">
-<h1>boat_torch.fogm<a class="headerlink" href="#boat-torch-fogm" title="Link to this heading"></a></h1>
+<h1>boat_torch.fogm<a class="headerlink" href="#boat-torch-fogm" title="Permalink to this heading"></a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-boat_torch.fogm.mesm">
-<span id="boat-torch-fogm-mesm"></span><h2>boat_torch.fogm.mesm<a class="headerlink" href="#module-boat_torch.fogm.mesm" title="Link to this heading"></a></h2>
+<span id="boat-torch-fogm-mesm"></span><h2>boat_torch.fogm.mesm<a class="headerlink" href="#module-boat_torch.fogm.mesm" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_torch.fogm.mesm.MESM">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.fogm.mesm.</span></span><span class="sig-name descname"><span class="pre">MESM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/mesm.html#MESM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.mesm.MESM" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.fogm.mesm.</span></span><span class="sig-name descname"><span class="pre">MESM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/mesm.html#MESM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.mesm.MESM" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="boat_torch.dynamic_ol.html#boat_torch.dynamic_ol.dynamical_system.DynamicalSystem" title="boat_torch.dynamic_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
 <p>Implements the optimization procedure of Moreau Envelope based Single-loop Method (MESM) [1].</p>
 <dl class="field-list simple">
@@ -145,7 +144,7 @@
 <p>[1] Liu R, Liu Z, Yao W, et al. “Moreau Envelope for Nonconvex Bi-Level Optimization: A Single-loop and Hessian-free Solution Strategy,” ICML, 2024.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_torch.fogm.mesm.MESM.optimize">
-<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/mesm.html#MESM.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.mesm.MESM.optimize" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/mesm.html#MESM.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.mesm.MESM.optimize" title="Permalink to this definition"></a></dt>
 <dd><p>Executes the optimization procedure using the provided data and model configurations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -156,10 +155,10 @@
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>This method performs in-place optimization and does not return a value.</p>
+<dd class="field-even"><p>A dictionary containing the upper-level objective and the status of hypergradient computation.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
+<dd class="field-odd"><p>Dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -168,10 +167,10 @@
 
 </section>
 <section id="module-boat_torch.fogm.pgdm">
-<span id="boat-torch-fogm-pgdm"></span><h2>boat_torch.fogm.pgdm<a class="headerlink" href="#module-boat_torch.fogm.pgdm" title="Link to this heading"></a></h2>
+<span id="boat-torch-fogm-pgdm"></span><h2>boat_torch.fogm.pgdm<a class="headerlink" href="#module-boat_torch.fogm.pgdm" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_torch.fogm.pgdm.PGDM">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.fogm.pgdm.</span></span><span class="sig-name descname"><span class="pre">PGDM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/pgdm.html#PGDM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.pgdm.PGDM" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.fogm.pgdm.</span></span><span class="sig-name descname"><span class="pre">PGDM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/pgdm.html#PGDM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.pgdm.PGDM" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="boat_torch.dynamic_ol.html#boat_torch.dynamic_ol.dynamical_system.DynamicalSystem" title="boat_torch.dynamic_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
 <p>Implements the optimization procedure of Penalty-based Gradient Descent Method (PGDM) [1].</p>
 <dl class="field-list simple">
@@ -206,7 +205,7 @@
 <p>[1] Shen H, Chen T. “On penalty-based bilevel gradient descent method,” in ICML, 2023.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_torch.fogm.pgdm.PGDM.optimize">
-<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/pgdm.html#PGDM.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.pgdm.PGDM.optimize" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/pgdm.html#PGDM.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.pgdm.PGDM.optimize" title="Permalink to this definition"></a></dt>
 <dd><p>Executes the optimization procedure using the provided data and model configurations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -217,10 +216,10 @@
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>This method performs in-place optimization and does not return a value.</p>
+<dd class="field-even"><p>A dictionary containing the upper-level objective and the status of hypergradient computation.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
+<dd class="field-odd"><p>Dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -229,10 +228,10 @@
 
 </section>
 <section id="module-boat_torch.fogm.vfm">
-<span id="boat-torch-fogm-vfm"></span><h2>boat_torch.fogm.vfm<a class="headerlink" href="#module-boat_torch.fogm.vfm" title="Link to this heading"></a></h2>
+<span id="boat-torch-fogm-vfm"></span><h2>boat_torch.fogm.vfm<a class="headerlink" href="#module-boat_torch.fogm.vfm" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_torch.fogm.vfm.VFM">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.fogm.vfm.</span></span><span class="sig-name descname"><span class="pre">VFM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/vfm.html#VFM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.vfm.VFM" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.fogm.vfm.</span></span><span class="sig-name descname"><span class="pre">VFM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/vfm.html#VFM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.vfm.VFM" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="boat_torch.dynamic_ol.html#boat_torch.dynamic_ol.dynamical_system.DynamicalSystem" title="boat_torch.dynamic_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
 <p>Implements the optimization procedure of Value-function based First-Order Method (VFM) [1].</p>
 <dl class="field-list simple">
@@ -267,7 +266,7 @@
 <p>[1] R. Liu, X. Liu, X. Yuan, S. Zeng and J. Zhang, “A Value-Function-based Interior-point Method for Non-convex Bi-level Optimization,” in ICML, 2021.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_torch.fogm.vfm.VFM.optimize">
-<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/vfm.html#VFM.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.vfm.VFM.optimize" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/vfm.html#VFM.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.vfm.VFM.optimize" title="Permalink to this definition"></a></dt>
 <dd><p>Executes the optimization procedure using the provided data and model configurations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -278,10 +277,10 @@
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>This method performs in-place optimization and does not return a value.</p>
+<dd class="field-even"><p>A dictionary containing the upper-level objective and the status of hypergradient computation.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
+<dd class="field-odd"><p>Dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -290,10 +289,10 @@
 
 </section>
 <section id="module-boat_torch.fogm.vsm">
-<span id="boat-torch-fogm-vsm"></span><h2>boat_torch.fogm.vsm<a class="headerlink" href="#module-boat_torch.fogm.vsm" title="Link to this heading"></a></h2>
+<span id="boat-torch-fogm-vsm"></span><h2>boat_torch.fogm.vsm<a class="headerlink" href="#module-boat_torch.fogm.vsm" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_torch.fogm.vsm.VSM">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.fogm.vsm.</span></span><span class="sig-name descname"><span class="pre">VSM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Module</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/vsm.html#VSM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.vsm.VSM" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.fogm.vsm.</span></span><span class="sig-name descname"><span class="pre">VSM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/vsm.html#VSM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.vsm.VSM" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="boat_torch.dynamic_ol.html#boat_torch.dynamic_ol.dynamical_system.DynamicalSystem" title="boat_torch.dynamic_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
 <p>Implements the optimization procedure of Value-function based Sequential Method (VSM) [1].</p>
 <dl class="field-list simple">
@@ -331,7 +330,7 @@
 <p>[1] Liu B, Ye M, Wright S, et al. “BOME! Bilevel Optimization Made Easy: A Simple First-Order Approach”, in NeurIPS, 2022.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_torch.fogm.vsm.VSM.optimize">
-<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/vsm.html#VSM.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.vsm.VSM.optimize" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fogm/vsm.html#VSM.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fogm.vsm.VSM.optimize" title="Permalink to this definition"></a></dt>
 <dd><p>Executes the optimization procedure using the provided data and model configurations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -342,10 +341,10 @@
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>This method performs in-place optimization and does not return a value.</p>
+<dd class="field-even"><p>A dictionary containing the upper-level objective and the status of hypergradient computation.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
+<dd class="field-odd"><p>Dict</p>
 </dd>
 </dl>
 </dd></dl>

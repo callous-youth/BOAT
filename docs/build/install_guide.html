@@ -1,24 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation and Usage Guide &mdash; BOAT 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=751030aa" />
+  <title>Installation and Usage Guide &mdash; BOAT-Torch 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dfc096c9" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=d45e8c67"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -35,7 +33,8 @@
           
           
           <a href="index.html" class="icon icon-home">
-            BOAT
+            BOAT-Torch
+              <img src="_static/logo.jpg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -76,7 +75,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">BOAT</a>
+          <a href="index.html">BOAT-Torch</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -95,9 +94,9 @@
            <div itemprop="articleBody">
              
   <section id="installation-and-usage-guide">
-<h1>Installation and Usage Guide<a class="headerlink" href="#installation-and-usage-guide" title="Link to this heading"></a></h1>
+<h1>Installation and Usage Guide<a class="headerlink" href="#installation-and-usage-guide" title="Permalink to this heading"></a></h1>
 <section id="installation">
-<h2>🔨 <strong>Installation</strong><a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<h2>🔨 <strong>Installation</strong><a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
 <p>To install BOAT with <em>PyPi</em>, use the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>boat-torch
 </pre></div>
@@ -112,17 +111,17 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </div>
 </section>
 <section id="how-to-use-boat">
-<h2>⚡ <strong>How to Use BOAT</strong><a class="headerlink" href="#how-to-use-boat" title="Link to this heading"></a></h2>
+<h2>⚡ <strong>How to Use BOAT</strong><a class="headerlink" href="#how-to-use-boat" title="Permalink to this heading"></a></h2>
 <section id="load-configuration-files">
-<h3><strong>1. Load Configuration Files</strong><a class="headerlink" href="#load-configuration-files" title="Link to this heading"></a></h3>
+<h3><strong>1. Load Configuration Files</strong><a class="headerlink" href="#load-configuration-files" title="Permalink to this heading"></a></h3>
 <p>BOAT relies on two key configuration files:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">boat_config.json</span></code>: Specifies optimization strategies and dynamic/hyper-gradient operations.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">loss_config.json</span></code>: Defines the loss functions for both levels of the BLO process.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">boat_torch</span> <span class="k">as</span> <span class="nn">boat</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">boat_torch</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">boat</span>
 
 <span class="c1"># Load configuration files</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;path_to_configs/boat_config.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -134,9 +133,9 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </div>
 </section>
 <section id="define-models-and-optimizers">
-<h3><strong>2. Define Models and Optimizers</strong><a class="headerlink" href="#define-models-and-optimizers" title="Link to this heading"></a></h3>
+<h3><strong>2. Define Models and Optimizers</strong><a class="headerlink" href="#define-models-and-optimizers" title="Permalink to this heading"></a></h3>
 <p>You need to specify both the upper-level and lower-level models along with their respective optimizers.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 
 <span class="c1"># Define models</span>
 <span class="n">upper_model</span> <span class="o">=</span> <span class="n">UpperModel</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># Replace with your upper-level model</span>
@@ -149,7 +148,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </div>
 </section>
 <section id="customize-boat-configuration">
-<h3><strong>3. Customize BOAT Configuration</strong><a class="headerlink" href="#customize-boat-configuration" title="Link to this heading"></a></h3>
+<h3><strong>3. Customize BOAT Configuration</strong><a class="headerlink" href="#customize-boat-configuration" title="Permalink to this heading"></a></h3>
 <p>Modify the boat_config to include your dynamic and hyper-gradient methods, as well as model and variable details.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example dynamic and hyper-gradient methods Combination.</span>
 <span class="n">dynamic_method</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NGD&quot;</span><span class="p">,</span> <span class="s2">&quot;DI&quot;</span><span class="p">,</span> <span class="s2">&quot;GDA&quot;</span><span class="p">]</span>  <span class="c1"># Dynamic Methods (Demo Only)</span>
@@ -168,7 +167,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </div>
 </section>
 <section id="initialize-the-boat-problem">
-<h3><strong>4. Initialize the BOAT Problem</strong><a class="headerlink" href="#initialize-the-boat-problem" title="Link to this heading"></a></h3>
+<h3><strong>4. Initialize the BOAT Problem</strong><a class="headerlink" href="#initialize-the-boat-problem" title="Permalink to this heading"></a></h3>
 <p>Modify the boat_config to include your dynamic and hyper-gradient methods, as well as model and variable details.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the problem</span>
 <span class="n">b_optimizer</span> <span class="o">=</span> <span class="n">boat</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">boat_config</span><span class="p">,</span> <span class="n">loss_config</span><span class="p">)</span>
@@ -180,7 +179,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </div>
 </section>
 <section id="define-data-feeds">
-<h3><strong>5. Define Data Feeds</strong><a class="headerlink" href="#define-data-feeds" title="Link to this heading"></a></h3>
+<h3><strong>5. Define Data Feeds</strong><a class="headerlink" href="#define-data-feeds" title="Permalink to this heading"></a></h3>
 <p>Prepare the data feeds for both levels of the BLO process, which was further fed into the the upper-level  and lower-level objective functions.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define data feeds (Demo Only)</span>
 <span class="n">ul_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">upper_level_data</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">upper_level_target</span><span class="p">}</span>
@@ -189,7 +188,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </div>
 </section>
 <section id="run-the-optimization-loop">
-<h3><strong>6. Run the Optimization Loop</strong><a class="headerlink" href="#run-the-optimization-loop" title="Link to this heading"></a></h3>
+<h3><strong>6. Run the Optimization Loop</strong><a class="headerlink" href="#run-the-optimization-loop" title="Permalink to this heading"></a></h3>
 <p>Execute the optimization loop, optionally customizing the solver strategy for dynamic methods.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set number of iterations</span>
 <span class="n">iterations</span> <span class="o">=</span> <span class="mi">1000</span>

@@ -1,13 +1,9 @@
-sphinx
-sphinx-rtd-theme
-myst-parser
-m2r
-numpy
+numpy==1.24.4
 setuptools
 tqdm
 higher
-torch >=1.4
-torchvision >=0.5
+torch>=1.4
+torchvision>=0.5
 torchmeta>=1.7
 scikit-learn>=1.3
 scipy>=1.8

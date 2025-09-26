@@ -1,24 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>boat_torch.utils &mdash; BOAT 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=751030aa" />
+  <title>boat_torch.utils &mdash; BOAT-Torch 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dfc096c9" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=d45e8c67"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -35,7 +33,8 @@
           
           
           <a href="index.html" class="icon icon-home">
-            BOAT
+            BOAT-Torch
+              <img src="_static/logo.jpg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -79,7 +78,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">BOAT</a>
+          <a href="index.html">BOAT-Torch</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -99,20 +98,20 @@
            <div itemprop="articleBody">
              
   <section id="boat-torch-utils">
-<h1>boat_torch.utils<a class="headerlink" href="#boat-torch-utils" title="Link to this heading"></a></h1>
+<h1>boat_torch.utils<a class="headerlink" href="#boat-torch-utils" title="Permalink to this heading"></a></h1>
 <section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
 <section id="module-boat_torch.utils.op_utils">
-<span id="boat-torch-utils-op-utils"></span><h2>boat_torch.utils.op_utils<a class="headerlink" href="#module-boat_torch.utils.op_utils" title="Link to this heading"></a></h2>
+<span id="boat-torch-utils-op-utils"></span><h2>boat_torch.utils.op_utils<a class="headerlink" href="#module-boat_torch.utils.op_utils" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.DynamicalSystemRules">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">DynamicalSystemRules</span></span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#DynamicalSystemRules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.DynamicalSystemRules" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">DynamicalSystemRules</span></span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#DynamicalSystemRules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.DynamicalSystemRules" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class to store and manage gradient operator rules.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.DynamicalSystemRules.get_gradient_order">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_gradient_order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#DynamicalSystemRules.get_gradient_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.DynamicalSystemRules.get_gradient_order" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_gradient_order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#DynamicalSystemRules.get_gradient_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.DynamicalSystemRules.get_gradient_order" title="Permalink to this definition"></a></dt>
 <dd><p>Get the current gradient operator order.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -126,7 +125,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.DynamicalSystemRules.set_gradient_order">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_gradient_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#DynamicalSystemRules.set_gradient_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.DynamicalSystemRules.set_gradient_order" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_gradient_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_order</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#DynamicalSystemRules.set_gradient_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.DynamicalSystemRules.set_gradient_order" title="Permalink to this definition"></a></dt>
 <dd><p>Set a new gradient operator order.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -142,12 +141,12 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.HyperGradientRules">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">HyperGradientRules</span></span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#HyperGradientRules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.HyperGradientRules" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">HyperGradientRules</span></span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#HyperGradientRules"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.HyperGradientRules" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A class to store and manage gradient operator rules.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.HyperGradientRules.get_gradient_order">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_gradient_order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#HyperGradientRules.get_gradient_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.HyperGradientRules.get_gradient_order" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_gradient_order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#HyperGradientRules.get_gradient_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.HyperGradientRules.get_gradient_order" title="Permalink to this definition"></a></dt>
 <dd><p>Get the current gradient operator order.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -161,7 +160,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.HyperGradientRules.set_gradient_order">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_gradient_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#HyperGradientRules.set_gradient_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.HyperGradientRules.set_gradient_order" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_gradient_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_order</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#HyperGradientRules.set_gradient_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.HyperGradientRules.set_gradient_order" title="Permalink to this definition"></a></dt>
 <dd><p>Set a new gradient operator order.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -177,12 +176,12 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.ResultStore">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">ResultStore</span></span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#ResultStore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.ResultStore" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">ResultStore</span></span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#ResultStore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.ResultStore" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A simple class to store and manage intermediate results of hyper-gradient computation.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.ResultStore.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#ResultStore.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.ResultStore.add" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#ResultStore.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.ResultStore.add" title="Permalink to this definition"></a></dt>
 <dd><p>Add a result to the store.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -196,13 +195,13 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.ResultStore.clear">
-<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#ResultStore.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.ResultStore.clear" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#ResultStore.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.ResultStore.clear" title="Permalink to this definition"></a></dt>
 <dd><p>Clear all stored results.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.ResultStore.get_results">
-<span class="sig-name descname"><span class="pre">get_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#ResultStore.get_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.ResultStore.get_results" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#ResultStore.get_results"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.ResultStore.get_results" title="Permalink to this definition"></a></dt>
 <dd><p>Retrieve all stored results.</p>
 </dd></dl>
 
@@ -210,7 +209,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.average_grad">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">average_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#average_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.average_grad" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">average_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#average_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.average_grad" title="Permalink to this definition"></a></dt>
 <dd><p>Average gradients over a batch.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -224,7 +223,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.cat_list_to_tensor">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">cat_list_to_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_tx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#cat_list_to_tensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.cat_list_to_tensor" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">cat_list_to_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_tx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#cat_list_to_tensor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.cat_list_to_tensor" title="Permalink to this definition"></a></dt>
 <dd><p>Concatenate a list of tensors into a single tensor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -241,7 +240,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.cg_step">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">cg_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#cg_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.cg_step" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">cg_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#cg_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.cg_step" title="Permalink to this definition"></a></dt>
 <dd><p>Perform the conjugate gradient optimization step.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -263,7 +262,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.conjugate_gradient">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">conjugate_gradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#conjugate_gradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.conjugate_gradient" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">conjugate_gradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#conjugate_gradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.conjugate_gradient" title="Permalink to this definition"></a></dt>
 <dd><p>Compute hypergradients using the conjugate gradient method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -288,7 +287,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.copy_parameter_from_list">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">copy_parameter_from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#copy_parameter_from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.copy_parameter_from_list" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">copy_parameter_from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#copy_parameter_from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.copy_parameter_from_list" title="Permalink to this definition"></a></dt>
 <dd><p>Copy parameters from a list to a model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -308,7 +307,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.get_outer_gradients">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">get_outer_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outer_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retain_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#get_outer_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.get_outer_gradients" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">get_outer_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outer_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retain_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#get_outer_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.get_outer_gradients" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the gradients of the outer-level loss with respect to parameters and hyperparameters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -330,7 +329,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.grad_unused_zero">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">grad_unused_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_outputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retain_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#grad_unused_zero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.grad_unused_zero" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">grad_unused_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_outputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retain_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#grad_unused_zero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.grad_unused_zero" title="Permalink to this definition"></a></dt>
 <dd><p>Compute gradients for the given inputs, substituting zeros for unused gradients.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -355,7 +354,7 @@ by default False.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.l2_reg">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">l2_reg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#l2_reg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.l2_reg" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">l2_reg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#l2_reg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.l2_reg" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the L2 regularization term for a list of parameters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -372,7 +371,7 @@ by default False.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.list_tensor_matmul">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">list_tensor_matmul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#list_tensor_matmul"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.list_tensor_matmul" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">list_tensor_matmul</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#list_tensor_matmul"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.list_tensor_matmul" title="Permalink to this definition"></a></dt>
 <dd><p>Perform element-wise multiplication and summation for two lists of tensors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -392,7 +391,7 @@ by default False.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.list_tensor_norm">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">list_tensor_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#list_tensor_norm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.list_tensor_norm" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">list_tensor_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#list_tensor_norm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.list_tensor_norm" title="Permalink to this definition"></a></dt>
 <dd><p>Compute the p-norm of a list of tensors.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -412,7 +411,7 @@ by default False.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.neumann">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">neumann</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hparams</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#neumann"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.neumann" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">neumann</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fp_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#neumann"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.neumann" title="Permalink to this definition"></a></dt>
 <dd><p>Compute hypergradients using Neumann series approximation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -437,7 +436,7 @@ by default False.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.require_model_grad">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">require_model_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#require_model_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.require_model_grad" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">require_model_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#require_model_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.require_model_grad" title="Permalink to this definition"></a></dt>
 <dd><p>Enable gradient computation for all parameters in the given model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -451,7 +450,7 @@ by default False.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.stop_grads">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">stop_grads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grads</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#stop_grads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.stop_grads" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">stop_grads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grads</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#stop_grads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.stop_grads" title="Permalink to this definition"></a></dt>
 <dd><p>Stop gradient computation for the given gradients.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -468,7 +467,7 @@ by default False.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.stop_model_grad">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">stop_model_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#stop_model_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.stop_model_grad" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">stop_model_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#stop_model_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.stop_model_grad" title="Permalink to this definition"></a></dt>
 <dd><p>Disable gradient computation for all parameters in the given model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -482,7 +481,7 @@ by default False.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.update_grads">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">update_grads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grads</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#update_grads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.update_grads" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">update_grads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grads</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#update_grads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.update_grads" title="Permalink to this definition"></a></dt>
 <dd><p>Update gradients of a model with the given gradients.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -496,7 +495,7 @@ by default False.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_torch.utils.op_utils.update_tensor_grads">
-<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">update_tensor_grads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grads</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#update_tensor_grads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.update_tensor_grads" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_torch.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">update_tensor_grads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grads</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/utils/op_utils.html#update_tensor_grads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.utils.op_utils.update_tensor_grads" title="Permalink to this definition"></a></dt>
 <dd><p>Update gradients of hyperparameters with the given gradients.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

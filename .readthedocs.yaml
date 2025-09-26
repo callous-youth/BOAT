@@ -29,4 +29,4 @@ sphinx:
 
 python:
   install:
-    - requirements: docs/requirements.txt  # 指定 requirements.txt 文件路径
+    - requirements: docs/requirements-doc.txt  # 指定 requirements.txt 文件路径

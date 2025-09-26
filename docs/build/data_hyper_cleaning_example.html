@@ -1,24 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data HyperCleaning &mdash; BOAT 0.0.1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=751030aa" />
+  <title>Data HyperCleaning &mdash; BOAT-Torch 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dfc096c9" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=d45e8c67"></script>
-        <script src="_static/doctools.js?v=9a2dae69"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -35,7 +33,8 @@
           
           
           <a href="index.html" class="icon icon-home">
-            BOAT
+            BOAT-Torch
+              <img src="_static/logo.jpg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -86,7 +85,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">BOAT</a>
+          <a href="index.html">BOAT-Torch</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -105,17 +104,17 @@
            <div itemprop="articleBody">
              
   <section id="data-hypercleaning">
-<h1>Data HyperCleaning<a class="headerlink" href="#data-hypercleaning" title="Link to this heading"></a></h1>
+<h1>Data HyperCleaning<a class="headerlink" href="#data-hypercleaning" title="Permalink to this heading"></a></h1>
 <section id="step-1-data-preparation">
-<h2>Step 1: Data Preparation<a class="headerlink" href="#step-1-data-preparation" title="Link to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">json</span>
+<h2>Step 1: Data Preparation<a class="headerlink" href="#step-1-data-preparation" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;..&quot;</span><span class="p">)))</span>
-<span class="kn">import</span> <span class="nn">boat</span>
-<span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">.util_file</span> <span class="kn">import</span> <span class="n">data_splitting</span><span class="p">,</span> <span class="n">initialize</span>
-<span class="kn">from</span> <span class="nn">torchvision.datasets</span> <span class="kn">import</span> <span class="n">MNIST</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">boat</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.util_file</span><span class="w"> </span><span class="kn">import</span> <span class="n">data_splitting</span><span class="p">,</span> <span class="n">initialize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torchvision.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">MNIST</span>
 
 <span class="n">base_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
 <span class="n">parent_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">base_folder</span><span class="p">)</span>
@@ -128,7 +127,7 @@
 </pre></div>
 </div>
 <section id="explanation">
-<h3>Explanation:<a class="headerlink" href="#explanation" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#explanation" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">MNIST</span></code> dataset is loaded from the specified directory.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">data_splitting</span></code> function splits the dataset into 5000 training, 5000 validation, and 10000 test samples.</p></li>
@@ -139,15 +138,15 @@
 </section>
 <hr class="docutils" />
 <section id="step-2-model-definition">
-<h2>Step 2: Model Definition<a class="headerlink" href="#step-2-model-definition" title="Link to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Net_x</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tr</span><span class="p">):</span>
+<h2>Step 2: Model Definition<a class="headerlink" href="#step-2-model-definition" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Net_x</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tr</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Net_x</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span>
             <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">tr</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">requires_grad_</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">y</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">y</span>
@@ -157,7 +156,7 @@
 </pre></div>
 </div>
 <section id="id1">
-<h3>Explanation:<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">Net_x</span></code></strong>: A custom PyTorch model with a learnable parameter <code class="docutils literal notranslate"><span class="pre">x</span></code>. This parameter will be optimized as part of the lower-level optimization process.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">y</span></code> model</strong>: A simple neural network with a single linear layer.</p></li>
@@ -166,7 +165,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-3-optimizer-and-initialization">
-<h2>Step 3: Optimizer and Initialization<a class="headerlink" href="#step-3-optimizer-and-initialization" title="Link to this heading"></a></h2>
+<h2>Step 3: Optimizer and Initialization<a class="headerlink" href="#step-3-optimizer-and-initialization" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="n">y_opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="n">initialize</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -174,7 +173,7 @@
 </pre></div>
 </div>
 <section id="id2">
-<h3>Explanation:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Optimizers</strong>: Adam optimizer is used for the lower-level model (<code class="docutils literal notranslate"><span class="pre">x</span></code>), and SGD is used for the upper-level model (<code class="docutils literal notranslate"><span class="pre">y</span></code>).</p></li>
 <li><p><strong>Initialization</strong>: The <code class="docutils literal notranslate"><span class="pre">initialize</span></code> function resets the model parameters before training.</p></li>
@@ -183,7 +182,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-4-configuration-loading">
-<h2>Step 4: Configuration Loading<a class="headerlink" href="#step-4-configuration-loading" title="Link to this heading"></a></h2>
+<h2>Step 4: Configuration Loading<a class="headerlink" href="#step-4-configuration-loading" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parent_folder</span><span class="p">,</span> <span class="s2">&quot;configs/boat_config_dhl.json&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">boat_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
@@ -192,7 +191,7 @@
 </pre></div>
 </div>
 <section id="id3">
-<h3>Explanation:<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Configuration files for BOAT are loaded, including:</p>
 <ul>
@@ -205,9 +204,9 @@
 </section>
 <hr class="docutils" />
 <section id="step-5-main-function">
-<h2>Step 5: Main Function<a class="headerlink" href="#step-5-main-function" title="Link to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="kn">import</span> <span class="nn">argparse</span>
+<h2>Step 5: Main Function<a class="headerlink" href="#step-5-main-function" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
 
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Data HyperCleaner&quot;</span><span class="p">)</span>
 
@@ -259,7 +258,7 @@
 </pre></div>
 </div>
 <section id="id4">
-<h3>Explanation:<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p><strong>Argument Parsing</strong>:</p>
 <ul class="simple">
