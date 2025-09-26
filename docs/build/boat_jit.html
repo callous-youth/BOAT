@@ -6,10 +6,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BOAT Structure &mdash; BOAT-Jittor 0.0.1 documentation</title>
+  <title>BOAT-Jittor Structure &mdash; BOAT-Jittor 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a96ec788" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=4ff932f8" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -20,7 +20,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="boat_jit.dynamic_ol package" href="boat_jit.dynamic_ol.html" />
+    <link rel="next" title="boat_jit.dynamic_ol" href="boat_jit.dynamic_ol.html" />
     <link rel="prev" title="Installation and Usage Guide" href="install_guide.html" /> 
 </head>
 
@@ -34,6 +34,7 @@
           
           <a href="index.html" class="icon icon-home">
             BOAT-Jittor
+              <img src="_static/logo.jpg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -47,22 +48,25 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="description.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_guide.html">Installation and Usage Guide</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">BOAT Structure</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BOAT-Jittor Structure</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-boat_jit.boat_opt">Core Problem Class</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#boat_jit.boat_opt.Problem"><code class="docutils literal notranslate"><span class="pre">Problem</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#boat_jit.boat_opt.Problem.build_ll_solver"><code class="docutils literal notranslate"><span class="pre">Problem.build_ll_solver()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#boat_jit.boat_opt.Problem.build_ul_solver"><code class="docutils literal notranslate"><span class="pre">Problem.build_ul_solver()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#boat_jit.boat_opt.Problem.check_status"><code class="docutils literal notranslate"><span class="pre">Problem.check_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boat_jit.boat_opt.Problem.plot_losses"><code class="docutils literal notranslate"><span class="pre">Problem.plot_losses()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#boat_jit.boat_opt.Problem.run_iter"><code class="docutils literal notranslate"><span class="pre">Problem.run_iter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boat_jit.boat_opt.Problem.save_losses"><code class="docutils literal notranslate"><span class="pre">Problem.save_losses()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#boat_jit.boat_opt.Problem.set_track_trajectory"><code class="docutils literal notranslate"><span class="pre">Problem.set_track_trajectory()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#main-subpackages">Main Subpackages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html">boat_jit.dynamic_ol package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.fogm.html">boat_jit.fogm package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html">boat_jit.hyper_ol package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.utils.html">boat_jit.utils package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html">boat_jit.dynamic_ol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.fogm.html">boat_jit.fogm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html">boat_jit.hyper_ol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.utils.html">boat_jit.utils</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-boat_jit.operation_registry">Extension with Operation_Registry</a><ul>
@@ -92,7 +96,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">BOAT Structure</li>
+      <li class="breadcrumb-item active">BOAT-Jittor Structure</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/boat_jit.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -102,8 +106,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="boat-structure">
-<h1>BOAT Structure<a class="headerlink" href="#boat-structure" title="Permalink to this heading"></a></h1>
+  <section id="boat-jittor-structure">
+<h1>BOAT-Jittor Structure<a class="headerlink" href="#boat-jittor-structure" title="Permalink to this heading"></a></h1>
 <section id="module-boat_jit.boat_opt">
 <span id="core-problem-class"></span><h2>Core Problem Class<a class="headerlink" href="#module-boat_jit.boat_opt" title="Permalink to this heading"></a></h2>
 <dl class="py class">
@@ -136,6 +140,11 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_jit.boat_opt.Problem.check_status">
 <span class="sig-name descname"><span class="pre">check_status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/boat_opt.html#Problem.check_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.boat_opt.Problem.check_status" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_jit.boat_opt.Problem.plot_losses">
+<span class="sig-name descname"><span class="pre">plot_losses</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/boat_opt.html#Problem.plot_losses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.boat_opt.Problem.plot_losses" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -189,6 +198,21 @@ dictionaries, i.e., <cite>[Dict[str, Tensor]]</cite>.</p></li>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_jit.boat_opt.Problem.save_losses">
+<span class="sig-name descname"><span class="pre">save_losses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_loss</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/boat_opt.html#Problem.save_losses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.boat_opt.Problem.save_losses" title="Permalink to this definition"></a></dt>
+<dd><p>Save the losses to a JSON file and update the loss history.
+:param current_iter:iteration number
+:param ll_loss:lower loss
+:param ul_loss:upper loss
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_jit.boat_opt.Problem.set_track_trajectory">
+<span class="sig-name descname"><span class="pre">set_track_trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">track_traj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/boat_opt.html#Problem.set_track_trajectory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.boat_opt.Problem.set_track_trajectory" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>
@@ -196,44 +220,16 @@ dictionaries, i.e., <cite>[Dict[str, Tensor]]</cite>.</p></li>
 <h2>Main Subpackages<a class="headerlink" href="#main-subpackages" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="boat_jit.dynamic_ol.html">boat_jit.dynamic_ol package</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="boat_jit.dynamic_ol.html">boat_jit.dynamic_ol</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#module-boat_jit.dynamic_ol.di">boat_jit.dynamic_ol.di module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.di.DI"><code class="docutils literal notranslate"><span class="pre">DI</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.di.DI.optimize"><code class="docutils literal notranslate"><span class="pre">DI.optimize()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#module-boat_jit.dynamic_ol.dm">boat_jit.dynamic_ol.dm module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.dm.DM"><code class="docutils literal notranslate"><span class="pre">DM</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.dm.DM.optimize"><code class="docutils literal notranslate"><span class="pre">DM.optimize()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#module-boat_jit.dynamic_ol.dynamical_system">boat_jit.dynamic_ol.dynamical_system module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#module-boat_jit.dynamic_ol.dynamical_system">boat_jit.dynamic_ol.dynamical_system</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.dynamical_system.DynamicalSystem"><code class="docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.dynamical_system.DynamicalSystem.optimize"><code class="docutils literal notranslate"><span class="pre">DynamicalSystem.optimize()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#module-boat_jit.dynamic_ol.gda">boat_jit.dynamic_ol.gda module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.gda.GDA"><code class="docutils literal notranslate"><span class="pre">GDA</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.gda.GDA.optimize"><code class="docutils literal notranslate"><span class="pre">GDA.optimize()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#module-boat_jit.dynamic_ol.ngd">boat_jit.dynamic_ol.ngd module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.ngd.NGD"><code class="docutils literal notranslate"><span class="pre">NGD</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.ngd.NGD.optimize"><code class="docutils literal notranslate"><span class="pre">NGD.optimize()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#module-boat_jit.dynamic_ol.sequential_ds">boat_jit.dynamic_ol.sequential_ds module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#module-boat_jit.dynamic_ol.sequential_ds">boat_jit.dynamic_ol.sequential_ds</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.sequential_ds.SequentialDS"><code class="docutils literal notranslate"><span class="pre">SequentialDS</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.sequential_ds.SequentialDS.gradient_instances"><code class="docutils literal notranslate"><span class="pre">SequentialDS.gradient_instances</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.sequential_ds.SequentialDS.custom_order"><code class="docutils literal notranslate"><span class="pre">SequentialDS.custom_order</span></code></a></li>
@@ -245,49 +241,92 @@ dictionaries, i.e., <cite>[Dict[str, Tensor]]</cite>.</p></li>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.sequential_ds.validate_and_adjust_order"><code class="docutils literal notranslate"><span class="pre">validate_and_adjust_order()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#module-boat_jit.dynamic_ol">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#module-boat_jit.dynamic_ol.di">boat_jit.dynamic_ol.di</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.di.DI"><code class="docutils literal notranslate"><span class="pre">DI</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.di.DI.optimize"><code class="docutils literal notranslate"><span class="pre">DI.optimize()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="boat_jit.fogm.html">boat_jit.fogm package</a><ul>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#module-boat_jit.dynamic_ol.dm">boat_jit.dynamic_ol.dm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.dm.DM"><code class="docutils literal notranslate"><span class="pre">DM</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.dm.DM.optimize"><code class="docutils literal notranslate"><span class="pre">DM.optimize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#module-boat_jit.dynamic_ol.gda">boat_jit.dynamic_ol.gda</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.gda.GDA"><code class="docutils literal notranslate"><span class="pre">GDA</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.gda.GDA.optimize"><code class="docutils literal notranslate"><span class="pre">GDA.optimize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.dynamic_ol.html#module-boat_jit.dynamic_ol.ngd">boat_jit.dynamic_ol.ngd</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.ngd.NGD"><code class="docutils literal notranslate"><span class="pre">NGD</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="boat_jit.dynamic_ol.html#boat_jit.dynamic_ol.ngd.NGD.optimize"><code class="docutils literal notranslate"><span class="pre">NGD.optimize()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="boat_jit.fogm.html">boat_jit.fogm</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="boat_jit.fogm.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.fogm.html#module-boat_jit.fogm.mesm">boat_jit.fogm.mesm module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.fogm.html#module-boat_jit.fogm.mesm">boat_jit.fogm.mesm</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.fogm.html#boat_jit.fogm.mesm.MESM"><code class="docutils literal notranslate"><span class="pre">MESM</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.fogm.html#boat_jit.fogm.mesm.MESM.optimize"><code class="docutils literal notranslate"><span class="pre">MESM.optimize()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.fogm.html#module-boat_jit.fogm.pgdm">boat_jit.fogm.pgdm module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.fogm.html#module-boat_jit.fogm.pgdm">boat_jit.fogm.pgdm</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.fogm.html#boat_jit.fogm.pgdm.PGDM"><code class="docutils literal notranslate"><span class="pre">PGDM</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.fogm.html#boat_jit.fogm.pgdm.PGDM.optimize"><code class="docutils literal notranslate"><span class="pre">PGDM.optimize()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.fogm.html#module-boat_jit.fogm.vfm">boat_jit.fogm.vfm module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.fogm.html#module-boat_jit.fogm.vfm">boat_jit.fogm.vfm</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.fogm.html#boat_jit.fogm.vfm.VFM"><code class="docutils literal notranslate"><span class="pre">VFM</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.fogm.html#boat_jit.fogm.vfm.VFM.optimize"><code class="docutils literal notranslate"><span class="pre">VFM.optimize()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.fogm.html#module-boat_jit.fogm.vsm">boat_jit.fogm.vsm module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.fogm.html#module-boat_jit.fogm.vsm">boat_jit.fogm.vsm</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.fogm.html#boat_jit.fogm.vsm.VSM"><code class="docutils literal notranslate"><span class="pre">VSM</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.fogm.html#boat_jit.fogm.vsm.VSM.optimize"><code class="docutils literal notranslate"><span class="pre">VSM.optimize()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.fogm.html#module-boat_jit.fogm">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="boat_jit.hyper_ol.html">boat_jit.hyper_ol package</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="boat_jit.hyper_ol.html">boat_jit.hyper_ol</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.cg">boat_jit.hyper_ol.cg module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.hyper_gradient">boat_jit.hyper_ol.hyper_gradient</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.hyper_gradient.HyperGradient"><code class="docutils literal notranslate"><span class="pre">HyperGradient</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.hyper_gradient.HyperGradient.compute_gradients"><code class="docutils literal notranslate"><span class="pre">HyperGradient.compute_gradients()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.sequential_hg">boat_jit.hyper_ol.sequential_hg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.sequential_hg.SequentialHG"><code class="docutils literal notranslate"><span class="pre">SequentialHG</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.sequential_hg.SequentialHG.compute_gradients"><code class="docutils literal notranslate"><span class="pre">SequentialHG.compute_gradients()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.sequential_hg.makes_functional_hyper_operation"><code class="docutils literal notranslate"><span class="pre">makes_functional_hyper_operation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.sequential_hg.validate_and_adjust_order"><code class="docutils literal notranslate"><span class="pre">validate_and_adjust_order()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.cg">boat_jit.hyper_ol.cg</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.cg.CG"><code class="docutils literal notranslate"><span class="pre">CG</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.cg.CG.ll_lr"><code class="docutils literal notranslate"><span class="pre">CG.ll_lr</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.cg.CG.dynamic_initialization"><code class="docutils literal notranslate"><span class="pre">CG.dynamic_initialization</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.cg.CG._r"><code class="docutils literal notranslate"><span class="pre">CG._r</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.cg.CG.tolerance"><code class="docutils literal notranslate"><span class="pre">CG.tolerance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.cg.CG.K"><code class="docutils literal notranslate"><span class="pre">CG.K</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.cg.CG.alpha"><code class="docutils literal notranslate"><span class="pre">CG.alpha</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.cg.CG.alpha_decay"><code class="docutils literal notranslate"><span class="pre">CG.alpha_decay</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.cg.CG.gda_loss"><code class="docutils literal notranslate"><span class="pre">CG.gda_loss</span></code></a></li>
@@ -296,7 +335,7 @@ dictionaries, i.e., <cite>[Dict[str, Tensor]]</cite>.</p></li>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.fd">boat_jit.hyper_ol.fd module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.fd">boat_jit.hyper_ol.fd</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.fd.FD"><code class="docutils literal notranslate"><span class="pre">FD</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.fd.FD.ll_lr"><code class="docutils literal notranslate"><span class="pre">FD.ll_lr</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.fd.FD.dynamic_initialization"><code class="docutils literal notranslate"><span class="pre">FD.dynamic_initialization</span></code></a></li>
@@ -309,32 +348,21 @@ dictionaries, i.e., <cite>[Dict[str, Tensor]]</cite>.</p></li>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.foa">boat_jit.hyper_ol.foa module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.foa">boat_jit.hyper_ol.foa</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.foa.FOA"><code class="docutils literal notranslate"><span class="pre">FOA</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.foa.FOA.compute_gradients"><code class="docutils literal notranslate"><span class="pre">FOA.compute_gradients()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.hyper_gradient">boat_jit.hyper_ol.hyper_gradient module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.hyper_gradient.HyperGradient"><code class="docutils literal notranslate"><span class="pre">HyperGradient</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.hyper_gradient.HyperGradient.compute_gradients"><code class="docutils literal notranslate"><span class="pre">HyperGradient.compute_gradients()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.iad">boat_jit.hyper_ol.iad module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.iad">boat_jit.hyper_ol.iad</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.iad.IAD"><code class="docutils literal notranslate"><span class="pre">IAD</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.iad.IAD.truncate_max_loss_iter"><code class="docutils literal notranslate"><span class="pre">IAD.truncate_max_loss_iter</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.iad.IAD.truncate_iters"><code class="docutils literal notranslate"><span class="pre">IAD.truncate_iters</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.iad.IAD.ll_opt"><code class="docutils literal notranslate"><span class="pre">IAD.ll_opt</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.iad.IAD.foa"><code class="docutils literal notranslate"><span class="pre">IAD.foa</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.iad.IAD.compute_gradients"><code class="docutils literal notranslate"><span class="pre">IAD.compute_gradients()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.iga">boat_jit.hyper_ol.iga module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.iga">boat_jit.hyper_ol.iga</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.iga.IGA"><code class="docutils literal notranslate"><span class="pre">IGA</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.iga.IGA.alpha"><code class="docutils literal notranslate"><span class="pre">IGA.alpha</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.iga.IGA.alpha_decay"><code class="docutils literal notranslate"><span class="pre">IGA.alpha_decay</span></code></a></li>
@@ -345,49 +373,39 @@ dictionaries, i.e., <cite>[Dict[str, Tensor]]</cite>.</p></li>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.ns">boat_jit.hyper_ol.ns module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.ns">boat_jit.hyper_ol.ns</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.ns.NS"><code class="docutils literal notranslate"><span class="pre">NS</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.ns.NS.compute_gradients"><code class="docutils literal notranslate"><span class="pre">NS.compute_gradients()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.ptt">boat_jit.hyper_ol.ptt module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.ptt">boat_jit.hyper_ol.ptt</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.ptt.PTT"><code class="docutils literal notranslate"><span class="pre">PTT</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.ptt.PTT.compute_gradients"><code class="docutils literal notranslate"><span class="pre">PTT.compute_gradients()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.rad">boat_jit.hyper_ol.rad module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.rad">boat_jit.hyper_ol.rad</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.rad.RAD"><code class="docutils literal notranslate"><span class="pre">RAD</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.rad.RAD.compute_gradients"><code class="docutils literal notranslate"><span class="pre">RAD.compute_gradients()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.rgt">boat_jit.hyper_ol.rgt module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.rgt">boat_jit.hyper_ol.rgt</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.rgt.RGT"><code class="docutils literal notranslate"><span class="pre">RGT</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.rgt.RGT.compute_gradients"><code class="docutils literal notranslate"><span class="pre">RGT.compute_gradients()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol.sequential_hg">boat_jit.hyper_ol.sequential_hg module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.sequential_hg.SequentialHG"><code class="docutils literal notranslate"><span class="pre">SequentialHG</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.sequential_hg.SequentialHG.compute_gradients"><code class="docutils literal notranslate"><span class="pre">SequentialHG.compute_gradients()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.sequential_hg.makes_functional_hyper_operation"><code class="docutils literal notranslate"><span class="pre">makes_functional_hyper_operation()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html#boat_jit.hyper_ol.sequential_hg.validate_and_adjust_order"><code class="docutils literal notranslate"><span class="pre">validate_and_adjust_order()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.hyper_ol.html#module-boat_jit.hyper_ol">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="boat_jit.utils.html">boat_jit.utils package</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="boat_jit.utils.html">boat_jit.utils</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="boat_jit.utils.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.utils.html#module-boat_jit.utils.op_utils">boat_jit.utils.op_utils module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boat_jit.utils.html#module-boat_jit.utils.op_utils">boat_jit.utils.op_utils</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.utils.html#boat_jit.utils.op_utils.DynamicalSystemRules"><code class="docutils literal notranslate"><span class="pre">DynamicalSystemRules</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.utils.html#boat_jit.utils.op_utils.DynamicalSystemRules.get_gradient_order"><code class="docutils literal notranslate"><span class="pre">DynamicalSystemRules.get_gradient_order()</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="boat_jit.utils.html#boat_jit.utils.op_utils.DynamicalSystemRules.set_gradient_order"><code class="docutils literal notranslate"><span class="pre">DynamicalSystemRules.set_gradient_order()</span></code></a></li>
@@ -424,7 +442,6 @@ dictionaries, i.e., <cite>[Dict[str, Tensor]]</cite>.</p></li>
 <li class="toctree-l3"><a class="reference internal" href="boat_jit.utils.html#boat_jit.utils.op_utils.update_tensor_grads"><code class="docutils literal notranslate"><span class="pre">update_tensor_grads()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="boat_jit.utils.html#module-boat_jit.utils">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -452,7 +469,7 @@ dictionaries, i.e., <cite>[Dict[str, Tensor]]</cite>.</p></li>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="install_guide.html" class="btn btn-neutral float-left" title="Installation and Usage Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="boat_jit.dynamic_ol.html" class="btn btn-neutral float-right" title="boat_jit.dynamic_ol package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="boat_jit.dynamic_ol.html" class="btn btn-neutral float-right" title="boat_jit.dynamic_ol" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

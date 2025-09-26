@@ -6,10 +6,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>boat_jit.hyper_ol package &mdash; BOAT-Jittor 0.0.1 documentation</title>
+  <title>boat_jit.hyper_ol &mdash; BOAT-Jittor 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a96ec788" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=4ff932f8" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -20,8 +20,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="boat_jit.utils package" href="boat_jit.utils.html" />
-    <link rel="prev" title="boat_jit.fogm package" href="boat_jit.fogm.html" /> 
+    <link rel="next" title="boat_jit.utils" href="boat_jit.utils.html" />
+    <link rel="prev" title="boat_jit.fogm" href="boat_jit.fogm.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -34,6 +34,7 @@
           
           <a href="index.html" class="icon icon-home">
             BOAT-Jittor
+              <img src="_static/logo.jpg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -47,28 +48,27 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="description.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_guide.html">Installation and Usage Guide</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="boat_jit.html">BOAT Structure</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="boat_jit.html">BOAT-Jittor Structure</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="boat_jit.html#module-boat_jit.boat_opt">Core Problem Class</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="boat_jit.html#main-subpackages">Main Subpackages</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html">boat_jit.dynamic_ol package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.fogm.html">boat_jit.fogm package</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">boat_jit.hyper_ol package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.dynamic_ol.html">boat_jit.dynamic_ol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.fogm.html">boat_jit.fogm</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">boat_jit.hyper_ol</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.cg">boat_jit.hyper_ol.cg module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.fd">boat_jit.hyper_ol.fd module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.foa">boat_jit.hyper_ol.foa module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.hyper_gradient">boat_jit.hyper_ol.hyper_gradient module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.iad">boat_jit.hyper_ol.iad module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.iga">boat_jit.hyper_ol.iga module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.ns">boat_jit.hyper_ol.ns module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.ptt">boat_jit.hyper_ol.ptt module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.rad">boat_jit.hyper_ol.rad module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.rgt">boat_jit.hyper_ol.rgt module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.sequential_hg">boat_jit.hyper_ol.sequential_hg module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.hyper_gradient">boat_jit.hyper_ol.hyper_gradient</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.sequential_hg">boat_jit.hyper_ol.sequential_hg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.cg">boat_jit.hyper_ol.cg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.fd">boat_jit.hyper_ol.fd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.foa">boat_jit.hyper_ol.foa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.iad">boat_jit.hyper_ol.iad</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.iga">boat_jit.hyper_ol.iga</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.ns">boat_jit.hyper_ol.ns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.ptt">boat_jit.hyper_ol.ptt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.rad">boat_jit.hyper_ol.rad</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.hyper_ol.rgt">boat_jit.hyper_ol.rgt</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.utils.html">boat_jit.utils package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.utils.html">boat_jit.utils</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="boat_jit.html#module-boat_jit.operation_registry">Extension with Operation_Registry</a></li>
@@ -94,8 +94,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="boat_jit.html">BOAT Structure</a></li>
-      <li class="breadcrumb-item active">boat_jit.hyper_ol package</li>
+          <li class="breadcrumb-item"><a href="boat_jit.html">BOAT-Jittor Structure</a></li>
+      <li class="breadcrumb-item active">boat_jit.hyper_ol</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/boat_jit.hyper_ol.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,27 +105,140 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="boat-jit-hyper-ol-package">
-<h1>boat_jit.hyper_ol package<a class="headerlink" href="#boat-jit-hyper-ol-package" title="Permalink to this heading"></a></h1>
+  <section id="boat-jit-hyper-ol">
+<h1>boat_jit.hyper_ol<a class="headerlink" href="#boat-jit-hyper-ol" title="Permalink to this heading"></a></h1>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
+<section id="module-boat_jit.hyper_ol.hyper_gradient">
+<span id="boat-jit-hyper-ol-hyper-gradient"></span><h2>boat_jit.hyper_ol.hyper_gradient<a class="headerlink" href="#module-boat_jit.hyper_ol.hyper_gradient" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_jit.hyper_ol.hyper_gradient.HyperGradient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.hyper_gradient.</span></span><span class="sig-name descname"><span class="pre">HyperGradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/hyper_gradient.html#HyperGradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.hyper_gradient.HyperGradient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for computing hyper-gradients of upper-level variables in bilevel optimization problems.</p>
+<p>This class provides an abstract interface for hyper-gradient computation that can be extended
+for specific methods such as Conjugate Gradient, Finite Differentiation, or First-Order Approximation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>callable</em>) – The lower-level objective function of the bilevel optimization problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>callable</em>) – The upper-level objective function of the bilevel optimization problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the bilevel optimization problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the bilevel optimization problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – A list of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – A list of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>solver_config</strong> (<em>dict</em>) – Dictionary containing configurations for the solver.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_jit.hyper_ol.hyper_gradient.HyperGradient.compute_gradients">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/hyper_gradient.html#HyperGradient.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.hyper_gradient.HyperGradient.compute_gradients" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_jit.hyper_ol.sequential_hg">
+<span id="boat-jit-hyper-ol-sequential-hg"></span><h2>boat_jit.hyper_ol.sequential_hg<a class="headerlink" href="#module-boat_jit.hyper_ol.sequential_hg" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_jit.hyper_ol.sequential_hg.SequentialHG">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.sequential_hg.</span></span><span class="sig-name descname"><span class="pre">SequentialHG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ordered_instances</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_order</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/sequential_hg.html#SequentialHG"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.sequential_hg.SequentialHG" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class for managing sequential hyper-gradient operations.</p>
+<p>This class dynamically organizes and executes a sequence of hyper-gradient computations
+using user-defined and validated orders of gradient operators.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ordered_instances</strong> (<em>List</em><em>[</em><em>object</em><em>]</em>) – A list of instantiated gradient operator objects, ordered as per the adjusted sequence.</p></li>
+<li><p><strong>custom_order</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The user-defined order of gradient operators.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_jit.hyper_ol.sequential_hg.SequentialHG.compute_gradients">
+<span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/sequential_hg.html#SequentialHG.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.sequential_hg.SequentialHG.compute_gradients" title="Permalink to this definition"></a></dt>
+<dd><p>Compute hyper-gradients sequentially using the ordered instances.</p>
+<p>This method processes the hyper-gradients in the defined order, passing intermediate
+results between consecutive gradient operators.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments required for gradient computations.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of dictionaries containing results for each gradient operator.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Dict]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boat_jit.hyper_ol.sequential_hg.makes_functional_hyper_operation">
+<span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.sequential_hg.</span></span><span class="sig-name descname"><span class="pre">makes_functional_hyper_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">custom_order</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/sequential_hg.html#makes_functional_hyper_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.sequential_hg.makes_functional_hyper_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Dynamically create a SequentialHG object with ordered gradient operators.</p>
+<p>This function validates the user-defined operator order, adjusts it to conform
+with predefined gradient rules, and dynamically loads the corresponding operator classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>custom_order</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The user-defined order of gradient operators.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments required for initializing gradient operator instances.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An instance of SequentialHG containing the ordered gradient operators and result management.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#boat_jit.hyper_ol.sequential_hg.SequentialHG" title="boat_jit.hyper_ol.sequential_hg.SequentialHG">SequentialHG</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boat_jit.hyper_ol.sequential_hg.validate_and_adjust_order">
+<span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.sequential_hg.</span></span><span class="sig-name descname"><span class="pre">validate_and_adjust_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">custom_order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_order</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/sequential_hg.html#validate_and_adjust_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.sequential_hg.validate_and_adjust_order" title="Permalink to this definition"></a></dt>
+<dd><p>Validate and adjust the custom order to match the predefined gradient order.</p>
+<p>This function ensures that the user-defined order adheres to the predefined grouping
+rules and adjusts it accordingly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>custom_order</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The user-provided order of gradient operators.</p></li>
+<li><p><strong>gradient_order</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – The predefined order of gradient operator groups.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Adjusted order of gradient operators following the predefined rules.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 <section id="module-boat_jit.hyper_ol.cg">
-<span id="boat-jit-hyper-ol-cg-module"></span><h2>boat_jit.hyper_ol.cg module<a class="headerlink" href="#module-boat_jit.hyper_ol.cg" title="Permalink to this heading"></a></h2>
+<span id="boat-jit-hyper-ol-cg"></span><h2>boat_jit.hyper_ol.cg<a class="headerlink" href="#module-boat_jit.hyper_ol.cg" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_jit.hyper_ol.cg.CG">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.cg.</span></span><span class="sig-name descname"><span class="pre">CG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/cg.html#CG"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.cg.CG" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#boat_jit.hyper_ol.hyper_gradient.HyperGradient" title="boat_jit.hyper_ol.hyper_gradient.HyperGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperGradient</span></code></a></p>
-<p>Computes the hyper-gradient of the upper-level variables using Finite Differentiation (FD) [1].</p>
+<p>Computes the hyper-gradient of the upper-level variables using Conjugate Gradient (CG) [1].</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
 <li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
-<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
-<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
 <li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>Dictionary containing solver configurations. Expected keys include:</p>
 <ul>
 <li><p><cite>r</cite> (float): Perturbation radius for finite differences.</p></li>
@@ -167,12 +280,23 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="boat_jit.hyper_ol.cg.CG._r">
-<span class="sig-name descname"><span class="pre">_r</span></span><a class="headerlink" href="#boat_jit.hyper_ol.cg.CG._r" title="Permalink to this definition"></a></dt>
-<dd><p>Perturbation radius for finite differences, used for gradient computation.</p>
+<dt class="sig sig-object py" id="boat_jit.hyper_ol.cg.CG.tolerance">
+<span class="sig-name descname"><span class="pre">tolerance</span></span><a class="headerlink" href="#boat_jit.hyper_ol.cg.CG.tolerance" title="Permalink to this definition"></a></dt>
+<dd><p>The tolerance for approximation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_jit.hyper_ol.cg.CG.K">
+<span class="sig-name descname"><span class="pre">K</span></span><a class="headerlink" href="#boat_jit.hyper_ol.cg.CG.K" title="Permalink to this definition"></a></dt>
+<dd><p>Number of iterations for CG approximation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
@@ -211,7 +335,7 @@
 </dd></dl>
 
 <p class="rubric">References</p>
-<p>[1] H. Liu, K. Simonyan, Y. Yang, “DARTS: Differentiable Architecture Search,” in ICLR, 2019.</p>
+<p>[1] Pedregosa F. “Hyperparameter optimization with approximate gradient,” in ICML, 2016.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_jit.hyper_ol.cg.CG.compute_gradients">
 <span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_loss_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyper_gradient_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/cg.html#CG.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.cg.CG.compute_gradients" title="Permalink to this definition"></a></dt>
@@ -241,8 +365,11 @@ It serves as the lower-level model for optimization.</p></li>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>dict</p>
 </dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>AssertionError</strong> – If <cite>hyper_gradient_finished</cite> is True, as CG does not support multiple hyper-gradient computations.</p>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing the upper-level objective and the status of hypergradient computation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -251,7 +378,7 @@ It serves as the lower-level model for optimization.</p></li>
 
 </section>
 <section id="module-boat_jit.hyper_ol.fd">
-<span id="boat-jit-hyper-ol-fd-module"></span><h2>boat_jit.hyper_ol.fd module<a class="headerlink" href="#module-boat_jit.hyper_ol.fd" title="Permalink to this heading"></a></h2>
+<span id="boat-jit-hyper-ol-fd"></span><h2>boat_jit.hyper_ol.fd<a class="headerlink" href="#module-boat_jit.hyper_ol.fd" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_jit.hyper_ol.fd.FD">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.fd.</span></span><span class="sig-name descname"><span class="pre">FD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/fd.html#FD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.fd.FD" title="Permalink to this definition"></a></dt>
@@ -262,10 +389,10 @@ It serves as the lower-level model for optimization.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
 <li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
-<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
-<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
 <li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>Dictionary containing solver configurations. Expected keys include:</p>
 <ul>
 <li><p><cite>r</cite> (float): Perturbation radius for finite differences.</p></li>
@@ -388,7 +515,7 @@ It serves as the lower-level model for optimization.</p></li>
 
 </section>
 <section id="module-boat_jit.hyper_ol.foa">
-<span id="boat-jit-hyper-ol-foa-module"></span><h2>boat_jit.hyper_ol.foa module<a class="headerlink" href="#module-boat_jit.hyper_ol.foa" title="Permalink to this heading"></a></h2>
+<span id="boat-jit-hyper-ol-foa"></span><h2>boat_jit.hyper_ol.foa<a class="headerlink" href="#module-boat_jit.hyper_ol.foa" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_jit.hyper_ol.foa.FOA">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.foa.</span></span><span class="sig-name descname"><span class="pre">FOA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/foa.html#FOA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.foa.FOA" title="Permalink to this definition"></a></dt>
@@ -399,10 +526,10 @@ It serves as the lower-level model for optimization.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
 <li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
-<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
-<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
 <li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Dictionary containing solver configurations.</p></li>
 </ul>
 </dd>
@@ -445,116 +572,28 @@ including the feed dictionaries, auxiliary model, iteration count, and other opt
 </dd></dl>
 
 </section>
-<section id="module-boat_jit.hyper_ol.hyper_gradient">
-<span id="boat-jit-hyper-ol-hyper-gradient-module"></span><h2>boat_jit.hyper_ol.hyper_gradient module<a class="headerlink" href="#module-boat_jit.hyper_ol.hyper_gradient" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="boat_jit.hyper_ol.hyper_gradient.HyperGradient">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.hyper_gradient.</span></span><span class="sig-name descname"><span class="pre">HyperGradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/hyper_gradient.html#HyperGradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.hyper_gradient.HyperGradient" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Base class for computing hyper-gradients of upper-level variables in bilevel optimization problems.</p>
-<p>This class provides an abstract interface for hyper-gradient computation that can be extended
-for specific methods such as Conjugate Gradient, Finite Differentiation, or First-Order Approximation.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ll_objective</strong> (<em>callable</em>) – The lower-level objective function of the bilevel optimization problem.</p></li>
-<li><p><strong>ul_objective</strong> (<em>callable</em>) – The upper-level objective function of the bilevel optimization problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the bilevel optimization problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the bilevel optimization problem.</p></li>
-<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – A list of variables optimized with the lower-level objective.</p></li>
-<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – A list of variables optimized with the upper-level objective.</p></li>
-<li><p><strong>solver_config</strong> (<em>dict</em>) – Dictionary containing configurations for the solver.</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="boat_jit.hyper_ol.hyper_gradient.HyperGradient.compute_gradients">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/hyper_gradient.html#HyperGradient.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.hyper_gradient.HyperGradient.compute_gradients" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-</section>
 <section id="module-boat_jit.hyper_ol.iad">
-<span id="boat-jit-hyper-ol-iad-module"></span><h2>boat_jit.hyper_ol.iad module<a class="headerlink" href="#module-boat_jit.hyper_ol.iad" title="Permalink to this heading"></a></h2>
+<span id="boat-jit-hyper-ol-iad"></span><h2>boat_jit.hyper_ol.iad<a class="headerlink" href="#module-boat_jit.hyper_ol.iad" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_jit.hyper_ol.iad.IAD">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.iad.</span></span><span class="sig-name descname"><span class="pre">IAD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/iad.html#IAD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.iad.IAD" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#boat_jit.hyper_ol.hyper_gradient.HyperGradient" title="boat_jit.hyper_ol.hyper_gradient.HyperGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperGradient</span></code></a></p>
-<p>Implements the optimization procedure of the Naive Gradient Descent (NGD) [1].</p>
+<p>Computes the hyper-gradient of the upper-level variables using Initialization-based Auto Differentiation (IAD) [1].</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
 <li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
-<li><p><strong>lower_loop</strong> (<em>int</em>) – The number of iterations for lower-level optimization.</p></li>
-<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>A dictionary containing configurations for the solver. Expected keys include:</p>
-<ul>
-<li><p>”lower_level_opt” (torch.optim.Optimizer): The optimizer for the lower-level model.</p></li>
-<li><p>”hyper_op” (List[str]): A list of hyper-gradient operations to apply, such as “PTT” or “FOA”.</p></li>
-<li><dl class="simple">
-<dt>”RGT” (Dict): Configuration for Truncated Gradient Iteration (RGT):</dt><dd><ul>
-<li><p>”truncate_iter” (int): The number of iterations to truncate the gradient computation.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Dictionary containing solver configurations.</p></li>
 </ul>
 </dd>
 </dl>
-</li>
-</ul>
-</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="boat_jit.hyper_ol.iad.IAD.truncate_max_loss_iter">
-<span class="sig-name descname"><span class="pre">truncate_max_loss_iter</span></span><a class="headerlink" href="#boat_jit.hyper_ol.iad.IAD.truncate_max_loss_iter" title="Permalink to this definition"></a></dt>
-<dd><p>Indicates whether to truncate based on a maximum loss iteration (enabled if “PTT” is in <cite>hyper_op</cite>).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="boat_jit.hyper_ol.iad.IAD.truncate_iters">
-<span class="sig-name descname"><span class="pre">truncate_iters</span></span><a class="headerlink" href="#boat_jit.hyper_ol.iad.IAD.truncate_iters" title="Permalink to this definition"></a></dt>
-<dd><p>The number of iterations for gradient truncation, derived from <cite>solver_config[“RGT”][“truncate_iter”]</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="boat_jit.hyper_ol.iad.IAD.ll_opt">
-<span class="sig-name descname"><span class="pre">ll_opt</span></span><a class="headerlink" href="#boat_jit.hyper_ol.iad.IAD.ll_opt" title="Permalink to this definition"></a></dt>
-<dd><p>The optimizer used for the lower-level model.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>torch.optim.Optimizer</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="boat_jit.hyper_ol.iad.IAD.foa">
-<span class="sig-name descname"><span class="pre">foa</span></span><a class="headerlink" href="#boat_jit.hyper_ol.iad.IAD.foa" title="Permalink to this definition"></a></dt>
-<dd><p>Indicates whether First-Order Approximation (FOA) is applied, based on <cite>hyper_op</cite> configuration.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
 <p class="rubric">References</p>
-<dl class="simple">
-<dt>[1] L. Franceschi, P. Frasconi, S. Salzo, R. Grazzi, and M. Pontil, “Bilevel</dt><dd><p>programming for hyperparameter optimization and meta-learning”, in ICML, 2018.</p>
-</dd>
-</dl>
+<p>[1] Finn C., Abbeel P., Levine S., “Model-agnostic meta-learning for fast adaptation of deep networks”, in ICML, 2017.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_jit.hyper_ol.iad.IAD.compute_gradients">
 <span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_loss_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyper_gradient_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/iad.html#IAD.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.iad.IAD.compute_gradients" title="Permalink to this definition"></a></dt>
@@ -571,10 +610,10 @@ for specific methods such as Conjugate Gradient, Finite Differentiation, or Firs
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The current upper-level objective.</p>
+<dd class="field-even"><p>A dictionary containing the upper-level objective and the status of hypergradient computation.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Any</p>
+<dd class="field-odd"><p>Dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -583,7 +622,7 @@ for specific methods such as Conjugate Gradient, Finite Differentiation, or Firs
 
 </section>
 <section id="module-boat_jit.hyper_ol.iga">
-<span id="boat-jit-hyper-ol-iga-module"></span><h2>boat_jit.hyper_ol.iga module<a class="headerlink" href="#module-boat_jit.hyper_ol.iga" title="Permalink to this heading"></a></h2>
+<span id="boat-jit-hyper-ol-iga"></span><h2>boat_jit.hyper_ol.iga<a class="headerlink" href="#module-boat_jit.hyper_ol.iga" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_jit.hyper_ol.iga.IGA">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.iga.</span></span><span class="sig-name descname"><span class="pre">IGA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/iga.html#IGA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.iga.IGA" title="Permalink to this definition"></a></dt>
@@ -594,10 +633,10 @@ for specific methods such as Conjugate Gradient, Finite Differentiation, or Firs
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
 <li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
-<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
-<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
 <li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>Dictionary containing solver configurations, including:</p>
 <ul>
 <li><p><cite>alpha_init</cite> (float): Initial learning rate for GDA.</p></li>
@@ -711,8 +750,11 @@ targets, and other information required for the UL objective computation.</p></l
 <li><p>Updates are performed on both lower-level and upper-level variables using computed gradients.</p></li>
 </ul>
 <dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>AssertionError</strong> – If <cite>next_operation</cite> is not None, as this implementation does not support additional operations.</p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dictionary containing the upper-level objective and the status of hypergradient computation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -721,7 +763,7 @@ targets, and other information required for the UL objective computation.</p></l
 
 </section>
 <section id="module-boat_jit.hyper_ol.ns">
-<span id="boat-jit-hyper-ol-ns-module"></span><h2>boat_jit.hyper_ol.ns module<a class="headerlink" href="#module-boat_jit.hyper_ol.ns" title="Permalink to this heading"></a></h2>
+<span id="boat-jit-hyper-ol-ns"></span><h2>boat_jit.hyper_ol.ns<a class="headerlink" href="#module-boat_jit.hyper_ol.ns" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_jit.hyper_ol.ns.NS">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.ns.</span></span><span class="sig-name descname"><span class="pre">NS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/ns.html#NS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.ns.NS" title="Permalink to this definition"></a></dt>
@@ -732,10 +774,10 @@ targets, and other information required for the UL objective computation.</p></l
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
 <li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
-<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
-<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
 <li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>Dictionary containing solver configurations, including:</p>
 <ul>
 <li><p><cite>dynamic_op</cite> (str): Indicates dynamic initialization type (e.g., “DI”).</p></li>
@@ -791,7 +833,7 @@ It serves as the lower-level model for optimization.</p></li>
 
 </section>
 <section id="module-boat_jit.hyper_ol.ptt">
-<span id="boat-jit-hyper-ol-ptt-module"></span><h2>boat_jit.hyper_ol.ptt module<a class="headerlink" href="#module-boat_jit.hyper_ol.ptt" title="Permalink to this heading"></a></h2>
+<span id="boat-jit-hyper-ol-ptt"></span><h2>boat_jit.hyper_ol.ptt<a class="headerlink" href="#module-boat_jit.hyper_ol.ptt" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_jit.hyper_ol.ptt.PTT">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.ptt.</span></span><span class="sig-name descname"><span class="pre">PTT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/ptt.html#PTT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.ptt.PTT" title="Permalink to this definition"></a></dt>
@@ -802,20 +844,17 @@ It serves as the lower-level model for optimization.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
 <li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
-<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
-<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
 <li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Dictionary containing solver configurations, including:
 - “hyper_op” (List[str]): Indicates if PTT is used in the hyper-gradient operations.</p></li>
 </ul>
 </dd>
 </dl>
 <p class="rubric">References</p>
-<dl class="simple">
-<dt>[1] Liu R., Liu Y., Zeng S., et al. “Towards gradient-based bilevel optimization</dt><dd><p>with non-convex followers and beyond,” in NeurIPS, 2021.</p>
-</dd>
-</dl>
+<p>[1] Liu R., Liu Y., Zeng S., et al. “Towards gradient-based bilevel optimization with non-convex followers and beyond,” in NeurIPS, 2021.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_jit.hyper_ol.ptt.PTT.compute_gradients">
 <span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_loss_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyper_gradient_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/ptt.html#PTT.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.ptt.PTT.compute_gradients" title="Permalink to this definition"></a></dt>
@@ -847,7 +886,7 @@ It serves as the lower-level model for optimization.</p></li>
 
 </section>
 <section id="module-boat_jit.hyper_ol.rad">
-<span id="boat-jit-hyper-ol-rad-module"></span><h2>boat_jit.hyper_ol.rad module<a class="headerlink" href="#module-boat_jit.hyper_ol.rad" title="Permalink to this heading"></a></h2>
+<span id="boat-jit-hyper-ol-rad"></span><h2>boat_jit.hyper_ol.rad<a class="headerlink" href="#module-boat_jit.hyper_ol.rad" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_jit.hyper_ol.rad.RAD">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.rad.</span></span><span class="sig-name descname"><span class="pre">RAD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/rad.html#RAD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.rad.RAD" title="Permalink to this definition"></a></dt>
@@ -858,10 +897,10 @@ It serves as the lower-level model for optimization.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
 <li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
-<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
-<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
 <li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Dictionary containing solver configurations, including optional dynamic operation settings.</p></li>
 </ul>
 </dd>
@@ -886,9 +925,7 @@ Typically includes validation data, targets, and other information required to c
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A dictionary containing:
-- <cite>upper_loss</cite>: The current upper-level objective.
-- <cite>hyper_gradient_finished</cite>: Flag indicating if the hypergradient computation is finished.</p>
+<dd class="field-even"><p>A dictionary containing the upper-level objective and the status of hypergradient computation.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Dict</p>
@@ -900,7 +937,7 @@ Typically includes validation data, targets, and other information required to c
 
 </section>
 <section id="module-boat_jit.hyper_ol.rgt">
-<span id="boat-jit-hyper-ol-rgt-module"></span><h2>boat_jit.hyper_ol.rgt module<a class="headerlink" href="#module-boat_jit.hyper_ol.rgt" title="Permalink to this heading"></a></h2>
+<span id="boat-jit-hyper-ol-rgt"></span><h2>boat_jit.hyper_ol.rgt<a class="headerlink" href="#module-boat_jit.hyper_ol.rgt" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_jit.hyper_ol.rgt.RGT">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.rgt.</span></span><span class="sig-name descname"><span class="pre">RGT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/rgt.html#RGT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.rgt.RGT" title="Permalink to this definition"></a></dt>
@@ -911,10 +948,10 @@ Typically includes validation data, targets, and other information required to c
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
 <li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
-<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
-<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>jittor.Var</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
 <li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Dictionary containing solver configurations, including the hyper-gradient operations and truncation settings.</p></li>
 </ul>
 </dd>
@@ -948,100 +985,14 @@ Typically includes validation data, targets, and other information required to c
 </dd></dl>
 
 </section>
-<section id="module-boat_jit.hyper_ol.sequential_hg">
-<span id="boat-jit-hyper-ol-sequential-hg-module"></span><h2>boat_jit.hyper_ol.sequential_hg module<a class="headerlink" href="#module-boat_jit.hyper_ol.sequential_hg" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="boat_jit.hyper_ol.sequential_hg.SequentialHG">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.sequential_hg.</span></span><span class="sig-name descname"><span class="pre">SequentialHG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ordered_instances</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_order</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/sequential_hg.html#SequentialHG"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.sequential_hg.SequentialHG" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A class for managing sequential hyper-gradient operations.</p>
-<p>This class dynamically organizes and executes a sequence of hyper-gradient computations
-using user-defined and validated orders of gradient operators.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ordered_instances</strong> (<em>List</em><em>[</em><em>object</em><em>]</em>) – A list of instantiated gradient operator objects, ordered as per the adjusted sequence.</p></li>
-<li><p><strong>custom_order</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The user-defined order of gradient operators.</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="boat_jit.hyper_ol.sequential_hg.SequentialHG.compute_gradients">
-<span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/sequential_hg.html#SequentialHG.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.sequential_hg.SequentialHG.compute_gradients" title="Permalink to this definition"></a></dt>
-<dd><p>Compute hyper-gradients sequentially using the ordered instances.</p>
-<p>This method processes the hyper-gradients in the defined order, passing intermediate
-results between consecutive gradient operators.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments required for gradient computations.</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A list of dictionaries containing results for each gradient operator.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[Dict]</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="boat_jit.hyper_ol.sequential_hg.makes_functional_hyper_operation">
-<span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.sequential_hg.</span></span><span class="sig-name descname"><span class="pre">makes_functional_hyper_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">custom_order</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/sequential_hg.html#makes_functional_hyper_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.sequential_hg.makes_functional_hyper_operation" title="Permalink to this definition"></a></dt>
-<dd><p>Dynamically create a SequentialHG object with ordered gradient operators.</p>
-<p>This function validates the user-defined operator order, adjusts it to conform
-with predefined gradient rules, and dynamically loads the corresponding operator classes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>custom_order</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The user-defined order of gradient operators.</p></li>
-<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments required for initializing gradient operator instances.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>An instance of SequentialHG containing the ordered gradient operators and result management.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#boat_jit.hyper_ol.sequential_hg.SequentialHG" title="boat_jit.hyper_ol.sequential_hg.SequentialHG">SequentialHG</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="boat_jit.hyper_ol.sequential_hg.validate_and_adjust_order">
-<span class="sig-prename descclassname"><span class="pre">boat_jit.hyper_ol.sequential_hg.</span></span><span class="sig-name descname"><span class="pre">validate_and_adjust_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">custom_order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_order</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/hyper_ol/sequential_hg.html#validate_and_adjust_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.hyper_ol.sequential_hg.validate_and_adjust_order" title="Permalink to this definition"></a></dt>
-<dd><p>Validate and adjust the custom order to match the predefined gradient order.</p>
-<p>This function ensures that the user-defined order adheres to the predefined grouping
-rules and adjusts it accordingly.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>custom_order</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The user-provided order of gradient operators.</p></li>
-<li><p><strong>gradient_order</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – The predefined order of gradient operator groups.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Adjusted order of gradient operators following the predefined rules.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[str]</p>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
-<section id="module-boat_jit.hyper_ol">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-boat_jit.hyper_ol" title="Permalink to this heading"></a></h2>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="boat_jit.fogm.html" class="btn btn-neutral float-left" title="boat_jit.fogm package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="boat_jit.utils.html" class="btn btn-neutral float-right" title="boat_jit.utils package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="boat_jit.fogm.html" class="btn btn-neutral float-left" title="boat_jit.fogm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="boat_jit.utils.html" class="btn btn-neutral float-right" title="boat_jit.utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

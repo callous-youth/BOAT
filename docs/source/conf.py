@@ -8,8 +8,22 @@
 import os
 import sys
 
+
+from pathlib import Path
+
+
+#<project_root>/boat_torch, <project_root>/docs/source/conf.py
+CUR = Path(__file__).resolve()
+PROJECT_ROOT = CUR.parents[2]
+sys.path.insert(0, str(PROJECT_ROOT))
 # 将项目的根目录添加到 sys.path
 sys.path.insert(0, os.path.abspath("../../"))
+
+
+autodoc_mock_imports = [
+    "jittor",
+    "matplotlib", "matplotlib.pyplot"
+]
 
 autodoc_typehints = "none"
 

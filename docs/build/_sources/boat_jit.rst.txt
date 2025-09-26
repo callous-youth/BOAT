@@ -1,4 +1,4 @@
-BOAT Structure
+BOAT-Jittor Structure
 =================
 
 Core Problem Class

@@ -6,10 +6,10 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>boat_jit.dynamic_ol package &mdash; BOAT-Jittor 0.0.1 documentation</title>
+  <title>boat_jit.dynamic_ol &mdash; BOAT-Jittor 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=a96ec788" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=4ff932f8" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -20,8 +20,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="boat_jit.fogm package" href="boat_jit.fogm.html" />
-    <link rel="prev" title="BOAT Structure" href="boat_jit.html" /> 
+    <link rel="next" title="boat_jit.fogm" href="boat_jit.fogm.html" />
+    <link rel="prev" title="BOAT-Jittor Structure" href="boat_jit.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -34,6 +34,7 @@
           
           <a href="index.html" class="icon icon-home">
             BOAT-Jittor
+              <img src="_static/logo.jpg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -47,23 +48,22 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="description.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="install_guide.html">Installation and Usage Guide</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="boat_jit.html">BOAT Structure</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="boat_jit.html">BOAT-Jittor Structure</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="boat_jit.html#module-boat_jit.boat_opt">Core Problem Class</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="boat_jit.html#main-subpackages">Main Subpackages</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">boat_jit.dynamic_ol package</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">boat_jit.dynamic_ol</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.dynamic_ol.di">boat_jit.dynamic_ol.di module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.dynamic_ol.dm">boat_jit.dynamic_ol.dm module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.dynamic_ol.dynamical_system">boat_jit.dynamic_ol.dynamical_system module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.dynamic_ol.gda">boat_jit.dynamic_ol.gda module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.dynamic_ol.ngd">boat_jit.dynamic_ol.ngd module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.dynamic_ol.sequential_ds">boat_jit.dynamic_ol.sequential_ds module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.dynamic_ol">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.dynamic_ol.dynamical_system">boat_jit.dynamic_ol.dynamical_system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.dynamic_ol.sequential_ds">boat_jit.dynamic_ol.sequential_ds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.dynamic_ol.di">boat_jit.dynamic_ol.di</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.dynamic_ol.dm">boat_jit.dynamic_ol.dm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.dynamic_ol.gda">boat_jit.dynamic_ol.gda</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_jit.dynamic_ol.ngd">boat_jit.dynamic_ol.ngd</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.fogm.html">boat_jit.fogm package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html">boat_jit.hyper_ol package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="boat_jit.utils.html">boat_jit.utils package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.fogm.html">boat_jit.fogm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.hyper_ol.html">boat_jit.hyper_ol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boat_jit.utils.html">boat_jit.utils</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="boat_jit.html#module-boat_jit.operation_registry">Extension with Operation_Registry</a></li>
@@ -89,8 +89,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="boat_jit.html">BOAT Structure</a></li>
-      <li class="breadcrumb-item active">boat_jit.dynamic_ol package</li>
+          <li class="breadcrumb-item"><a href="boat_jit.html">BOAT-Jittor Structure</a></li>
+      <li class="breadcrumb-item active">boat_jit.dynamic_ol</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/boat_jit.dynamic_ol.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -100,169 +100,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="boat-jit-dynamic-ol-package">
-<h1>boat_jit.dynamic_ol package<a class="headerlink" href="#boat-jit-dynamic-ol-package" title="Permalink to this heading"></a></h1>
+  <section id="boat-jit-dynamic-ol">
+<h1>boat_jit.dynamic_ol<a class="headerlink" href="#boat-jit-dynamic-ol" title="Permalink to this heading"></a></h1>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
 </section>
-<section id="module-boat_jit.dynamic_ol.di">
-<span id="boat-jit-dynamic-ol-di-module"></span><h2>boat_jit.dynamic_ol.di module<a class="headerlink" href="#module-boat_jit.dynamic_ol.di" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="boat_jit.dynamic_ol.di.DI">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.dynamic_ol.di.</span></span><span class="sig-name descname"><span class="pre">DI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/di.html#DI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.di.DI" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#boat_jit.dynamic_ol.dynamical_system.DynamicalSystem" title="boat_jit.dynamic_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
-<p>Implements the lower-level optimization procedure for Naive Gradient Descent (NGD) [1]
-and Gradient Descent Aggregation (GDA) [2].</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
-<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
-<li><p><strong>lower_loop</strong> (<em>int</em>) – The number of iterations for the lower-level optimization process.</p></li>
-<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – A dictionary containing configurations for the optimization solver, including
-hyperparameters and specific settings for NGD and GDA.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">References</p>
-<dl class="simple">
-<dt>[1] L. Franceschi, P. Frasconi, S. Salzo, R. Grazzi, and M. Pontil, “Bilevel programming for hyperparameter</dt><dd><p>optimization and meta-learning,” ICML, 2018.</p>
-</dd>
-<dt>[2] R. Liu, P. Mu, X. Yuan, S. Zeng, and J. Zhang, “A generic first-order algorithmic framework for bi-level</dt><dd><p>programming beyond lower-level singleton,” ICML, 2020.</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="boat_jit.dynamic_ol.di.DI.optimize">
-<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/di.html#DI.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.di.DI.optimize" title="Permalink to this definition"></a></dt>
-<dd><p>Executes the lower-level optimization procedure using the provided data and models.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ll_feed_dict</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Dictionary containing the lower-level data used for optimization. Typically includes:
-- “data” : The input data for lower-level optimization.
-- “target” : The target output (optional, depending on the task).</p></li>
-<li><p><strong>ul_feed_dict</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Dictionary containing the upper-level data used for optimization. Typically includes:
-- “data” : The input data for upper-level optimization.
-- “target” : The target output (optional, depending on the task).</p></li>
-<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower model wrapped by the <cite>higher</cite> library. Serves as the lower-level model
-for optimization in a differentiable way.</p></li>
-<li><p><strong>auxiliary_opt</strong> (<em>DifferentiableOptimizer</em>) – A patched optimizer for the lower-level model, wrapped by the <cite>higher</cite> library.
-Allows for differentiable optimization steps.</p></li>
-<li><p><strong>current_iter</strong> (<em>int</em>) – The current iteration number of the optimization process.</p></li>
-<li><p><strong>next_operation</strong> (<em>str</em>) – Specifies the next operation to execute during the optimization process.
-Must not be None.</p></li>
-<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments passed to the optimization procedure.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A dictionary containing the input parameters and any additional keyword arguments.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Dict</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>AssertionError</strong> – If <cite>next_operation</cite> is not defined.</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>Ensure that <cite>next_operation</cite> is defined before calling this function to specify the
-next operation in the optimization pipeline.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-boat_jit.dynamic_ol.dm">
-<span id="boat-jit-dynamic-ol-dm-module"></span><h2>boat_jit.dynamic_ol.dm module<a class="headerlink" href="#module-boat_jit.dynamic_ol.dm" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="boat_jit.dynamic_ol.dm.DM">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.dynamic_ol.dm.</span></span><span class="sig-name descname"><span class="pre">DM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/dm.html#DM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.dm.DM" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#boat_jit.dynamic_ol.dynamical_system.DynamicalSystem" title="boat_jit.dynamic_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
-<p>Implements the lower-level optimization procedure for Naive Gradient Descent (NGD) [1],
-Gradient Descent Aggregation (GDA) [2], and Dual Multiplier (DM) [3].</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
-<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
-<li><p><strong>lower_loop</strong> (<em>int</em>) – The number of iterations for the lower-level optimization process.</p></li>
-<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – A dictionary containing configurations for the optimization solver, including
-hyperparameters and specific settings for NGD, GDA, and DM.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">References</p>
-<dl class="simple">
-<dt>[1] L. Franceschi, P. Frasconi, S. Salzo, R. Grazzi, and M. Pontil, “Bilevel programming for hyperparameter</dt><dd><p>optimization and meta-learning,” ICML, 2018.</p>
-</dd>
-<dt>[2] R. Liu, P. Mu, X. Yuan, S. Zeng, and J. Zhang, “A generic first-order algorithmic framework for bi-level</dt><dd><p>programming beyond lower-level singleton,” ICML, 2020.</p>
-</dd>
-<dt>[3] Liu R, Liu Y, Yao W, et al., “Averaged method of multipliers for bi-level optimization without lower-level</dt><dd><p>strong convexity,” ICML, 2023.</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="boat_jit.dynamic_ol.dm.DM.optimize">
-<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/dm.html#DM.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.dm.DM.optimize" title="Permalink to this definition"></a></dt>
-<dd><p>Executes the lower-level optimization procedure with support for NGD, GDA, and RAD operations.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – <dl class="simple">
-<dt>Dictionary containing the lower-level data used for optimization. Typically includes:</dt><dd><ul>
-<li><p>”data” : Training input data.</p></li>
-<li><p>”target” : Training target data (optional, depending on the task).</p></li>
-</ul>
-</dd>
-</dl>
-</p></li>
-<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – <dl class="simple">
-<dt>Dictionary containing the upper-level data used for optimization. Typically includes:</dt><dd><ul>
-<li><p>”data” : Validation input data.</p></li>
-<li><p>”target” : Validation target data (optional, depending on the task).</p></li>
-</ul>
-</dd>
-</dl>
-</p></li>
-<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower model wrapped by the <cite>higher</cite> library. Used for differentiable optimization.</p></li>
-<li><p><strong>auxiliary_opt</strong> (<em>DifferentiableOptimizer</em>) – A patched optimizer for the lower-level model, wrapped by the <cite>higher</cite> library. Enables differentiable optimization steps.</p></li>
-<li><p><strong>current_iter</strong> (<em>int</em>) – The current iteration number in the optimization process.</p></li>
-<li><p><strong>next_operation</strong> (<em>str</em><em>, </em><em>optional</em>) – Specifies the next operation in the optimization process. Must be <cite>None</cite> for NGD. (default: None)</p></li>
-<li><p><strong>kwargs</strong> (<em>dict</em>) – Additional keyword arguments for the optimization process.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Returns <cite>-1</cite> upon successful completion of the optimization process.</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<ul class="simple">
-<li><p>For GDA operations, this method supports three strategies: ‘s1’, ‘s2’, and ‘s3’.</p></li>
-<li><p>When using RAD in <cite>hyper_op</cite>, a higher-order gradient adjustment is applied to the auxiliary variables.</p></li>
-<li><p>Ensure that <cite>next_operation</cite> is <cite>None</cite> for NGD, as it does not support additional operations.</p></li>
-</ul>
-<dl class="field-list simple">
-<dt class="field-odd">Raises<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>AssertionError</strong> – If <cite>next_operation</cite> is not <cite>None</cite> for NGD or if an unsupported strategy is specified for GDA.</p>
-</dd>
-</dl>
-<p class="rubric">References</p>
-<p>[1] L. Franceschi, P. Frasconi, S. Salzo, R. Grazzi, and M. Pontil, “Bilevel programming for hyperparameter optimization and meta-learning”, in ICML, 2018.
-[2] R. Liu, P. Mu, X. Yuan, S. Zeng, and J. Zhang, “A generic first-order algorithmic framework for bi-level programming beyond lower-level singleton”, in ICML, 2020.
-[3] Liu R, Liu Y, Yao W, et al. “Averaged method of multipliers for bi-level optimization without lower-level strong convexity”, in ICML, 2023.</p>
-</dd></dl>
-
-</dd></dl>
-
-</section>
 <section id="module-boat_jit.dynamic_ol.dynamical_system">
-<span id="boat-jit-dynamic-ol-dynamical-system-module"></span><h2>boat_jit.dynamic_ol.dynamical_system module<a class="headerlink" href="#module-boat_jit.dynamic_ol.dynamical_system" title="Permalink to this heading"></a></h2>
+<span id="boat-jit-dynamic-ol-dynamical-system"></span><h2>boat_jit.dynamic_ol.dynamical_system<a class="headerlink" href="#module-boat_jit.dynamic_ol.dynamical_system" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_jit.dynamic_ol.dynamical_system.DynamicalSystem">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.dynamic_ol.dynamical_system.</span></span><span class="sig-name descname"><span class="pre">DynamicalSystem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/dynamical_system.html#DynamicalSystem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.dynamical_system.DynamicalSystem" title="Permalink to this definition"></a></dt>
@@ -275,195 +119,8 @@ hyperparameters and specific settings for NGD, GDA, and DM.</p></li>
 </dd></dl>
 
 </section>
-<section id="module-boat_jit.dynamic_ol.gda">
-<span id="boat-jit-dynamic-ol-gda-module"></span><h2>boat_jit.dynamic_ol.gda module<a class="headerlink" href="#module-boat_jit.dynamic_ol.gda" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="boat_jit.dynamic_ol.gda.GDA">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.dynamic_ol.gda.</span></span><span class="sig-name descname"><span class="pre">GDA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/gda.html#GDA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.gda.GDA" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#boat_jit.dynamic_ol.dynamical_system.DynamicalSystem" title="boat_jit.dynamic_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
-<p>Implements the optimization procedure of the Gradient Descent Aggregation (GDA) [1].</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
-<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
-<li><p><strong>lower_loop</strong> (<em>int</em>) – The number of iterations for lower-level optimization.</p></li>
-<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>A dictionary containing configurations for the solver. Expected keys include:</p>
-<ul>
-<li><dl class="simple">
-<dt>”GDA” (Dict): Configuration for the GDA algorithm:</dt><dd><ul>
-<li><p>”alpha_init” (float): Initial learning rate for the GDA updates.</p></li>
-<li><p>”alpha_decay” (float): Decay rate for the learning rate.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p>”gda_loss” (Callable): The loss function used in the GDA optimization.</p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">References</p>
-<dl class="simple">
-<dt>[1] R. Liu, P. Mu, X. Yuan, S. Zeng, and J. Zhang, “A generic first-order algorithmic framework</dt><dd><p>for bi-level programming beyond lower-level singleton”, in ICML, 2020.</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="boat_jit.dynamic_ol.gda.GDA.optimize">
-<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/gda.html#GDA.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.gda.GDA.optimize" title="Permalink to this definition"></a></dt>
-<dd><p>Execute the lower-level optimization procedure using provided data, models, and patched optimizers.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the lower-level data used for optimization.
-Typically includes training data, targets, and other information required to compute the LL objective.</p></li>
-<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the upper-level data used for optimization.
-Typically includes validation data, targets, and other information required to compute the UL objective.</p></li>
-<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower model wrapped by the <cite>higher</cite> library.
-This model is used for differentiable optimization in the lower-level procedure.</p></li>
-<li><p><strong>auxiliary_opt</strong> (<em>DifferentiableOptimizer</em>) – A patched optimizer for the lower-level model, wrapped by the <cite>higher</cite> library.
-Allows differentiable optimization.</p></li>
-<li><p><strong>current_iter</strong> (<em>int</em>) – The current iteration number of the optimization process.</p></li>
-<li><p><strong>next_operation</strong> (<em>str</em><em>, </em><em>optional</em>) – Specifies the next operation to be executed in the optimization pipeline.
-Default is None.</p></li>
-<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional parameters required for the optimization procedure.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><dl class="simple">
-<dt>A dictionary containing:</dt><dd><ul class="simple">
-<li><dl class="simple">
-<dt>”ll_feed_dict”<span class="classifier">Dict</span></dt><dd><p>Lower-level feed dictionary.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>”ul_feed_dict”<span class="classifier">Dict</span></dt><dd><p>Upper-level feed dictionary.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>”auxiliary_model”<span class="classifier">_MonkeyPatchBase</span></dt><dd><p>Patched lower-level model.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>”auxiliary_opt”<span class="classifier">DifferentiableOptimizer</span></dt><dd><p>Patched lower-level optimizer.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>”current_iter”<span class="classifier">int</span></dt><dd><p>Current iteration number.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>”gda_loss”<span class="classifier">callable</span></dt><dd><p>Gradient Descent Aggregation (GDA) loss function.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>”alpha”<span class="classifier">float</span></dt><dd><p>Coefficient used in the GDA operation, typically in (0, 1).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>”alpha_decay”<span class="classifier">float</span></dt><dd><p>Decay factor for the coefficient <cite>alpha</cite>.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>dict</p>
-</dd>
-<dt class="field-even">Raises<span class="colon">:</span></dt>
-<dd class="field-even"><p><strong>AssertionError</strong> – If <cite>next_operation</cite> is not defined.
-    If <cite>alpha</cite> is not in the range (0, 1).
-    If <cite>gda_loss</cite> is not properly defined.</p>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<ul class="simple">
-<li><p>The method assumes that <cite>gda_loss</cite> is defined and accessible from the instance attributes.</p></li>
-<li><p>The coefficient <cite>alpha</cite> and its decay rate <cite>alpha_decay</cite> must be properly configured.</p></li>
-</ul>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="module-boat_jit.dynamic_ol.ngd">
-<span id="boat-jit-dynamic-ol-ngd-module"></span><h2>boat_jit.dynamic_ol.ngd module<a class="headerlink" href="#module-boat_jit.dynamic_ol.ngd" title="Permalink to this heading"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="boat_jit.dynamic_ol.ngd.NGD">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.dynamic_ol.ngd.</span></span><span class="sig-name descname"><span class="pre">NGD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/ngd.html#NGD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.ngd.NGD" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#boat_jit.dynamic_ol.dynamical_system.DynamicalSystem" title="boat_jit.dynamic_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
-<p>Implements the optimization procedure of the Naive Gradient Descent (NGD) [1].</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
-<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
-<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
-<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
-<li><p><strong>lower_loop</strong> (<em>int</em>) – The number of iterations for lower-level optimization.</p></li>
-<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>A dictionary containing configurations for the solver. Expected keys include:</p>
-<ul>
-<li><p>”lower_level_opt” (torch.optim.Optimizer): The optimizer for the lower-level model.</p></li>
-<li><p>”hyper_op” (List[str]): A list of hyper-gradient operations to apply, such as “PTT” or “FOA”.</p></li>
-<li><dl class="simple">
-<dt>”RGT” (Dict): Configuration for Truncated Gradient Iteration (RGT):</dt><dd><ul>
-<li><p>”truncate_iter” (int): The number of iterations to truncate the gradient computation.</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">References</p>
-<dl class="simple">
-<dt>[1] L. Franceschi, P. Frasconi, S. Salzo, R. Grazzi, and M. Pontil, “Bilevel</dt><dd><p>programming for hyperparameter optimization and meta-learning”, in ICML, 2018.</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="boat_jit.dynamic_ol.ngd.NGD.optimize">
-<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/ngd.html#NGD.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.ngd.NGD.optimize" title="Permalink to this definition"></a></dt>
-<dd><p>Execute the lower-level optimization procedure using data, models, and patched optimizers.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the lower-level data used for optimization.
-Typically includes training data, targets, and other information required to compute the lower-level (LL) objective.</p></li>
-<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the upper-level data used for optimization.
-Typically includes validation data, targets, and other information required to compute the upper-level (UL) objective.</p></li>
-<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower-level model wrapped by the <cite>higher</cite> library.
-Used for differentiable optimization in the lower-level procedure.</p></li>
-<li><p><strong>auxiliary_opt</strong> (<em>DifferentiableOptimizer</em>) – A patched optimizer for the lower-level model, wrapped by the <cite>higher</cite> library.
-Enables differentiable optimization.</p></li>
-<li><p><strong>current_iter</strong> (<em>int</em>) – The current iteration number of the optimization process.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
 <section id="module-boat_jit.dynamic_ol.sequential_ds">
-<span id="boat-jit-dynamic-ol-sequential-ds-module"></span><h2>boat_jit.dynamic_ol.sequential_ds module<a class="headerlink" href="#module-boat_jit.dynamic_ol.sequential_ds" title="Permalink to this heading"></a></h2>
+<span id="boat-jit-dynamic-ol-sequential-ds"></span><h2>boat_jit.dynamic_ol.sequential_ds<a class="headerlink" href="#module-boat_jit.dynamic_ol.sequential_ds" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_jit.dynamic_ol.sequential_ds.SequentialDS">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.dynamic_ol.sequential_ds.</span></span><span class="sig-name descname"><span class="pre">SequentialDS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ordered_instances</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_order</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/sequential_ds.html#SequentialDS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.sequential_ds.SequentialDS" title="Permalink to this definition"></a></dt>
@@ -584,8 +241,326 @@ Enables differentiable optimization.</p></li>
 </dd></dl>
 
 </section>
-<section id="module-boat_jit.dynamic_ol">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-boat_jit.dynamic_ol" title="Permalink to this heading"></a></h2>
+<section id="module-boat_jit.dynamic_ol.di">
+<span id="boat-jit-dynamic-ol-di"></span><h2>boat_jit.dynamic_ol.di<a class="headerlink" href="#module-boat_jit.dynamic_ol.di" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_jit.dynamic_ol.di.DI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.dynamic_ol.di.</span></span><span class="sig-name descname"><span class="pre">DI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/di.html#DI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.di.DI" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boat_jit.dynamic_ol.dynamical_system.DynamicalSystem" title="boat_jit.dynamic_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
+<p>Implements the lower-level optimization procedure for Dynamic Initialization [1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>lower_loop</strong> (<em>int</em>) – The number of iterations for the lower-level optimization process.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – A dictionary containing configurations for the optimization solver, including
+hyperparameters and specific settings for NGD and GDA.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>[1] Liu R., Liu Y., Zeng S., et al. “Towards gradient-based bilevel optimization with non-convex followers and beyond,” in NeurIPS, 2021.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_jit.dynamic_ol.di.DI.optimize">
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/di.html#DI.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.di.DI.optimize" title="Permalink to this definition"></a></dt>
+<dd><p>Executes the lower-level optimization procedure using the provided data and models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_feed_dict</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Dictionary containing the lower-level data used for optimization. Typically includes:
+- “data” : The input data for lower-level optimization.
+- “target” : The target output (optional, depending on the task).</p></li>
+<li><p><strong>ul_feed_dict</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Dictionary containing the upper-level data used for optimization. Typically includes:
+- “data” : The input data for upper-level optimization.
+- “target” : The target output (optional, depending on the task).</p></li>
+<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower model wrapped by the <cite>higher</cite> library. Serves as the lower-level model
+for optimization in a differentiable way.</p></li>
+<li><p><strong>auxiliary_opt</strong> (<em>DifferentiableOptimizer</em>) – A patched optimizer for the lower-level model, wrapped by the <cite>higher</cite> library.
+Allows for differentiable optimization steps.</p></li>
+<li><p><strong>current_iter</strong> (<em>int</em>) – The current iteration number of the optimization process.</p></li>
+<li><p><strong>next_operation</strong> (<em>str</em>) – Specifies the next operation to execute during the optimization process.
+Must not be None.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments passed to the optimization procedure.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing the input parameters and any additional keyword arguments.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If <cite>next_operation</cite> is not defined.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Ensure that <cite>next_operation</cite> is defined before calling this function to specify the
+next operation in the optimization pipeline.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_jit.dynamic_ol.dm">
+<span id="boat-jit-dynamic-ol-dm"></span><h2>boat_jit.dynamic_ol.dm<a class="headerlink" href="#module-boat_jit.dynamic_ol.dm" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_jit.dynamic_ol.dm.DM">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.dynamic_ol.dm.</span></span><span class="sig-name descname"><span class="pre">DM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/dm.html#DM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.dm.DM" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boat_jit.dynamic_ol.dynamical_system.DynamicalSystem" title="boat_jit.dynamic_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
+<p>Implements the lower-level optimization procedure for Dual Multiplier (DM) [1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>lower_loop</strong> (<em>int</em>) – The number of iterations for the lower-level optimization process.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – A dictionary containing configurations for the optimization solver, including
+hyperparameters and specific settings for NGD, GDA, and DM.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<dl class="simple">
+<dt>[1] Liu R, Liu Y, Yao W, et al., “Averaged method of multipliers for bi-level optimization without lower-level</dt><dd><p>strong convexity,” ICML, 2023.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_jit.dynamic_ol.dm.DM.optimize">
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/dm.html#DM.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.dm.DM.optimize" title="Permalink to this definition"></a></dt>
+<dd><p>Executes the lower-level optimization procedure with support for NGD, GDA, and RAD operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – <dl class="simple">
+<dt>Dictionary containing the lower-level data used for optimization. Typically includes:</dt><dd><ul>
+<li><p>”data” : Training input data.</p></li>
+<li><p>”target” : Training target data (optional, depending on the task).</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – <dl class="simple">
+<dt>Dictionary containing the upper-level data used for optimization. Typically includes:</dt><dd><ul>
+<li><p>”data” : Validation input data.</p></li>
+<li><p>”target” : Validation target data (optional, depending on the task).</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower model wrapped by the <cite>higher</cite> library. Used for differentiable optimization.</p></li>
+<li><p><strong>auxiliary_opt</strong> (<em>DifferentiableOptimizer</em>) – A patched optimizer for the lower-level model, wrapped by the <cite>higher</cite> library. Enables differentiable optimization steps.</p></li>
+<li><p><strong>current_iter</strong> (<em>int</em>) – The current iteration number in the optimization process.</p></li>
+<li><p><strong>next_operation</strong> (<em>str</em><em>, </em><em>optional</em>) – Specifies the next operation in the optimization process. Must be <cite>None</cite> for NGD. (default: None)</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em>) – Additional keyword arguments for the optimization process.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns <cite>-1</cite> upon successful completion of the optimization process.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>For GDA operations, this method supports three strategies: ‘s1’, ‘s2’, and ‘s3’.</p></li>
+<li><p>When using RAD in <cite>hyper_op</cite>, a higher-order gradient adjustment is applied to the auxiliary variables.</p></li>
+<li><p>Ensure that <cite>next_operation</cite> is <cite>None</cite> for NGD, as it does not support additional operations.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If <cite>next_operation</cite> is not <cite>None</cite> for NGD or if an unsupported strategy is specified for GDA.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_jit.dynamic_ol.gda">
+<span id="boat-jit-dynamic-ol-gda"></span><h2>boat_jit.dynamic_ol.gda<a class="headerlink" href="#module-boat_jit.dynamic_ol.gda" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_jit.dynamic_ol.gda.GDA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.dynamic_ol.gda.</span></span><span class="sig-name descname"><span class="pre">GDA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/gda.html#GDA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.gda.GDA" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boat_jit.dynamic_ol.dynamical_system.DynamicalSystem" title="boat_jit.dynamic_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
+<p>Implements the optimization procedure of the Gradient Descent Aggregation (GDA) [1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>lower_loop</strong> (<em>int</em>) – The number of iterations for lower-level optimization.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>A dictionary containing configurations for the solver. Expected keys include:</p>
+<ul>
+<li><dl class="simple">
+<dt>”GDA” (Dict): Configuration for the GDA algorithm:</dt><dd><ul>
+<li><p>”alpha_init” (float): Initial learning rate for the GDA updates.</p></li>
+<li><p>”alpha_decay” (float): Decay rate for the learning rate.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>”gda_loss” (Callable): The loss function used in the GDA optimization.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>[1] R. Liu, P. Mu, X. Yuan, S. Zeng, and J. Zhang, “A generic first-order algorithmic framework for bi-level programming beyond lower-level singleton”, in ICML, 2020.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_jit.dynamic_ol.gda.GDA.optimize">
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/gda.html#GDA.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.gda.GDA.optimize" title="Permalink to this definition"></a></dt>
+<dd><p>Execute the lower-level optimization procedure using provided data, models, and patched optimizers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the lower-level data used for optimization.
+Typically includes training data, targets, and other information required to compute the LL objective.</p></li>
+<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the upper-level data used for optimization.
+Typically includes validation data, targets, and other information required to compute the UL objective.</p></li>
+<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower model wrapped by the <cite>higher</cite> library.
+This model is used for differentiable optimization in the lower-level procedure.</p></li>
+<li><p><strong>auxiliary_opt</strong> (<em>DifferentiableOptimizer</em>) – A patched optimizer for the lower-level model, wrapped by the <cite>higher</cite> library.
+Allows differentiable optimization.</p></li>
+<li><p><strong>current_iter</strong> (<em>int</em>) – The current iteration number of the optimization process.</p></li>
+<li><p><strong>next_operation</strong> (<em>str</em><em>, </em><em>optional</em>) – Specifies the next operation to be executed in the optimization pipeline.
+Default is None.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional parameters required for the optimization procedure.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A dictionary containing:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>”ll_feed_dict”<span class="classifier">Dict</span></dt><dd><p>Lower-level feed dictionary.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>”ul_feed_dict”<span class="classifier">Dict</span></dt><dd><p>Upper-level feed dictionary.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>”auxiliary_model”<span class="classifier">_MonkeyPatchBase</span></dt><dd><p>Patched lower-level model.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>”auxiliary_opt”<span class="classifier">DifferentiableOptimizer</span></dt><dd><p>Patched lower-level optimizer.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>”current_iter”<span class="classifier">int</span></dt><dd><p>Current iteration number.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>”gda_loss”<span class="classifier">callable</span></dt><dd><p>Gradient Descent Aggregation (GDA) loss function.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>”alpha”<span class="classifier">float</span></dt><dd><p>Coefficient used in the GDA operation, typically in (0, 1).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>”alpha_decay”<span class="classifier">float</span></dt><dd><p>Decay factor for the coefficient <cite>alpha</cite>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If <cite>next_operation</cite> is not defined.
+    If <cite>alpha</cite> is not in the range (0, 1).
+    If <cite>gda_loss</cite> is not properly defined.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The method assumes that <cite>gda_loss</cite> is defined and accessible from the instance attributes.</p></li>
+<li><p>The coefficient <cite>alpha</cite> and its decay rate <cite>alpha_decay</cite> must be properly configured.</p></li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_jit.dynamic_ol.ngd">
+<span id="boat-jit-dynamic-ol-ngd"></span><h2>boat_jit.dynamic_ol.ngd<a class="headerlink" href="#module-boat_jit.dynamic_ol.ngd" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_jit.dynamic_ol.ngd.NGD">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_jit.dynamic_ol.ngd.</span></span><span class="sig-name descname"><span class="pre">NGD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/ngd.html#NGD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.ngd.NGD" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boat_jit.dynamic_ol.dynamical_system.DynamicalSystem" title="boat_jit.dynamic_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
+<p>Implements the optimization procedure of the Naive Gradient Descent (NGD) [1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>jittor.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>jittor.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>lower_loop</strong> (<em>int</em>) – The number of iterations for lower-level optimization.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>A dictionary containing configurations for the solver. Expected keys include:</p>
+<ul>
+<li><p>”lower_level_opt” (jittor.optim.Optimizer): The optimizer for the lower-level model.</p></li>
+<li><p>”hyper_op” (List[str]): A list of hyper-gradient operations to apply, such as “PTT” or “FOA”.</p></li>
+<li><dl class="simple">
+<dt>”RGT” (Dict): Configuration for Truncated Gradient Iteration (RGT):</dt><dd><ul>
+<li><p>”truncate_iter” (int): The number of iterations to truncate the gradient computation.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<dl class="simple">
+<dt>[1] L. Franceschi, P. Frasconi, S. Salzo, R. Grazzi, and M. Pontil, “Bilevel</dt><dd><p>programming for hyperparameter optimization and meta-learning”, in ICML, 2018.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_jit.dynamic_ol.ngd.NGD.optimize">
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_opt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_jit/dynamic_ol/ngd.html#NGD.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_jit.dynamic_ol.ngd.NGD.optimize" title="Permalink to this definition"></a></dt>
+<dd><p>Execute the lower-level optimization procedure using data, models, and patched optimizers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the lower-level data used for optimization. Typically includes training data, targets, and other information required to compute the lower-level (LL) objective.</p></li>
+<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the upper-level data used for optimization. Typically includes validation data, targets, and other information required to compute the upper-level (UL) objective.</p></li>
+<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower-level model wrapped by the <cite>higher</cite> library. Used for differentiable optimization in the lower-level procedure.</p></li>
+<li><p><strong>auxiliary_opt</strong> (<em>DifferentiableOptimizer</em>) – A patched optimizer for the lower-level model, wrapped by the <cite>higher</cite> library. Enables differentiable optimization.</p></li>
+<li><p><strong>current_iter</strong> (<em>int</em>) – The current iteration number of the optimization process.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 
@@ -593,8 +568,8 @@ Enables differentiable optimization.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="boat_jit.html" class="btn btn-neutral float-left" title="BOAT Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="boat_jit.fogm.html" class="btn btn-neutral float-right" title="boat_jit.fogm package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="boat_jit.html" class="btn btn-neutral float-left" title="BOAT-Jittor Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="boat_jit.fogm.html" class="btn btn-neutral float-right" title="boat_jit.fogm" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
