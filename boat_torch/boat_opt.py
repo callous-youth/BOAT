@@ -299,7 +299,7 @@ class Problem:
                             )
                         backward_time = time.perf_counter() - backward_time
                     run_time += forward_time + backward_time
-                # average_grad(self._ul_model, len(ll_feed_dict))
+                average_grad(self._ul_model, len(ll_feed_dict))
             else:
                 with higher.innerloop_ctx(
                     self._ll_model,
