@@ -91,9 +91,9 @@ test_dataloader = BatchMetaDataLoader(dataset, batch_size=batch_size, **kwargs)
 
 inner_opt = torch.optim.SGD(lr=0.1, params=meta_model.parameters())
 outer_opt = torch.optim.Adam(meta_model.parameters(), lr=0.01)
-y_lr_schedular = torch.optim.lr_scheduler.CosineAnnealingLR(
-    optimizer=outer_opt, T_max=80000, eta_min=0.001
-)
+# y_lr_schedular = torch.optim.lr_scheduler.CosineAnnealingLR(
+#     optimizer=outer_opt, T_max=80000, eta_min=0.001
+# )
 import os
 import json
 
@@ -114,19 +114,19 @@ def main():
     parser.add_argument(
         "--dynamic_method",
         type=str,
-        default="",
+        default=None,
         help="omniglot or miniimagenet or tieredImagenet",
     )
     parser.add_argument(
         "--hyper_method",
         type=str,
-        default="",
+        default=None,
         help="convnet for 4 convs or resnet for Residual blocks",
     )
     parser.add_argument(
         "--fo_gm",
         type=str,
-        default="",
+        default=None,
         help="convnet for 4 convs or resnet for Residual blocks",
     )
     args = parser.parse_args()
@@ -137,6 +137,7 @@ def main():
     print(args.hyper_method)
     boat_config["dynamic_op"] = dynamic_method
     boat_config["hyper_op"] = hyper_method
+    boat_config["fo_gm"] = args.fo_gm
     boat_config["lower_level_model"] = meta_model
     boat_config["upper_level_model"] = meta_model
     boat_config["lower_level_var"] = list(meta_model.parameters())
@@ -167,8 +168,8 @@ def main():
             loss, run_time = b_optimizer.run_iter(
                 ll_feed_dict, ul_feed_dict, current_iter=meta_iter
             )
-            y_lr_schedular.step()
-            print("validation loss:", loss[-1][-1])
+            # y_lr_schedular.step()
+            # print("validation loss:", loss[-1][-1])
             if meta_iter >= 1:
                 break
     b_optimizer.plot_losses()

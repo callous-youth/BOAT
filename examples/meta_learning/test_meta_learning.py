@@ -17,6 +17,7 @@ hyper_methodlist = (
     ["FOA", "IAD"],
     ["FOA", "IAD", "PTT"],
 )
+fogm_method = (["VSM"], ["VFM"], ["MESM"], ["PGDM"])
 
 # 获取当前时间
 t0 = time.strftime("%Y_%m_%d_%H_%M_%S")
@@ -82,3 +83,19 @@ def test_combination_dynamic_hyper_method(dynamic_method, hyper_method):
     assert (
         result.returncode == 0
     ), f"Test failed for dynamic_method={dynamic_method} and hyper_method={hyper_method}. Error: {result.stderr}"
+
+@pytest.mark.parametrize("fogm_method", fogm_method)
+def test_fogm_method(fogm_method):
+    command = [
+        "python",
+        "/home/runner/work/BOAT/BOAT/examples/meta_learning/meta_learning.py",
+        "--fo_gm",
+        fogm_method[0],
+    ]
+    print(f"Running test with fo_gm={fogm_method}")
+
+    result = subprocess.run(command, capture_output=True, text=True)
+
+    assert (
+        result.returncode == 0
+    ), f"Test failed for fo_gm={fogm_method}. Error: {result.stderr}"
