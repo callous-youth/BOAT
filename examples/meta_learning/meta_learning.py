@@ -171,7 +171,7 @@ def main():
             print("validation loss:", loss[-1][-1])
             if meta_iter >= 1:
                 break
-    #b_optimizer.plot_losses()
+    b_optimizer.plot_losses()
 
 
 if __name__ == "__main__":

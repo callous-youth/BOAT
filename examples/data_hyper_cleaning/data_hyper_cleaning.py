@@ -162,7 +162,7 @@ def main():
                         valLoss,
                     )
                 )
-    #b_optimizer.plot_losses()
+    b_optimizer.plot_losses()
 
 
 if __name__ == "__main__":
