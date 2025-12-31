@@ -34,11 +34,11 @@ def custom_padding(img, padding):
     Add padding to the image.
 
     Args:
-        img (PIL.Image.Image, np.ndarray, jt.Var): 输入图像。
-        padding (int): 填充大小。
+        img (PIL.Image.Image, np.ndarray, jt.Var): input image.
+        padding (int): padding size.
 
     Returns:
-        np.ndarray: 填充后的图像，形状为 (H + 2 * padding, W + 2 * padding, C)。
+        np.ndarray:  (H + 2 * padding, W + 2 * padding, C)
     """
     if isinstance(img, Image.Image):
         img = np.array(img)
@@ -49,19 +49,16 @@ def custom_padding(img, padding):
     if not isinstance(img, np.ndarray):
         raise TypeError(f"Unsupported image type: {type(img)}")
 
-    # 确保形状为 (C, H, W)
     if img.ndim == 3 and img.shape[2] in [1, 3]:
-        img = np.transpose(img, (2, 0, 1))  # 转换为 (C, H, W)
+        img = np.transpose(img, (2, 0, 1)) 
 
     if img.ndim != 3 or img.shape[0] not in [1, 3]:
         raise ValueError(f"Unsupported image shape: {img.shape}")
 
-    # 添加填充
     c, h, w = img.shape
     padded_img = np.zeros((c, h + 2 * padding, w + 2 * padding), dtype=img.dtype)
     padded_img[:, padding:-padding, padding:-padding] = img
 
-    # 转换为 (H, W, C)
     padded_img = np.transpose(padded_img, (1, 2, 0))
 
     return padded_img
@@ -70,14 +67,14 @@ def custom_padding(img, padding):
 
 def debug_print(img, stage):
     """
-    打印图像的形状和类型，帮助调试。
+    print the shape and type of the image at different stages.
     
     Args:
-        img: 输入的图像，可以是 PIL.Image、np.ndarray 或 jt.Var。
-        stage: 当前的转换阶段。
+        img: input image, can be PIL.Image, np.ndarray, or jt.Var.
+        stage: the stage of processing.
     
     Returns:
-        原始图像。
+        the input image unchanged.
     """
     if isinstance(img, Image.Image):
         print(f"{stage}: PIL.Image, size={img.size}")
@@ -99,32 +96,20 @@ def _data_transforms_cifar10(args):
     Define CIFAR-10 data augmentation and normalization for training and validation datasets.
 
     Args:
-        args: 包含 cutout_length 的参数对象。
+        args: includes cutout and cutout_length attributes.
 
     Returns:
-        train_transform, valid_transform: 训练和验证数据集的变换。
+        train_transform, valid_transform: transformation pipelines for training and validation datasets.
     """
     CIFAR_MEAN = [0.49139968, 0.48215827, 0.44653124]
     CIFAR_STD = [0.24703233, 0.24348505, 0.26158768]
 
 
-    # train_transform = Compose([
-    #     lambda img: debug_print(img, "Original"),  # 打印原始图像形状
-    #     lambda img: custom_padding(img, 4),  # 添加 4 个像素的填充
-    #     lambda img: debug_print(img, "After custom_padding"),  # 打印填充后的形状
-    #     RandomCrop((32, 32)),  # 随机裁剪到 32x32
-    #     lambda img: debug_print(img, "After RandomCrop"),  # 打印裁剪后的形状
-    #     ToTensor(),  # 转换为 Jittor 张量
-    #     lambda img: debug_print(img, "After ToTensor"),  # 打印转换为张量后的形状
-    #     lambda img: image_normalize(img, CIFAR_MEAN, CIFAR_STD),  # 归一化
-    #     lambda img: debug_print(img, "After image_normalize"),  # 打印归一化后的形状
-    # ])
-
     train_transform = Compose([
-        lambda img: custom_padding(img, 4),  # 添加 4 个像素的填充
-        RandomCrop((32, 32)),  # 随机裁剪到 32x32
-        ToTensor(),  # 转换为 Jittor 张量
-        lambda img: image_normalize(img, CIFAR_MEAN, CIFAR_STD)  # 归一化
+        lambda img: custom_padding(img, 4),  
+        RandomCrop((32, 32)), 
+        ToTensor(),  
+        lambda img: image_normalize(img, CIFAR_MEAN, CIFAR_STD) 
     ])
 
 
@@ -132,46 +117,11 @@ def _data_transforms_cifar10(args):
         train_transform.transforms.append(Cutout(args.cutout_length))
 
     valid_transform = Compose([
-        ToTensor(),                          # 转换为张量
-        lambda img: image_normalize(img, CIFAR_MEAN, CIFAR_STD)  # Jittor 的归一化函数
+        ToTensor(),                       
+        lambda img: image_normalize(img, CIFAR_MEAN, CIFAR_STD)
     ])
 
     return train_transform, valid_transform
-
-
-# def _data_transforms_cifar10(args):
-#     CIFAR_MEAN = [0.49139968, 0.48215827, 0.44653124]
-#     CIFAR_STD = [0.24703233, 0.24348505, 0.26158768]
-
-#     def padding(img, padding=4):
-#         if not isinstance(img, jt.Var):
-#             img = jt.array(np.array(img))
-#         if len(img.shape) == 3:  # 确保形状为 (C, H, W)
-#             img = img.transpose((2, 0, 1))
-#         c, h, w = img.shape
-#         print(f"Original shape: {h}x{w}")
-#         img_padded = jt.zeros((c, h + 2 * padding, w + 2 * padding), dtype=img.dtype)
-#         img_padded[:, padding:-padding, padding:-padding] = img
-#         print(f"Padded shape: {img_padded.shape}")
-#         return img_padded
-
-#     train_transform = Compose([
-#         lambda x: padding(x, 4),
-#         lambda x: print(f"Before RandomCrop: {x.shape}") or x,
-#         lambda x: x if x.shape[1] >= 32 and x.shape[2] >= 32 else print(f"Skip RandomCrop for {x.shape}") or x,
-#         RandomCrop(32),
-#         RandomHorizontalFlip(),
-#         ToTensor(),
-#         lambda x: image_normalize(x, CIFAR_MEAN, CIFAR_STD),
-#     ])
-#     if args.cutout:
-#         train_transform.transforms.append(Cutout(args.cutout_length))
-
-#     valid_transform = Compose([
-#         ToTensor(),
-#         lambda x: image_normalize(x, CIFAR_MEAN, CIFAR_STD),
-#     ])
-#     return train_transform, valid_transform
 
 class AvgrageMeter(object):
     def __init__(self):

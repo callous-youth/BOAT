@@ -228,7 +228,7 @@ class DifferentiableOptimizer(_abc.ABC):
         all_grads = jit.grad(
             loss,
             grad_targets,
-            retain_graph=True,  # Jittor does not have allow_unused, retain_graph used here
+            # retain_graph=True,  # Jittor does not have allow_unused, retain_graph used here
         )
 
         if grad_callback is not None:
@@ -274,23 +274,23 @@ class DifferentiableSGD(DifferentiableOptimizer):
         zipped = zip(self.param_groups, grouped_grads)
 
         for group_idx, (group, grads) in enumerate(zipped):
-            momentum = group.get("momentum", 0.0)  # 如果 group 中没有，默认为 0.0
+            momentum = group.get("momentum", 0.0) 
             weight_decay = group.get("weight_decay", 0.0)
             dampening = group.get("dampening", 0.0)
             nesterov = group.get("nesterov", False)
-            # 遍历参数和梯度
+
             for p_idx, (p, g) in enumerate(zip(group["params"], grads)):
                 if g is None or p.is_stop_grad():
                     continue
 
-                # 如果 weight_decay 不为 0，则对梯度进行正则化
+                # if weight decay is specified, add it to the gradient
                 if weight_decay != 0:
                     g += weight_decay * p
 
-                # 使用 self.state 管理动量相关状态
+                # use momentum if specified
                 param_state = self.state[group_idx].get(p_idx, {})
                 if momentum != 0:
-                    # 初始化 momentum_buffer 如果不存在
+                    # initialize momentum buffer if it does not exist
                     if "momentum_buffer" not in param_state:
                         param_state["momentum_buffer"] = jit.zeros_like(p).stop_grad()
 
@@ -299,15 +299,12 @@ class DifferentiableSGD(DifferentiableOptimizer):
                     buf += g * (1 - dampening)
 
                     if nesterov:
-                        # 如果使用 Nesterov 动量
                         g += momentum * buf
                     else:
                         g = buf
 
-                    # 更新状态
                     self.state[group_idx][p_idx] = param_state
 
-                # 最终更新参数
                 p -= self.lr * g
 
 
@@ -816,22 +813,11 @@ class DifferentiableRprop(DifferentiableOptimizer):
 _OptMappingType = _typing.Dict[
     jit.optim.Optimizer, _typing.Type[DifferentiableOptimizer]
 ]
-# _opt_mapping: _OptMappingType = {
-#     jit.optim.Adadelta: DifferentiableAdadelta,
-#     jit.optim.Adagrad: DifferentiableAdagrad,
-#     jit.optim.Adam: DifferentiableAdam,
-#     jit.optim.AdamW: DifferentiableAdamW,
-#     jit.optim.Adamax: DifferentiableAdamax,
-#     jit.optim.ASGD: DifferentiableASGD,
-#     jit.optim.RMSprop: DifferentiableRMSprop,
-#     jit.optim.Rprop: DifferentiableRprop,
-#     jit.optim.SGD: DifferentiableSGD,
-# }
 
-# 获取实际存在的优化器
+# get available optimizers in jittor.optim
 available_optimizers = {attr for attr in dir(jit.optim) if not attr.startswith("_")}
 
-# 定义优化器映射
+# define optimizer mapping
 _opt_mapping: _OptMappingType = {
     "Adadelta": DifferentiableAdadelta,
     "Adagrad": DifferentiableAdagrad,
@@ -844,14 +830,12 @@ _opt_mapping: _OptMappingType = {
     "SGD": DifferentiableSGD,
 }
 
-# 移除不存在的优化器
+# remove entries for optimizers not available in jittor.optim
 _opt_mapping = {
     getattr(jit.optim, k): v
     for k, v in _opt_mapping.items()
     if k in available_optimizers
 }
-
-# print("Updated optimizer mapping:", _opt_mapping)
 
 
 def get_diff_optim(

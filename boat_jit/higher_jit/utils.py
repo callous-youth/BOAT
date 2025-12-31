@@ -92,15 +92,13 @@ def _find_param_in_list(
 def _get_param_mapping(
     module: jit.Module, seen: _typing.List[jit.Var], mapping: _typing.List[int]
 ) -> _typing.List[int]:
-    # for param in module._parameters.values():
-    # k=0
-    # print("test_length!!!!!!!!!!!!",len(module.named_parameters(False)))
+
     for _, param in module.named_parameters(False):
         if param is None:
             continue
-        # k+=1
+
         found = _find_param_in_list(param, seen)
-        # print("really",k, found)
+
         if found is None:
             mapping.append(len(seen))
             seen.append(param)

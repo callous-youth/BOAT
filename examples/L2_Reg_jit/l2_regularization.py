@@ -11,48 +11,23 @@ import boat_jit as boat
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import fetch_20newsgroups_vectorized
 
-
-def get_data(args):
+def get_data(args, max_samples=2000):
     """
-    Load and process data for Jittor. It converts sparse matrices to dense tensors
-    and splits the dataset into training, validation, test, and evaluation sets.
-
-    Args:
-        args: Argument object containing the data path.
-
-    Returns:
-        tuple: Contains training, validation, test, and evaluation datasets
-               in the form (train_x, train_y), (val_x, val_y), (test_x, test_y), (teval_x, teval_y).
+    Load and process data for Jittor, with optional downsampling.
     """
-
     def from_sparse(x):
-        """
-        Convert a scipy sparse matrix to a Jittor dense tensor.
-
-        Args:
-            x (scipy.sparse matrix): Input sparse matrix.
-
-        Returns:
-            jittor.Var: Dense tensor corresponding to the input sparse matrix.
-        """
-        x = x.tocoo()  # Convert to COOrdinate format
-        values = x.data  # Non-zero values of the sparse matrix
-        indices = np.vstack((x.row, x.col))  # Stack the row and column indices
-
-        # Replace torch.LongTensor with jit.array of int64
-        i = jit.array(indices, dtype=jit.int64)  # Indices of non-zero elements
-        v = jit.array(values, dtype=jit.float32)  # Values of non-zero elements
-
-        shape = x.shape  # Shape of the sparse matrix
-
-        # Create a dense tensor from the indices and values
+        x = x.tocoo()
+        values = x.data
+        indices = np.vstack((x.row, x.col))
+        i = jit.array(indices, dtype=jit.int64)
+        v = jit.array(values, dtype=jit.float32)
+        shape = x.shape
         dense_tensor = jit.zeros(shape, dtype=jit.float32)
-        dense_tensor[i[0], i[1]] = v  # Place non-zero elements at the correct positions
+        dense_tensor[i[0], i[1]] = v
         return dense_tensor
 
-    val_size = 0.5  # Proportion of data to be used for validation
+    val_size = 0.5
 
-    # Load the training and testing datasets
     train_x, train_y = fetch_20newsgroups_vectorized(
         subset="train",
         return_X_y=True,
@@ -67,29 +42,26 @@ def get_data(args):
         download_if_missing=True,
     )
 
-    # Split the training data into training and validation sets
+    # ---- New: subsampling to reduce dataset size ----
+    if max_samples is not None:
+        train_x = train_x[:max_samples]
+        train_y = train_y[:max_samples]
+        test_x = test_x[: max_samples // 2]
+        test_y = test_y[: max_samples // 2]
+
     train_x, val_x, train_y, val_y = train_test_split(
         train_x, train_y, stratify=train_y, test_size=val_size
     )
-
-    # Split the test data into test and evaluation sets
     test_x, teval_x, test_y, teval_y = train_test_split(
         test_x, test_y, stratify=test_y, test_size=0.5
     )
 
-    # Convert the sparse matrices to dense tensors using the from_sparse function
-    train_x, val_x, test_x, teval_x = map(
-        from_sparse, [train_x, val_x, test_x, teval_x]
-    )
-
-    # Convert labels to Jittor tensors (jit.int64 for integer labels)
+    train_x, val_x, test_x, teval_x = map(from_sparse, [train_x, val_x, test_x, teval_x])
     train_y, val_y, test_y, teval_y = map(
         lambda y: jit.array(y, dtype=jit.int64), [train_y, val_y, test_y, teval_y]
     )
 
-    # Print the sizes of the splits
     print(train_y.shape[0], val_y.shape[0], test_y.shape[0], teval_y.shape[0])
-
     return (train_x, train_y), (val_x, val_y), (test_x, test_y), (teval_x, teval_y)
 
 
@@ -193,19 +165,19 @@ def main():
             ],
         )
         parser.add_argument(
-            "--dynamic_method",
+            "--gm_op",
             type=str,
-            default="NGD",
+            default="DI,GDA,NGD",
             help="omniglot or miniimagenet or tieredImagenet",
         )
         parser.add_argument(
-            "--hyper_method",
+            "--na_op",
             type=str,
-            default="RAD",
+            default="CG",
             help="convnet for 4 convs or resnet for Residual blocks",
         )
         parser.add_argument(
-            "--fo_gm",
+            "--fo_op",
             type=str,
             default=None,
             help="convnet for 4 convs or resnet for Residual blocks",
@@ -248,15 +220,16 @@ def main():
     upper_opt = jit.nn.Adam(upper_model.parameters(), lr=0.01)
     lower_opt = jit.nn.SGD(lower_model.parameters(), lr=0.01)
 
-    print(args.dynamic_method)
-    print(args.hyper_method)
-    dynamic_method = args.dynamic_method.split(",") if args.dynamic_method else []
-    hyper_method = args.hyper_method.split(",") if args.hyper_method else []
-    if "RGT" in hyper_method:
-        boat_config["RGT"]["truncate_iter"] = 1
-    boat_config["dynamic_op"] = dynamic_method
-    boat_config["hyper_op"] = hyper_method
-    boat_config["fo_gm"] = args.fo_gm
+    print(args.gm_op)
+    print(args.na_op)
+    gm_op = args.gm_op.split(",") if args.gm_op else None
+    na_op = args.na_op.split(",") if args.na_op else None
+    if na_op is not None:
+        if "RGT" in na_op:
+            boat_config["RGT"]["truncate_iter"] = 1
+    boat_config["gm_op"] = gm_op
+    boat_config["na_op"] = na_op
+    boat_config["fo_op"] = args.fo_op
     boat_config["lower_level_model"] = lower_model
     boat_config["upper_level_model"] = upper_model
     boat_config["lower_level_opt"] = lower_opt
@@ -270,17 +243,17 @@ def main():
     ul_feed_dict = {"data": trainset[0], "target": trainset[1]}
     ll_feed_dict = {"data": valset[0], "target": valset[1]}
 
-    if "DM" in boat_config["dynamic_op"] and ("GDA" in boat_config["dynamic_op"]):
+    if "DM" in boat_config["gm_op"] and ("GDA" in boat_config["gm_op"]):
         iterations = 3
     else:
         iterations = 2
     for x_itr in range(iterations):
-        if "DM" in boat_config["dynamic_op"] and ("GDA" in boat_config["dynamic_op"]):
+        if "DM" in boat_config["gm_op"] and boat_config["fo_op"] is None and  ("GDA" in boat_config["gm_op"]):
             b_optimizer._ll_solver.gradient_instances[-1].strategy = "s" + str(
                 x_itr % 3 + 1
             )
-        elif "DM" in boat_config["dynamic_op"] and (
-            not ("GDA" in boat_config["dynamic_op"])
+        elif "DM" in boat_config["gm_op"] and boat_config["fo_op"] is None and (
+            not ("GDA" in boat_config["gm_op"])
         ):
             b_optimizer._ll_solver.gradient_instances[-1].strategy = "s" + str(1)
         loss, run_time = b_optimizer.run_iter(

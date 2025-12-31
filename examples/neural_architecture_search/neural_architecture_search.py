@@ -6,23 +6,24 @@ import glob
 import numpy as np
 import jittor as jit
 jit.flags.log_silent = True 
+
 from jittor import nn
 import logging
-import utils  # 假设 utils 模块已经转换为 Jittor 兼容
+import utils  
 import argparse
-import boat_jit as boat  # 假设 boat_torch 模块已经转换为 Jittor 兼容
-from model_search import Network  # 假设 model_search 模块已经转换为 Jittor 兼容
+import boat_jit as boat 
+from model_search import Network 
 from jittor.dataset import Dataset
 parser = argparse.ArgumentParser("cifar")
 parser.add_argument("--data", type=str, default="data/", help="location of the data corpus")
-parser.add_argument("--batch_size", type=int, default=1, help="batch size")
+parser.add_argument("--batch_size", type=int, default=64, help="batch size")
 parser.add_argument("--learning_rate", type=float, default=0.025, help="init learning rate")
 parser.add_argument("--learning_rate_min", type=float, default=0.001, help="min learning rate")
 parser.add_argument("--momentum", type=float, default=0.9, help="momentum")
 parser.add_argument("--weight_decay", type=float, default=3e-4, help="weight decay")
 parser.add_argument("--report_freq", type=float, default=5, help="report frequency")
 parser.add_argument("--gpu", type=int, default=0, help="gpu device id")
-parser.add_argument("--epochs", type=int, default=1, help="num of training epochs")
+parser.add_argument("--epochs", type=int, default=600, help="num of training epochs")
 parser.add_argument("--init_channels", type=int, default=16, help="num of init channels")
 parser.add_argument("--layers", type=int, default=3, help="total number of layers")
 parser.add_argument("--model_path", type=str, default="saved_models", help="path to save the model")
@@ -69,9 +70,7 @@ def main():
     jit.flags.lazy_execution=0
     print(jit.has_cuda)
     print(jit.flags.use_cuda)
-    # print(jit.current_device())
     np.random.seed(args.seed)
-    # jit.set_device(args.gpu)
     logging.info("gpu device = %d" % args.gpu)
     logging.info("args = %s", args)
 
@@ -128,7 +127,7 @@ def main():
     train_indices = indices[:split]
     valid_indices = indices[split:]
 
-    # 自定义数据集类用于索引切片
+    # define SubsetDataset and CustomBatchSampler
     class SubsetDataset(Dataset):
         def __init__(self, dataset, indices, transform=None):
             super().__init__()
@@ -189,14 +188,14 @@ def main():
                 targets.append(target)
 
             # Convert to numpy arrays
-            inputs = np.stack(inputs)  # Shape: [batch_size, 3, 32, 32]
-            targets = np.array(targets)  # Shape: [batch_size]
+            inputs = np.stack(inputs) 
+            targets = np.array(targets)
             return inputs, targets
 
         def __len__(self):
             return len(self.indices) // self.batch_size
 
-    # 创建子数据集
+    # create data loaders
     train_subset = SubsetDataset(train_data, train_indices, transform=train_transform)
     valid_subset = SubsetDataset(train_data, valid_indices, transform=valid_transform)
     train_queue = CustomBatchSampler(train_subset, batch_size=args.batch_size)
@@ -211,8 +210,6 @@ def main():
                 scheduler.step()
 
         scheduler.step()
-        # lr = scheduler.get_last_lr()
-        # logging.info("epoch %d lr %e", epoch, lr[0])
 
         genotype = model.genotype()
         logging.info("genotype = %s", genotype)
@@ -226,7 +223,6 @@ def main():
         print("epoch_step_time:", epoch_time)
         utils.save(model, os.path.join(args.save, "weights.pt"))
     print("average_step_time", average_runtime / 3)
-
 
 def train(train_queue, valid_queue, model, criterion, optimizer, boat_optimizer):
     objs = utils.AvgrageMeter()
@@ -300,7 +296,7 @@ def infer(valid_queue, model, criterion):
                 top5.avg,
             )
 
-        if step > 200:
+        if step > 20:
             break
 
     return top1.avg, objs.avg

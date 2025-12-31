@@ -41,7 +41,7 @@ class DynamicalSystemRules:
     # Default static gradient operator order
     _gradient_order = [
         ["GDA", "DI"],
-        ["DM", "NGD"],
+        ["NGD", "DM"],
     ]
 
     @staticmethod
@@ -126,21 +126,21 @@ class HyperGradientRules:
 
 def l2_reg(parameters):
     """
-    Compute the L2 regularization loss for a list of parameters.
+    Compute L2 regularization term (Jittor version).
 
     Parameters
     ----------
-    parameters : Iterable[jittor.Var]
-        Model parameters for which the L2 regularization is computed.
+    parameters : List[jt.Var]
+        need to compute L2 regularization parameter list
 
     Returns
     -------
-    jittor.Var
-        L2 regularization loss.
+    jt.Var
+        L2 regularization loss
     """
-    loss = 0
+    loss = jit.zeros(1)
     for w in parameters:
-        loss += (w**2).sum()
+        loss += (w * w).sum()
     return loss
 
 
@@ -268,72 +268,28 @@ def manual_update(optimizer, variables):
         The Jittor optimizer instance.
     variables : List[jittor.Var]
         A list of Jittor variables to be updated.
-
-    Raises
-    ------
-    AttributeError
-        If a variable does not have the '_custom_grad' attribute.
     """
     variable_ids = {id(var) for var in variables} 
     for group in optimizer.param_groups:
         lr = group.get("lr", optimizer.lr)
 
         for param in group["params"]:
-            if id(param) in variable_ids: 
-                if not hasattr(param, "_custom_grad"):
-                    raise AttributeError(
-                        f"Variable '{param.name}' does not have '_custom_grad'. "
-                        f"Ensure gradients are precomputed and stored before updating."
-                    )
+            if id(param) not in variable_ids:
+                continue
 
-                grad = param._custom_grad
-                if grad.shape != param.shape:
-                    raise ValueError(
-                        f"Gradient shape {grad.shape} does not match parameter shape {param.shape} "
-                        f"for variable '{param.name}'"
-                    )
+            # if param is not in variables, skip
+            if not hasattr(param, "_custom_grad"):
+                continue  
 
-                param -= lr * grad
+            grad = param._custom_grad
 
-                param._custom_grad *= 0
+            # if shapes do not match, skip
+            if grad.shape != param.shape:
+                continue  
 
+            param -= lr * grad
 
-# def manual_update(optimizer, variables):
-#     """
-#     Manually update variables using gradients stored in _custom_grad.
-
-#     Parameters
-#     ----------
-#     optimizer : jittor.optim.Optimizer
-#         The Jittor optimizer instance.
-#     variables : List[jittor.Var]
-#         A list of Jittor variables to be updated.
-
-#     Raises
-#     ------
-#     AttributeError
-#         If a variable does not have the '_custom_grad' attribute.
-#     """
-#     print(len(variables))
-#     print(len(optimizer.param_groups))
-#     for group in optimizer.param_groups:
-#         lr = group.get("lr", optimizer.lr)
-
-#         for param in group["params"]:
-#             # print(variables)
-#             print(param.shape)
-#             print(param._custom_grad.shape)
-#             if param in variables:
-#                 if not hasattr(param, "_custom_grad"):
-#                     raise AttributeError(
-#                         f"Variable '{param.name}' does not have '_custom_grad'. "
-#                         f"Ensure gradients are precomputed and stored before updating."
-#                     )
-
-#                 grad = param._custom_grad
-#                 param -= lr * grad
-#                 param._custom_grad *= 0
-
+            param._custom_grad *= 0
 
 
 
@@ -355,7 +311,7 @@ def update_tensor_grads(hparams, grads):
     """
     for l, g in zip(hparams, grads):
         if l.is_stop_grad():
-            raise ValueError(f"Variable {l.name()} is stop_grad and cannot be updated.")
+            continue
         if not hasattr(l, "_custom_grad"):
             l._custom_grad = g.clone().detach()
         else:
