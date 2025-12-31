@@ -1,10 +1,10 @@
 # Core dependencies
-numpy                # Fundamental library for numerical computations
+numpy<=1.26.4               # Fundamental library for numerical computations
 setuptools           # Used for building and distributing Python packages
-
 # Deep learning framework
-torch >=1.4          # PyTorch, the primary deep learning framework
+torch>=1.4         # PyTorch, the primary deep learning framework
 
 # Higher-order optimization utilities for PyTorch
 higher               # Library for higher-order optimization in PyTorch
 matplotlib
+

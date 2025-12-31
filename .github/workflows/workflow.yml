@@ -11,7 +11,7 @@ jobs:
     - name: Install requirements
       run: |
         pip install -r requirements.txt
-        pip install tqdm torchvision >=0.5 torchmeta>=1.7 scikit-learn>=1.3 scipy>=1.8
+        pip install tqdm torchvision >=0.5 torchmeta>=1.7 scikit-learn>=1.3 scipy>=1.8 torchmeta==1.8.0 numpy==1.24
 
 #    - name: List the contents of the repository
 #      run: ls -al /home/runner/work/BOAT/BOAT
