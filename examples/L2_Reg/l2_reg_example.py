@@ -13,10 +13,10 @@ from examples.L2_Reg.utils_l2 import get_data, UpperModel, LowerModel
 base_folder = os.path.dirname(os.path.abspath(__file__))
 parent_folder = os.path.dirname(base_folder)
 
-with open(os.path.join(parent_folder, "configs/boat_config_l2.json"), "r") as f:
+with open(os.path.join(parent_folder, "L2_Reg/configs/boat_config_l2.json"), "r") as f:
     boat_config = json.load(f)
 
-with open(os.path.join(parent_folder, "configs/loss_config_l2.json"), "r") as f:
+with open(os.path.join(parent_folder, "L2_Reg/configs/loss_config_l2.json"), "r") as f:
     loss_config = json.load(f)
 
 
@@ -36,25 +36,26 @@ def main():
             help="whether to create data",
         )
         parser.add_argument("--epochs", type=int, default=1000)
+        parser.add_argument("--seed", type=int, default=1234)
         parser.add_argument("--iterations", type=int, default=10, help="T")
         parser.add_argument("--data_path", default="./data", help="where to save data")
         parser.add_argument(
             "--model_path", default="./save_l2reg", help="where to save model"
         )
         parser.add_argument(
-            "--dynamic_method",
+            "--gm_op",
             type=str,
-            default=None,
+            default="NGD",
             help="omniglot or miniimagenet or tieredImagenet",
         )
         parser.add_argument(
-            "--hyper_method",
+            "--na_op",
             type=str,
-            default=None,
+            default="RAD",
             help="convnet for 4 convs or resnet for Residual blocks",
         )
         parser.add_argument(
-            "--fo_gm",
+            "--fo_op",
             type=str,
             default=None,
             help="convnet for 4 convs or resnet for Residual blocks",
@@ -78,17 +79,17 @@ def main():
     )
     upper_opt = torch.optim.Adam(upper_model.parameters(), lr=0.01)
     lower_opt = torch.optim.SGD(lower_model.parameters(), lr=0.01)
-    dynamic_method = args.dynamic_method.split(",") if args.dynamic_method else []
-    hyper_method = args.hyper_method.split(",") if args.hyper_method else []
-    boat_config["dynamic_op"] = dynamic_method
-    boat_config["hyper_op"] = hyper_method
-    boat_config["fo_gm"] = args.fo_gm
+    gm_op = args.gm_op.split(",") if args.gm_op else []
+    na_op = args.na_op.split(",") if args.na_op else []
+    boat_config["gm_op"] = gm_op
+    boat_config["na_op"] = na_op
+    boat_config["fo_op"] = args.fo_op
     boat_config["lower_level_model"] = lower_model
     boat_config["upper_level_model"] = upper_model
     boat_config["lower_level_opt"] = lower_opt
     boat_config["upper_level_opt"] = upper_opt
-    boat_config["lower_level_var"] = lower_model.parameters()
-    boat_config["upper_level_var"] = upper_model.parameters()
+    boat_config["lower_level_var"] = list(lower_model.parameters())
+    boat_config["upper_level_var"] = list(upper_model.parameters())
     b_optimizer = boat.Problem(boat_config, loss_config)
     b_optimizer.build_ll_solver()
     b_optimizer.build_ul_solver()

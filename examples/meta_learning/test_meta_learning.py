@@ -5,9 +5,9 @@ import subprocess
 import pytest
 import platform
 
-# 假设 meta_learning.py 已经被复制到正确的位置
-dynamic_methodlist = (["NGD"], ["NGD", "GDA"])
-hyper_methodlist = (
+
+gm_oplist = (["NGD"], ["NGD", "GDA"])
+na_oplist = (
     ["IAD"],
     ["IAD", "PTT"],
     ["CG", "IAD"],
@@ -17,85 +17,85 @@ hyper_methodlist = (
     ["FOA", "IAD"],
     ["FOA", "IAD", "PTT"],
 )
-fogm_method = (["VSM"], ["VFM"], ["MESM"], ["PGDM"])
+fo_ol_method = (["VSO"], ["VFO"], ["MESO"], ["PGDO"])
 
-# 获取当前时间
+
 t0 = time.strftime("%Y_%m_%d_%H_%M_%S")
-args = "meta_learning/method_test"  # 使用相对路径
+args = "meta_learning/method_test"
 
-# 获取当前脚本所在的目录（相对路径）
-base_folder = os.path.dirname(os.path.abspath(__file__))  # 获取当前脚本的绝对路径
-folder = os.path.join(base_folder, args, t0)  # 构建相对路径
 
-# 创建文件夹
+base_folder = os.path.dirname(os.path.abspath(__file__))
+folder = os.path.join(base_folder, args, t0)
+
+
 if not os.path.exists(folder):
     os.makedirs(folder)
 
-# 将 Python 文件复制到目标文件夹
+
 ganfolder = os.path.join(folder, "meta_learning.py")
 shutil.copyfile(os.path.join(base_folder, "meta_learning.py"), ganfolder)
 
-# 创建一个临时的 shell 脚本（Windows 下是 .bat 文件）
+
 script_extension = ".bat" if platform.system() == "Windows" else ".sh"
 script_file = os.path.join(folder, "set" + script_extension)
 
-# 创建批处理或 shell 脚本
+
 with open(script_file, "w") as f:
     k = 0
-    for dynamic_method in dynamic_methodlist:
-        for hyper_method in hyper_methodlist:
+    for gm_op in gm_oplist:
+        for na_op in na_oplist:
             k += 1
             f.write(
-                f'python /home/runner/work/BOAT/BOAT/examples/meta_learning/meta_learning.py --dynamic_method {",".join(dynamic_method)} --hyper_method {",".join(hyper_method)} \n'
+                f'python /home/runner/work/BOAT/BOAT/examples/meta_learning/meta_learning.py --gm_op {",".join(gm_op)} --na_op {",".join(na_op)} \n'
             )
 
-# 如果是 Ubuntu 系统, 使得脚本具有执行权限
+
 if platform.system() != "Windows":
-    os.chmod(script_file, 0o775)  # 给 sh 文件执行权限
+    os.chmod(script_file, 0o775)
 
 
-# 使用 pytest.mark.parametrize 进行参数化
+
 @pytest.mark.parametrize(
-    "dynamic_method, hyper_method",
+    "gm_op, na_op",
     [
-        (dynamic_method, hyper_method)
-        for dynamic_method in dynamic_methodlist
-        for hyper_method in hyper_methodlist
+        (gm_op, na_op)
+        for gm_op in gm_oplist
+        for na_op in na_oplist
     ],
 )
-def test_combination_dynamic_hyper_method(dynamic_method, hyper_method):
-    # 构建命令
+def test_combination_dynamic_na_op(gm_op, na_op):
+
     command = [
         "python",
         "/home/runner/work/BOAT/BOAT/examples/meta_learning/meta_learning.py",
-        "--dynamic_method",
-        ",".join(dynamic_method),
-        "--hyper_method",
-        ",".join(hyper_method),
+        "--gm_op",
+        ",".join(gm_op),
+        "--na_op",
+        ",".join(na_op),
     ]
     print(
-        f"Running test with dynamic_method={dynamic_method} and hyper_method={hyper_method}"
+        f"Running test with gm_op={gm_op} and na_op={na_op}"
     )
 
     result = subprocess.run(command, capture_output=True, text=True)
 
-    # 确保命令执行成功
+
     assert (
         result.returncode == 0
-    ), f"Test failed for dynamic_method={dynamic_method} and hyper_method={hyper_method}. Error: {result.stderr}"
+    ), f"Test failed for gm_op={gm_op} and na_op={na_op}. Error: {result.stderr}"
 
-@pytest.mark.parametrize("fogm_method", fogm_method)
-def test_fogm_method(fogm_method):
+@pytest.mark.parametrize("fo_ol_method", fo_ol_method)
+def test_fo_ol_method(fo_ol_method):
     command = [
         "python",
         "/home/runner/work/BOAT/BOAT/examples/meta_learning/meta_learning.py",
-        "--fo_gm",
-        fogm_method[0],
+        "--fo_op",
+        fo_ol_method[0],
     ]
-    print(f"Running test with fo_gm={fogm_method}")
+    print(f"Running test with fo_op={fo_ol_method}")
 
     result = subprocess.run(command, capture_output=True, text=True)
 
     assert (
         result.returncode == 0
-    ), f"Test failed for fo_gm={fogm_method}. Error: {result.stderr}"
+    ), f"Test failed for fo_op={fo_ol_method}. Error: {result.stderr}"

@@ -1,104 +1,145 @@
 import os
+import json
+import math
 import torch
 import boat_torch as boat
-from torchmeta.toy.helpers import sinusoid
+import torch.nn.functional as F
+from torch import nn
+from torchmeta.datasets.helpers import omniglot
 from torchmeta.utils.data import BatchMetaDataLoader
-
 from tqdm import tqdm
-import sys
-from examples.meta_learning.meta_learning import get_sinuoid
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
-batch_size = 4
-kwargs = {"num_workers": 1, "pin_memory": True}
-device = torch.device("cpu")
-dataset = sinusoid(shots=10, test_shots=100, seed=0)
-meta_model = get_sinuoid()
-dataloader = BatchMetaDataLoader(dataset, batch_size=batch_size, **kwargs)
-test_dataloader = BatchMetaDataLoader(dataset, batch_size=batch_size, **kwargs)
-inner_opt = torch.optim.SGD(lr=0.1, params=meta_model.parameters())
-outer_opt = torch.optim.Adam(meta_model.parameters(), lr=0.01)
-y_lr_schedular = torch.optim.lr_scheduler.CosineAnnealingLR(
-    optimizer=outer_opt, T_max=80000, eta_min=0.001
-)
-import os
-import json
+# Model definitions
+def get_cnn_omniglot(hidden_size, n_classes):
+    def conv_block(ic, oc):
+        return nn.Sequential(
+            nn.Conv2d(ic, oc, 3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2),
+            nn.BatchNorm2d(oc, momentum=1.0, affine=True, track_running_stats=True),
+        )
 
-base_folder = os.path.dirname(os.path.abspath(__file__))
-parent_folder = os.path.dirname(base_folder)
-with open(os.path.join(parent_folder, "configs/boat_config_ml.json"), "r") as f:
-    boat_config = json.load(f)
+    feature_extractor = nn.Sequential(
+        conv_block(1, hidden_size),
+        conv_block(hidden_size, hidden_size),
+        conv_block(hidden_size, hidden_size),
+        conv_block(hidden_size, hidden_size),
+        nn.Flatten(),
+    )
 
-with open(os.path.join(parent_folder, "configs/loss_config_ml.json"), "r") as f:
-    loss_config = json.load(f)
+    classifier = nn.Linear(hidden_size, n_classes)
+    return feature_extractor, classifier
 
+
+def initialize(net):
+    for m in net.modules():
+        if isinstance(m, nn.Conv2d):
+            nn.init.kaiming_normal_(m.weight)
+            if m.bias is not None:
+                nn.init.zeros_(m.bias)
+        elif isinstance(m, nn.Linear):
+            nn.init.normal_(m.weight, 0, 0.01)
+            nn.init.zeros_(m.bias)
 
 def main():
     import argparse
 
-    parser = argparse.ArgumentParser(description="Data HyperCleaner")
-
-    parser.add_argument(
-        "--dynamic_method",
-        type=str,
-        default="",
-        help="omniglot or miniimagenet or tieredImagenet",
-    )
-    parser.add_argument(
-        "--hyper_method",
-        type=str,
-        default="",
-        help="convnet for 4 convs or resnet for Residual blocks",
-    )
-    parser.add_argument(
-        "--fo_gm",
-        type=str,
-        default="",
-        help="convnet for 4 convs or resnet for Residual blocks",
-    )
+    parser = argparse.ArgumentParser(description="BOAT Omniglot Meta-Training ")
+    parser.add_argument("--dynamic_method", type=str, default="NGD")
+    parser.add_argument("--hyper_method", type=str, default="CG")
+    parser.add_argument("--fo_gm", type=str, default=None)
+    parser.add_argument("--ways", type=int, default=20)
+    parser.add_argument("--shot", type=int, default=1)
     args = parser.parse_args()
 
-    dynamic_method = args.dynamic_method.split(",") if args.dynamic_method else None
-    hyper_method = args.hyper_method.split(",") if args.hyper_method else None
-    print(args.dynamic_method)
-    print(args.hyper_method)
-    boat_config["dynamic_op"] = dynamic_method
-    boat_config["hyper_op"] = hyper_method
-    boat_config["lower_level_model"] = meta_model
-    boat_config["upper_level_model"] = meta_model
-    boat_config["lower_level_var"] = list(meta_model.parameters())
-    boat_config["upper_level_var"] = list(meta_model.parameters())
+
+    # ===== device =====
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    # ===== dataset  =====
+    dataset = omniglot(
+        "./data/",
+        ways=args.ways,
+        shots=args.shot,
+        test_shots=15,
+        meta_train=True,
+        download=True,
+    )
+
+    # ===== model =====
+    meta_model_x, meta_model_y = get_cnn_omniglot(64, args.ways)
+    meta_model_x = meta_model_x.to(device)
+    meta_model_y = meta_model_y.to(device)
+    initialize(meta_model_x)
+    initialize(meta_model_y)
+
+    # ===== dataloader =====
+    batch_size = 8
+    dataloader = BatchMetaDataLoader(
+        dataset,
+        batch_size=batch_size,
+        num_workers=1,
+        pin_memory=False,
+    )
+
+    # ===== optimizers =====
+    inner_opt = torch.optim.SGD(meta_model_y.parameters(), lr=0.4)
+    outer_opt = torch.optim.Adam(meta_model_x.parameters(), lr=0.05)
+
+    # ===== BOAT config =====
+    with open("./configs/boat_config_CG.json", "r") as f:
+        boat_config = json.load(f)
+    with open("./configs/loss_config_CG.json", "r") as f:
+        loss_config = json.load(f)
+
+    boat_config["gm_op"] = args.dynamic_method.split(",") if args.dynamic_method else None
+    boat_config["na_op"] = args.hyper_method.split(",") if args.hyper_method else None
+    boat_config["fo_op"] = args.fo_gm
+
+    boat_config["lower_level_model"] = meta_model_y
+    boat_config["upper_level_model"] = meta_model_x
+    boat_config["lower_level_var"] = list(meta_model_y.parameters())
+    boat_config["upper_level_var"] = list(meta_model_x.parameters())
     boat_config["lower_level_opt"] = inner_opt
     boat_config["upper_level_opt"] = outer_opt
+
     b_optimizer = boat.Problem(boat_config, loss_config)
     b_optimizer.build_ll_solver()
     b_optimizer.build_ul_solver()
 
-    with tqdm(dataloader, total=1, desc="Meta Training Phase") as pbar:
+    # ===== training loop =====
+    max_iters = 20
+    print("Start meta-training ")
+
+    with tqdm(dataloader, total=max_iters, desc="Meta Training") as pbar:
         for meta_iter, batch in enumerate(pbar):
-            ul_feed_dict = [
-                {
-                    "data": batch["test"][0][k].float().to(device),
-                    "target": batch["test"][1][k].float().to(device),
-                }
-                for k in range(batch_size)
-            ]
-            ll_feed_dict = [
+            initialize(meta_model_y)
+
+            ll_feed = [
                 {
                     "data": batch["train"][0][k].float().to(device),
-                    "target": batch["train"][1][k].float().to(device),
+                    "target": batch["train"][1][k].to(device),
                 }
                 for k in range(batch_size)
             ]
-            # print(ll_feed_dict[0]['data'].shape,ll_feed_dict[0]['target'].shape)
-            loss, run_time = b_optimizer.run_iter(
-                ll_feed_dict, ul_feed_dict, current_iter=meta_iter
+
+            ul_feed = [
+                {
+                    "data": batch["test"][0][k].float().to(device),
+                    "target": batch["test"][1][k].to(device),
+                }
+                for k in range(batch_size)
+            ]
+
+            log_results, _ = b_optimizer.run_iter(
+                ll_feed, ul_feed, current_iter=meta_iter
             )
-            y_lr_schedular.step()
-            print("validation loss:", loss[-1][-1])
-            if meta_iter >= 1:
+
+            if meta_iter >= max_iters:
+                print(f"Reached {max_iters} iterations. Stop.")
                 break
+
 
 
 if __name__ == "__main__":

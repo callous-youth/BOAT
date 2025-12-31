@@ -5,7 +5,7 @@ import json
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 import boat_torch as boat
 import torch
-from .util_file import data_splitting, initialize
+from util_file import data_splitting, initialize
 from torchvision.datasets import MNIST
 
 base_folder = os.path.dirname(os.path.abspath(__file__))
@@ -41,10 +41,10 @@ y_opt = torch.optim.SGD(y.parameters(), lr=0.01)
 initialize(x)
 initialize(y)
 
-with open(os.path.join(parent_folder, "configs/boat_config_dhl.json"), "r") as f:
+with open(os.path.join(parent_folder, "data_hyper_cleaning/configs/boat_config_dhl.json"), "r") as f:
     boat_config = json.load(f)
 
-with open(os.path.join(parent_folder, "configs/loss_config_dhl.json"), "r") as f:
+with open(os.path.join(parent_folder, "data_hyper_cleaning/configs/loss_config_dhl.json"), "r") as f:
     loss_config = json.load(f)
 
 
@@ -54,30 +54,30 @@ def main():
     parser = argparse.ArgumentParser(description="Data HyperCleaner")
 
     parser.add_argument(
-        "--dynamic_method",
+        "--gm_op",
         type=str,
         default="NGD",
         help="omniglot or miniimagenet or tieredImagenet",
     )
     parser.add_argument(
-        "--hyper_method",
+        "--na_op",
         type=str,
         default="RAD",
         help="convnet for 4 convs or resnet for Residual blocks",
     )
     parser.add_argument(
-        "--fo_gm",
+        "--fo_op",
         type=str,
         default=None,
         help="convnet for 4 convs or resnet for Residual blocks",
     )
 
     args = parser.parse_args()
-    dynamic_method = args.dynamic_method.split(",") if args.dynamic_method else None
-    hyper_method = args.hyper_method.split(",") if args.hyper_method else None
-    boat_config["dynamic_op"] = dynamic_method
-    boat_config["hyper_op"] = hyper_method
-    boat_config["fo_gm"] = args.fo_gm
+    gm_op = args.gm_op.split(",") if args.gm_op else None
+    na_op = args.na_op.split(",") if args.na_op else None
+    boat_config["gm_op"] = gm_op
+    boat_config["na_op"] = na_op
+    boat_config["fo_op"] = args.fo_op
     boat_config["lower_level_model"] = y
     boat_config["upper_level_model"] = x
     boat_config["lower_level_opt"] = y_opt

@@ -2,14 +2,14 @@ import pytest
 import subprocess
 from unittest.mock import patch
 
-dynamic_methodlist = (
+gm_oplist = (
     ["NGD"],
     ["DI", "NGD"],
     ["GDA", "NGD"],
     ["GDA", "NGD", "DI"],
     ["DI", "NGD", "GDA"],
 )
-hyper_methodlist = (
+na_oplist = (
     ["CG"],
     ["CG", "PTT"],
     ["RAD"],
@@ -23,79 +23,79 @@ hyper_methodlist = (
     ["IGA"],
     ["IGA", "PTT"],
 )
-dynamic_method_dm = (["DM","NGD"], ["DM","GDA","NGD"])
-hyper_method_dm = (["RAD"], ["CG"])
-fogm_method = (["VSM"], ["VFM"], ["MESM"], ["PGDM"])
+gm_op_dm = (["DM","NGD"], ["DM","GDA","NGD"])
+na_op_dm = (["RAD"], ["CG"])
+fo_ol_method = (["VSO"], ["VFO"], ["MESO"], ["PGDO"])
 
 
 @pytest.mark.parametrize(
-    "dynamic_method, hyper_method",
+    "gm_op, na_op",
     [
-        (dynamic_method, hyper_method)
-        for dynamic_method in dynamic_methodlist
-        for hyper_method in hyper_methodlist
+        (gm_op, na_op)
+        for gm_op in gm_oplist
+        for na_op in na_oplist
     ],
 )
-def test_combination_dynamic_hyper_method(dynamic_method, hyper_method):
+def test_combination_dynamic_na_op(gm_op, na_op):
     command = [
         "python",
         "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
-        "--dynamic_method",
-        ",".join(dynamic_method),
-        "--hyper_method",
-        ",".join(hyper_method),
+        "--gm_op",
+        ",".join(gm_op),
+        "--na_op",
+        ",".join(na_op),
     ]
     print(
-        f"Running test with dynamic_method={dynamic_method} and hyper_method={hyper_method}"
+        f"Running test with gm_op={gm_op} and na_op={na_op}"
     )
 
     result = subprocess.run(command, capture_output=True, text=True)
 
     assert (
         result.returncode == 0
-    ), f"Test failed for dynamic_method={dynamic_method} and hyper_method={hyper_method}. Error: {result.stderr}"
+    ), f"Test failed for gm_op={gm_op} and na_op={na_op}. Error: {result.stderr}"
 
 
 @pytest.mark.parametrize(
-    "dynamic_method, hyper_method",
+    "gm_op, na_op",
     [
-        (dynamic_method, hyper_method)
-        for dynamic_method in dynamic_method_dm
-        for hyper_method in hyper_method_dm
+        (gm_op, na_op)
+        for gm_op in gm_op_dm
+        for na_op in na_op_dm
     ],
 )
-def test_combination_dynamic_hyper_method_dm(dynamic_method, hyper_method):
+def test_combination_dynamic_na_op_dm(gm_op, na_op):
     command = [
         "python",
         "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
-        "--dynamic_method",
-        ",".join(dynamic_method),
-        "--hyper_method",
-        ",".join(hyper_method),
+        "--gm_op",
+        ",".join(gm_op),
+        "--na_op",
+        ",".join(na_op),
     ]
     print(
-        f"Running test with dynamic_method={dynamic_method} and hyper_method={hyper_method}"
+        f"Running test with gm_op={gm_op} and na_op={na_op}"
     )
 
     result = subprocess.run(command, capture_output=True, text=True)
 
     assert (
         result.returncode == 0
-    ), f"Test failed for dynamic_method={dynamic_method} and hyper_method={hyper_method}. Error: {result.stderr}"
+    ), f"Test failed for gm_op={gm_op} and na_op={na_op}. Error: {result.stderr}"
 
 
-@pytest.mark.parametrize("fogm_method", fogm_method)
-def test_fogm_method(fogm_method):
+@pytest.mark.parametrize("fo_ol_method", fo_ol_method)
+def test_fo_ol_method(fo_ol_method):
     command = [
         "python",
         "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
-        "--fo_gm",
-        fogm_method[0],
+        "--fo_op",
+        fo_ol_method[0],
     ]
-    print(f"Running test with fo_gm={fogm_method}")
+    print(f"Running test with fo_op={fo_ol_method}")
 
     result = subprocess.run(command, capture_output=True, text=True)
 
     assert (
         result.returncode == 0
-    ), f"Test failed for fo_gm={fogm_method}. Error: {result.stderr}"
+    ), f"Test failed for fo_op={fo_ol_method}. Error: {result.stderr}"

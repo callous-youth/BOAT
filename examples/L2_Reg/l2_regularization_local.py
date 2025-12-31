@@ -5,15 +5,15 @@ import platform
 
 t0 = time.strftime("%Y_%m_%d_%H_%M_%S")
 args = "l2_regularization/method_test"
-dynamic_methodlist = (
+gm_oplist = (
     ["NGD"],
     ["DI", "NGD"],
     ["GDA", "NGD"],
     ["GDA", "NGD", "DI"],
     ["DI", "NGD", "GDA"],
 )
-dynamic_method_dm = (["NGD", "DM"], ["NGD", "DM", "GDA"])
-hyper_methodlist = (
+gm_op_dm = (["NGD", "DM"], ["NGD", "DM", "GDA"])
+na_oplist = (
     ["CG"],
     ["CG", "PTT"],
     ["RAD"],
@@ -27,8 +27,8 @@ hyper_methodlist = (
     ["IGA"],
     ["IGA", "PTT"],
 )
-hyper_method_dm = (["RAD"], ["CG"])
-fogm_method = (["VSM"], ["VFM"], ["MESM"], ["PGDM"])
+na_op_dm = (["RAD"], ["CG"])
+fo_ol_method = (["VSO"], ["VFO"], ["MESO"], ["PGDO"])
 
 base_folder = os.path.dirname(os.path.abspath(__file__))
 folder = os.path.join(base_folder, args, t0)
@@ -45,35 +45,35 @@ ganfolder = os.path.join(folder, "l2_regularization.py")
 shutil.copyfile(os.path.join(base_folder, "l2_regularization.py"), ganfolder)
 with open(script_file, "w") as f:
     k = 0
-    for dynamic_method in dynamic_methodlist:
-        for hyper_method in hyper_methodlist:
+    for gm_op in gm_oplist:
+        for na_op in na_oplist:
             k += 1
             print("Comb.{}:".format(k))
-            print("dynamic_method:", dynamic_method, " hyper_method:", hyper_method)
+            print("gm_op:", gm_op, " na_op:", na_op)
             f.write(
-                "python l2_regularization.py --dynamic_method {} --hyper_method {} \n".format(
-                    ",".join([dynamic for dynamic in dynamic_method]),
-                    ",".join([hyper for hyper in hyper_method]),
+                "python l2_regularization.py --gm_op {} --na_op {} \n".format(
+                    ",".join([dynamic for dynamic in gm_op]),
+                    ",".join([hyper for hyper in na_op]),
                 )
             )
 
-    for dynamic_method in dynamic_method_dm:
-        for hyper_method in hyper_method_dm:
+    for gm_op in gm_op_dm:
+        for na_op in na_op_dm:
             k += 1
             print("Comb.{}:".format(k))
-            print("dynamic_method:", dynamic_method, " hyper_method:", hyper_method)
+            print("gm_op:", gm_op, " na_op:", na_op)
             f.write(
-                "python l2_regularization.py --dynamic_method {} --hyper_method {} \n".format(
-                    ",".join([dynamic for dynamic in dynamic_method]),
-                    ",".join([hyper for hyper in hyper_method]),
+                "python l2_regularization.py --gm_op {} --na_op {} \n".format(
+                    ",".join([dynamic for dynamic in gm_op]),
+                    ",".join([hyper for hyper in na_op]),
                 )
             )
 
-    for hyper_method in fogm_method:
+    for na_op in fo_ol_method:
         k += 1
         print("Comb.{}:".format(k))
-        print("hyper_method:", hyper_method)
-        f.write("python l2_regularization.py --fo_gm {} \n".format(hyper_method[0]))
+        print("na_op:", na_op)
+        f.write("python l2_regularization.py --fo_op {} \n".format(na_op[0]))
 
 if platform.system() != "Windows":
     os.chmod(script_file, 0o775)

@@ -58,7 +58,5 @@ def initialize(net):
             m.bias.data.zero_()
         elif isinstance(m, nn.Linear):
             m.weight.data.normal_(0, 0.01)
-            # m.bias.data = torch.ones(m.bias.data.size())
-            # m.weight.data.zero_()
             m.bias.data.zero_()
     return net

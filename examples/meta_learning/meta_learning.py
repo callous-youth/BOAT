@@ -68,18 +68,10 @@ def initialize(net):
             m.bias.data.zero_()
         elif isinstance(m, nn.Linear):
             m.weight.data.normal_(0, 0.01)
-            # m.bias.data = torch.ones(m.bias.data.size())
-            # m.weight.data.zero_()
             m.bias.data.zero_()
     return net
 
 
-# device = torch.device("cpu")
-# dataset = omniglot("C:/Users/ASUS/Documents/GitHub/BOAT/data/", ways=5, shots=1, test_shots=15, meta_train=True,download=True)
-# test_dataset = omniglot("C:/Users/ASUS/Documents/GitHub/BOAT/data/", ways=5, shots=1, test_shots=15, meta_test=True,download=True)
-#
-# meta_model = get_cnn_omniglot(64, 5)
-# initialize(meta_model)
 
 batch_size = 4
 kwargs = {"num_workers": 1, "pin_memory": True}
@@ -91,9 +83,7 @@ test_dataloader = BatchMetaDataLoader(dataset, batch_size=batch_size, **kwargs)
 
 inner_opt = torch.optim.SGD(lr=0.1, params=meta_model.parameters())
 outer_opt = torch.optim.Adam(meta_model.parameters(), lr=0.01)
-# y_lr_schedular = torch.optim.lr_scheduler.CosineAnnealingLR(
-#     optimizer=outer_opt, T_max=80000, eta_min=0.001
-# )
+
 import os
 import json
 
@@ -112,32 +102,32 @@ def main():
     parser = argparse.ArgumentParser(description="Data HyperCleaner")
 
     parser.add_argument(
-        "--dynamic_method",
+        "--gm_op",
         type=str,
         default=None,
         help="omniglot or miniimagenet or tieredImagenet",
     )
     parser.add_argument(
-        "--hyper_method",
+        "--na_op",
         type=str,
         default=None,
         help="convnet for 4 convs or resnet for Residual blocks",
     )
     parser.add_argument(
-        "--fo_gm",
+        "--fo_op",
         type=str,
         default=None,
         help="convnet for 4 convs or resnet for Residual blocks",
     )
     args = parser.parse_args()
 
-    dynamic_method = args.dynamic_method.split(",") if args.dynamic_method else None
-    hyper_method = args.hyper_method.split(",") if args.hyper_method else None
-    print(args.dynamic_method)
-    print(args.hyper_method)
-    boat_config["dynamic_op"] = dynamic_method
-    boat_config["hyper_op"] = hyper_method
-    boat_config["fo_gm"] = args.fo_gm
+    gm_op = args.gm_op.split(",") if args.gm_op else None
+    na_op = args.na_op.split(",") if args.na_op else None
+    print(args.gm_op)
+    print(args.na_op)
+    boat_config["gm_op"] = gm_op
+    boat_config["na_op"] = na_op
+    boat_config["fo_op"] = args.fo_op
     boat_config["lower_level_model"] = meta_model
     boat_config["upper_level_model"] = meta_model
     boat_config["lower_level_var"] = list(meta_model.parameters())
@@ -164,12 +154,10 @@ def main():
                 }
                 for k in range(batch_size)
             ]
-            # print(ll_feed_dict[0]['data'].shape,ll_feed_dict[0]['target'].shape)
             loss, run_time = b_optimizer.run_iter(
                 ll_feed_dict, ul_feed_dict, current_iter=meta_iter
             )
-            # y_lr_schedular.step()
-            # print("validation loss:", loss[-1][-1])
+
             if meta_iter >= 1:
                 break
     b_optimizer.plot_losses()
