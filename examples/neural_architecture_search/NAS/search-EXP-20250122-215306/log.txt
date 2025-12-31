@@ -1,3 +1,0 @@
-2025-01-22 21:53:06,533 gpu device = 0
-2025-01-22 21:53:06,533 args = Namespace(data='/data', batch_size=32, learning_rate=0.025, learning_rate_min=0.001, momentum=0.9, weight_decay=0.0003, report_freq=50, gpu=0, epochs=3, init_channels=16, layers=3, model_path='saved_models', cutout=False, load=False, load_iter=0, cutout_length=16, drop_path_prob=0.3, save='NAS\\search-EXP-20250122-215306', seed=2, grad_clip=5, train_portion=0.5, inner_loop=1, unrolled=False, arch_learning_rate=0.0003, arch_weight_decay=0.001)
-2025-01-22 21:53:07,306 param size = 0.673850MB

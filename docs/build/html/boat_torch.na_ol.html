@@ -1,0 +1,1050 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>boat_torch.na_ol &mdash; BOAT-Torch 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dfc096c9" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="boat_torch.utils" href="boat_torch.utils.html" />
+    <link rel="prev" title="boat_torch.fo_ol" href="boat_torch.fo_ol.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BOAT-Torch
+              <img src="_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation Guide:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description.html">BOAT Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_guide.html">Installation and Usage Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="boat_torch.html">BOAT-Torch Structure</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="boat_torch.html#module-boat_torch.boat_opt">Core Problem Class</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="boat_torch.html#main-subpackages">Main Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="boat_torch.gm_ol.html">boat_torch.gm_ol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boat_torch.fo_ol.html">boat_torch.fo_ol</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">boat_torch.na_ol</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.na_ol.cg">boat_torch.na_ol.cg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.na_ol.fd">boat_torch.na_ol.fd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.na_ol.foa">boat_torch.na_ol.foa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.na_ol.hyper_gradient">boat_torch.na_ol.hyper_gradient</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.na_ol.iad">boat_torch.na_ol.iad</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.na_ol.iga">boat_torch.na_ol.iga</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.na_ol.ns">boat_torch.na_ol.ns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.na_ol.ptt">boat_torch.na_ol.ptt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.na_ol.rad">boat_torch.na_ol.rad</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.na_ol.rgt">boat_torch.na_ol.rgt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.na_ol.sequential_hg">boat_torch.na_ol.sequential_hg</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="boat_torch.utils.html">boat_torch.utils</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="boat_torch.html#module-boat_torch.operation_registry">Extension with Operation_Registry</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="data_hyper_cleaning_example.html">Data HyperCleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="l2_regularization_example.html">L2 Regularization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="meta_learning_example.html">Meta-Learning</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BOAT-Torch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="boat_torch.html">BOAT-Torch Structure</a></li>
+      <li class="breadcrumb-item active">boat_torch.na_ol</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/boat_torch.na_ol.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="boat-torch-na-ol">
+<h1>boat_torch.na_ol<a class="headerlink" href="#boat-torch-na-ol" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-boat_torch.na_ol.cg">
+<span id="boat-torch-na-ol-cg"></span><h2>boat_torch.na_ol.cg<a class="headerlink" href="#module-boat_torch.na_ol.cg" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_torch.na_ol.cg.CG">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.na_ol.cg.</span></span><span class="sig-name descname"><span class="pre">CG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/cg.html#CG"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.cg.CG" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boat_torch.na_ol.hyper_gradient.HyperGradient" title="boat_torch.na_ol.hyper_gradient.HyperGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperGradient</span></code></a></p>
+<p>Computes the hyper-gradient of the upper-level variables using Finite Differentiation (FD) [1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>Dictionary containing solver configurations. Expected keys include:</p>
+<ul>
+<li><p><cite>r</cite> (float): Perturbation radius for finite differences.</p></li>
+<li><p><cite>lower_level_opt</cite> (torch.optim.Optimizer): Lower-level optimizer configuration.</p></li>
+<li><p><cite>gm_op</cite> (str): Indicates dynamic initialization type (e.g., “DI”).</p></li>
+<li><dl class="simple">
+<dt>GDA-specific parameters if applicable, such as:</dt><dd><ul>
+<li><p><cite>alpha_init</cite> (float): Initial learning rate for GDA.</p></li>
+<li><p><cite>alpha_decay</cite> (float): Decay factor for GDA.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.cg.CG.ll_lr">
+<span class="sig-name descname"><span class="pre">ll_lr</span></span><a class="headerlink" href="#boat_torch.na_ol.cg.CG.ll_lr" title="Permalink to this definition"></a></dt>
+<dd><p>Learning rate for the lower-level optimizer, extracted from <cite>lower_level_opt</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.cg.CG.dynamic_initialization">
+<span class="sig-name descname"><span class="pre">dynamic_initialization</span></span><a class="headerlink" href="#boat_torch.na_ol.cg.CG.dynamic_initialization" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates whether dynamic initialization is enabled (based on <cite>gm_op</cite>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.cg.CG._r">
+<span class="sig-name descname"><span class="pre">_r</span></span><a class="headerlink" href="#boat_torch.na_ol.cg.CG._r" title="Permalink to this definition"></a></dt>
+<dd><p>Perturbation radius for finite differences, used for gradient computation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.cg.CG.alpha">
+<span class="sig-name descname"><span class="pre">alpha</span></span><a class="headerlink" href="#boat_torch.na_ol.cg.CG.alpha" title="Permalink to this definition"></a></dt>
+<dd><p>Initial learning rate for GDA operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.cg.CG.alpha_decay">
+<span class="sig-name descname"><span class="pre">alpha_decay</span></span><a class="headerlink" href="#boat_torch.na_ol.cg.CG.alpha_decay" title="Permalink to this definition"></a></dt>
+<dd><p>Decay factor applied to the learning rate for GDA.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.cg.CG.gda_loss">
+<span class="sig-name descname"><span class="pre">gda_loss</span></span><a class="headerlink" href="#boat_torch.na_ol.cg.CG.gda_loss" title="Permalink to this definition"></a></dt>
+<dd><p>Custom loss function for GDA operations, if specified in <cite>solver_config</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Callable, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">References</p>
+<p>[1] H. Liu, K. Simonyan, Y. Yang, “DARTS: Differentiable Architecture Search,” in ICLR, 2019.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_torch.na_ol.cg.CG.compute_gradients">
+<span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_loss_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyper_gradient_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/cg.html#CG.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.cg.CG.compute_gradients" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the hyper-gradients of the upper-level variables with the data from feed_dict and patched models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the lower-level data used for optimization.
+It typically includes training data, targets, and other information required to compute the LL objective.</p></li>
+<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the upper-level data used for optimization.
+It typically includes validation data, targets, and other information required to compute the UL objective.</p></li>
+<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower model wrapped by the <cite>higher</cite> library.
+It serves as the lower-level model for optimization.</p></li>
+<li><p><strong>max_loss_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of iterations used for backpropagation. Default is 0.</p></li>
+<li><p><strong>hyper_gradient_finished</strong> (<em>bool</em><em>, </em><em>optional</em>) – A flag indicating whether the hyper-gradient computation is finished. Default is False.</p></li>
+<li><p><strong>next_operation</strong> (<em>str</em><em>, </em><em>optional</em>) – The next operator for the calculation of the hypergradient. Default is None.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments, such as:
+- <cite>lower_model_params</cite> (list): Parameters of the lower-level model (default: <cite>list(auxiliary_model.parameters())</cite>).
+- <cite>hparams</cite> (list): Hyper-parameters of the upper-level model (default: <cite>list(self.ul_var)</cite>).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing:
+- “upper_loss”: The current upper-level objective value.
+- “hyper_gradient_finished”: A boolean indicating that the hyper-gradient computation is complete.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If <cite>hyper_gradient_finished</cite> is True, as CG does not support multiple hyper-gradient computations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_torch.na_ol.fd">
+<span id="boat-torch-na-ol-fd"></span><h2>boat_torch.na_ol.fd<a class="headerlink" href="#module-boat_torch.na_ol.fd" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_torch.na_ol.fd.FD">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.na_ol.fd.</span></span><span class="sig-name descname"><span class="pre">FD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/fd.html#FD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.fd.FD" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boat_torch.na_ol.hyper_gradient.HyperGradient" title="boat_torch.na_ol.hyper_gradient.HyperGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperGradient</span></code></a></p>
+<p>Computes the hyper-gradient of the upper-level variables using Finite Differentiation (FD) [1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>Dictionary containing solver configurations. Expected keys include:</p>
+<ul>
+<li><p><cite>r</cite> (float): Perturbation radius for finite differences.</p></li>
+<li><p><cite>lower_level_opt</cite> (torch.optim.Optimizer): Lower-level optimizer configuration.</p></li>
+<li><p><cite>gm_op</cite> (str): Indicates dynamic initialization type (e.g., “DI”).</p></li>
+<li><dl class="simple">
+<dt>GDA-specific parameters if applicable, such as:</dt><dd><ul>
+<li><p><cite>alpha_init</cite> (float): Initial learning rate for GDA.</p></li>
+<li><p><cite>alpha_decay</cite> (float): Decay factor for GDA.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.fd.FD.ll_lr">
+<span class="sig-name descname"><span class="pre">ll_lr</span></span><a class="headerlink" href="#boat_torch.na_ol.fd.FD.ll_lr" title="Permalink to this definition"></a></dt>
+<dd><p>Learning rate for the lower-level optimizer, extracted from <cite>lower_level_opt</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.fd.FD.dynamic_initialization">
+<span class="sig-name descname"><span class="pre">dynamic_initialization</span></span><a class="headerlink" href="#boat_torch.na_ol.fd.FD.dynamic_initialization" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates whether dynamic initialization is enabled (based on <cite>gm_op</cite>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.fd.FD._r">
+<span class="sig-name descname"><span class="pre">_r</span></span><a class="headerlink" href="#boat_torch.na_ol.fd.FD._r" title="Permalink to this definition"></a></dt>
+<dd><p>Perturbation radius for finite differences, used for gradient computation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.fd.FD.alpha">
+<span class="sig-name descname"><span class="pre">alpha</span></span><a class="headerlink" href="#boat_torch.na_ol.fd.FD.alpha" title="Permalink to this definition"></a></dt>
+<dd><p>Initial learning rate for GDA operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.fd.FD.alpha_decay">
+<span class="sig-name descname"><span class="pre">alpha_decay</span></span><a class="headerlink" href="#boat_torch.na_ol.fd.FD.alpha_decay" title="Permalink to this definition"></a></dt>
+<dd><p>Decay factor applied to the learning rate for GDA.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.fd.FD.gda_loss">
+<span class="sig-name descname"><span class="pre">gda_loss</span></span><a class="headerlink" href="#boat_torch.na_ol.fd.FD.gda_loss" title="Permalink to this definition"></a></dt>
+<dd><p>Custom loss function for GDA operations, if specified in <cite>solver_config</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Callable, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">References</p>
+<p>[1] H. Liu, K. Simonyan, Y. Yang, “DARTS: Differentiable Architecture Search,” in ICLR, 2019.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_torch.na_ol.fd.FD.compute_gradients">
+<span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_loss_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyper_gradient_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/fd.html#FD.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.fd.FD.compute_gradients" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the hyper-gradients of the upper-level variables with the data from <cite>feed_dict</cite> and patched models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the lower-level data used for optimization. It typically includes training data, targets, and other information required to compute the LL objective.</p></li>
+<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the upper-level data used for optimization. It typically includes validation data, targets, and other information required to compute the UL objective.</p></li>
+<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower model wrapped by the <cite>higher</cite> library. It serves as the lower-level model for optimization.</p></li>
+<li><p><strong>max_loss_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of iterations used for backpropagation. Default is 0.</p></li>
+<li><p><strong>hyper_gradient_finished</strong> (<em>bool</em><em>, </em><em>optional</em>) – A boolean flag indicating whether the hyper-gradient computation is finished. Default is False.</p></li>
+<li><p><strong>next_operation</strong> (<em>str</em><em>, </em><em>optional</em>) – The next operator for the calculation of the hyper-gradient. Default is None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing:
+- “upper_loss”: The current upper-level objective value.
+- “hyper_gradient_finished”: A boolean indicating whether the hyper-gradient computation is complete.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If <cite>next_operation</cite> is not None, as FD does not support <cite>next_operation</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_torch.na_ol.foa">
+<span id="boat-torch-na-ol-foa"></span><h2>boat_torch.na_ol.foa<a class="headerlink" href="#module-boat_torch.na_ol.foa" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_torch.na_ol.foa.FOA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.na_ol.foa.</span></span><span class="sig-name descname"><span class="pre">FOA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/foa.html#FOA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.foa.FOA" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boat_torch.na_ol.hyper_gradient.HyperGradient" title="boat_torch.na_ol.hyper_gradient.HyperGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperGradient</span></code></a></p>
+<p>Computes the hyper-gradient of the upper-level variables using First-Order Approximation (FOA) [1], leveraging Initialization-based Auto Differentiation (IAD) [2].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Dictionary containing solver configurations.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>[1] Nichol A., “On first-order meta-learning algorithms,” arXiv preprint arXiv:1803.02999, 2018.
+[2] Finn C., Abbeel P., Levine S., “Model-agnostic meta-learning for fast adaptation of deep networks”, in ICML, 2017.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_torch.na_ol.foa.FOA.compute_gradients">
+<span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_loss_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyper_gradient_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/foa.html#FOA.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.foa.FOA.compute_gradients" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the hyper-gradients of the upper-level variables using the data from feed_dict and patched models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the lower-level data used for optimization. It typically includes training data, targets, and other information required to compute the LL objective.</p></li>
+<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the upper-level data used for optimization. It typically includes validation data, targets, and other information required to compute the UL objective.</p></li>
+<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower-level model wrapped by the <cite>higher</cite> library. It serves as the lower-level model for optimization.</p></li>
+<li><p><strong>max_loss_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of iterations used for backpropagation, by default 0.</p></li>
+<li><p><strong>hyper_gradient_finished</strong> (<em>bool</em><em>, </em><em>optional</em>) – A boolean flag indicating whether the hypergradient computation is finished, by default False.</p></li>
+<li><p><strong>next_operation</strong> (<em>str</em><em>, </em><em>optional</em>) – The next operator for the calculation of the hypergradient, by default None.</p></li>
+<li><p><strong>kwargs</strong> (<em>dict</em>) – Additional keyword arguments.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing information required for the next step in the hypergradient computation, including the feed dictionaries, auxiliary model, iteration count, and other optional arguments.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If <cite>next_operation</cite> is not defined or if <cite>hyper_gradient_finished</cite> is True.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_torch.na_ol.hyper_gradient">
+<span id="boat-torch-na-ol-hyper-gradient"></span><h2>boat_torch.na_ol.hyper_gradient<a class="headerlink" href="#module-boat_torch.na_ol.hyper_gradient" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_torch.na_ol.hyper_gradient.HyperGradient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.na_ol.hyper_gradient.</span></span><span class="sig-name descname"><span class="pre">HyperGradient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/hyper_gradient.html#HyperGradient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.hyper_gradient.HyperGradient" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for computing hyper-gradients of upper-level variables in bilevel optimization problems.</p>
+<p>This class provides an abstract interface for hyper-gradient computation that can be extended for specific methods such as Conjugate Gradient, Finite Differentiation, or First-Order Approximation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>callable</em>) – The lower-level objective function of the bilevel optimization problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>callable</em>) – The upper-level objective function of the bilevel optimization problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the bilevel optimization problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the bilevel optimization problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – A list of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – A list of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>solver_config</strong> (<em>dict</em>) – Dictionary containing configurations for the solver.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_torch.na_ol.hyper_gradient.HyperGradient.compute_gradients">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/hyper_gradient.html#HyperGradient.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.hyper_gradient.HyperGradient.compute_gradients" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_torch.na_ol.iad">
+<span id="boat-torch-na-ol-iad"></span><h2>boat_torch.na_ol.iad<a class="headerlink" href="#module-boat_torch.na_ol.iad" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_torch.na_ol.iad.IAD">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.na_ol.iad.</span></span><span class="sig-name descname"><span class="pre">IAD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/iad.html#IAD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.iad.IAD" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boat_torch.na_ol.hyper_gradient.HyperGradient" title="boat_torch.na_ol.hyper_gradient.HyperGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperGradient</span></code></a></p>
+<p>Implements the optimization procedure of the Naive Gradient Descent (NGD) [1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>lower_loop</strong> (<em>int</em>) – The number of iterations for lower-level optimization.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>A dictionary containing configurations for the solver. Expected keys include:</p>
+<ul>
+<li><p>”lower_level_opt” (torch.optim.Optimizer): The optimizer for the lower-level model.</p></li>
+<li><p>”na_op” (List[str]): A list of hyper-gradient operations to apply, such as “PTT” or “FOA”.</p></li>
+<li><dl class="simple">
+<dt>”RGT” (Dict): Configuration for Truncated Gradient Iteration (RGT):</dt><dd><ul>
+<li><p>”truncate_iter” (int): The number of iterations to truncate the gradient computation.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.iad.IAD.truncate_max_loss_iter">
+<span class="sig-name descname"><span class="pre">truncate_max_loss_iter</span></span><a class="headerlink" href="#boat_torch.na_ol.iad.IAD.truncate_max_loss_iter" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates whether to truncate based on a maximum loss iteration (enabled if “PTT” is in <cite>na_op</cite>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.iad.IAD.truncate_iters">
+<span class="sig-name descname"><span class="pre">truncate_iters</span></span><a class="headerlink" href="#boat_torch.na_ol.iad.IAD.truncate_iters" title="Permalink to this definition"></a></dt>
+<dd><p>The number of iterations for gradient truncation, derived from <cite>solver_config[“RGT”][“truncate_iter”]</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.iad.IAD.ll_opt">
+<span class="sig-name descname"><span class="pre">ll_opt</span></span><a class="headerlink" href="#boat_torch.na_ol.iad.IAD.ll_opt" title="Permalink to this definition"></a></dt>
+<dd><p>The optimizer used for the lower-level model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.optim.Optimizer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.iad.IAD.foa">
+<span class="sig-name descname"><span class="pre">foa</span></span><a class="headerlink" href="#boat_torch.na_ol.iad.IAD.foa" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates whether First-Order Approximation (FOA) is applied, based on <cite>na_op</cite> configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">References</p>
+<dl class="simple">
+<dt>[1] L. Franceschi, P. Frasconi, S. Salzo, R. Grazzi, and M. Pontil, “Bilevel</dt><dd><p>programming for hyperparameter optimization and meta-learning”, in ICML, 2018.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_torch.na_ol.iad.IAD.compute_gradients">
+<span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_loss_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyper_gradient_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/iad.html#IAD.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.iad.IAD.compute_gradients" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the hyper-gradients of the upper-level variables using the data from feed_dict and patched models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the lower-level data used for optimization. It typically includes training data, targets, and other information required to compute the LL objective.</p></li>
+<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the upper-level data used for optimization. It typically includes validation data, targets, and other information required to compute the UL objective.</p></li>
+<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower-level model wrapped by the <cite>higher</cite> library. It serves as the lower-level model for optimization.</p></li>
+<li><p><strong>max_loss_iter</strong> (<em>int</em>) – The number of iterations used for backpropagation.</p></li>
+<li><p><strong>next_operation</strong> (<em>str</em>) – The next operator for the calculation of the hypergradient.</p></li>
+<li><p><strong>hyper_gradient_finished</strong> (<em>bool</em>) – A boolean flag indicating whether the hypergradient computation is finished.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The current upper-level objective.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_torch.na_ol.iga">
+<span id="boat-torch-na-ol-iga"></span><h2>boat_torch.na_ol.iga<a class="headerlink" href="#module-boat_torch.na_ol.iga" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_torch.na_ol.iga.IGA">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.na_ol.iga.</span></span><span class="sig-name descname"><span class="pre">IGA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/iga.html#IGA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.iga.IGA" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boat_torch.na_ol.hyper_gradient.HyperGradient" title="boat_torch.na_ol.hyper_gradient.HyperGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperGradient</span></code></a></p>
+<p>Computes the hyper-gradient of the upper-level variables using Implicit Gradient Approximation (IGA) [1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>Dictionary containing solver configurations, including:</p>
+<ul>
+<li><p><cite>alpha_init</cite> (float): Initial learning rate for GDA.</p></li>
+<li><p><cite>alpha_decay</cite> (float): Decay factor for the GDA learning rate.</p></li>
+<li><p>Optional <cite>gda_loss</cite> (Callable): Custom loss function for GDA, if applicable.</p></li>
+<li><p><cite>gm_op</cite> (List[str]): Specifies gradient mapping operations, e.g., “DI” for dynamic initialization.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.iga.IGA.alpha">
+<span class="sig-name descname"><span class="pre">alpha</span></span><a class="headerlink" href="#boat_torch.na_ol.iga.IGA.alpha" title="Permalink to this definition"></a></dt>
+<dd><p>Initial learning rate for GDA operations, if applicable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.iga.IGA.alpha_decay">
+<span class="sig-name descname"><span class="pre">alpha_decay</span></span><a class="headerlink" href="#boat_torch.na_ol.iga.IGA.alpha_decay" title="Permalink to this definition"></a></dt>
+<dd><p>Decay factor applied to the GDA learning rate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.iga.IGA.gda_loss">
+<span class="sig-name descname"><span class="pre">gda_loss</span></span><a class="headerlink" href="#boat_torch.na_ol.iga.IGA.gda_loss" title="Permalink to this definition"></a></dt>
+<dd><p>Custom loss function for GDA operations, if specified in <cite>solver_config</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Callable, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boat_torch.na_ol.iga.IGA.dynamic_initialization">
+<span class="sig-name descname"><span class="pre">dynamic_initialization</span></span><a class="headerlink" href="#boat_torch.na_ol.iga.IGA.dynamic_initialization" title="Permalink to this definition"></a></dt>
+<dd><p>Indicates whether dynamic initialization is enabled, based on <cite>gm_op</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">References</p>
+<p>[1] Liu R, Gao J, Liu X, et al., “Learning with constraint learning: New perspective, solution strategy and various applications,” IEEE Transactions on Pattern Analysis and Machine Intelligence, 2024.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_torch.na_ol.iga.IGA.compute_gradients">
+<span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_loss_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyper_gradient_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/iga.html#IGA.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.iga.IGA.compute_gradients" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the hyper-gradients of the upper-level variables using the given feed dictionaries and patched models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the lower-level data used for optimization, including training data, targets, and other information required for the LL objective computation.</p></li>
+<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the upper-level data used for optimization, including validation data, targets, and other information required for the UL objective computation.</p></li>
+<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower-level model wrapped by the <cite>higher</cite> library, enabling differentiable optimization.</p></li>
+<li><p><strong>max_loss_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of iterations used for backpropagation, by default 0.</p></li>
+<li><p><strong>hyper_gradient_finished</strong> (<em>bool</em><em>, </em><em>optional</em>) – A flag indicating whether the hypergradient computation is finished, by default False.</p></li>
+<li><p><strong>next_operation</strong> (<em>str</em><em>, </em><em>optional</em>) – The next operator for hypergradient calculation. Not supported in this implementation, by default None.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – <p>Additional arguments, such as:</p>
+<ul>
+<li><dl class="simple">
+<dt><cite>lower_model_params</cite><span class="classifier">List[torch.nn.Parameter]</span></dt><dd><p>List of parameters for the lower-level model.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>A dictionary containing:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><cite>upper_loss</cite><span class="classifier">torch.Tensor</span></dt><dd><p>The upper-level objective value after optimization.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><cite>hyper_gradient_finished</cite><span class="classifier">bool</span></dt><dd><p>Indicates whether the hypergradient computation is complete.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>This implementation calculates the Gauss-Newton (GN) loss to refine the gradients using second-order approximations.</p></li>
+<li><p>If <cite>dynamic_initialization</cite> is enabled, the gradients of the lower-level variables are updated with time-dependent parameters.</p></li>
+<li><p>Updates are performed on both lower-level and upper-level variables using computed gradients.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>AssertionError</strong> – If <cite>next_operation</cite> is not None, as this implementation does not support additional operations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_torch.na_ol.ns">
+<span id="boat-torch-na-ol-ns"></span><h2>boat_torch.na_ol.ns<a class="headerlink" href="#module-boat_torch.na_ol.ns" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_torch.na_ol.ns.NS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.na_ol.ns.</span></span><span class="sig-name descname"><span class="pre">NS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/ns.html#NS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.ns.NS" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boat_torch.na_ol.hyper_gradient.HyperGradient" title="boat_torch.na_ol.hyper_gradient.HyperGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperGradient</span></code></a></p>
+<p>Calculation of the hyper gradient of the upper-level variables with Neumann Series (NS) [1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>Dictionary containing solver configurations, including:</p>
+<ul>
+<li><p><cite>gm_op</cite> (str): Indicates dynamic initialization type (e.g., “DI”).</p></li>
+<li><p><cite>lower_level_opt</cite> (Optimizer): Lower-level optimizer configuration.</p></li>
+<li><dl class="simple">
+<dt><cite>CG</cite> (Dict): Conjugate Gradient-specific parameters:</dt><dd><ul>
+<li><p><cite>tolerance</cite> (float): Tolerance for convergence.</p></li>
+<li><p><cite>k</cite> (int): Number of iterations for Neumann approximation.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>GDA-specific parameters, such as <cite>alpha_init</cite> and <cite>alpha_decay</cite>.</p></li>
+<li><p><cite>gda_loss</cite> (Callable, optional): Custom loss function for GDA.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>[1] J. Lorraine, P. Vicol, and D. Duvenaud, “Optimizing millions of hyperparameters by implicit differentiation,” in AISTATS, 2020.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_torch.na_ol.ns.NS.compute_gradients">
+<span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_loss_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyper_gradient_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/ns.html#NS.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.ns.NS.compute_gradients" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the hyper-gradients of the upper-level variables with the data from feed_dict and patched models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the lower-level data used for optimization.
+It typically includes training data, targets, and other information required to compute the LL objective.</p></li>
+<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the upper-level data used for optimization.
+It typically includes validation data, targets, and other information required to compute the UL objective.</p></li>
+<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower model wrapped by the <cite>higher</cite> library.
+It serves as the lower-level model for optimization.</p></li>
+<li><p><strong>max_loss_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of iterations used for backpropagation. Defaults to 0.</p></li>
+<li><p><strong>next_operation</strong> (<em>str</em><em>, </em><em>optional</em>) – The next operator for the calculation of the hypergradient. Defaults to None.</p></li>
+<li><p><strong>hyper_gradient_finished</strong> (<em>bool</em><em>, </em><em>optional</em>) – A boolean flag indicating whether the hypergradient computation is finished. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing the upper-level objective and the status of hypergradient computation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_torch.na_ol.ptt">
+<span id="boat-torch-na-ol-ptt"></span><h2>boat_torch.na_ol.ptt<a class="headerlink" href="#module-boat_torch.na_ol.ptt" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_torch.na_ol.ptt.PTT">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.na_ol.ptt.</span></span><span class="sig-name descname"><span class="pre">PTT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/ptt.html#PTT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.ptt.PTT" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boat_torch.na_ol.hyper_gradient.HyperGradient" title="boat_torch.na_ol.hyper_gradient.HyperGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperGradient</span></code></a></p>
+<p>Computes the hyper-gradient of the upper-level variables using Pessimistic Trajectory Truncation (PTT) [1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Dictionary containing solver configurations, including:
+- “na_op” (List[str]): Indicates if PTT is used in the hyper-gradient operations.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>[1] Liu R., Liu Y., Zeng S., et al. “Towards gradient-based bilevel optimization with non-convex followers and beyond,” in NeurIPS, 2021.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_torch.na_ol.ptt.PTT.compute_gradients">
+<span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_loss_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyper_gradient_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/ptt.html#PTT.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.ptt.PTT.compute_gradients" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the hyper-gradients of the upper-level variables with the data from feed_dict and patched models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the lower-level data used for optimization.
+It typically includes training data, targets, and other information required to compute the LL objective.</p></li>
+<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the upper-level data used for optimization.
+It typically includes validation data, targets, and other information required to compute the UL objective.</p></li>
+<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower model wrapped by the <cite>higher</cite> library.
+It serves as the lower-level model for optimization.</p></li>
+<li><p><strong>max_loss_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of iterations used for backpropagation, by default 0.</p></li>
+<li><p><strong>next_operation</strong> (<em>str</em><em>, </em><em>optional</em>) – The next operator for the calculation of the hypergradient, by default None.</p></li>
+<li><p><strong>hyper_gradient_finished</strong> (<em>bool</em><em>, </em><em>optional</em>) – A boolean flag indicating whether the hypergradient computation is finished, by default False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing updated feed_dict, auxiliary model, and gradient computation results.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_torch.na_ol.rad">
+<span id="boat-torch-na-ol-rad"></span><h2>boat_torch.na_ol.rad<a class="headerlink" href="#module-boat_torch.na_ol.rad" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_torch.na_ol.rad.RAD">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.na_ol.rad.</span></span><span class="sig-name descname"><span class="pre">RAD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/rad.html#RAD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.rad.RAD" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boat_torch.na_ol.hyper_gradient.HyperGradient" title="boat_torch.na_ol.hyper_gradient.HyperGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperGradient</span></code></a></p>
+<p>Computes the hyper-gradient of the upper-level variables using Reverse Auto Differentiation (RAD) [1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Dictionary containing solver configurations, including optional gradient mapping operation settings.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>[1] Franceschi, Luca, et al. “Forward and reverse gradient-based hyperparameter optimization.” in ICML, 2017.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_torch.na_ol.rad.RAD.compute_gradients">
+<span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_loss_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/rad.html#RAD.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.rad.RAD.compute_gradients" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the hyper-gradients of the upper-level variables using the provided data and patched models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the lower-level data used for optimization. Typically includes training data, targets, and other information required to compute the lower-level objective.</p></li>
+<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the upper-level data used for optimization. Typically includes validation data, targets, and other information required to compute the upper-level objective.</p></li>
+<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower model wrapped by the <cite>higher</cite> library. It serves as the lower-level model for optimization.</p></li>
+<li><p><strong>max_loss_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of iterations used for backpropagation. Default is 0.</p></li>
+<li><p><strong>next_operation</strong> (<em>str</em><em>, </em><em>optional</em>) – The next operator for the calculation of the hypergradient. Default is None.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional keyword arguments passed to the method.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing:
+- <cite>upper_loss</cite>: The current upper-level objective.
+- <cite>hyper_gradient_finished</cite>: Flag indicating if the hypergradient computation is finished.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_torch.na_ol.rgt">
+<span id="boat-torch-na-ol-rgt"></span><h2>boat_torch.na_ol.rgt<a class="headerlink" href="#module-boat_torch.na_ol.rgt" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_torch.na_ol.rgt.RGT">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.na_ol.rgt.</span></span><span class="sig-name descname"><span class="pre">RGT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/rgt.html#RGT"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.rgt.RGT" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#boat_torch.na_ol.hyper_gradient.HyperGradient" title="boat_torch.na_ol.hyper_gradient.HyperGradient"><code class="xref py py-class docutils literal notranslate"><span class="pre">HyperGradient</span></code></a></p>
+<p>Computes the hyper-gradient of the upper-level variables using Reverse Gradient Truncation (RGT) [1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective function of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective function of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the lower-level objective.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – List of variables optimized with the upper-level objective.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – Dictionary containing solver configurations, including the hyper-gradient operations and truncation settings.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>[1] Shaban A., Cheng C.A., Hatch N., et al. “Truncated back-propagation for bilevel optimization,” in AISTATS, 2019.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_torch.na_ol.rgt.RGT.compute_gradients">
+<span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auxiliary_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_loss_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyper_gradient_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">next_operation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/rgt.html#RGT.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.rgt.RGT.compute_gradients" title="Permalink to this definition"></a></dt>
+<dd><p>Computes the hyper-gradients of the upper-level variables using the data from feed_dict and patched models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the lower-level data used for optimization. Typically includes training data, targets, and other information required to compute the lower-level objective.</p></li>
+<li><p><strong>ul_feed_dict</strong> (<em>Dict</em>) – Dictionary containing the upper-level data used for optimization. Typically includes validation data, targets, and other information required to compute the upper-level objective.</p></li>
+<li><p><strong>auxiliary_model</strong> (<em>_MonkeyPatchBase</em>) – A patched lower model wrapped by the <cite>higher</cite> library. It serves as the lower-level model for optimization.</p></li>
+<li><p><strong>max_loss_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – The number of iterations used for backpropagation. Default is 0.</p></li>
+<li><p><strong>next_operation</strong> (<em>str</em><em>, </em><em>optional</em>) – The next operator for the calculation of the hypergradient. Default is None.</p></li>
+<li><p><strong>hyper_gradient_finished</strong> (<em>bool</em><em>, </em><em>optional</em>) – A boolean flag indicating whether the hypergradient computation is finished. Default is False.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional keyword arguments passed to the method.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary containing:
+- <cite>ll_feed_dict</cite>: The lower-level feed dictionary.
+- <cite>ul_feed_dict</cite>: The upper-level feed dictionary.
+- <cite>auxiliary_model</cite>: The patched lower model.
+- <cite>max_loss_iter</cite>: The number of iterations for backpropagation.
+- <cite>hyper_gradient_finished</cite>: Flag indicating if the hypergradient computation is finished.
+- <cite>lower_model_params</cite>: Parameters of the lower model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_torch.na_ol.sequential_hg">
+<span id="boat-torch-na-ol-sequential-hg"></span><h2>boat_torch.na_ol.sequential_hg<a class="headerlink" href="#module-boat_torch.na_ol.sequential_hg" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_torch.na_ol.sequential_hg.SequentialHG">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.na_ol.sequential_hg.</span></span><span class="sig-name descname"><span class="pre">SequentialHG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ordered_instances</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_order</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/sequential_hg.html#SequentialHG"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.sequential_hg.SequentialHG" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class for managing sequential hyper-gradient operations.</p>
+<p>This class dynamically organizes and executes a sequence of hyper-gradient computations using user-defined and validated orders of gradient operators.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ordered_instances</strong> (<em>List</em><em>[</em><em>object</em><em>]</em>) – A list of instantiated gradient operator objects, ordered as per the adjusted sequence.</p></li>
+<li><p><strong>custom_order</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The user-defined order of gradient operators.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_torch.na_ol.sequential_hg.SequentialHG.compute_gradients">
+<span class="sig-name descname"><span class="pre">compute_gradients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/sequential_hg.html#SequentialHG.compute_gradients"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.sequential_hg.SequentialHG.compute_gradients" title="Permalink to this definition"></a></dt>
+<dd><p>Compute hyper-gradients sequentially using the ordered instances.</p>
+<p>This method processes the hyper-gradients in the defined order, passing intermediate results between consecutive gradient operators.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments required for gradient computations.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of dictionaries containing results for each gradient operator.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[Dict]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boat_torch.na_ol.sequential_hg.makes_functional_na_operation">
+<span class="sig-prename descclassname"><span class="pre">boat_torch.na_ol.sequential_hg.</span></span><span class="sig-name descname"><span class="pre">makes_functional_na_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">custom_order</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/sequential_hg.html#makes_functional_na_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.sequential_hg.makes_functional_na_operation" title="Permalink to this definition"></a></dt>
+<dd><p>Dynamically create a SequentialHG object with ordered gradient operators.</p>
+<p>This function validates the user-defined operator order, adjusts it to conform with predefined gradient rules, and dynamically loads the corresponding operator classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>custom_order</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The user-defined order of gradient operators.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – Additional arguments required for initializing gradient operator instances.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An instance of SequentialHG containing the ordered gradient operators and result management.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#boat_torch.na_ol.sequential_hg.SequentialHG" title="boat_torch.na_ol.sequential_hg.SequentialHG">SequentialHG</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boat_torch.na_ol.sequential_hg.validate_and_adjust_order">
+<span class="sig-prename descclassname"><span class="pre">boat_torch.na_ol.sequential_hg.</span></span><span class="sig-name descname"><span class="pre">validate_and_adjust_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">custom_order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_order</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/na_ol/sequential_hg.html#validate_and_adjust_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.na_ol.sequential_hg.validate_and_adjust_order" title="Permalink to this definition"></a></dt>
+<dd><p>Validate and adjust the custom order to match the predefined gradient order. This function ensures that the user-defined order adheres to the predefined grouping rules and adjusts it accordingly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>custom_order</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – The user-provided order of gradient operators.</p></li>
+<li><p><strong>gradient_order</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><em>str</em><em>]</em><em>]</em>) – The predefined order of gradient operator groups.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Adjusted order of gradient operators following the predefined rules.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="boat_torch.fo_ol.html" class="btn btn-neutral float-left" title="boat_torch.fo_ol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="boat_torch.utils.html" class="btn btn-neutral float-right" title="boat_torch.utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yaohua Liu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

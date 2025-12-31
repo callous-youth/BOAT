@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>boat_torch.na_ol.iad &mdash; BOAT-Torch 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=dfc096c9" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            BOAT-Torch
+              <img src="../../../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../description.html">BOAT Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install_guide.html">Installation and Usage Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../boat_torch.html">BOAT-Torch Structure</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_hyper_cleaning_example.html">Data HyperCleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../l2_regularization_example.html">L2 Regularization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../meta_learning_example.html">Meta-Learning</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BOAT-Torch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">boat_torch.na_ol.iad</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for boat_torch.na_ol.iad</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="kn">import</span> <span class="n">Module</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">higher.patch</span><span class="w"> </span><span class="kn">import</span> <span class="n">_MonkeyPatchBase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">boat_torch.utils.op_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">update_tensor_grads</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">boat_torch.operation_registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_class</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">boat_torch.na_ol.hyper_gradient</span><span class="w"> </span><span class="kn">import</span> <span class="n">HyperGradient</span>
+
+
+<div class="viewcode-block" id="IAD"><a class="viewcode-back" href="../../../boat_torch.na_ol.html#boat_torch.na_ol.iad.IAD">[docs]</a><span class="nd">@register_class</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">IAD</span><span class="p">(</span><span class="n">HyperGradient</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements the optimization procedure of the Naive Gradient Descent (NGD) [1].</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ll_objective : Callable</span>
+<span class="sd">        The lower-level objective function of the BLO problem.</span>
+<span class="sd">    ul_objective : Callable</span>
+<span class="sd">        The upper-level objective function of the BLO problem.</span>
+<span class="sd">    ll_model : torch.nn.Module</span>
+<span class="sd">        The lower-level model of the BLO problem.</span>
+<span class="sd">    ul_model : torch.nn.Module</span>
+<span class="sd">        The upper-level model of the BLO problem.</span>
+<span class="sd">    lower_loop : int</span>
+<span class="sd">        The number of iterations for lower-level optimization.</span>
+<span class="sd">    solver_config : Dict[str, Any]</span>
+<span class="sd">        A dictionary containing configurations for the solver. Expected keys include:</span>
+
+<span class="sd">        - &quot;lower_level_opt&quot; (torch.optim.Optimizer): The optimizer for the lower-level model.</span>
+<span class="sd">        - &quot;na_op&quot; (List[str]): A list of hyper-gradient operations to apply, such as &quot;PTT&quot; or &quot;FOA&quot;.</span>
+<span class="sd">        - &quot;RGT&quot; (Dict): Configuration for Truncated Gradient Iteration (RGT):</span>
+<span class="sd">            - &quot;truncate_iter&quot; (int): The number of iterations to truncate the gradient computation.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    truncate_max_loss_iter : bool</span>
+<span class="sd">        Indicates whether to truncate based on a maximum loss iteration (enabled if &quot;PTT&quot; is in `na_op`).</span>
+<span class="sd">    truncate_iters : int</span>
+<span class="sd">        The number of iterations for gradient truncation, derived from `solver_config[&quot;RGT&quot;][&quot;truncate_iter&quot;]`.</span>
+<span class="sd">    ll_opt : torch.optim.Optimizer</span>
+<span class="sd">        The optimizer used for the lower-level model.</span>
+<span class="sd">    foa : bool</span>
+<span class="sd">        Indicates whether First-Order Approximation (FOA) is applied, based on `na_op` configuration.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] L. Franceschi, P. Frasconi, S. Salzo, R. Grazzi, and M. Pontil, &quot;Bilevel</span>
+<span class="sd">        programming for hyperparameter optimization and meta-learning&quot;, in ICML, 2018.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ll_objective</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">ul_objective</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">ll_model</span><span class="p">:</span> <span class="n">Module</span><span class="p">,</span>
+        <span class="n">ul_model</span><span class="p">:</span> <span class="n">Module</span><span class="p">,</span>
+        <span class="n">ll_var</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
+        <span class="n">ul_var</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
+        <span class="n">solver_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IAD</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">ll_objective</span><span class="p">,</span>
+            <span class="n">ul_objective</span><span class="p">,</span>
+            <span class="n">ul_model</span><span class="p">,</span>
+            <span class="n">ll_model</span><span class="p">,</span>
+            <span class="n">ll_var</span><span class="p">,</span>
+            <span class="n">ul_var</span><span class="p">,</span>
+            <span class="n">solver_config</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solver_config</span><span class="p">[</span><span class="s2">&quot;copy_last_param&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="IAD.compute_gradients"><a class="viewcode-back" href="../../../boat_torch.na_ol.html#boat_torch.na_ol.iad.IAD.compute_gradients">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_gradients</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ll_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
+        <span class="n">ul_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
+        <span class="n">auxiliary_model</span><span class="p">:</span> <span class="n">_MonkeyPatchBase</span><span class="p">,</span>
+        <span class="n">max_loss_iter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">hyper_gradient_finished</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">next_operation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the hyper-gradients of the upper-level variables using the data from feed_dict and patched models.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ll_feed_dict : Dict</span>
+<span class="sd">            Dictionary containing the lower-level data used for optimization. It typically includes training data, targets, and other information required to compute the LL objective.</span>
+
+<span class="sd">        ul_feed_dict : Dict</span>
+<span class="sd">            Dictionary containing the upper-level data used for optimization. It typically includes validation data, targets, and other information required to compute the UL objective.</span>
+
+<span class="sd">        auxiliary_model : _MonkeyPatchBase</span>
+<span class="sd">            A patched lower-level model wrapped by the `higher` library. It serves as the lower-level model for optimization.</span>
+
+<span class="sd">        max_loss_iter : int</span>
+<span class="sd">            The number of iterations used for backpropagation.</span>
+
+<span class="sd">        next_operation : str</span>
+<span class="sd">            The next operator for the calculation of the hypergradient.</span>
+
+<span class="sd">        hyper_gradient_finished : bool</span>
+<span class="sd">            A boolean flag indicating whether the hypergradient computation is finished.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            The current upper-level objective.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+
+        <span class="k">if</span> <span class="n">next_operation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">lower_model_params</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="s2">&quot;lower_model_params&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">auxiliary_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+            <span class="p">)</span>
+            <span class="n">hparams</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">auxiliary_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;ll_feed_dict&quot;</span><span class="p">:</span> <span class="n">ll_feed_dict</span><span class="p">,</span>
+                <span class="s2">&quot;ul_feed_dict&quot;</span><span class="p">:</span> <span class="n">ul_feed_dict</span><span class="p">,</span>
+                <span class="s2">&quot;auxiliary_model&quot;</span><span class="p">:</span> <span class="n">auxiliary_model</span><span class="p">,</span>
+                <span class="s2">&quot;max_loss_iter&quot;</span><span class="p">:</span> <span class="n">max_loss_iter</span><span class="p">,</span>
+                <span class="s2">&quot;hyper_gradient_finished&quot;</span><span class="p">:</span> <span class="n">hyper_gradient_finished</span><span class="p">,</span>
+                <span class="s2">&quot;hparams&quot;</span><span class="p">:</span> <span class="n">hparams</span><span class="p">,</span>
+                <span class="s2">&quot;lower_model_params&quot;</span><span class="p">:</span> <span class="n">lower_model_params</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lower_model_params</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="s2">&quot;lower_model_params&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">auxiliary_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+            <span class="p">)</span>
+            <span class="n">ul_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_objective</span><span class="p">(</span>
+                <span class="n">ul_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="n">auxiliary_model</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">lower_model_params</span>
+            <span class="p">)</span>
+            <span class="n">grads_upper</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span>
+                <span class="n">ul_loss</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">auxiliary_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)),</span> <span class="n">allow_unused</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+            <span class="n">update_tensor_grads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ul_var</span><span class="p">,</span> <span class="n">grads_upper</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;upper_loss&quot;</span><span class="p">:</span> <span class="n">ul_loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="s2">&quot;hyper_gradient_finished&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yaohua Liu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

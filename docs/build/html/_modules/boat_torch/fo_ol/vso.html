@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>boat_torch.fo_ol.vso &mdash; BOAT-Torch 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=dfc096c9" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            BOAT-Torch
+              <img src="../../../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../description.html">BOAT Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install_guide.html">Installation and Usage Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../boat_torch.html">BOAT-Torch Structure</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_hyper_cleaning_example.html">Data HyperCleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../l2_regularization_example.html">L2 Regularization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../meta_learning_example.html">Meta-Learning</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BOAT-Torch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">boat_torch.fo_ol.vso</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for boat_torch.fo_ol.vso</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">boat_torch.utils.op_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">l2_reg</span><span class="p">,</span><span class="n">update_grads</span><span class="p">,</span> <span class="n">update_tensor_grads</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="kn">import</span> <span class="n">Module</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">boat_torch.operation_registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_class</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">boat_torch.gm_ol.dynamical_system</span><span class="w"> </span><span class="kn">import</span> <span class="n">DynamicalSystem</span>
+
+
+<div class="viewcode-block" id="VSO"><a class="viewcode-back" href="../../../boat_torch.fo_ol.html#boat_torch.fo_ol.vso.VSO">[docs]</a><span class="nd">@register_class</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">VSO</span><span class="p">(</span><span class="n">DynamicalSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements the optimization procedure of Value-function based Sequential Method (VSO) [1].</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ll_objective : Callable</span>
+<span class="sd">        The lower-level objective function of the BLO problem.</span>
+<span class="sd">    ul_objective : Callable</span>
+<span class="sd">        The upper-level objective function of the BLO problem.</span>
+<span class="sd">    ll_model : torch.nn.Module</span>
+<span class="sd">        The lower-level model of the BLO problem.</span>
+<span class="sd">    ul_model : torch.nn.Module</span>
+<span class="sd">        The upper-level model of the BLO problem.</span>
+<span class="sd">    ll_var : List[torch.Tensor]</span>
+<span class="sd">        A list of lower-level variables of the BLO problem.</span>
+<span class="sd">    ul_var : List[torch.Tensor]</span>
+<span class="sd">        A list of upper-level variables of the BLO problem.</span>
+<span class="sd">    lower_loop : int</span>
+<span class="sd">        The number of iterations for lower-level optimization.</span>
+<span class="sd">    solver_config : Dict[str, Any]</span>
+<span class="sd">        A dictionary containing configurations for the solver. Expected keys include:</span>
+
+<span class="sd">        - &quot;lower_level_opt&quot; (torch.optim.Optimizer): Optimizer for the lower-level model.</span>
+<span class="sd">        - &quot;VSO&quot; (Dict): Configuration for the VSO algorithm:</span>
+<span class="sd">            - &quot;z_loop&quot; (int): Number of iterations for optimizing the auxiliary variable `z`.</span>
+<span class="sd">            - &quot;ll_l2_reg&quot; (float): L2 regularization coefficient for the lower-level model.</span>
+<span class="sd">            - &quot;ul_l2_reg&quot; (float): L2 regularization coefficient for the upper-level model.</span>
+<span class="sd">            - &quot;ul_ln_reg&quot; (float): Logarithmic regularization coefficient for the upper-level model.</span>
+<span class="sd">            - &quot;reg_decay&quot; (float): Decay rate for the regularization coefficients.</span>
+<span class="sd">            - &quot;z_lr&quot; (float): Learning rate for optimizing the auxiliary variable `z`.</span>
+<span class="sd">        - &quot;device&quot; (str): Device on which computations are performed, e.g., &quot;cpu&quot; or &quot;cuda&quot;.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Liu B, Ye M, Wright S, et al. &quot;BOME! Bilevel Optimization Made Easy: A Simple First-Order Approach&quot;, in NeurIPS, 2022.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ll_objective</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">lower_loop</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">ul_model</span><span class="p">:</span> <span class="n">Module</span><span class="p">,</span>
+        <span class="n">ul_objective</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">ll_model</span><span class="p">:</span> <span class="n">Module</span><span class="p">,</span>
+        <span class="n">ll_var</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
+        <span class="n">ul_var</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
+        <span class="n">solver_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">VSO</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">ll_objective</span><span class="p">,</span> <span class="n">ul_objective</span><span class="p">,</span> <span class="n">lower_loop</span><span class="p">,</span> <span class="n">ul_model</span><span class="p">,</span> <span class="n">ll_model</span><span class="p">,</span> <span class="n">solver_config</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span> <span class="o">=</span> <span class="n">ll_var</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ul_var</span> <span class="o">=</span> <span class="n">ul_var</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ll_opt</span> <span class="o">=</span> <span class="n">solver_config</span><span class="p">[</span><span class="s2">&quot;lower_level_opt&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_loop</span> <span class="o">=</span> <span class="n">lower_loop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">z_loop</span> <span class="o">=</span> <span class="n">solver_config</span><span class="p">[</span><span class="s2">&quot;VSO&quot;</span><span class="p">][</span><span class="s2">&quot;z_loop&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ll_l2_reg</span> <span class="o">=</span> <span class="n">solver_config</span><span class="p">[</span><span class="s2">&quot;VSO&quot;</span><span class="p">][</span><span class="s2">&quot;ll_l2_reg&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ul_l2_reg</span> <span class="o">=</span> <span class="n">solver_config</span><span class="p">[</span><span class="s2">&quot;VSO&quot;</span><span class="p">][</span><span class="s2">&quot;ul_l2_reg&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ul_ln_reg</span> <span class="o">=</span> <span class="n">solver_config</span><span class="p">[</span><span class="s2">&quot;VSO&quot;</span><span class="p">][</span><span class="s2">&quot;ul_ln_reg&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reg_decay</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">solver_config</span><span class="p">[</span><span class="s2">&quot;VSO&quot;</span><span class="p">][</span><span class="s2">&quot;reg_decay&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">z_lr</span> <span class="o">=</span> <span class="n">solver_config</span><span class="p">[</span><span class="s2">&quot;VSO&quot;</span><span class="p">][</span><span class="s2">&quot;z_lr&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="VSO.optimize"><a class="viewcode-back" href="../../../boat_torch.fo_ol.html#boat_torch.fo_ol.vso.VSO.optimize">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ll_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">ul_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">current_iter</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Executes the optimization procedure using the provided data and model configurations.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ll_feed_dict : Dict</span>
+<span class="sd">            Dictionary containing the lower-level data used for optimization. Typically includes training data or parameters for the lower-level objective.</span>
+<span class="sd">        ul_feed_dict : Dict</span>
+<span class="sd">            Dictionary containing the upper-level data used for optimization. Usually includes parameters or configurations for the upper-level objective.</span>
+<span class="sd">        current_iter : int</span>
+<span class="sd">            The current iteration count of the optimization process, used for tracking progress or adjusting optimization parameters.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Dict</span>
+<span class="sd">            A dictionary containing the upper-level objective and the status of hypergradient computation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">reg_decay</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg_decay</span> <span class="o">*</span> <span class="n">current_iter</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">z_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">z_loop</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ll_opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+            <span class="n">loss_l2_z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_l2_reg</span> <span class="o">/</span> <span class="n">reg_decay</span> <span class="o">*</span> <span class="n">l2_reg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+            <span class="n">loss_z_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_objective</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span><span class="p">)</span>
+            <span class="n">loss_z</span> <span class="o">=</span> <span class="n">loss_z_</span> <span class="o">+</span> <span class="n">loss_l2_z</span>
+            <span class="n">grads</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">loss_z</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()))</span>
+            <span class="n">update_grads</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ll_opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ll_opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+        <span class="n">auxiliary_model</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span><span class="p">)</span>
+        <span class="n">auxiliary_opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">auxiliary_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">z_lr</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">loss_l2_z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_l2_reg</span> <span class="o">/</span> <span class="n">reg_decay</span> <span class="o">*</span> <span class="n">l2_reg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+            <span class="n">loss_z_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_objective</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span><span class="p">)</span>
+            <span class="n">loss_z</span> <span class="o">=</span> <span class="n">loss_z_</span> <span class="o">+</span> <span class="n">loss_l2_z</span>
+
+        <span class="k">for</span> <span class="n">y_idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_loop</span><span class="p">):</span>
+            <span class="n">auxiliary_opt</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+            <span class="n">loss_y_f_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_objective</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="n">auxiliary_model</span><span class="p">)</span>
+            <span class="n">loss_y_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_objective</span><span class="p">(</span><span class="n">ul_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="n">auxiliary_model</span><span class="p">)</span>
+            <span class="n">loss_l2_y</span> <span class="o">=</span> <span class="n">l2_reg</span><span class="p">(</span><span class="n">auxiliary_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+            <span class="n">loss_l2_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_l2_reg</span> <span class="o">/</span> <span class="n">reg_decay</span> <span class="o">*</span> <span class="n">loss_l2_y</span>
+            <span class="n">loss_ln</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">loss_y_f_</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">+</span> <span class="n">loss_z</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">-</span> <span class="n">loss_y_f_</span><span class="p">)</span>
+            <span class="n">loss_ln</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_ln_reg</span> <span class="o">/</span> <span class="n">reg_decay</span> <span class="o">*</span> <span class="n">loss_ln</span>
+            <span class="n">loss_y</span> <span class="o">=</span> <span class="n">loss_y_</span> <span class="o">-</span> <span class="n">loss_ln</span> <span class="o">+</span> <span class="n">loss_l2_y</span>
+            <span class="n">grads</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">loss_y</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">auxiliary_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()))</span>
+            <span class="n">update_grads</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="n">auxiliary_model</span><span class="p">)</span>
+            <span class="c1"># loss_y.backward()</span>
+            <span class="n">auxiliary_opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="n">auxiliary_opt</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="n">loss_l2_z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_l2_reg</span> <span class="o">/</span> <span class="n">reg_decay</span> <span class="o">*</span> <span class="n">l2_reg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+        <span class="n">loss_z_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_objective</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span><span class="p">)</span>
+        <span class="n">loss_z</span> <span class="o">=</span> <span class="n">loss_z_</span> <span class="o">+</span> <span class="n">loss_l2_z</span>
+
+        <span class="n">loss_y_f_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_objective</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="n">auxiliary_model</span><span class="p">)</span>
+        <span class="n">loss_ln</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ul_ln_reg</span>
+            <span class="o">/</span> <span class="n">reg_decay</span>
+            <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">loss_y_f_</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">+</span> <span class="n">loss_z</span> <span class="o">-</span> <span class="n">loss_y_f_</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">loss_x_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_objective</span><span class="p">(</span><span class="n">ul_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="n">auxiliary_model</span><span class="p">)</span>
+        <span class="n">loss_x</span> <span class="o">=</span> <span class="n">loss_x_</span> <span class="o">-</span> <span class="n">loss_ln</span>
+        <span class="n">grads</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">loss_x</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()))</span>
+        <span class="n">update_tensor_grads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ul_var</span><span class="p">,</span> <span class="n">grads</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;upper_loss&quot;</span><span class="p">:</span> <span class="n">loss_x_</span><span class="o">.</span><span class="n">item</span><span class="p">()}</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yaohua Liu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
