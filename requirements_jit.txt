@@ -4,7 +4,6 @@ numpy                # Numerical computations
 
 # Utilities
 tqdm                 # Progress bar
-scikit-learn >= 1.3  # Machine learning toolkit
 
 # Deep learning
 jittor               # High-performance deep learning framework

@@ -1,170 +1,207 @@
+<h1 align="center">
+  <img src="https://raw.githubusercontent.com/QHofmann/BOAT/boat_jit_ttest/_static/logo.jpg" alt="BOAT" width="50%" align="top">
+</h1>
+<p align="center">
+  <b>A Compositional Operation Toolbox for Gradient-based Bi-Level Optimization</b><br>
+  <br>
+  <a href="https://boat.readthedocs.io/en/latest/index.html">Home</a> |
+  <a href="https://boat.readthedocs.io/en/latest/install_guide.html#installation">Installation</a> |
+  <a href="https://boat.readthedocs.io/en/latest/boat_jit.html">Docs</a> |
+  <a href="https://boat.readthedocs.io/en/latest/install_guide.html#how-to-use-boat">Tutorials</a> |
+  <a href="https://boat.readthedocs.io/en/latest/index.html#running-example">Examples</a>
+</p>
 
-# BOAT --- Task-Agnostic Operation Toolbox for Gradient-based Bilevel Optimization
-[![PyPI version](https://badge.fury.io/py/boml.svg)](https://badge.fury.io/py/boml)
+<div align="center">
+
+[![PyPI version](https://badge.fury.io/py/boat-jit.svg)](https://badge.fury.io/py/boat-jit)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/callous-youth/BOAT/workflow.yml)
 [![codecov](https://codecov.io/github/callous-youth/BOAT/graph/badge.svg?token=0MKAOQ9KL3)](https://codecov.io/github/callous-youth/BOAT)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/w/callous-youth/BOAT)
 [![pages-build-deployment](https://github.com/callous-youth/BOAT/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/callous-youth/BOAT/actions/workflows/pages/pages-build-deployment)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/w/callous-youth/BOAT)
 ![GitHub top language](https://img.shields.io/github/languages/top/callous-youth/BOAT)
 ![GitHub language count](https://img.shields.io/github/languages/count/callous-youth/BOAT)
-![Python version](https://img.shields.io/pypi/pyversions/boml)
+![Python version](https://img.shields.io/badge/python-3.8%2B-blue)
 ![license](https://img.shields.io/badge/license-MIT-000000.svg)
 ![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)
 
-**BOAT** is a task-agnostic, gradient-based **Bi-Level Optimization (BLO)** Python library that focuses on abstracting the key BLO process into modular, flexible components. It enables researchers and developers to tackle learning tasks with hierarchical nested nature by providing customizable and diverse operator decomposition, encapsulation, and combination. BOAT supports specialized optimization strategies, including second-order or first-order, nested or non-nested, and with or without theoretical guarantees, catering to various levels of complexity.
+</div>
 
-To enhance flexibility and efficiency, BOAT incorporates the **Dynamic Operation Library (D-OL)** and the **Hyper Operation Library (H-OL)**, alongside a collection of state-of-the-art first-order optimization strategies. BOAT also provides multiple implementation versions:
-- **[PyTorch-based](https://github.com/callous-youth/BOAT)**: An efficient and widely-used version.
-- **[Jittor-based](https://github.com/callous-youth/BOAT/tree/boat_jit)**: An accelerated version for high-performance tasks.
-- **[MindSpore-based](https://github.com/callous-youth/BOAT/tree/boat_ms)**: Incorporating the latest first-order optimization strategies to support emerging application scenarios.
+**BOAT** is a compositional **O**per**A**tion-level **T**oolbox for gradient-based **B**LO.
 
+Unlike existing libraries that typically encapsulate fixed solver routines, BOAT factorizes the BLO workflow into **atomic, reusable primitives**. Through a unified constraint reconstruction perspective, it empowers researchers to **automatically compose** over **85+ solver variants** from a compact set of **17 gradient operations**.
 
-BOAT is designed to offer robust computational support for a broad spectrum of BLO research and applications, enabling innovation and efficiency in machine learning and computer vision.
+This is the **Jittor-based** version of BOAT (`boat-jit`). It leverages Jittor’s Just-In-Time (JIT) compilation and efficient CUDA/cuDNN backends to significantly **accelerate large-scale gradient-based BLO experiments**.
 
+BOAT supports unified execution across backends via separate branches:
+- **[PyTorch-based](https://github.com/callous-youth/BOAT)**: The widely-used standard version.
+- **[MindSpore-based](https://github.com/callous-youth/BOAT/tree/boat_ms)**: Optimized for ascending chips and industry scenarios.
 
-## 🔑  **Key Features**
-- **Dynamic Operation Library (D-OL)**: Incorporates 4 advanced dynamic system construction operations, enabling users to flexibly tailor optimization trajectories for BLO tasks.
-- **Hyper-Gradient Operation Library (H-OL)**: Provides 9 refined operations for hyper-gradient computation, significantly enhancing the precision and efficiency of gradient-based BLO methods.
-- **First-Order Gradient Methods (FOGMs)**: Integrates 4 state-of-the-art first-order methods, enabling fast prototyping and validation of new BLO algorithms. With modularized design, BOAT allows flexible combinations of multiple upper-level and lower-level operators, resulting in over **63+16** (nearly 80) algorithmic combinations, offering unparalleled adaptability.
-- **Modularized Design for Customization**: Empowers users to flexibly combine dynamic and hyper-gradient operations while customizing the specific forms of problems, parameters, and optimizer choices, enabling seamless integration into diverse task-specific codes.
-- **Comprehensive Testing & Continuous Integration**: Achieves **99% code coverage** through rigorous testing with **pytest** and **Codecov**, coupled with continuous integration via **GitHub Actions**, ensuring software robustness and reliability.
-- **Fast Prototyping & Algorithm Validation**: Streamlined support for defining, testing, and benchmarking new BLO algorithms.
-- **Unified Computational Analysis**: Offers a comprehensive complexity analysis of gradient-based BLO techniques to guide users in selecting optimal configurations for efficiency and accuracy.
-- **Detailed Documentation & Community Support**: Offers thorough documentation with practical examples and API references via **MkDocs**, ensuring accessibility and ease of use for both novice and advanced users.
+<p align="center">
+  <a href="https://github.com/callous-youth/BOAT">
+    <img src="https://raw.githubusercontent.com/QHofmann/BOAT/boat_jit_ttest/_static/BOAT.png" alt="BOAT Structure" width="90%" align="top">
+  </a>
+</p>
 
-##  🚀 **Why BOAT?**
-Existing automatic differentiation (AD) tools primarily focus on specific and fundamental optimization strategies, such as explicit or implicit methods, and are often targeted at meta-learning or specific application scenarios, lacking support for algorithm customization. 
+## 🔑 Key Features
 
-In contrast, **BOAT** expands the landscape of Bi-Level Optimization (BLO) applications by supporting a broader range of problem-adaptive operations. It bridges the gap between theoretical research and practical deployment, offering unparalleled flexibility to design, customize, and accelerate BLO techniques.
+* **🧩 Compositional Operation-Level Abstraction**: Deconstructs BLO solvers into three modular stages: *Gradient Mapping (GM)*, *Numerical Approximation (NA)*, and *First-Order (FO)*.
+* **⚡ Accelerated JIT Execution**: Built on Jittor, enabling meta-operator fusion and high-performance execution on NVIDIA GPUs.
+* **🏭 Generative Solver Construction**: Supports dynamic serialization of operations. Users can recover classical algorithms or discover **novel hybrid solvers** simply by changing configurations.
+* **🛠 Configuration-Driven**: Define complex optimization strategies via simple `JSON` configurations, decoupling algorithmic logic from model definitions.
+* **✅ Comprehensive Testing**: Achieves **99% code coverage** through rigorous testing with **pytest**, ensuring software robustness.
 
+## 📚 Supported Operation Libraries
 
-##  🏭 **Applications**
-BOAT enables efficient implementation and adaptation of advanced BLO techniques for key applications, including but not limited to:
-- **Hyperparameter Optimization (HO)**
-- **Neural Architecture Search (NAS)**
-- **Adversarial Training (AT)**
-- **Few-Shot Learning (FSL)**
-- **Medical Image Analysis (MIA)**
-- **Generative Adversarial Learning**
-- **Transfer Attack**
-- ...
+<div align="center">
 
-##  🔨 **Installation**
-To install BOAT, use the following command:
+BOAT implements **17 atomic gradient operations** organized into three modular libraries. These primitives can be dynamically serialized to generate over **85+ solver variants**, covering the full spectrum of BLO methodologies.
+
+| Library | Functional Role | Supported Atomic Operations |
+| :--- | :--- | :--- |
+| **GM-OL**<br>*(Gradient Mapping)* | **Reconstructs the LL iterative trajectory.**<br>Customizes the dynamic mapping rules ($\mathcal{T}_k$) to shape the optimization path and variable coupling. | • **[NGD](https://arxiv.org/abs/1706.02692)** (Naive Gradient Descent)<br>• **[GDA](https://arxiv.org/abs/2006.04045)** (Gradient Descent Aggregation)<br>• **[DI](https://proceedings.neurips.cc/paper/2021/hash/48bea99c85bcbaaba618ba10a6f69e44-Abstract.html)** (Dynamic Initialization)<br>• **[DM](https://proceedings.mlr.press/v202/liu23y.html)** (Dual Multiplier / KKT) |
+| **NA-OL**<br>*(Numerical Approx.)* | **Resolves the auxiliary gradient bottleneck.**<br>Approximates the implicit gradients or hyper-gradients via automatic differentiation, numerical inversion, or truncation. | • **[RAD](https://proceedings.mlr.press/v70/franceschi17a.html)** (Reverse-AD / Unrolled)<br>• **[RGT](https://arxiv.org/abs/1810.10667)** (Reverse Gradient Truncation)<br>• **[PTT](https://proceedings.neurips.cc/paper/2021/hash/48bea99c85bcbaaba618ba10a6f69e44-Abstract.html)** (Pessimistic Trajectory Truncation)<br>• **[FD](https://arxiv.org/abs/1806.09055)** (Finite Difference / DARTS)<br>• **[CG](https://arxiv.org/abs/1602.02355)** (Conjugate Gradient)<br>• **[NS](https://proceedings.mlr.press/v108/lorraine20a.html)** (Neumann Series)<br>• **[IGA](https://ieeexplore.ieee.org/document/10430445)** (Implicit Gradient Approximation)<br>• **[IAD](https://arxiv.org/abs/1703.03400)** (Init-based AD / MAML)<br>• **[FOA](https://arxiv.org/abs/1803.02999)** (First-Order Approx. / Reptile) |
+| **FO-OL**<br>*(First-Order)* | **Constructs single-level surrogates.**<br>Reformulates the nested problem into first-order objectives using value-functions or penalties, avoiding Hessian computations. | • **[VSO](http://proceedings.mlr.press/v139/liu21o.html)** (Value-Function Sequential)<br>• **[VFO](https://proceedings.neurips.cc/paper_files/paper/2022/hash/6dddcff5b115b40c998a08fbd1cea4d7-Abstract-Conference.html)** (Value-Function First-Order)<br>• **[MESO](https://arxiv.org/abs/2405.09927)** (Moreau Envelope)<br>• **[PGDO](https://proceedings.mlr.press/v202/shen23c.html)** (Penalty Gradient Descent) |
+
+</div>
+
+## 🔨 Installation
+
+BOAT-jit is built on top of **Jittor**. Please ensure Jittor is installed correctly before installing BOAT.
+
+### 1. Install Jittor
+Follow the [Official Installation Guide](https://cg.cs.tsinghua.edu.cn/jittor/download/) or use the commands below:
+
+**Linux (Ubuntu / CentOS)**
+
 ```bash
-pip install boat-jit 
-or 
-git clone -b boat_jit --single-branch https://github.com/callous-youth/BOAT.git
+sudo apt install python3.8-dev libomp-dev
+python3.8 -m pip install jittor
+# Verify installation (Optional)
+python3.8 -m jittor.test.test_example
+```
+
+**Windows**
+
+```bash
+python -m pip install jittor
+python -m jittor.test.test_core
+```
+
+**macOS**
+
+```bash
+brew install libomp
+python3.8 -m pip install jittor
+```
+
+### 2. Install BOAT-jit
+Once Jittor is ready, install BOAT-jit via PyPI or Source:
+```bash
+# Install from PyPI
+pip install boat-jit
+
+# Or install from Source (Specific Branch)
+git clone -b boat_jit --single-branch [https://github.com/callous-youth/BOAT.git](https://github.com/callous-youth/BOAT.git)
+cd BOAT
 pip install -e .
 ```
 
-##  ⚡ **How to Use BOAT**
+## ⚡ How to Use BOAT
 
-### **1. Load Configuration Files**
-BOAT relies on two key configuration files:
-- `boat_config.json`: Specifies optimization strategies and dynamic/hyper-gradient operations.
-- `loss_config.json`: Defines the loss functions for both levels of the BLO process.
+BOAT separates the **problem definition** from the **solver configuration**. Below is a Jittor-based example.
 
+### 1. Load Configurations
 ```python
-import os
 import json
 import boat_jit as boat
 
-# Load configuration files
-with open("path_to_configs/boat_config.json", "r") as f:
+# Load algorithmic configurations
+with open("configs/boat_config.json", "r") as f:
     boat_config = json.load(f)
 
-with open("path_to_configs/loss_config.json", "r") as f:
+# Load objective configurations
+with open("configs/loss_config.json", "r") as f:
     loss_config = json.load(f)
 ```
 
-### **2. Define Models and Optimizers**
-You need to specify both the upper-level and lower-level models along with their respective optimizers.
+### 2. Define Models and Optimizers
+
+Use standard Jittor models and optimizers.
 
 ```python
 import jittor as jit
 
 # Define models
-upper_model = UpperModel(*args, **kwargs)  # Replace with your upper-level model
-lower_model = LowerModel(*args, **kwargs)  # Replace with your lower-level model
+upper_model = MyUpperModel()
+lower_model = MyLowerModel()
 
-# Define optimizers
-upper_opt = jit.nn.Adam(upper_model.parameters(), lr=0.01)
-lower_opt = jit.nn.SGD(lower_model.parameters(), lr=0.01)
+# Define optimizers (Jittor syntax)
+upper_opt = jit.nn.Adam(upper_model.parameters(), lr=1e-3)
+lower_opt = jit.nn.SGD(lower_model.parameters(), lr=1e-2)
 ```
 
-### **3. Customize BOAT Configuration**
-Modify the boat_config to include your dynamic and hyper-gradient methods, as well as model and variable details.
+### 3. Customize & Initialize Problem
+
+Inject runtime objects into the configuration.
 
 ```python
-# Example dynamic and hyper-gradient methods Combination.
-dynamic_method = ["NGD","DI", "GDA"]  # Dynamic Methods (Demo Only)
-hyper_method = ["RGT","RAD"]          # Hyper-Gradient Methods (Demo Only)
-
-# Add methods and model details to the configuration
-boat_config["dynamic_op"] = dynamic_method
-boat_config["hyper_op"] = hyper_method
+# Configure BOAT with Jittor models/optimizers
 boat_config["lower_level_model"] = lower_model
 boat_config["upper_level_model"] = upper_model
-boat_config["lower_level_var"] = lower_model.parameters()
-boat_config["upper_level_var"] = upper_model.parameters()
-```
+boat_config["lower_level_opt"] = lower_opt
+boat_config["upper_level_opt"] = upper_opt
 
-### **4. Initialize the BOAT Problem**
-Modify the boat_config to include your dynamic and hyper-gradient methods, as well as model and variable details.
-
-```python
-# Initialize the problem
+# Initialize the BOAT core
 b_optimizer = boat.Problem(boat_config, loss_config)
-
-# Build solvers for lower and upper levels
-b_optimizer.build_ll_solver(lower_opt)  # Lower-level solver
-b_optimizer.build_ul_solver(upper_opt)  # Upper-level solver
 ```
 
-### **5. Define Data Feeds**
-Prepare the data feeds for both levels of the BLO process, which was further fed into the the upper-level  and lower-level objective functions. 
+
+### 4. Build Solvers
+
+Inject runtime objects into the configuration.
 
 ```python
-# Define data feeds (Demo Only)
-ul_feed_dict = {"data": upper_level_data, "target": upper_level_target}
-ll_feed_dict = {"data": lower_level_data, "target": lower_level_target}
+# Pass optimizers explicitly if needed by the solver backend
+b_optimizer.build_ll_solver(lower_opt)
+b_optimizer.build_ul_solver(upper_opt)
 ```
 
-### **6. Run the Optimization Loop**
-Execute the optimization loop, optionally customizing the solver strategy for dynamic methods.
+### 5. Run Optimization Loop
 
 ```python
-# Set number of iterations
-iterations = 1000
-
-# Optimization loop (Demo Only)
-for x_itr in range(iterations):
-    # Run a single optimization iteration
+# Training loop
+for x_itr in range(1000):
+    # Prepare data (Jittor Arrays or dicts)
+    ul_feed_dict = {"data": ul_data, "target": ul_target}
+    ll_feed_dict = {"data": ll_data, "target": ll_target}
+    
+    # Run one iteration
     loss, run_time = b_optimizer.run_iter(ll_feed_dict, ul_feed_dict, current_iter=x_itr)
-
+    
+    if x_itr % 100 == 0:
+        print(f"Iter {x_itr}: UL Loss {loss:.4f}")
 ```
 
+## 🌍 Applications
 
+BOAT covers a wide spectrum of BLO applications, categorized by the optimization target:
 
-## Related Methods
+* **Data-Centric**: Data Hyper-Cleaning, Synthetic Data Reweighting, Diffusion Model Guidance.
+* **Model-Centric**: Neural Architecture Search (NAS), LLM Prompt Optimization, Parameter Efficient Fine-Tuning (PEFT).
+* **Strategy-Centric**: Meta-Learning, Hyperparameter Optimization (HO), Reinforcement Learning from Human Feedback (RLHF).
 
-- [Hyperparameter optimization with approximate gradient (CG)](https://arxiv.org/abs/1602.02355)
-- [Optimizing millions of hyperparameters by implicit differentiation (NS)](http://proceedings.mlr.press/v108/lorraine20a/lorraine20a.pdf)
-- [Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks (IAD)](https://arxiv.org/abs/1703.03400)
-- [On First-Order Meta-Learning Algorithms (FOA)](https://arxiv.org/abs/1703.03400)
-- [Bilevel Programming for Hyperparameter Optimization and Meta-Learning (RAD)](http://export.arxiv.org/pdf/1806.04910)
-- [Truncated Back-propagation for Bilevel Optimization (RGT)](https://arxiv.org/pdf/1810.10667.pdf)
-- [DARTS: Differentiable Architecture Search (FD)](https://arxiv.org/pdf/1806.09055.pdf)
-- [A Generic First-Order Algorithmic Framework for Bi-Level Programming Beyond Lower-Level Singleton (GDA)](https://arxiv.org/pdf/2006.04045.pdf)
-- [Towards gradient-based bilevel optimization with non-convex followers and beyond (PTT, DI)](https://proceedings.neurips.cc/paper_files/paper/2021/file/48bea99c85bcbaaba618ba10a6f69e44-Paper.pdf)
-- [Averaged Method of Multipliers for Bi-Level Optimization without Lower-Level Strong Convexity(DM)](https://proceedings.mlr.press/v202/liu23y/liu23y.pdf)
-- [Learning With Constraint Learning: New Perspective, Solution Strategy and Various Applications (IGA)](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10430445)
-- [BOME! Bilevel Optimization Made Easy: A Simple First-Order Approach (VFM)](https://proceedings.neurips.cc/paper_files/paper/2022/file/6dddcff5b115b40c998a08fbd1cea4d7-Paper-Conference.pdf)
-- [A Value-Function-based Interior-point Method for Non-convex Bi-level Optimization (VSM)](http://proceedings.mlr.press/v139/liu21o/liu21o.pdf)
-- [On Penalty-based Bilevel Gradient Descent Method (PGDM)](https://proceedings.mlr.press/v202/shen23c/shen23c.pdf)
-- [Moreau Envelope for Nonconvex Bi-Level Optimization: A Single-loop and Hessian-free Solution Strategy (MESM)](https://arxiv.org/pdf/2405.09927)
+## 📝 Citation
 
+If you find BOAT useful in your research, please consider citing our paper:
+
+```bibtex
+@article{liu2025boat,
+  title={BOAT: A Compositional Operation Toolbox for Gradient-based Bi-Level Optimization},
+  author={Liu, Yaohua and Pan, Jibao and Jiao, Xianghao and Gao, Jiaxin and Liu, Zhu and Liu, Risheng},
+  journal={Submitted to Journal of Machine Learning Research (JMLR)},
+  year={2025}
+}
+```
 
 ## License
 
@@ -189,6 +226,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-
-

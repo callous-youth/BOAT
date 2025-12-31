@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation and Usage Guide &mdash; BOAT-Jittor 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=4ff932f8" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="BOAT-Jittor Structure" href="boat_jit.html" />
+    <link rel="prev" title="Introduction" href="description.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BOAT-Jittor
+              <img src="_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation Guide:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation and Usage Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">🔨 Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-jittor">1. Install Jittor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-boat-jit">2. Install BOAT-jit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-use-boat">⚡ <strong>How to Use BOAT</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#load-configuration-files"><strong>1. Load Configuration Files</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-models-and-optimizers"><strong>2. Define Models and Optimizers</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#customize-boat-configuration"><strong>3. Customize BOAT Configuration</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initialize-the-boat-problem"><strong>4. Initialize the BOAT Problem</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-data-feeds"><strong>5. Define Data Feeds</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-the-optimization-loop"><strong>6. Run the Optimization Loop</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="boat_jit.html">BOAT-Jittor Structure</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="l2_regularization_example.html">L2 Regularization with Jittor</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BOAT-Jittor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation and Usage Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/install_guide.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation-and-usage-guide">
+<h1>Installation and Usage Guide<a class="headerlink" href="#installation-and-usage-guide" title="Permalink to this heading"></a></h1>
+<section id="installation">
+<h2>🔨 Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<p>BOAT-jit is built on top of <strong>Jittor</strong>. Please ensure Jittor is installed correctly before installing BOAT.</p>
+<section id="install-jittor">
+<h3>1. Install Jittor<a class="headerlink" href="#install-jittor" title="Permalink to this heading"></a></h3>
+<p>Follow the <a class="reference external" href="https://cg.cs.tsinghua.edu.cn/jittor/download/">Official Installation Guide</a> or use the commands below:</p>
+<p><strong>Linux (Ubuntu / CentOS)</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3.8-dev<span class="w"> </span>libomp-dev
+python3.8<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jittor
+<span class="c1"># Verify installation (Optional)</span>
+python3.8<span class="w"> </span>-m<span class="w"> </span>jittor.test.test_example
+</pre></div>
+</div>
+<p><strong>Windows</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jittor
+python<span class="w"> </span>-m<span class="w"> </span>jittor.test.test_core
+</pre></div>
+</div>
+<p><strong>macOS</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>libomp
+python3.8<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>jittor
+</pre></div>
+</div>
+</section>
+<section id="install-boat-jit">
+<h3>2. Install BOAT-jit<a class="headerlink" href="#install-boat-jit" title="Permalink to this heading"></a></h3>
+<p>Once Jittor is ready, install BOAT-jit via PyPI or Source:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install from PyPI</span>
+pip<span class="w"> </span>install<span class="w"> </span>boat-jit
+
+<span class="c1"># Or install from Source (Specific Branch)</span>
+git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>boat_jit<span class="w"> </span>--single-branch<span class="w"> </span><span class="o">[</span>https://github.com/callous-youth/BOAT.git<span class="o">](</span>https://github.com/callous-youth/BOAT.git<span class="o">)</span>
+<span class="nb">cd</span><span class="w"> </span>BOAT
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+</section>
+<section id="how-to-use-boat">
+<h2>⚡ <strong>How to Use BOAT</strong><a class="headerlink" href="#how-to-use-boat" title="Permalink to this heading"></a></h2>
+<section id="load-configuration-files">
+<h3><strong>1. Load Configuration Files</strong><a class="headerlink" href="#load-configuration-files" title="Permalink to this heading"></a></h3>
+<p>BOAT relies on two key configuration files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">boat_config.json</span></code>: Specifies optimization strategies and dynamic/hyper-gradient operations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loss_config.json</span></code>: Defines the loss functions for both levels of the BLO process.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">boat_jit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">boat</span>
+
+<span class="c1"># Load configuration files</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;path_to_configs/boat_config.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">boat_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;path_to_configs/loss_config.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">loss_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="define-models-and-optimizers">
+<h3><strong>2. Define Models and Optimizers</strong><a class="headerlink" href="#define-models-and-optimizers" title="Permalink to this heading"></a></h3>
+<p>You need to specify both the upper-level and lower-level models along with their respective optimizers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># Define models</span>
+<span class="n">upper_model</span> <span class="o">=</span> <span class="n">UpperModel</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># Replace with your upper-level model</span>
+<span class="n">lower_model</span> <span class="o">=</span> <span class="n">LowerModel</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># Replace with your lower-level model</span>
+
+<span class="c1"># Define optimizers</span>
+<span class="n">upper_opt</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">upper_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">lower_opt</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">lower_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="customize-boat-configuration">
+<h3><strong>3. Customize BOAT Configuration</strong><a class="headerlink" href="#customize-boat-configuration" title="Permalink to this heading"></a></h3>
+<p>Modify the boat_config to include your gradient mapping and numerical approximation operation, as well as model and variable details.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example gradient mapping and numerical approximation operation Combination.</span>
+<span class="n">gm_op</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NGD&quot;</span><span class="p">,</span> <span class="s2">&quot;DI&quot;</span><span class="p">,</span> <span class="s2">&quot;GDA&quot;</span><span class="p">]</span>  <span class="c1"># Gradient Mapping Operations (Demo Only)</span>
+<span class="n">na_op</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;RGT&quot;</span><span class="p">,</span><span class="s2">&quot;RAD&quot;</span><span class="p">]</span>          <span class="c1"># Numerical Approximation Operations (Demo Only)</span>
+
+<span class="c1"># Add methods and model details to the configuration</span>
+<span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;gm_op&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gm_op</span>
+<span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;na_op&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">na_op</span>
+<span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;lower_level_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lower_model</span>
+<span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;upper_level_model&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">upper_model</span>
+<span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;lower_level_opt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lower_opt</span>
+<span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;upper_level_opt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">upper_opt</span>
+<span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;lower_level_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">lower_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+<span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;upper_level_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">upper_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="initialize-the-boat-problem">
+<h3><strong>4. Initialize the BOAT Problem</strong><a class="headerlink" href="#initialize-the-boat-problem" title="Permalink to this heading"></a></h3>
+<p>Modify the boat_config to include your gradient mapping and numerical approximation operation, as well as model and variable details.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the problem</span>
+<span class="n">b_optimizer</span> <span class="o">=</span> <span class="n">boat</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">boat_config</span><span class="p">,</span> <span class="n">loss_config</span><span class="p">)</span>
+
+<span class="c1"># Build solvers for lower and upper levels</span>
+<span class="n">b_optimizer</span><span class="o">.</span><span class="n">build_ll_solver</span><span class="p">()</span>  <span class="c1"># Lower-level solver</span>
+<span class="n">b_optimizer</span><span class="o">.</span><span class="n">build_ul_solver</span><span class="p">()</span>  <span class="c1"># Upper-level solver</span>
+</pre></div>
+</div>
+</section>
+<section id="define-data-feeds">
+<h3><strong>5. Define Data Feeds</strong><a class="headerlink" href="#define-data-feeds" title="Permalink to this heading"></a></h3>
+<p>Prepare the data feeds for both levels of the BLO process, which was further fed into the the upper-level  and lower-level objective functions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define data feeds (Demo Only)</span>
+<span class="n">ul_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">upper_level_data</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">upper_level_target</span><span class="p">}</span>
+<span class="n">ll_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">lower_level_data</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">lower_level_target</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="run-the-optimization-loop">
+<h3><strong>6. Run the Optimization Loop</strong><a class="headerlink" href="#run-the-optimization-loop" title="Permalink to this heading"></a></h3>
+<p>Execute the optimization loop, optionally customizing the solver strategy for gradient mapping operations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set number of iterations</span>
+<span class="n">iterations</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># Optimization loop (Demo Only)</span>
+<span class="k">for</span> <span class="n">x_itr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+    <span class="c1"># Run a single optimization iteration</span>
+    <span class="n">loss</span><span class="p">,</span> <span class="n">run_time</span> <span class="o">=</span> <span class="n">b_optimizer</span><span class="o">.</span><span class="n">run_iter</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="n">ul_feed_dict</span><span class="p">,</span> <span class="n">current_iter</span><span class="o">=</span><span class="n">x_itr</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="description.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="boat_jit.html" class="btn btn-neutral float-right" title="BOAT-Jittor Structure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Yaohua Liu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

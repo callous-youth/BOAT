@@ -3,10 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to BOAT-Torch Documentation
-=============================
+Welcome to BOAT-Jittor Documentation
+============================================
 
-**BOAT** is a task-agnostic, gradient-based **Bi-Level Optimization (BLO)** Python library that focuses on abstracting the key BLO process into modular, flexible components. It enables researchers and developers to tackle learning tasks with hierarchical nested nature by providing customizable and diverse operator decomposition, encapsulation, and combination. BOAT supports specialized optimization strategies, including second-order or first-order, nested or non-nested, and with or without theoretical guarantees, catering to various levels of complexity.
+**BOAT** is a task-agnostic, gradient-based **Bi-Level Optimization (BLO)** Python library that abstracts BLO into modular and flexible components, enabling efficient modeling of hierarchical and nested learning problems. It supports a wide spectrum of optimization settings, including first- and second-order methods, nested or non-nested formulations, with or without theoretical guarantees. This repository provides the **Jittor-based** implementation (boat-jit), leveraging Jittor’s JIT compilation and efficient CUDA/cuDNN backends to accelerate large-scale gradient-based BLO experiments.
 
 .. image:: _static/flow.gif
    :alt: BOAT Framework
@@ -34,8 +34,9 @@ The running example of l2 regularization is organized as follows.
 
    l2_regularization_example.md
 
+
 Indices and tables
-==================
+==========================
 
 * :ref:`genindex`
 * :ref:`modindex`

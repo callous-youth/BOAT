@@ -1,0 +1,290 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>boat_jit.na_ol.iga &mdash; BOAT-Jittor 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=4ff932f8" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            BOAT-Jittor
+              <img src="../../../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../description.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install_guide.html">Installation and Usage Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../boat_jit.html">BOAT-Jittor Structure</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../l2_regularization_example.html">L2 Regularization with Jittor</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BOAT-Jittor</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">boat_jit.na_ol.iga</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for boat_jit.na_ol.iga</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">jittor</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">jittor</span><span class="w"> </span><span class="kn">import</span> <span class="n">Module</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..higher_jit.patch</span><span class="w"> </span><span class="kn">import</span> <span class="n">_MonkeyPatchBase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">boat_jit.utils.op_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">update_tensor_grads</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">boat_jit.operation_registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_class</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">boat_jit.na_ol.hyper_gradient</span><span class="w"> </span><span class="kn">import</span> <span class="n">HyperGradient</span>
+
+
+<div class="viewcode-block" id="IGA"><a class="viewcode-back" href="../../../boat_jit.na_ol.html#boat_jit.na_ol.iga.IGA">[docs]</a><span class="nd">@register_class</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">IGA</span><span class="p">(</span><span class="n">HyperGradient</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes the hyper-gradient of the upper-level variables using Implicit Gradient Approximation (IGA) [1].</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ll_objective : Callable</span>
+<span class="sd">        The lower-level objective function of the BLO problem.</span>
+<span class="sd">    ul_objective : Callable</span>
+<span class="sd">        The upper-level objective function of the BLO problem.</span>
+<span class="sd">    ll_model : jittor.Module</span>
+<span class="sd">        The lower-level model of the BLO problem.</span>
+<span class="sd">    ul_model : jittor.Module</span>
+<span class="sd">        The upper-level model of the BLO problem.</span>
+<span class="sd">    ll_var : List[jittor.Var]</span>
+<span class="sd">        List of variables optimized with the lower-level objective.</span>
+<span class="sd">    ul_var : List[jittor.Var]</span>
+<span class="sd">        List of variables optimized with the upper-level objective.</span>
+<span class="sd">    solver_config : Dict[str, Any]</span>
+<span class="sd">        Dictionary containing solver configurations, including:</span>
+
+<span class="sd">        - `alpha_init` (float): Initial learning rate for GDA.</span>
+<span class="sd">        - `alpha_decay` (float): Decay factor for the GDA learning rate.</span>
+<span class="sd">        - Optional `gda_loss` (Callable): Custom loss function for GDA, if applicable.</span>
+<span class="sd">        - `gm_op` (List[str]): Specifies dynamic operations, e.g., &quot;DI&quot; for dynamic initialization.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">        Initial learning rate for GDA operations, if applicable.</span>
+<span class="sd">    alpha_decay : float</span>
+<span class="sd">        Decay factor applied to the GDA learning rate.</span>
+<span class="sd">    gda_loss : Callable, optional</span>
+<span class="sd">        Custom loss function for GDA operations, if specified in `solver_config`.</span>
+<span class="sd">    dynamic_initialization : bool</span>
+<span class="sd">        Indicates whether dynamic initialization is enabled, based on `gm_op`.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Liu R, Gao J, Liu X, et al., &quot;Learning with constraint learning: New perspective, solution strategy and</span>
+<span class="sd">        various applications,&quot; IEEE Transactions on Pattern Analysis and Machine Intelligence, 2024.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ll_objective</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">ul_objective</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">ll_model</span><span class="p">:</span> <span class="n">Module</span><span class="p">,</span>
+        <span class="n">ul_model</span><span class="p">:</span> <span class="n">Module</span><span class="p">,</span>
+        <span class="n">ll_var</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
+        <span class="n">ul_var</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
+        <span class="n">solver_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IGA</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">ll_objective</span><span class="p">,</span>
+            <span class="n">ul_objective</span><span class="p">,</span>
+            <span class="n">ul_model</span><span class="p">,</span>
+            <span class="n">ll_model</span><span class="p">,</span>
+            <span class="n">ll_var</span><span class="p">,</span>
+            <span class="n">ul_var</span><span class="p">,</span>
+            <span class="n">solver_config</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">solver_config</span><span class="p">[</span><span class="s2">&quot;GDA&quot;</span><span class="p">][</span><span class="s2">&quot;alpha_init&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha_decay</span> <span class="o">=</span> <span class="n">solver_config</span><span class="p">[</span><span class="s2">&quot;GDA&quot;</span><span class="p">][</span><span class="s2">&quot;alpha_decay&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gda_loss</span> <span class="o">=</span> <span class="n">solver_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;gda_loss&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dynamic_initialization</span> <span class="o">=</span> <span class="s2">&quot;DI&quot;</span> <span class="ow">in</span> <span class="n">solver_config</span><span class="p">[</span><span class="s2">&quot;gm_op&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="IGA.compute_gradients"><a class="viewcode-back" href="../../../boat_jit.na_ol.html#boat_jit.na_ol.iga.IGA.compute_gradients">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_gradients</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ll_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
+        <span class="n">ul_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
+        <span class="n">auxiliary_model</span><span class="p">:</span> <span class="n">_MonkeyPatchBase</span><span class="p">,</span>
+        <span class="n">max_loss_iter</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">hyper_gradient_finished</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">next_operation</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the hyper-gradients of the upper-level variables using the given feed dictionaries and patched models.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ll_feed_dict : Dict</span>
+<span class="sd">            Dictionary containing the lower-level data used for optimization, including training data,</span>
+<span class="sd">            targets, and other information required for the LL objective computation.</span>
+<span class="sd">        ul_feed_dict : Dict</span>
+<span class="sd">            Dictionary containing the upper-level data used for optimization, including validation data,</span>
+<span class="sd">            targets, and other information required for the UL objective computation.</span>
+<span class="sd">        auxiliary_model : _MonkeyPatchBase</span>
+<span class="sd">            A patched lower-level model wrapped by the `higher` library, enabling differentiable optimization.</span>
+<span class="sd">        max_loss_iter : int, optional</span>
+<span class="sd">            The number of iterations used for backpropagation, by default 0.</span>
+<span class="sd">        hyper_gradient_finished : bool, optional</span>
+<span class="sd">            A flag indicating whether the hypergradient computation is finished, by default False.</span>
+<span class="sd">        next_operation : str, optional</span>
+<span class="sd">            The next operator for hypergradient calculation. Not supported in this implementation, by default None.</span>
+<span class="sd">        **kwargs : dict</span>
+<span class="sd">            Additional arguments, such as:</span>
+
+<span class="sd">            - `lower_model_params` : List[jt.Var]</span>
+<span class="sd">                List of parameters for the lower-level model.</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Dict</span>
+<span class="sd">            A dictionary containing:</span>
+
+<span class="sd">            - `upper_loss` : jt.Var</span>
+<span class="sd">                The upper-level objective value after optimization.</span>
+<span class="sd">            - `hyper_gradient_finished` : bool</span>
+<span class="sd">                Indicates whether the hypergradient computation is complete.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        - This implementation calculates the Gauss-Newton (GN) loss to refine the gradients using second-order approximations.</span>
+<span class="sd">        - If `dynamic_initialization` is enabled, the gradients of the lower-level variables are updated with time-dependent parameters.</span>
+<span class="sd">        - Updates are performed on both lower-level and upper-level variables using computed gradients.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Dict</span>
+<span class="sd">            A dictionary containing the upper-level objective and the status of hypergradient computation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">next_operation</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;FD does not support next_operation&quot;</span>
+        <span class="n">lower_model_params</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s2">&quot;lower_model_params&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">auxiliary_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">gda_loss</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ll_feed_dict</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_decay</span><span class="o">**</span><span class="n">max_loss_iter</span>
+            <span class="n">lower_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gda_loss</span><span class="p">(</span>
+                <span class="n">ll_feed_dict</span><span class="p">,</span>
+                <span class="n">ul_feed_dict</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span>
+                <span class="n">auxiliary_model</span><span class="p">,</span>
+                <span class="n">params</span><span class="o">=</span><span class="n">lower_model_params</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lower_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_objective</span><span class="p">(</span>
+                <span class="n">ll_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="n">auxiliary_model</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">lower_model_params</span>
+            <span class="p">)</span>
+
+        <span class="n">upper_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_objective</span><span class="p">(</span>
+            <span class="n">ul_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="n">auxiliary_model</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">lower_model_params</span>
+        <span class="p">)</span>
+        <span class="n">dFy</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">upper_loss</span><span class="p">,</span> <span class="n">lower_model_params</span><span class="p">,</span> <span class="n">retain_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="n">dfy</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">lower_loss</span><span class="p">,</span> <span class="n">lower_model_params</span><span class="p">,</span> <span class="n">retain_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+        <span class="c1"># calculate GN loss</span>
+        <span class="n">gFyfy</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">gfyfy</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">Fy</span><span class="p">,</span> <span class="n">fy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">dFy</span><span class="p">,</span> <span class="n">dfy</span><span class="p">):</span>
+            <span class="n">gFyfy</span> <span class="o">=</span> <span class="n">gFyfy</span> <span class="o">+</span> <span class="p">(</span><span class="n">Fy</span> <span class="o">*</span> <span class="n">fy</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+            <span class="n">gfyfy</span> <span class="o">=</span> <span class="n">gfyfy</span> <span class="o">+</span> <span class="p">(</span><span class="n">fy</span> <span class="o">*</span> <span class="n">fy</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">GN_loss</span> <span class="o">=</span> <span class="o">-</span><span class="n">gFyfy</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="o">/</span> <span class="n">gfyfy</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span> <span class="o">*</span> <span class="n">lower_loss</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dynamic_initialization</span><span class="p">:</span>
+            <span class="n">grads_lower</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span>
+                <span class="n">upper_loss</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">auxiliary_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mi">0</span><span class="p">)),</span> <span class="n">retain_graph</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+            <span class="n">update_tensor_grads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">,</span> <span class="n">grads_lower</span><span class="p">)</span>
+
+        <span class="n">grads_upper</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="n">grad</span><span class="p">(</span><span class="n">GN_loss</span> <span class="o">+</span> <span class="n">upper_loss</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ul_var</span><span class="p">))</span>
+
+        <span class="n">update_tensor_grads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ul_var</span><span class="p">,</span> <span class="n">grads_upper</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;upper_loss&quot;</span><span class="p">:</span> <span class="n">upper_loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="s2">&quot;hyper_gradient_finished&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Yaohua Liu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
