@@ -1,0 +1,278 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>boat_ms.utils &mdash; BOAT-MS 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=4ff932f8" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="L2 Regularization with MindSpore" href="l2_regularization_example.html" />
+    <link rel="prev" title="boat_ms.fo_ol" href="boat_ms.fo_ol.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BOAT-MS
+              <img src="_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation Guide:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install_guide.html">Installation and Usage Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="boat_ms.html">BOAT-MS Structure</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="boat_ms.html#module-boat_ms.boat_opt">Core Problem Class</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="boat_ms.html#main-subpackages">Main Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="boat_ms.gm_ol.html">boat_ms.gm_ol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boat_ms.fo_ol.html">boat_ms.fo_ol</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">boat_ms.utils</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_ms.utils.op_utils">boat_ms.utils.op_utils</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="boat_ms.html#module-boat_ms.operation_registry">Extension with Operation_Registry</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="l2_regularization_example.html">L2 Regularization with MindSpore</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BOAT-MS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="boat_ms.html">BOAT-MS Structure</a></li>
+      <li class="breadcrumb-item active">boat_ms.utils</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/boat_ms.utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="boat-ms-utils">
+<h1>boat_ms.utils<a class="headerlink" href="#boat-ms-utils" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-boat_ms.utils.op_utils">
+<span id="boat-ms-utils-op-utils"></span><h2>boat_ms.utils.op_utils<a class="headerlink" href="#module-boat_ms.utils.op_utils" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="boat_ms.utils.op_utils.average_grad">
+<span class="sig-prename descclassname"><span class="pre">boat_ms.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">average_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/utils/op_utils.html#average_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.utils.op_utils.average_grad" title="Permalink to this definition"></a></dt>
+<dd><p>Average the gradients of all model parameters by the batch size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>mindspore.nn.Cell</em>) – The model whose gradients need to be averaged.</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – The batch size to divide gradients by.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boat_ms.utils.op_utils.copy_parameter_from_list">
+<span class="sig-prename descclassname"><span class="pre">boat_ms.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">copy_parameter_from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/utils/op_utils.html#copy_parameter_from_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.utils.op_utils.copy_parameter_from_list" title="Permalink to this definition"></a></dt>
+<dd><p>Copy parameters from a list to a model’s trainable parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> (<em>mindspore.nn.Cell</em>) – The model whose parameters need to be updated.</p></li>
+<li><p><strong>param_list</strong> (<em>list</em><em> of </em><em>mindspore.Tensor</em>) – The list of parameters to copy.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boat_ms.utils.op_utils.grad_unused_zero">
+<span class="sig-prename descclassname"><span class="pre">boat_ms.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">grad_unused_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_outputs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/utils/op_utils.html#grad_unused_zero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.utils.op_utils.grad_unused_zero" title="Permalink to this definition"></a></dt>
+<dd><p>Compute gradients for the given inputs, substituting zeros for unused gradients.
+(MindSpore version)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>output</strong> (<em>mindspore.Tensor</em>) – The scalar output tensor for which gradients are computed.</p></li>
+<li><p><strong>inputs</strong> (<em>List</em><em>[</em><em>mindspore.Tensor</em><em>]</em>) – List of input tensors with respect to which gradients are computed.</p></li>
+<li><p><strong>grad_outputs</strong> (<em>mindspore.Tensor</em><em>, </em><em>optional</em>) – Sensitivity tensor (same shape as output). Default = ones_like(output).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Gradients for the inputs, with unused gradients replaced by zeros.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[mindspore.Tensor]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boat_ms.utils.op_utils.l2_reg">
+<span class="sig-prename descclassname"><span class="pre">boat_ms.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">l2_reg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/utils/op_utils.html#l2_reg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.utils.op_utils.l2_reg" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the L2 regularization loss.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>list</em>) – List of model parameters (trainable).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The computed L2 regularization loss.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>mindspore.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boat_ms.utils.op_utils.require_model_grad">
+<span class="sig-prename descclassname"><span class="pre">boat_ms.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">require_model_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/utils/op_utils.html#require_model_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.utils.op_utils.require_model_grad" title="Permalink to this definition"></a></dt>
+<dd><p>Ensure all parameters of a MindSpore model require gradients.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model</strong> (<em>mindspore.nn.Cell</em><em>, </em><em>optional</em>) – MindSpore model instance. Must not be None.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If the model is None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boat_ms.utils.op_utils.stop_grads">
+<span class="sig-prename descclassname"><span class="pre">boat_ms.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">stop_grads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grads</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/utils/op_utils.html#stop_grads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.utils.op_utils.stop_grads" title="Permalink to this definition"></a></dt>
+<dd><p>Detach and stop gradient computation for a list of gradients.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>grads</strong> (<em>list</em><em> of </em><em>mindspore.Tensor</em>) – Gradients to process.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Detached gradients with requires_grad set to False.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of mindspore.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boat_ms.utils.op_utils.stop_model_grad">
+<span class="sig-prename descclassname"><span class="pre">boat_ms.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">stop_model_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/utils/op_utils.html#stop_model_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.utils.op_utils.stop_model_grad" title="Permalink to this definition"></a></dt>
+<dd><p>Stop gradient computation for all parameters in a model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model</strong> (<em>mindspore.nn.Cell</em><em>, </em><em>optional</em>) – The model to stop gradients for. Must not be None.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – If the model is None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boat_ms.utils.op_utils.update_grads">
+<span class="sig-prename descclassname"><span class="pre">boat_ms.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">update_grads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grads</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/utils/op_utils.html#update_grads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.utils.op_utils.update_grads" title="Permalink to this definition"></a></dt>
+<dd><p>Update gradients for a model’s parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grads</strong> (<em>list</em>) – List of gradients to apply.</p></li>
+<li><p><strong>model</strong> (<em>mindspore.nn.Cell</em>) – The model whose gradients will be updated.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="boat_ms.utils.op_utils.update_tensor_grads">
+<span class="sig-prename descclassname"><span class="pre">boat_ms.utils.op_utils.</span></span><span class="sig-name descname"><span class="pre">update_tensor_grads</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hparams</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grads</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/utils/op_utils.html#update_tensor_grads"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.utils.op_utils.update_tensor_grads" title="Permalink to this definition"></a></dt>
+<dd><p>Update gradients for hyperparameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hparams</strong> (<em>list</em><em> of </em><em>mindspore.Tensor</em>) – Hyperparameters to update.</p></li>
+<li><p><strong>grads</strong> (<em>list</em><em> of </em><em>mindspore.Tensor</em>) – Gradients to apply to the hyperparameters.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="boat_ms.fo_ol.html" class="btn btn-neutral float-left" title="boat_ms.fo_ol" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="l2_regularization_example.html" class="btn btn-neutral float-right" title="L2 Regularization with MindSpore" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yaohua Liu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>boat_ms.boat_opt &mdash; BOAT-MS 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=4ff932f8" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            BOAT-MS
+              <img src="../../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../description.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install_guide.html">Installation and Usage Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../boat_ms.html">BOAT-MS Structure</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../l2_regularization_example.html">L2 Regularization with MindSpore</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BOAT-MS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">boat_ms.boat_opt</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for boat_ms.boat_opt</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mindspore</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ms</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mindspore</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">grad</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">mindspore</span><span class="w"> </span><span class="kn">import</span> <span class="n">context</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">boat_ms.operation_registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_registered_operation</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_load_loss_function</span><span class="p">(</span><span class="n">loss_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Dynamically load a loss function from the provided configuration.</span>
+
+<span class="sd">    :param loss_config: Dictionary with keys:</span>
+<span class="sd">        - &quot;function&quot;: Path to the loss function (e.g., &quot;module.path.to_function&quot;).</span>
+<span class="sd">        - &quot;params&quot;: Parameters to be passed to the loss function.</span>
+<span class="sd">    :type loss_config: Dict[str, Any]</span>
+
+<span class="sd">    :returns: Loaded loss function ready for use.</span>
+<span class="sd">    :rtype: Callable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">module_name</span><span class="p">,</span> <span class="n">func_name</span> <span class="o">=</span> <span class="n">loss_config</span><span class="p">[</span><span class="s2">&quot;function&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
+    <span class="n">func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">func_name</span><span class="p">)</span>
+
+    <span class="c1"># Return a wrapper function that can accept both positional and keyword arguments</span>
+    <span class="k">return</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="o">**</span><span class="n">loss_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;params&quot;</span><span class="p">,</span> <span class="p">{}),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
+    <span class="p">)</span>
+
+
+<div class="viewcode-block" id="Problem"><a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Problem</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Enhanced bi-level optimization problem class supporting flexible loss functions and operation configurations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">loss_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the Problem instance.</span>
+
+<span class="sd">        :param config: Configuration dictionary for the optimization setup.</span>
+<span class="sd">            - &quot;fo_op&quot;: First Order Gradient based Method (optional), e.g., [&quot;VSO&quot;], [&quot;VFO&quot;], [&quot;MESO&quot;].</span>
+<span class="sd">            - &quot;gm_op&quot;: List of gradient mapping operations (optional), e.g., [&quot;NGD&quot;], [&quot;NGD&quot;, &quot;GDA&quot;], [&quot;NGD&quot;, &quot;GDA&quot;, &quot;DI&quot;].</span>
+<span class="sd">            - &quot;na_op&quot;: Hyper-optimization method (optional), e.g., [&quot;RAD&quot;], [&quot;RAD&quot;, &quot;PTT&quot;], [&quot;IAD&quot;, &quot;NS&quot;, &quot;PTT&quot;].</span>
+<span class="sd">            - &quot;lower_level_loss&quot;: Configuration for the lower-level loss function based on the json file configuration.</span>
+<span class="sd">            - &quot;upper_level_loss&quot;: Configuration for the upper-level loss function based on the json file configuration.</span>
+<span class="sd">            - &quot;lower_level_model&quot;: The lower-level model to be optimized.</span>
+<span class="sd">            - &quot;upper_level_model&quot;: The upper-level model to be optimized.</span>
+<span class="sd">            - &quot;lower_level_var&quot;: Variables in the lower-level model.</span>
+<span class="sd">            - &quot;upper_level_var&quot;: Variables in the upper-level model.</span>
+<span class="sd">            - &quot;device&quot;: Device target (MindSpore uses context internally; kept for compatibility).</span>
+<span class="sd">            - &quot;fogo_batch_input&quot;: bool, align with torch version for batch-wise FOGO optimize.</span>
+<span class="sd">            - &quot;return_grad&quot;: bool, if True, return grads of upper vars instead of stepping optimizer.</span>
+<span class="sd">            - &quot;loss_log_path&quot;: str, path to save json losses and curve.</span>
+<span class="sd">        :type config: Dict[str, Any]</span>
+
+<span class="sd">        :param loss_config: Loss function configuration dictionary.</span>
+<span class="sd">            - &quot;lower_level_loss&quot;: Configuration for the lower-level loss function.</span>
+<span class="sd">            - &quot;upper_level_loss&quot;: Configuration for the upper-level loss function.</span>
+<span class="sd">            - &quot;gda_loss&quot;: Configuration for GDA loss function (optional).</span>
+<span class="sd">        :type loss_config: Dict[str, Any]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fo_op</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;fo_op&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ll_model</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;lower_level_model&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ul_model</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;upper_level_model&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ll_var</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;lower_level_var&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ul_var</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;upper_level_var&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span> <span class="o">=</span> <span class="n">config</span>
+
+        <span class="c1"># optional: dynamic ops specific loss</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">[</span><span class="s2">&quot;gda_loss&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">_load_loss_function</span><span class="p">(</span><span class="n">loss_config</span><span class="p">[</span><span class="s2">&quot;gda_loss&quot;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;gm_op&quot;</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">and</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;gm_op&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="s2">&quot;GDA&quot;</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;gm_op&quot;</span><span class="p">])</span>
+            <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ll_loss</span> <span class="o">=</span> <span class="n">_load_loss_function</span><span class="p">(</span><span class="n">loss_config</span><span class="p">[</span><span class="s2">&quot;lower_level_loss&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ul_loss</span> <span class="o">=</span> <span class="n">_load_loss_function</span><span class="p">(</span><span class="n">loss_config</span><span class="p">[</span><span class="s2">&quot;upper_level_loss&quot;</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ll_solver</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ul_solver</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Note: In MindSpore, Optimizer.step() is usually bound to a TrainingCell. Keep references if needed by solver.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lower_opt</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lower_level_opt&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_upper_opt</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;upper_level_opt&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lower_init_opt</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fo_op_solver</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lower_loop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lower_iters&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_results_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_device</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">get_context</span><span class="p">(</span><span class="s2">&quot;device_target&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loss_log_path</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;loss_log_path&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># feature flags aligned with torch version</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fogo_batch_input</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fogo_batch_input&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_return_grad</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;return_grad&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+
+<div class="viewcode-block" id="Problem.build_ll_solver"><a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.build_ll_solver">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">build_ll_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Configure the lower-level solver.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">[</span><span class="s2">&quot;ll_opt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lower_opt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lower_loop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lower_iters&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="c1"># For MindSpore path we currently support FOGO-family via registered op</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fo_op_solver</span> <span class="o">=</span> <span class="n">get_registered_operation</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">[</span><span class="s2">&quot;fo_op&quot;</span><span class="p">]</span>
+        <span class="p">)(</span>
+            <span class="n">ll_objective</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ll_loss</span><span class="p">,</span>
+            <span class="n">lower_loop</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_lower_loop</span><span class="p">,</span>
+            <span class="n">ul_model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ul_model</span><span class="p">,</span>
+            <span class="n">ul_objective</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ul_loss</span><span class="p">,</span>
+            <span class="n">ll_model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ll_model</span><span class="p">,</span>
+            <span class="n">ll_var</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ll_var</span><span class="p">,</span>
+            <span class="n">ul_var</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ul_var</span><span class="p">,</span>
+            <span class="n">solver_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="Problem.build_ul_solver"><a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.build_ul_solver">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">build_ul_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Placeholder for UL solver configuration (FOGO manages updates internally in MindSpore setting).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">[</span><span class="s2">&quot;fo_op&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="p">),</span> <span class="s2">&quot;Choose FOGO based methods from [&#39;VSO&#39;,&#39;VFO&#39;,&#39;MESO&#39;] or set &#39;gm_ol&#39; and &#39;hyper_ol&#39; properly.&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_current_losses</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ll_fd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
+        <span class="n">ul_fd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]:</span>
+        <span class="n">ll_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ll_loss</span><span class="p">(</span><span class="n">ll_fd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ul_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ll_model</span><span class="p">)</span>
+        <span class="n">ul_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ul_loss</span><span class="p">(</span><span class="n">ul_fd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ul_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ll_model</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ll_loss</span><span class="p">,</span> <span class="n">ul_loss</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_ul_grads</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ul_fd</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
+        <span class="n">ll_model</span><span class="p">,</span>
+        <span class="n">ul_model</span><span class="p">,</span>
+        <span class="n">ul_vars</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tensor</span><span class="p">],</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return gradients of upper-level loss w.r.t. upper-level variables.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># build a zero-arg closure to keep signatures clean for ms.grad</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">ul_loss_closure</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ul_loss</span><span class="p">(</span><span class="n">ul_fd</span><span class="p">,</span> <span class="n">ul_model</span><span class="p">,</span> <span class="n">ll_model</span><span class="p">)</span>
+
+        <span class="n">grad_fn</span> <span class="o">=</span> <span class="n">grad</span><span class="p">(</span><span class="n">ul_loss_closure</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">ul_vars</span><span class="p">))</span>
+        <span class="n">grads</span> <span class="o">=</span> <span class="n">grad_fn</span><span class="p">()</span>
+        <span class="c1"># mindspore.grad returns a structure matching weights; normalize to list</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">grads</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">grads</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">grads</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Problem.run_iter"><a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.run_iter">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">run_iter</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ll_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
+        <span class="n">ul_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
+        <span class="n">current_iter</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run a single iteration of the bi-level optimization process.</span>
+
+<span class="sd">        :returns: (results, run_time)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_log_results_dict</span><span class="p">[</span><span class="s2">&quot;upper_loss&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+
+        <span class="c1"># --- FOGO path (MindSpore registered op handles updates internally) ---</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fo_op_solver</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fogo_batch_input</span><span class="p">:</span>
+                <span class="c1"># batch-wise optimize (zip two lists)</span>
+                <span class="k">for</span> <span class="n">batch_ll_fd</span><span class="p">,</span> <span class="n">batch_ul_fd</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="n">ul_feed_dict</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_log_results_dict</span><span class="p">[</span><span class="s2">&quot;upper_loss&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_fo_op_solver</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">batch_ll_fd</span><span class="p">,</span> <span class="n">batch_ul_fd</span><span class="p">,</span> <span class="n">current_iter</span><span class="p">)</span>
+                    <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_log_results_dict</span><span class="p">[</span><span class="s2">&quot;upper_loss&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_fo_op_solver</span><span class="o">.</span><span class="n">optimize</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="n">ul_feed_dict</span><span class="p">,</span> <span class="n">current_iter</span><span class="p">)</span>
+                <span class="p">)</span>
+        <span class="n">run_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+        <span class="c1"># normalize fd for loss/grad logging</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">ll_fd</span> <span class="o">=</span> <span class="n">ll_feed_dict</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">ul_fd</span> <span class="o">=</span> <span class="n">ul_feed_dict</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ll_fd</span> <span class="o">=</span> <span class="n">ll_feed_dict</span>
+            <span class="n">ul_fd</span> <span class="o">=</span> <span class="n">ul_feed_dict</span>
+
+        <span class="c1"># --- return_grad behavior aligned with torch version ---</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_return_grad</span><span class="p">:</span>
+            <span class="c1"># compute current losses (for logging)</span>
+            <span class="n">ll_loss</span><span class="p">,</span> <span class="n">ul_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_current_losses</span><span class="p">(</span><span class="n">ll_fd</span><span class="p">,</span> <span class="n">ul_fd</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ll_loss: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">ll_loss</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">())</span><span class="si">}</span><span class="s2">  ul_loss: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">ul_loss</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">save_losses</span><span class="p">(</span><span class="n">current_iter</span><span class="o">=</span><span class="n">current_iter</span><span class="p">,</span> <span class="n">ll_loss</span><span class="o">=</span><span class="n">ll_loss</span><span class="p">,</span> <span class="n">ul_loss</span><span class="o">=</span><span class="n">ul_loss</span><span class="p">)</span>
+
+            <span class="c1"># return grads of UL variables</span>
+            <span class="n">ul_grads</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_ul_grads</span><span class="p">(</span>
+                <span class="n">ul_fd</span><span class="o">=</span><span class="n">ul_fd</span><span class="p">,</span>
+                <span class="n">ll_model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ll_model</span><span class="p">,</span>
+                <span class="n">ul_model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ul_model</span><span class="p">,</span>
+                <span class="n">ul_vars</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_ul_var</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="n">ul_grads</span><span class="p">,</span> <span class="n">run_time</span>
+
+        <span class="c1"># --- default: record losses (solver internally updated params if needed) ---</span>
+        <span class="n">ll_loss</span><span class="p">,</span> <span class="n">ul_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_current_losses</span><span class="p">(</span><span class="n">ll_fd</span><span class="p">,</span> <span class="n">ul_fd</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ll_loss: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">ll_loss</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">())</span><span class="si">}</span><span class="s2">  ul_loss: </span><span class="si">{</span><span class="nb">float</span><span class="p">(</span><span class="n">ul_loss</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_losses</span><span class="p">(</span><span class="n">current_iter</span><span class="o">=</span><span class="n">current_iter</span><span class="p">,</span> <span class="n">ll_loss</span><span class="o">=</span><span class="n">ll_loss</span><span class="p">,</span> <span class="n">ul_loss</span><span class="o">=</span><span class="n">ul_loss</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_results_dict</span><span class="p">[</span><span class="s2">&quot;upper_loss&quot;</span><span class="p">],</span> <span class="n">run_time</span></div>
+
+<div class="viewcode-block" id="Problem.plot_losses"><a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.plot_losses">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_losses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">iters</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;iter&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">]</span>
+        <span class="n">ll_losses</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;ll_loss&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">]</span>
+        <span class="n">ul_losses</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;ul_loss&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">]</span>
+
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+        <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">iters</span><span class="p">,</span> <span class="n">ll_losses</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Lower-level Loss&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Iteration&quot;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Loss&quot;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Lower-level Loss&quot;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">iters</span><span class="p">,</span> <span class="n">ul_losses</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Upper-level Loss&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Iteration&quot;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Loss&quot;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Upper-level Loss&quot;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">save_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_log_path</span><span class="p">),</span> <span class="s2">&quot;loss_curve.png&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Problem.save_losses"><a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.save_losses">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">save_losses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_iter</span><span class="p">,</span> <span class="n">ll_loss</span><span class="p">,</span> <span class="n">ul_loss</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save the losses to a JSON file and update the loss history.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># MindSpore Tensor -&gt; python float</span>
+        <span class="n">ll_val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ll_loss</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">())</span>
+        <span class="n">ul_val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">ul_loss</span><span class="o">.</span><span class="n">asnumpy</span><span class="p">())</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;iter&quot;</span><span class="p">:</span> <span class="n">current_iter</span><span class="p">,</span>
+            <span class="s2">&quot;ll_loss&quot;</span><span class="p">:</span> <span class="n">ll_val</span><span class="p">,</span>
+            <span class="s2">&quot;ul_loss&quot;</span><span class="p">:</span> <span class="n">ul_val</span>
+        <span class="p">})</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_log_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yaohua Liu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

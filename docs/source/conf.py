@@ -15,7 +15,7 @@ from pathlib import Path
 CUR = Path(__file__).resolve()
 PROJECT_ROOT = CUR.parents[2]
 sys.path.insert(0, str(PROJECT_ROOT))
-# 将项目的根目录添加到 sys.path
+#  sys.path
 sys.path.insert(0, os.path.abspath("../../"))
 
 
@@ -32,12 +32,12 @@ release = "0.0.1"
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-# Sphinx 配置
+# Sphinx
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx.ext.napoleon",  # 支持 Google 和 NumPy 风格的 docstring
-    "sphinx.ext.viewcode",  # 在文档中生成代码链接
-    "myst_parser",  # 支持 Markdown (可选)
+    "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
+    "myst_parser",
 ]
 
 
@@ -47,7 +47,7 @@ extensions = [
 html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
 html_css_files = [
-    "custom.css",  # 引入自定义 CSS
+    "custom.css",
 ]
 # html_theme = 'alabaster'
 
