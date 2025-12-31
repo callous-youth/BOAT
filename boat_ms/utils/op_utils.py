@@ -1,5 +1,6 @@
 from typing import List, Callable
 from mindspore import ops
+import mindspore as ms
 
 
 def l2_reg(params):
@@ -145,3 +146,38 @@ def copy_parameter_from_list(model, param_list):
     """
     for param, new_param in zip(model.trainable_params(), param_list):
         param.set_data(new_param)
+
+def grad_unused_zero(output, inputs, grad_outputs=None):
+    """
+    Compute gradients for the given inputs, substituting zeros for unused gradients.
+    (MindSpore version)
+
+    Parameters
+    ----------
+    output : mindspore.Tensor
+        The scalar output tensor for which gradients are computed.
+
+    inputs : List[mindspore.Tensor]
+        List of input tensors with respect to which gradients are computed.
+
+    grad_outputs : mindspore.Tensor, optional
+        Sensitivity tensor (same shape as output). Default = ones_like(output).
+
+    Returns
+    -------
+    List[mindspore.Tensor]
+        Gradients for the inputs, with unused gradients replaced by zeros.
+    """
+    if grad_outputs is None:
+        grad_outputs = ops.ones_like(output)
+
+    grad_fn = ops.GradOperation(get_by_list=True, sens_param=True)
+    grads = grad_fn(lambda *x: output, inputs)(*inputs, grad_outputs)
+
+    safe_grads = []
+    for g, v in zip(grads, inputs):
+        if g is None:
+            safe_grads.append(ms.numpy.zeros_like(v))
+        else:
+            safe_grads.append(g)
+    return safe_grads

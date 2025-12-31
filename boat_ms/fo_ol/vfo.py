@@ -4,13 +4,13 @@ from typing import Dict, Any, Callable, List
 import copy
 
 from boat_ms.operation_registry import register_class
-from boat_ms.dynamic_ol.dynamical_system import DynamicalSystem
+from boat_ms.gm_ol.dynamical_system import DynamicalSystem
 
 
 @register_class
-class VFM(DynamicalSystem):
+class VFO(DynamicalSystem):
     """
-    Implements the optimization procedure of Value-function based First-Order Method (VFM) [1].
+    Implements the optimization procedure of Value-function based First-Order Method (VFO) [1].
 
     Parameters
     ----------
@@ -32,7 +32,7 @@ class VFM(DynamicalSystem):
         A dictionary containing configurations for the solver. Expected keys include:
 
         - "lower_level_opt" (mindspore.nn.optim.Optimizer): Optimizer for the lower-level model.
-        - "VFM" (Dict): Configuration for the VFM algorithm:
+        - "VFO" (Dict): Configuration for the VFO algorithm:
             - "y_hat_lr" (float): Learning rate for optimizing the surrogate variable `y_hat`.
             - "eta" (float): Step size for value-function updates.
             - "u1" (float): Hyperparameter controlling the penalty in the value function.
@@ -54,15 +54,16 @@ class VFM(DynamicalSystem):
         ul_var: List,
         solver_config: Dict[str, Any],
     ):
-        super(VFM, self).__init__(
+        super(VFO, self).__init__(
             ll_objective, ul_objective, lower_loop, ul_model, ll_model, solver_config
         )
         self.ll_opt = solver_config["lower_level_opt"]
+        self.ul_opt = solver_config["upper_level_opt"]
         self.ll_var = ll_var
         self.ul_var = ul_var
-        self.y_hat_lr = float(solver_config["VFM"]["y_hat_lr"])
-        self.eta = solver_config["VFM"]["eta"]
-        self.u1 = solver_config["VFM"]["u1"]
+        self.y_hat_lr = float(solver_config["VFO"]["y_hat_lr"])
+        self.eta = solver_config["VFO"]["eta"]
+        self.u1 = solver_config["VFO"]["u1"]
         self.device = solver_config["device"]
 
     def optimize(self, ll_feed_dict: Dict, ul_feed_dict: Dict, current_iter: int):

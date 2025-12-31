@@ -5,13 +5,13 @@ from typing import Dict, Any, Callable, List
 import copy
 
 from boat_ms.operation_registry import register_class
-from boat_ms.dynamic_ol.dynamical_system import DynamicalSystem
+from boat_ms.gm_ol.dynamical_system import DynamicalSystem
 
 
 @register_class
-class MESM(DynamicalSystem):
+class MESO(DynamicalSystem):
     """
-    Implements the optimization procedure of Moreau Envelope based Single-loop Method (MESM) [1].
+    Implements the optimization procedure of Moreau Envelope based Single-loop Method (MESO) [1].
 
     Parameters
     ----------
@@ -33,9 +33,9 @@ class MESM(DynamicalSystem):
         A dictionary containing solver configurations. Expected keys include:
 
         - "lower_level_opt": The optimizer for the lower-level model.
-        - "MESM" (Dict): A dictionary containing the following keys:
-            - "eta": Learning rate for the MESM optimization procedure.
-            - "gamma_1": Regularization parameter for the MESM algorithm.
+        - "MESO" (Dict): A dictionary containing the following keys:
+            - "eta": Learning rate for the MESO optimization procedure.
+            - "gamma_1": Regularization parameter for the MESO algorithm.
             - "c0": Initial constant for the update steps.
             - "y_hat_lr": Learning rate for optimizing the surrogate variable `y_hat`.
 
@@ -55,20 +55,22 @@ class MESM(DynamicalSystem):
         ul_var: List,
         solver_config: Dict[str, Any],
     ):
-        super(MESM, self).__init__(
+        super(MESO, self).__init__(
             ll_objective, ul_objective, lower_loop, ul_model, ll_model, solver_config
         )
+
         self.ll_opt = solver_config["lower_level_opt"]
+        self.ul_opt = solver_config["upper_level_opt"]
         self.ll_var = ll_var
         self.ul_var = ul_var
         self.y_loop = lower_loop
-        self.eta = solver_config["MESM"]["eta"]
-        self.gamma_1 = solver_config["MESM"]["gamma_1"]
-        self.c0 = solver_config["MESM"]["c0"]
+        self.eta = solver_config["MESO"]["eta"]
+        self.gamma_1 = solver_config["MESO"]["gamma_1"]
+        self.c0 = solver_config["MESO"]["c0"]
         self.y_hat = copy.deepcopy(self.ll_model)
         self.y_hat_opt = nn.SGD(
             self.y_hat.trainable_params(),
-            learning_rate=solver_config["MESM"]["y_hat_lr"],
+            learning_rate=solver_config["MESO"]["y_hat_lr"],
             momentum=0.9,
         )
 
