@@ -31,7 +31,7 @@ html_logo = "_static/logo.jpg"
 
 
 project = "BOAT-Jittor"
-copyright = "2025, Yaohua Liu"
+copyright = "2024, Yaohua Liu"
 author = "Yaohua Liu"
 release = "0.0.1"
 
