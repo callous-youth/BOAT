@@ -173,7 +173,7 @@ b_optimizer.build_ul_solver()
 
 
 ---
-## Step 8: BOAT Problem Construction
+## Step 8: Optimization Loop
 
 ```python
 ul_feed_dict = {"data": trainset[0].to(device), "target": trainset[1].to(device)}

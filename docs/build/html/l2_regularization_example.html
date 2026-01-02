@@ -76,7 +76,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#step-6-optimizer-setup">Step 6: Optimizer Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-7-boat-problem-construction">Step 7: BOAT Problem Construction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-8-boat-problem-construction">Step 8: BOAT Problem Construction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-8-optimization-loop">Step 8: Optimization Loop</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="meta_learning_example.html">Meta-Learning</a></li>
@@ -291,8 +291,8 @@
 </ul>
 </section>
 <hr class="docutils" />
-<section id="step-8-boat-problem-construction">
-<h2>Step 8: BOAT Problem Construction<a class="headerlink" href="#step-8-boat-problem-construction" title="Permalink to this heading"></a></h2>
+<section id="step-8-optimization-loop">
+<h2>Step 8: Optimization Loop<a class="headerlink" href="#step-8-optimization-loop" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ul_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">trainset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">trainset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)}</span>
 <span class="n">ll_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">valset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">valset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)}</span>
 
