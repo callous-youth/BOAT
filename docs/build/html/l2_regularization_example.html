@@ -53,32 +53,44 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">L2 Regularization with Jittor</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#step-by-step-explanation">Step-by-Step Explanation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-1-configuration-loading">Step 1: Configuration Loading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-imports-path-setup">Step 1: Imports &amp; Path Setup</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#explanation">Explanation:</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#step-2-data-preparation">Step 2: Data Preparation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-configuration-loading">Step 2: Configuration Loading</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Explanation:</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#step-3-model-initialization">Step 3: Model Initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-data-preparation">Step 3: Data Preparation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">Explanation:</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#step-4-optimizer-strategy-setup">Step 4: Optimizer &amp; Strategy Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-evaluation-helper">Step 4: Evaluation Helper</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id3">Explanation:</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#step-5-bi-level-optimization-setup">Step 5: Bi-Level Optimization Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-main-function-argument-parsing">Step 5: Main Function &amp; Argument Parsing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id4">Explanation:</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#step-6-optimization-loop">Step 6: Optimization Loop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-6-data-setting-and-model-initialization">Step 6: Data Setting and Model Initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id5">Explanation:</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#step-7-evaluation">Step 7: Evaluation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-7-optimizer-strategy-setup">Step 7: Optimizer &amp; Strategy Setup</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id6">Explanation:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#step-8-bi-level-optimization-setup">Step 8: Bi-Level Optimization Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Explanation:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#step-9-optimization-loop">Step 9: Optimization Loop</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Explanation:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#step-10-entry-point">Step 10: Entry Point</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Explanation:</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-run">How to Run</a></li>
@@ -112,12 +124,38 @@
              
   <section id="l2-regularization-with-jittor">
 <h1>L2 Regularization with Jittor<a class="headerlink" href="#l2-regularization-with-jittor" title="Permalink to this heading"></a></h1>
-<p>This example demonstrates how to use the BOAT library with the Jittor framework to perform bi-level optimization with L2 regularization. The example includes sparse data processing, model initialization, and a configurable optimization process.</p>
+<p>This runnable example shows how to use the BOAT library with the Jittor backend to solve a bi-level optimization problem with L2 regularization, covering end-to-end data loading (sparse-to-dense conversion), model/optimizer setup, solver construction, and iterative training with evaluation.</p>
 <section id="step-by-step-explanation">
 <h2>Step-by-Step Explanation<a class="headerlink" href="#step-by-step-explanation" title="Permalink to this heading"></a></h2>
 </section>
-<section id="step-1-configuration-loading">
-<h2>Step 1: Configuration Loading<a class="headerlink" href="#step-1-configuration-loading" title="Permalink to this heading"></a></h2>
+<section id="step-1-imports-path-setup">
+<h2>Step 1: Imports &amp; Path Setup<a class="headerlink" href="#step-1-imports-path-setup" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;../..&quot;</span><span class="p">)))</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">jittor</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">jit</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">boat_jit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">boat</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_20newsgroups_vectorized</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+</pre></div>
+</div>
+<section id="explanation">
+<h3>Explanation:<a class="headerlink" href="#explanation" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Imports Jittor, BOAT-JIT, and scikit-learn utilities for dataset loading and splitting.</p></li>
+</ul>
+</section>
+</section>
+<section id="step-2-configuration-loading">
+<h2>Step 2: Configuration Loading<a class="headerlink" href="#step-2-configuration-loading" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">base_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_folder</span><span class="p">,</span> <span class="s2">&quot;configs_jit/boat_config_l2.json&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -127,16 +165,16 @@
     <span class="n">loss_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 </pre></div>
 </div>
-<section id="explanation">
-<h3>Explanation:<a class="headerlink" href="#explanation" title="Permalink to this heading"></a></h3>
+<section id="id1">
+<h3>Explanation:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">boat_config_l2.json</span></code></strong>: Contains configuration for the bi-level optimization problem.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">loss_config_l2.json</span></code></strong>: Defines the loss functions for both upper-level and lower-level models.</p></li>
 </ul>
 </section>
 </section>
-<section id="step-2-data-preparation">
-<h2>Step 2: Data Preparation<a class="headerlink" href="#step-2-data-preparation" title="Permalink to this heading"></a></h2>
+<section id="step-3-data-preparation">
+<h2>Step 3: Data Preparation<a class="headerlink" href="#step-3-data-preparation" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">max_samples</span><span class="o">=</span><span class="mi">2000</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Load and process data for Jittor, with optional downsampling.</span>
@@ -192,17 +230,112 @@
 
 </pre></div>
 </div>
-<section id="id1">
-<h3>Explanation:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<section id="id2">
+<h3>Explanation:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">get_data</span></code> function loads the dataset, processes it to Jittor tensors, and splits it into training, validation, test, and evaluation sets.</p></li>
 <li><p>Processed data is saved to a file for future use.</p></li>
 </ul>
 </section>
 </section>
-<section id="step-3-model-initialization">
-<h2>Step 3: Model Initialization<a class="headerlink" href="#step-3-model-initialization" title="Permalink to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">UpperModel</span><span class="p">(</span><span class="n">jit</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<section id="step-4-evaluation-helper">
+<h2>Step 4: Evaluation Helper<a class="headerlink" href="#step-4-evaluation-helper" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">testset</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Evaluate the performance of the model on the test set.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        x (jittor.Var): Model weights (used in matrix multiply).</span>
+<span class="sd">        w (jittor.Var): Upper-level variables (kept for interface consistency).</span>
+<span class="sd">        testset (tuple): Tuple containing test_x and test_y.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: Loss and accuracy of the model on the test set.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">jit</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">testset</span>
+
+        <span class="c1"># logits</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">test_x</span> <span class="o">@</span> <span class="n">x</span>
+
+        <span class="c1"># to numpy for accuracy</span>
+        <span class="n">y_np</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="n">test_y_np</span> <span class="o">=</span> <span class="n">test_y</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">jit</span><span class="o">.</span><span class="n">Var</span><span class="p">)</span> <span class="k">else</span> <span class="n">test_y</span>
+
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">cross_entropy_loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">jit</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_y_np</span><span class="p">))</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="n">predicted</span> <span class="o">=</span> <span class="n">y_np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">predicted</span> <span class="o">==</span> <span class="n">test_y_np</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_y_np</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">loss</span><span class="p">,</span> <span class="n">acc</span>
+
+</pre></div>
+</div>
+<section id="id3">
+<h3>Explanation:<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Computes cross-entropy loss using Jittor.</p></li>
+<li><p>Computes accuracy using NumPy for simplicity.</p></li>
+</ul>
+</section>
+</section>
+<section id="step-5-main-function-argument-parsing">
+<h2>Step 5: Main Function &amp; Argument Parsing<a class="headerlink" href="#step-5-main-function-argument-parsing" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_args</span><span class="p">():</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--generate_data&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--pretrain&quot;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s2">&quot;store_true&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--epochs&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--iterations&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--data_path&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;./data&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;where to save data&quot;</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--model_path&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;./save_l2reg&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;where to save model&quot;</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--x_lr&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--xhat_lr&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--w_lr&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--w_momentum&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--x_momentum&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--K&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--u1&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--BVFSM_decay&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="s2">&quot;power2&quot;</span><span class="p">])</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--seed&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+            <span class="s2">&quot;--alg&quot;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span>
+            <span class="n">default</span><span class="o">=</span><span class="s2">&quot;BOME&quot;</span><span class="p">,</span>
+            <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;BOME&quot;</span><span class="p">,</span> <span class="s2">&quot;BSG_1&quot;</span><span class="p">,</span> <span class="s2">&quot;penalty&quot;</span><span class="p">,</span> <span class="s2">&quot;AID_CG&quot;</span><span class="p">,</span> <span class="s2">&quot;AID_FP&quot;</span><span class="p">,</span> <span class="s2">&quot;ITD&quot;</span><span class="p">,</span> <span class="s2">&quot;BVFSM&quot;</span><span class="p">,</span>
+                     <span class="s2">&quot;baseline&quot;</span><span class="p">,</span> <span class="s2">&quot;VRBO&quot;</span><span class="p">,</span> <span class="s2">&quot;reverse&quot;</span><span class="p">,</span> <span class="s2">&quot;stocBiO&quot;</span><span class="p">,</span> <span class="s2">&quot;MRBO&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--gm_op&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;DM,NGD&quot;</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--na_op&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;RAD&quot;</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--fo_op&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">seed</span><span class="p">)</span>
+        <span class="n">jit</span><span class="o">.</span><span class="n">set_global_seed</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">seed</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">args</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parse_args</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<section id="id4">
+<h3>Explanation:<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Defines CLI arguments controlling dataset path, strategies (<code class="docutils literal notranslate"><span class="pre">gm_op</span></code>, <code class="docutils literal notranslate"><span class="pre">na_op</span></code>) or <code class="docutils literal notranslate"><span class="pre">fo_op</span></code>, and seeds.</p></li>
+</ul>
+</section>
+</section>
+<section id="step-6-data-setting-and-model-initialization">
+<h2>Step 6: Data Setting and Model Initialization<a class="headerlink" href="#step-6-data-setting-and-model-initialization" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">trainset</span><span class="p">,</span> <span class="n">valset</span><span class="p">,</span> <span class="n">testset</span><span class="p">,</span> <span class="n">tevalset</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+<span class="n">jit</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">trainset</span><span class="p">,</span> <span class="n">valset</span><span class="p">,</span> <span class="n">testset</span><span class="p">,</span> <span class="n">tevalset</span><span class="p">),</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">data_path</span><span class="p">,</span> <span class="s2">&quot;l2reg.pkl&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[info] successfully generated data to </span><span class="si">{</span><span class="n">args</span><span class="o">.</span><span class="n">data_path</span><span class="si">}</span><span class="s2">/l2reg.pkl&quot;</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UpperModel</span><span class="p">(</span><span class="n">jit</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_feats</span><span class="p">):</span>
         <span class="c1"># Initialize learnable regularization parameters</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="n">n_feats</span><span class="p">],</span> <span class="s2">&quot;float32&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
@@ -225,16 +358,17 @@
 <span class="n">lower_model</span> <span class="o">=</span> <span class="n">LowerModel</span><span class="p">(</span><span class="n">trainset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">trainset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<section id="id2">
-<h3>Explanation:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<section id="id5">
+<h3>Explanation:<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <ul class="simple">
+<li><p>Saves the processed dataset for reuse as <code class="docutils literal notranslate"><span class="pre">l2reg.pkl</span></code>.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">UpperModel</span></code></strong>: Represents the upper-level model with a single learnable parameter.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">LowerModel</span></code></strong>: Represents the lower-level model initialized using the Kaiming initialization strategy.</p></li>
 </ul>
 </section>
 </section>
-<section id="step-4-optimizer-strategy-setup">
-<h2>Step 4: Optimizer &amp; Strategy Setup<a class="headerlink" href="#step-4-optimizer-strategy-setup" title="Permalink to this heading"></a></h2>
+<section id="step-7-optimizer-strategy-setup">
+<h2>Step 7: Optimizer &amp; Strategy Setup<a class="headerlink" href="#step-7-optimizer-strategy-setup" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">upper_opt</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">upper_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="n">lower_opt</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">lower_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 
@@ -243,8 +377,8 @@
 <span class="n">na_op</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">na_op</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">na_op</span> <span class="k">else</span> <span class="kc">None</span>
 </pre></div>
 </div>
-<section id="id3">
-<h3>Explanation:<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<section id="id6">
+<h3>Explanation:<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Adam optimizer</strong>: Used for the upper-level model to update its parameters.</p></li>
 <li><p><strong>SGD optimizer</strong>: Applied to the lower-level model for efficient gradient updates.</p></li>
@@ -252,8 +386,8 @@
 </ul>
 </section>
 </section>
-<section id="step-5-bi-level-optimization-setup">
-<h2>Step 5: Bi-Level Optimization Setup<a class="headerlink" href="#step-5-bi-level-optimization-setup" title="Permalink to this heading"></a></h2>
+<section id="step-8-bi-level-optimization-setup">
+<h2>Step 8: Bi-Level Optimization Setup<a class="headerlink" href="#step-8-bi-level-optimization-setup" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure BOAT problem</span>
 <span class="k">if</span> <span class="n">na_op</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">if</span> <span class="s2">&quot;RGT&quot;</span> <span class="ow">in</span> <span class="n">na_op</span><span class="p">:</span>
@@ -273,8 +407,8 @@
 <span class="n">b_optimizer</span><span class="o">.</span><span class="n">build_ul_solver</span><span class="p">()</span>
 </pre></div>
 </div>
-<section id="id4">
-<h3>Explanation:<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<section id="id7">
+<h3>Explanation:<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>Configures the <code class="docutils literal notranslate"><span class="pre">boat_config</span></code> with models, optimizers, and variables for both levels.</p></li>
 <li><p>Instantiates the <code class="docutils literal notranslate"><span class="pre">boat.Problem</span></code> class and builds the necessary lower-level and upper-level solvers.</p></li>
@@ -282,8 +416,8 @@
 </section>
 </section>
 <hr class="docutils" />
-<section id="step-6-optimization-loop">
-<h2>Step 6: Optimization Loop<a class="headerlink" href="#step-6-optimization-loop" title="Permalink to this heading"></a></h2>
+<section id="step-9-optimization-loop">
+<h2>Step 9: Optimization Loop<a class="headerlink" href="#step-9-optimization-loop" title="Permalink to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ul_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">trainset</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">trainset</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
 <span class="n">ll_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">valset</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">valset</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
 
@@ -306,8 +440,8 @@
     <span class="p">)</span>
 </pre></div>
 </div>
-<section id="id5">
-<h3>Explanation:<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<section id="id8">
+<h3>Explanation:<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">evaluate</span></code> function calculates the model’s loss and accuracy on the test dataset.</p></li>
 <li><p>Outputs the test performance metrics for monitoring optimization progress.</p></li>
@@ -316,49 +450,17 @@
 </section>
 </section>
 <hr class="docutils" />
-<section id="step-7-evaluation">
-<h2>Step 7: Evaluation<a class="headerlink" href="#step-7-evaluation" title="Permalink to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">testset</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Evaluate the performance of the model on the test set.</span>
+<section id="step-10-entry-point">
+<h2>Step 10: Entry Point<a class="headerlink" href="#step-10-entry-point" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        x (jittor.Var): Input data tensor.</span>
-<span class="sd">        w (jittor.Var): Model weights.</span>
-<span class="sd">        testset (tuple): Tuple containing test_x and test_y.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        tuple: Loss and accuracy of the model on the test set.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="n">jit</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>  <span class="c1"># Disable gradient calculation</span>
-        <span class="n">test_x</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">testset</span>  <span class="c1"># Unpack the test set</span>
-
-        <span class="c1"># Perform matrix multiplication</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">test_x</span> <span class="o">@</span> <span class="n">x</span>  <span class="c1"># Jittor operation</span>
-
-        <span class="c1"># Convert to NumPy for simplicity</span>
-        <span class="n">y_np</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-        <span class="n">test_y_np</span> <span class="o">=</span> <span class="n">test_y</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">jit</span><span class="o">.</span><span class="n">Var</span><span class="p">)</span> <span class="k">else</span> <span class="n">test_y</span>
-
-        <span class="c1"># Calculate cross-entropy loss</span>
-        <span class="n">loss</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">cross_entropy_loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">jit</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_y_np</span><span class="p">))</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
-
-        <span class="c1"># Calculate accuracy using NumPy</span>
-        <span class="n">predicted</span> <span class="o">=</span> <span class="n">y_np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">acc</span> <span class="o">=</span> <span class="p">(</span><span class="n">predicted</span> <span class="o">==</span> <span class="n">test_y_np</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_y_np</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">loss</span><span class="p">,</span> <span class="n">acc</span>
-
-<span class="c1"># Inside the loop</span>
-<span class="k">if</span> <span class="n">x_itr</span> <span class="o">%</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">lower_model</span><span class="p">(),</span> <span class="n">upper_model</span><span class="p">(),</span> <span class="n">testset</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[info] epoch </span><span class="si">{</span><span class="n">x_itr</span><span class="si">:</span><span class="s2">5d</span><span class="si">}</span><span class="s2"> te loss </span><span class="si">{</span><span class="n">test_loss</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> te acc </span><span class="si">{</span><span class="n">test_acc</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ...&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<section id="id6">
-<h3>Explanation:<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<section id="id9">
+<h3>Explanation:<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
 <ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">evaluate</span></code> function calculates the model’s loss and accuracy on the test dataset.</p></li>
-<li><p>Outputs the test performance metrics for monitoring optimization progress.</p></li>
+<li><p>Standard Python entry point that makes the script runnable directly.</p></li>
 </ul>
 </section>
 </section>

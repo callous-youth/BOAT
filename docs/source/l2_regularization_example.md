@@ -1,10 +1,33 @@
 # L2 Regularization with Jittor
 
-This example demonstrates how to use the BOAT library with the Jittor framework to perform bi-level optimization with L2 regularization. The example includes sparse data processing, model initialization, and a configurable optimization process.
+This runnable example shows how to use the BOAT library with the Jittor backend to solve a bi-level optimization problem with L2 regularization, covering end-to-end data loading (sparse-to-dense conversion), model/optimizer setup, solver construction, and iterative training with evaluation.
 
 ## Step-by-Step Explanation
 
-## Step 1: Configuration Loading
+## Step 1: Imports & Path Setup
+
+```python
+import argparse
+import numpy as np
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
+
+import jittor as jit
+import boat_jit as boat
+
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import fetch_20newsgroups_vectorized
+
+import json
+
+```
+### Explanation:
+- Imports Jittor, BOAT-JIT, and scikit-learn utilities for dataset loading and splitting.
+
+
+## Step 2: Configuration Loading
 
 ```python
 base_folder = os.path.dirname(os.path.abspath(__file__))
@@ -22,7 +45,7 @@ with open(os.path.join(base_folder, "configs_jit/loss_config_l2.json"), "r") as 
 
 
 
-## Step 2: Data Preparation
+## Step 3: Data Preparation
 
 ```python
 def get_data(args, max_samples=2000):
@@ -84,11 +107,96 @@ def get_data(args, max_samples=2000):
 - The `get_data` function loads the dataset, processes it to Jittor tensors, and splits it into training, validation, test, and evaluation sets.
 - Processed data is saved to a file for future use.
 
+## Step 4: Evaluation Helper
+```python
+def evaluate(x, w, testset):
+    """
+    Evaluate the performance of the model on the test set.
 
+    Args:
+        x (jittor.Var): Model weights (used in matrix multiply).
+        w (jittor.Var): Upper-level variables (kept for interface consistency).
+        testset (tuple): Tuple containing test_x and test_y.
 
-## Step 3: Model Initialization
+    Returns:
+        tuple: Loss and accuracy of the model on the test set.
+    """
+    with jit.no_grad():
+        test_x, test_y = testset
+
+        # logits
+        y = test_x @ x
+
+        # to numpy for accuracy
+        y_np = y.numpy()
+        test_y_np = test_y.numpy() if isinstance(test_y, jit.Var) else test_y
+
+        loss = jit.nn.cross_entropy_loss(y, jit.array(test_y_np)).item()
+        predicted = y_np.argmax(axis=-1)
+        acc = (predicted == test_y_np).sum() / len(test_y_np)
+
+    return loss, acc
+
+```
+### Explanation:
+- Computes cross-entropy loss using Jittor.
+- Computes accuracy using NumPy for simplicity.
+
+## Step 5: Main Function & Argument Parsing
 
 ```python
+def main():
+    def parse_args():
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--generate_data", action="store_true", default=False)
+        parser.add_argument("--pretrain", action="store_true", default=False)
+        parser.add_argument("--epochs", type=int, default=1000)
+        parser.add_argument("--iterations", type=int, default=10, help="T")
+        parser.add_argument("--data_path", default="./data", help="where to save data")
+        parser.add_argument("--model_path", default="./save_l2reg", help="where to save model")
+        parser.add_argument("--x_lr", type=float, default=100)
+        parser.add_argument("--xhat_lr", type=float, default=100)
+        parser.add_argument("--w_lr", type=float, default=1000)
+        parser.add_argument("--w_momentum", type=float, default=0.9)
+        parser.add_argument("--x_momentum", type=float, default=0.9)
+        parser.add_argument("--K", type=int, default=10, help="k")
+        parser.add_argument("--u1", type=float, default=1.0)
+        parser.add_argument("--BVFSM_decay", type=str, default="log", choices=["log", "power2"])
+        parser.add_argument("--seed", type=int, default=1)
+        parser.add_argument(
+            "--alg",
+            type=str,
+            default="BOME",
+            choices=["BOME", "BSG_1", "penalty", "AID_CG", "AID_FP", "ITD", "BVFSM",
+                     "baseline", "VRBO", "reverse", "stocBiO", "MRBO"],
+        )
+        parser.add_argument("--gm_op", type=str, default="DM,NGD")
+        parser.add_argument("--na_op", type=str, default="RAD")
+        parser.add_argument("--fo_op", type=str, default=None)
+        args = parser.parse_args()
+
+        np.random.seed(args.seed)
+        jit.set_global_seed(args.seed)
+        return args
+
+    args = parse_args()
+
+```
+### Explanation:
+- Defines CLI arguments controlling dataset path, strategies (`gm_op`, `na_op`) or `fo_op`, and seeds.
+
+
+## Step 6: Data Setting and Model Initialization
+
+```python
+trainset, valset, testset, tevalset = get_data(args)
+
+jit.save(
+    (trainset, valset, testset, tevalset),
+    os.path.join(args.data_path, "l2reg.pkl")
+)
+print(f"[info] successfully generated data to {args.data_path}/l2reg.pkl")
+
 class UpperModel(jit.Module):
     def __init__(self, n_feats):
         # Initialize learnable regularization parameters
@@ -113,12 +221,13 @@ lower_model = LowerModel(trainset[0].shape[-1], int(trainset[1].max().item()) + 
 ```
 
 ### Explanation:
+- Saves the processed dataset for reuse as `l2reg.pkl`.
 - **`UpperModel`**: Represents the upper-level model with a single learnable parameter.
 - **`LowerModel`**: Represents the lower-level model initialized using the Kaiming initialization strategy.
 
 
 
-## Step 4: Optimizer & Strategy Setup
+## Step 7: Optimizer & Strategy Setup
 
 ```python
 upper_opt = jit.nn.Adam(upper_model.parameters(), lr=0.01)
@@ -136,7 +245,7 @@ na_op = args.na_op.split(",") if args.na_op else None
 
 
 
-## Step 5: Bi-Level Optimization Setup
+## Step 8: Bi-Level Optimization Setup
 
 ```python
 # Configure BOAT problem
@@ -164,7 +273,7 @@ b_optimizer.build_ul_solver()
 
 ---
 
-## Step 6: Optimization Loop
+## Step 9: Optimization Loop
 
 ```python
 ul_feed_dict = {"data": trainset[0], "target": trainset[1]}
@@ -198,49 +307,16 @@ for x_itr in range(iterations):
 
 ---
 
-## Step 7: Evaluation
+## Step 10: Entry Point
 
 ```python
-def evaluate(x, w, testset):
-    """
-    Evaluate the performance of the model on the test set.
+if __name__ == "__main__":
+    main()
 
-    Args:
-        x (jittor.Var): Input data tensor.
-        w (jittor.Var): Model weights.
-        testset (tuple): Tuple containing test_x and test_y.
-
-    Returns:
-        tuple: Loss and accuracy of the model on the test set.
-    """
-    with jit.no_grad():  # Disable gradient calculation
-        test_x, test_y = testset  # Unpack the test set
-
-        # Perform matrix multiplication
-        y = test_x @ x  # Jittor operation
-
-        # Convert to NumPy for simplicity
-        y_np = y.numpy()
-        test_y_np = test_y.numpy() if isinstance(test_y, jit.Var) else test_y
-
-        # Calculate cross-entropy loss
-        loss = jit.nn.cross_entropy_loss(y, jit.array(test_y_np)).item()
-
-        # Calculate accuracy using NumPy
-        predicted = y_np.argmax(axis=-1)
-        acc = (predicted == test_y_np).sum() / len(test_y_np)
-    return loss, acc
-
-# Inside the loop
-if x_itr % 1 == 0:
-    test_loss, test_acc = evaluate(lower_model(), upper_model(), testset)
-    print(f"[info] epoch {x_itr:5d} te loss {test_loss:.4f} te acc {test_acc:.4f} ...")
 ```
 
 ### Explanation:
-- The `evaluate` function calculates the model's loss and accuracy on the test dataset.
-- Outputs the test performance metrics for monitoring optimization progress.
-
+- Standard Python entry point that makes the script runnable directly.
 
 ## How to Run
 

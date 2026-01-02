@@ -27,7 +27,6 @@
 </div>
 
 **BOAT** is a compositional **O**per**A**tion-level **T**oolbox for gradient-based **B**LO.
-
 Unlike existing libraries that typically encapsulate fixed solver routines, BOAT factorizes the BLO workflow into **atomic, reusable primitives**. Through a unified constraint reconstruction perspective, it empowers researchers to **automatically compose** over **85+ solver variants** from a compact set of **17 gradient operations**.
 
 This is the **Jittor-based** version of BOAT (`boat-jit`). It leverages Jittor’s Just-In-Time (JIT) compilation and efficient CUDA/cuDNN backends to significantly **accelerate large-scale gradient-based BLO experiments**.

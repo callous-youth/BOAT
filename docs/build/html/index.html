@@ -80,7 +80,7 @@
              
   <section id="welcome-to-boat-jittor-documentation">
 <h1>Welcome to BOAT-Jittor Documentation<a class="headerlink" href="#welcome-to-boat-jittor-documentation" title="Permalink to this heading"></a></h1>
-<p><strong>BOAT</strong> is a task-agnostic, gradient-based <strong>Bi-Level Optimization (BLO)</strong> Python library that abstracts BLO into modular and flexible components, enabling efficient modeling of hierarchical and nested learning problems. It supports a wide spectrum of optimization settings, including first- and second-order methods, nested or non-nested formulations, with or without theoretical guarantees. This repository provides the <strong>Jittor-based</strong> implementation (boat-jit), leveraging Jittor’s JIT compilation and efficient CUDA/cuDNN backends to accelerate large-scale gradient-based BLO experiments.</p>
+<p><strong>BOAT</strong> is a compositional, gradient-based <strong>Bi-Level Optimization (BLO)</strong> Python library that abstracts BLO into modular and flexible components, enabling efficient modeling of hierarchical and nested learning problems. It supports a wide spectrum of optimization settings, including first- and second-order methods, nested or non-nested formulations, with or without theoretical guarantees. This repository provides the <strong>Jittor-based</strong> implementation (boat-jit), leveraging Jittor’s JIT compilation and efficient CUDA/cuDNN backends to accelerate large-scale gradient-based BLO experiments.</p>
 <a class="reference internal image-reference" href="_images/flow.gif"><img alt="BOAT Framework" class="align-center" src="_images/flow.gif" style="width: 800px;" /></a>
 <p>In this section, we explain the core components of BOAT, how to install the Jittor version, and how to use it for your optimization tasks. The main contents are organized as follows.</p>
 <div class="toctree-wrapper compound">
@@ -115,13 +115,16 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="l2_regularization_example.html">L2 Regularization with Jittor</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-by-step-explanation">Step-by-Step Explanation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-1-configuration-loading">Step 1: Configuration Loading</a></li>
-<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-2-data-preparation">Step 2: Data Preparation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-3-model-initialization">Step 3: Model Initialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-4-optimizer-strategy-setup">Step 4: Optimizer &amp; Strategy Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-5-bi-level-optimization-setup">Step 5: Bi-Level Optimization Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-6-optimization-loop">Step 6: Optimization Loop</a></li>
-<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-7-evaluation">Step 7: Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-1-imports-path-setup">Step 1: Imports &amp; Path Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-2-configuration-loading">Step 2: Configuration Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-3-data-preparation">Step 3: Data Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-4-evaluation-helper">Step 4: Evaluation Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-5-main-function-argument-parsing">Step 5: Main Function &amp; Argument Parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-6-data-setting-and-model-initialization">Step 6: Data Setting and Model Initialization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-7-optimizer-strategy-setup">Step 7: Optimizer &amp; Strategy Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-8-bi-level-optimization-setup">Step 8: Bi-Level Optimization Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-9-optimization-loop">Step 9: Optimization Loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#step-10-entry-point">Step 10: Entry Point</a></li>
 <li class="toctree-l2"><a class="reference internal" href="l2_regularization_example.html#how-to-run">How to Run</a></li>
 </ul>
 </li>
