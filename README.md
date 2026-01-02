@@ -27,7 +27,6 @@
 </div>
 
 **BOAT** is a compositional **O**per**A**tion-level **T**oolbox for gradient-based **B**LO.
-
 Unlike existing libraries that typically encapsulate fixed solver routines, BOAT factorizes the BLO workflow into **atomic, reusable primitives**. Through a unified constraint reconstruction perspective, it empowers researchers to **automatically compose** solvers via simple configuration.
 
 This is the **MindSpore-based** version of BOAT (`boat-ms`). It is seamlessly integrated into MindSpore’s computation graph and heterogeneous hardware ecosystem (**Ascend/GPU/CPU**), incorporating the latest **First-Order (FO)** optimization strategies to support emerging large-scale application scenarios.

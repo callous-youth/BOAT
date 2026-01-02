@@ -6,7 +6,7 @@
 Welcome to BOAT-MindSpore Documentation
 =======================================
 
-**BOAT** is a task-agnostic, gradient-based **Bi-Level Optimization (BLO)** library that abstracts the core BLO pipeline into modular, flexible components. In this **MindSpore-based** implementation, BOAT is seamlessly integrated into MindSpore’s computation graph and heterogeneous hardware ecosystem (Ascend/GPU/CPU), enabling researchers and developers to build hierarchical learning tasks with customizable operator decomposition, encapsulation, and composition.
+**BOAT** is a compositional, gradient-based **Bi-Level Optimization (BLO)** library that abstracts the core BLO pipeline into modular, flexible components. In this **MindSpore-based** implementation, BOAT is seamlessly integrated into MindSpore’s computation graph and heterogeneous hardware ecosystem (Ascend/GPU/CPU), enabling researchers and developers to build hierarchical learning tasks with customizable operator decomposition, encapsulation, and composition.
 
 .. image:: _static/flow.gif
    :alt: BOAT Framework
