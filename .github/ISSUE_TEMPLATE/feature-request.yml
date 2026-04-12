@@ -1,0 +1,47 @@
+name: "✨ Feature Request"
+description: Suggest an idea or enhancement for BOAT.
+title: "[Feature Request] "
+labels: [enhancement]
+body:
+  - type: checkboxes
+    id: steps
+    attributes:
+      label: Required prerequisites
+      description: Make sure you've completed the following steps before submitting your request.
+      options:
+        - label: I have searched the [Issue Tracker](https://github.com/callous-youth/BOAT/issues) to make sure this feature request has not already been submitted.
+          required: true
+        - label: I have checked the documentation <https://boat.readthedocs.io/en/main/> to confirm this feature is not already supported.
+          required: false
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: Explain why this feature would be useful. What problem does it solve?
+      value: |
+        Please describe the motivation for this proposal.
+
+        - What are you trying to achieve?
+        - What is currently missing or inconvenient?
+        - Is this related to a paper, method, or use case?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe clearly what you would like to happen.
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe any alternative solutions, workarounds, or related ideas you have considered.
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other context here, such as references, screenshots, pseudo-code, or relevant papers.

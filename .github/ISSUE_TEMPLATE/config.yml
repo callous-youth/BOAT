@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "📖 BOAT documentation"
+    url: https://boat.readthedocs.io/en/main/
+    about: Read the official documentation before opening a question or support issue.
+  - name: "📂 BOAT issue tracker"
+    url: https://github.com/callous-youth/BOAT/issues
+    about: Search existing issues before submitting a new one.

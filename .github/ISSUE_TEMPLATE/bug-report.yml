@@ -1,0 +1,117 @@
+name: "🐛 Bug Report"
+description: File an issue about a bug in BOAT.
+title: "[BUG] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do your best to make the issue as easy to act on as possible.
+        Submit a bug report only if there is clearly a problem with BOAT.
+
+  - type: checkboxes
+    id: steps
+    attributes:
+      label: Required prerequisites
+      description: Make sure you've completed the following steps before submitting your issue.
+      options:
+        - label: I have read the documentation <https://boat.readthedocs.io/en/main/>.
+          required: true
+        - label: I have searched the [Issue Tracker](https://github.com/callous-youth/BOAT/issues) to make sure this bug has not already been reported.
+          required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: What version of BOAT are you using?
+      description: Run `python3 -c 'print(__import__("boat_torch").__version__)'` in your shell and paste the output here.
+      placeholder: E.g., 0.1.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: system-info
+    attributes:
+      label: System information
+      description: |
+        Describe your environment clearly:
+
+        - How BOAT was installed (pip, source, editable install, ...)
+        - Python version
+        - PyTorch version
+        - CUDA version (if applicable)
+        - Operating system
+        - Other relevant libraries
+
+        ```python
+        import sys, torch, boat_torch
+        print(sys.version, sys.platform)
+        print("boat_torch:", boat_torch.__version__)
+        print("torch:", torch.__version__)
+        print("cuda available:", torch.cuda.is_available())
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem description
+      description: Describe the problem briefly. Include expected behavior, actual behavior, and any important context.
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Reproducible example code
+      description: |
+        Please provide a minimal, runnable example that reproduces the issue.
+      value: |
+        Python snippet:
+
+        ```python
+
+        ```
+
+        Command line:
+
+        ```bash
+
+        ```
+
+        Config / JSON / YAML (if relevant):
+
+        ```text
+
+        ```
+
+        Steps to reproduce:
+
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: traceback
+    attributes:
+      label: Traceback / error log
+      description: Paste the full traceback or relevant log here.
+      placeholder: |
+        Traceback (most recent call last):
+          File ...
+      render: pytb
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: Provide a clear and concise description of what you expected to happen.
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other context here, such as screenshots, dataset notes, configs, or suspected causes.

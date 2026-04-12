@@ -1,0 +1,30 @@
+name: "🤔 Questions / Help / Support"
+description: Ask a question about using BOAT.
+title: "[Question] "
+labels: [question]
+body:
+  - type: checkboxes
+    id: steps
+    attributes:
+      label: Required prerequisites
+      description: Make sure you've completed the following steps before submitting your question.
+      options:
+        - label: I have read the documentation <https://boat.readthedocs.io/en/main/>.
+          required: true
+        - label: I have searched the [Issue Tracker](https://github.com/callous-youth/BOAT/issues) to make sure this question has not already been answered.
+          required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: Describe your question clearly. You can include code snippets, configurations, links, logs, or screenshots.
+      value: |
+        Please include:
+
+        - What you are trying to do
+        - What you have already tried
+        - Relevant code / config / command
+        - Any error messages or unexpected behavior
+    validations:
+      required: true
