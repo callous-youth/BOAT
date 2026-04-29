@@ -1,6 +1,15 @@
-import pytest
 import subprocess
-from unittest.mock import patch
+import sys
+from pathlib import Path
+
+import pytest
+
+DATA_HYPER_CLEANING_SCRIPT = Path(__file__).with_name("data_hyper_cleaning.py")
+
+
+def run_data_hyper_cleaning(*args):
+    command = [sys.executable, str(DATA_HYPER_CLEANING_SCRIPT), *args]
+    return subprocess.run(command, capture_output=True, text=True)
 
 gm_oplist = (
     ["NGD"],
@@ -37,19 +46,16 @@ fo_ol_method = (["VSO"], ["VFO"], ["MESO"], ["PGDO"])
     ],
 )
 def test_combination_dynamic_na_op(gm_op, na_op):
-    command = [
-        "python",
-        "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
-        "--gm_op",
-        ",".join(gm_op),
-        "--na_op",
-        ",".join(na_op),
-    ]
     print(
         f"Running test with gm_op={gm_op} and na_op={na_op}"
     )
 
-    result = subprocess.run(command, capture_output=True, text=True)
+    result = run_data_hyper_cleaning(
+        "--gm_op",
+        ",".join(gm_op),
+        "--na_op",
+        ",".join(na_op),
+    )
 
     assert (
         result.returncode == 0
@@ -65,19 +71,16 @@ def test_combination_dynamic_na_op(gm_op, na_op):
     ],
 )
 def test_combination_dynamic_na_op_dm(gm_op, na_op):
-    command = [
-        "python",
-        "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
-        "--gm_op",
-        ",".join(gm_op),
-        "--na_op",
-        ",".join(na_op),
-    ]
     print(
         f"Running test with gm_op={gm_op} and na_op={na_op}"
     )
 
-    result = subprocess.run(command, capture_output=True, text=True)
+    result = run_data_hyper_cleaning(
+        "--gm_op",
+        ",".join(gm_op),
+        "--na_op",
+        ",".join(na_op),
+    )
 
     assert (
         result.returncode == 0
@@ -86,15 +89,9 @@ def test_combination_dynamic_na_op_dm(gm_op, na_op):
 
 @pytest.mark.parametrize("fo_ol_method", fo_ol_method)
 def test_fo_ol_method(fo_ol_method):
-    command = [
-        "python",
-        "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
-        "--fo_op",
-        fo_ol_method[0],
-    ]
     print(f"Running test with fo_op={fo_ol_method}")
 
-    result = subprocess.run(command, capture_output=True, text=True)
+    result = run_data_hyper_cleaning("--fo_op", fo_ol_method[0])
 
     assert (
         result.returncode == 0
