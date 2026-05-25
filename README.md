@@ -125,6 +125,13 @@ Inject your runtime objects (models, optimizers) into the configuration and init
 gm_op = ["NGD", "DI", "GDA"]  # Dynamic Methods (Demo Only)
 na_op = ["RGT","RAD"]          # Hyper-Gradient Methods (Demo Only)
 
+# NOTE:
+# - gm_op / na_op select valid GM-OL and NA-OL operator combinations.
+# - The execution order is internally resolved by BOAT priority rules.
+# - First-order methods (FO-OL), e.g., ["VSO", "VFO", "MESO", "PGDO"],
+#   are alternative optimization strategies and should generally not be
+#   enabled together with na_op.
+
 # Add methods and model details to the configuration
 boat_config["gm_op"] = gm_op
 boat_config["na_op"] = na_op
