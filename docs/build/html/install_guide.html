@@ -164,8 +164,15 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <h3><strong>3. Customize BOAT Configuration</strong><a class="headerlink" href="#customize-boat-configuration" title="Permalink to this heading"></a></h3>
 <p>Modify the boat_config to include your gradient mapping and numerical approximation opreation, as well as model and variable details.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example gradient mapping and numerical approximation opreation Combination.</span>
-<span class="n">gm_op</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NGD&quot;</span><span class="p">,</span> <span class="s2">&quot;DI&quot;</span><span class="p">,</span> <span class="s2">&quot;GDA&quot;</span><span class="p">]</span>  <span class="c1"># Gradient Mapping opreation (Demo Only)</span>
-<span class="n">na_op</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;RGT&quot;</span><span class="p">,</span><span class="s2">&quot;RAD&quot;</span><span class="p">]</span>          <span class="c1"># Numerical Approximation opreation (Demo Only)</span>
+<span class="n">gm_op</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NGD&quot;</span><span class="p">,</span> <span class="s2">&quot;DI&quot;</span><span class="p">,</span> <span class="s2">&quot;GDA&quot;</span><span class="p">]</span>  <span class="c1"># Dynamic Methods (Demo Only)</span>
+<span class="n">na_op</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;RGT&quot;</span><span class="p">,</span><span class="s2">&quot;RAD&quot;</span><span class="p">]</span>          <span class="c1"># Hyper-Gradient Methods (Demo Only)</span>
+
+<span class="c1"># NOTE:</span>
+<span class="c1"># - gm_op / na_op select valid GM-OL and NA-OL operator combinations.</span>
+<span class="c1"># - The execution order is internally resolved by BOAT priority rules.</span>
+<span class="c1"># - First-order methods (FO-OL), e.g., [&quot;VSO&quot;, &quot;VFO&quot;, &quot;MESO&quot;, &quot;PGDO&quot;],</span>
+<span class="c1">#   are alternative optimization strategies and should generally not be</span>
+<span class="c1">#   enabled together with na_op.</span>
 
 <span class="c1"># Add methods and model details to the configuration</span>
 <span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;gm_op&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gm_op</span>
@@ -176,6 +183,9 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;upper_level_opt&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">upper_opt</span>
 <span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;lower_level_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">lower_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
 <span class="n">boat_config</span><span class="p">[</span><span class="s2">&quot;upper_level_var&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">upper_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">())</span>
+
+<span class="c1"># Initialize the BOAT core</span>
+<span class="n">b_optimizer</span> <span class="o">=</span> <span class="n">boat</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">boat_config</span><span class="p">,</span> <span class="n">loss_config</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
