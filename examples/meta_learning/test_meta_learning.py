@@ -17,7 +17,7 @@ na_oplist = (
     ["FOA", "IAD"],
     ["FOA", "IAD", "PTT"],
 )
-fo_ol_method = (["VSO"], ["VFO"], ["MESO"], ["PGDO"])
+fo_ol_method = (["VSO"], ["VFO"], ["MESO"], ["PGDO"], ["ALTO"])
 
 
 t0 = time.strftime("%Y_%m_%d_%H_%M_%S")
