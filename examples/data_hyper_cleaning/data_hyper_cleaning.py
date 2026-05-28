@@ -59,19 +59,30 @@ def main():
         "--gm_op",
         type=str,
         default=None,
-        help="omniglot or miniimagenet or tieredImagenet",
+        help=(
+            "Comma-separated Gradient Mapping operators applied to the lower "
+            "level dynamical system (e.g. NGD, DI, GDA, DM, RGT). See "
+            "boat_torch/gm_ol/ for the full list."
+        ),
     )
     parser.add_argument(
         "--na_op",
         type=str,
         default=None,
-        help="convnet for 4 convs or resnet for Residual blocks",
+        help=(
+            "Comma-separated Numerical Approximation operators used to compute "
+            "the hyper-gradient (e.g. CG, FD, RAD, IAD, IGA, NS, PTT, RGT, "
+            "FOA). See boat_torch/na_ol/ for the full list."
+        ),
     )
     parser.add_argument(
         "--fo_op",
         type=str,
         default=None,
-        help="convnet for 4 convs or resnet for Residual blocks",
+        help=(
+            "First-Order operator selected for the bilevel update (e.g. MESO, "
+            "PGDO, VFO, VSO). See boat_torch/fo_ol/ for the full list."
+        ),
     )
 
     args = parser.parse_args()
