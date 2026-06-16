@@ -125,15 +125,27 @@ def main():
     na_op = args.na_op.split(",") if args.na_op else None
     print(args.gm_op)
     print(args.na_op)
+    if args.fo_op == "MABT":
+        lower_model = get_sinuoid()
+        upper_model = get_sinuoid()
+        lower_model.load_state_dict(upper_model.state_dict())
+        lower_opt = torch.optim.SGD(lr=0.1, params=lower_model.parameters())
+        upper_opt = torch.optim.Adam(upper_model.parameters(), lr=0.01)
+    else:
+        lower_model = meta_model
+        upper_model = meta_model
+        lower_opt = inner_opt
+        upper_opt = outer_opt
+
     boat_config["gm_op"] = gm_op
     boat_config["na_op"] = na_op
     boat_config["fo_op"] = args.fo_op
-    boat_config["lower_level_model"] = meta_model
-    boat_config["upper_level_model"] = meta_model
-    boat_config["lower_level_var"] = list(meta_model.parameters())
-    boat_config["upper_level_var"] = list(meta_model.parameters())
-    boat_config["lower_level_opt"] = inner_opt
-    boat_config["upper_level_opt"] = outer_opt
+    boat_config["lower_level_model"] = lower_model
+    boat_config["upper_level_model"] = upper_model
+    boat_config["lower_level_var"] = list(lower_model.parameters())
+    boat_config["upper_level_var"] = list(upper_model.parameters())
+    boat_config["lower_level_opt"] = lower_opt
+    boat_config["upper_level_opt"] = upper_opt
     b_optimizer = boat.Problem(boat_config, loss_config)
     b_optimizer.build_ll_solver()
     b_optimizer.build_ul_solver()

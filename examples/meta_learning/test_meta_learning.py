@@ -4,6 +4,7 @@ import shutil
 import subprocess
 import pytest
 import platform
+import sys
 
 
 gm_oplist = (["NGD"], ["NGD", "GDA"])
@@ -17,7 +18,7 @@ na_oplist = (
     ["FOA", "IAD"],
     ["FOA", "IAD", "PTT"],
 )
-fo_ol_method = (["VSO"], ["VFO"], ["MESO"], ["PGDO"], ["ALTO"])
+fo_ol_method = (["VSO"], ["VFO"], ["MESO"], ["PGDO"], ["ALTO"], ["MABT"])
 
 
 t0 = time.strftime("%Y_%m_%d_%H_%M_%S")
@@ -25,6 +26,7 @@ args = "meta_learning/method_test"
 
 
 base_folder = os.path.dirname(os.path.abspath(__file__))
+meta_learning_script = os.path.join(base_folder, "meta_learning.py")
 folder = os.path.join(base_folder, args, t0)
 
 
@@ -46,7 +48,7 @@ with open(script_file, "w") as f:
         for na_op in na_oplist:
             k += 1
             f.write(
-                f'python /home/runner/work/BOAT/BOAT/examples/meta_learning/meta_learning.py --gm_op {",".join(gm_op)} --na_op {",".join(na_op)} \n'
+                f'{sys.executable} "{meta_learning_script}" --gm_op {",".join(gm_op)} --na_op {",".join(na_op)} \n'
             )
 
 
@@ -66,8 +68,8 @@ if platform.system() != "Windows":
 def test_combination_dynamic_na_op(gm_op, na_op):
 
     command = [
-        "python",
-        "/home/runner/work/BOAT/BOAT/examples/meta_learning/meta_learning.py",
+        sys.executable,
+        meta_learning_script,
         "--gm_op",
         ",".join(gm_op),
         "--na_op",
@@ -87,8 +89,8 @@ def test_combination_dynamic_na_op(gm_op, na_op):
 @pytest.mark.parametrize("fo_ol_method", fo_ol_method)
 def test_fo_ol_method(fo_ol_method):
     command = [
-        "python",
-        "/home/runner/work/BOAT/BOAT/examples/meta_learning/meta_learning.py",
+        sys.executable,
+        meta_learning_script,
         "--fo_op",
         fo_ol_method[0],
     ]
