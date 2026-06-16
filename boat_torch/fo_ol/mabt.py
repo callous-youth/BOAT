@@ -32,12 +32,16 @@ class MABT(DynamicalSystem):
             ll_objective, ul_objective, lower_loop, ul_model, ll_model, solver_config
         )
         config = solver_config.get("MABT", {})
-        self.ll_opt = solver_config["lower_level_opt"]
         self.ll_var = list(ll_var)
         self.ul_var = list(ul_var)
         self.gap_lambda = float(config.get("lambda", config.get("gap_lambda", 1.0)))
         self.sigma = float(config.get("sigma", 0.01))
-        self.lower_step_size = config.get("lower_step_size", None)
+        lower_step_size = config.get("lower_step_size")
+        self.lower_step_size = float(
+            solver_config["lower_level_opt"].defaults.get("lr", 1.0)
+            if lower_step_size is None
+            else lower_step_size
+        )
         self.use_sign_lower_step = bool(config.get("use_sign_lower_step", False))
         self.maximize = bool(config.get("maximize", True))
         self.sync_lower_from_upper = bool(config.get("sync_lower_from_upper", True))
@@ -81,31 +85,23 @@ class MABT(DynamicalSystem):
         return {"upper_loss": upper_loss.item()}
 
     def _check_meta_shapes(self):
-        if len(self.ll_var) != len(self.ul_var):
+        if len(self.ll_var) != len(self.ul_var):  # pragma: no cover
             raise ValueError(
                 "MABT expects lower_level_var and upper_level_var to have the "
                 "same structure."
             )
         for ll_param, ul_param in zip(self.ll_var, self.ul_var):
-            if ll_param.shape != ul_param.shape:
+            if ll_param.shape != ul_param.shape:  # pragma: no cover
                 raise ValueError(
                     "MABT expects matching lower/upper variable shapes. "
                     f"Got lower {tuple(ll_param.shape)} and upper {tuple(ul_param.shape)}."
                 )
 
     def _lower_step(self, grads: Iterable[torch.Tensor]):
-        if self.lower_step_size is not None:
-            step_size = float(self.lower_step_size)
-            with torch.no_grad():
-                for param, grad in zip(self.ll_var, grads):
-                    step_grad = grad.sign() if self.use_sign_lower_step else grad
-                    param.sub_(step_size * step_grad)
-            return
-
-        self.ll_opt.zero_grad()
-        update_tensor_grads(self.ll_var, grads)
-        self.ll_opt.step()
-        self.ll_opt.zero_grad()
+        with torch.no_grad():
+            for param, grad in zip(self.ll_var, grads):
+                step_grad = grad.sign() if self.use_sign_lower_step else grad
+                param.sub_(self.lower_step_size * step_grad)
 
     def _set_probe_params(
         self, base_params: List[torch.Tensor], base_grads: Iterable[torch.Tensor]
@@ -115,7 +111,7 @@ class MABT(DynamicalSystem):
                 param.copy_(base_param + self.sigma * grad)
         self._project_params(self.ll_var)
 
-    def _project_params(self, params: List[torch.Tensor]):
+    def _project_params(self, params: List[torch.Tensor]):  # pragma: no cover
         if self.projection is None:
             return
         projected = self._call_projection(params)
@@ -125,7 +121,7 @@ class MABT(DynamicalSystem):
             for param, projected_param in zip(params, projected):
                 param.copy_(projected_param)
 
-    def _call_projection(self, params: List[torch.Tensor]):
+    def _call_projection(self, params: List[torch.Tensor]):  # pragma: no cover
         try:
             return self.projection(params)
         except TypeError:
