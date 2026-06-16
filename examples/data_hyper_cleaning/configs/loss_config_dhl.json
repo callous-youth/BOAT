@@ -1,0 +1,22 @@
+{
+    "lower_level_loss": {
+        "function": "configs.loss_func_dhl.ll_loss",
+            "params": {
+            "weights": 0.0
+        }
+    },
+    "upper_level_loss": {
+        "function": "configs.loss_func_dhl.ul_loss",
+            "params": {
+            "weights": 0.0
+        }
+
+    },
+        "gda_loss": {
+        "function": "configs.loss_func_dhl.gda_loss",
+            "params": {
+            "weights": 0.0
+        }
+
+    }
+}
