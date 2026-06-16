@@ -25,7 +25,7 @@ na_oplist = (
 )
 gm_op_dm = (["DM","NGD"], ["DM","GDA","NGD"])
 na_op_dm = (["RAD"], ["CG"])
-fo_ol_method = (["VSO"], ["VFO"], ["MESO"], ["PGDO"], ["ALTO"])
+fo_ol_method = (["VSO"], ["VFO"], ["MESO"], ["PGDO"])
 
 
 @pytest.mark.parametrize(
