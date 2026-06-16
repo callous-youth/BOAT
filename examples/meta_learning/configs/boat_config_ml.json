@@ -24,7 +24,7 @@
     "MABT": {
         "lambda": 0.01,
         "sigma": 0.01,
-        "lower_step_size": 0.01，
+        "lower_step_size": 0.01,
         "use_sign_lower_step": false,
         "maximize": false,
         "sync_lower_from_upper": true
