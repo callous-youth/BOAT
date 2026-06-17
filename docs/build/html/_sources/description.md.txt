@@ -14,7 +14,7 @@
 
 
 **BOAT** (**O**per**A**tion-level **T**oolbox for gradient-based **B**LO) is a compositional, operation-level framework designed to bridge the gap between theoretical modeling and practical implementation in Bi-Level Optimization (BLO).
-Unlike existing libraries that typically encapsulate fixed solver routines, BOAT factorizes the BLO workflow into **atomic, reusable primitives**. Through a unified constraint reconstruction perspective, it empowers researchers to **automatically compose** over **85+ solver variants** from a compact set of **17 gradient operations**.
+Unlike existing libraries that typically encapsulate fixed solver routines, BOAT factorizes the BLO workflow into **atomic, reusable primitives**. Through a unified constraint reconstruction perspective, it empowers researchers to **automatically compose** over **85+ solver variants** from a compact set of **19 gradient operations**.
 
 - **[PyTorch-based](https://github.com/callous-youth/BOAT)**: An efficient and widely-used version.
 - **[Jittor-based](https://github.com/callous-youth/BOAT/tree/boat_jit)**: An accelerated version for high-performance tasks.
@@ -73,6 +73,8 @@ BOAT covers a wide spectrum of BLO applications, categorized by the optimization
 - [A Value-Function-based Interior-point Method for Non-convex Bi-level Optimization (VSO)](http://proceedings.mlr.press/v139/liu21o/liu21o.pdf)
 - [On Penalty-based Bilevel Gradient Descent Method (PGDO)](https://proceedings.mlr.press/v202/shen23c/shen23c.pdf)
 - [Moreau Envelope for Nonconvex Bi-Level Optimization: A Single-loop and Hessian-free Solution Strategy (MESO)](https://arxiv.org/pdf/2405.09927)
+- Alternating Optimization (ALTO)
+- [Overcoming Lower-Level Constraints in Bilevel Optimization: A Novel Approach with Regularized Gap Functions (GAFFO)](https://arxiv.org/abs/2406.01992)
 
 
 ## 📜 **License**

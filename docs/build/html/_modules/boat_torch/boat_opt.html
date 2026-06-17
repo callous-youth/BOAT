@@ -131,7 +131,7 @@
 <span class="sd">        Initialize the Problem instance.</span>
 
 <span class="sd">        :param config: Configuration dictionary for the optimization setup.</span>
-<span class="sd">            - &quot;fo_op&quot;: First Order Gradient based Method (optional), e.g., [&quot;VSO&quot;], [&quot;VFO&quot;], [&quot;MESO&quot;].</span>
+<span class="sd">            - &quot;fo_op&quot;: First Order Gradient based Method (optional), e.g., [&quot;VSO&quot;], [&quot;VFO&quot;], [&quot;MESO&quot;], [&quot;ALTO&quot;], [&quot;GAFFO&quot;].</span>
 <span class="sd">            - &quot;gm_op&quot;: List of gradient mapping operations (optional), e.g., [&quot;NGD&quot;], [&quot;NGD&quot;, &quot;GDA&quot;], [&quot;NGD&quot;, &quot;GDA&quot;, &quot;DI&quot;].</span>
 <span class="sd">            - &quot;na_op&quot;: Hyper-optimization method (optional), e.g., [&quot;RAD&quot;], [&quot;RAD&quot;, &quot;PTT&quot;], [&quot;IAD&quot;, &quot;NS&quot;, &quot;PTT&quot;].</span>
 <span class="sd">            - &quot;lower_level_loss&quot;: Configuration for the lower-level loss function based on the json file configuration.</span>
@@ -233,7 +233,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">[</span><span class="s2">&quot;fo_op&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">assert</span> <span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">[</span><span class="s2">&quot;na_op&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-            <span class="p">),</span> <span class="s2">&quot;Choose FO_OL based methods from [&#39;VSO&#39;,&#39;VFO&#39;,&#39;MESO&#39;, &#39;PGDO&#39;, &#39;ALTO&#39;] or set &#39;gm_ol&#39; and &#39;na_ol&#39; properly. Currently, fo_op =</span><span class="si">{}</span><span class="s2"> is not None&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="p">),</span> <span class="s2">&quot;Choose FO_OL based methods from [&#39;VSO&#39;,&#39;VFO&#39;,&#39;MESO&#39;, &#39;PGDO&#39;, &#39;ALTO&#39;, &#39;GAFFO&#39;] or set &#39;gm_ol&#39; and &#39;na_ol&#39; properly. Currently, fo_op =</span><span class="si">{}</span><span class="s2"> is not None&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">[</span><span class="s2">&quot;fo_op&quot;</span><span class="p">]</span>
             <span class="p">)</span>
             <span class="n">sorted_ops</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">op</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_na_op</span><span class="p">])</span>
@@ -251,7 +251,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">assert</span> <span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">[</span><span class="s2">&quot;na_op&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span>
-            <span class="p">),</span> <span class="s2">&quot;Choose FO_OL based methods from [&#39;VSO&#39;,&#39;VFO&#39;,&#39;MESO&#39;, &#39;PGDO&#39;, &#39;ALTO&#39;] or set &#39;gm_ol&#39; and &#39;na_ol&#39; properly. Currently, na_op =</span><span class="si">{}</span><span class="s2"> is not None&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="p">),</span> <span class="s2">&quot;Choose FO_OL based methods from [&#39;VSO&#39;,&#39;VFO&#39;,&#39;MESO&#39;, &#39;PGDO&#39;, &#39;ALTO&#39;, &#39;GAFFO&#39;] or set &#39;gm_ol&#39; and &#39;na_ol&#39; properly. Currently, na_op =</span><span class="si">{}</span><span class="s2"> is not None&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">[</span><span class="s2">&quot;na_op&quot;</span><span class="p">]</span>
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_ul_solver</span> <span class="o">=</span> <span class="kc">None</span>

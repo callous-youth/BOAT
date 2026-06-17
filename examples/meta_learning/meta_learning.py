@@ -125,7 +125,7 @@ def main():
     na_op = args.na_op.split(",") if args.na_op else None
     print(args.gm_op)
     print(args.na_op)
-    if args.fo_op == "MABT":
+    if args.fo_op == "GAFFO":
         lower_model = get_sinuoid()
         upper_model = get_sinuoid()
         lower_model.load_state_dict(upper_model.state_dict())

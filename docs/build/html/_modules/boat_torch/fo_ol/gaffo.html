@@ -1,0 +1,285 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>boat_torch.fo_ol.gaffo &mdash; BOAT-Torch 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=dfc096c9" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            BOAT-Torch
+              <img src="../../../_static/logo.jpg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation Guide:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../description.html">BOAT Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../install_guide.html">Installation and Usage Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../boat_torch.html">BOAT-Torch Structure</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Example:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_hyper_cleaning_example.html">Data HyperCleaning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../l2_regularization_example.html">L2 Regularization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../meta_learning_example.html">Meta-Learning</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">BOAT-Torch</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">boat_torch.fo_ol.gaffo</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for boat_torch.fo_ol.gaffo</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="kn">import</span> <span class="n">Module</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">boat_torch.gm_ol.dynamical_system</span><span class="w"> </span><span class="kn">import</span> <span class="n">DynamicalSystem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">boat_torch.operation_registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_class</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">boat_torch.utils.op_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">grad_unused_zero</span><span class="p">,</span> <span class="n">update_tensor_grads</span>
+
+
+<div class="viewcode-block" id="GAFFO"><a class="viewcode-back" href="../../../boat_torch.fo_ol.html#boat_torch.fo_ol.gaffo.GAFFO">[docs]</a><span class="nd">@register_class</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GAFFO</span><span class="p">(</span><span class="n">DynamicalSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements the optimization procedure of Gap-Function-based First-Order</span>
+<span class="sd">    Method (GAFFO) [1].</span>
+
+<span class="sd">    This first-order implementation treats lower-level variables as the current</span>
+<span class="sd">    task state and writes the meta-gradient to matching upper-level variables.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ll_objective : Callable</span>
+<span class="sd">        The lower-level objective of the BLO problem.</span>
+<span class="sd">    ul_objective : Callable</span>
+<span class="sd">        The upper-level objective of the BLO problem.</span>
+<span class="sd">    ll_model : torch.nn.Module</span>
+<span class="sd">        The lower-level model of the BLO problem.</span>
+<span class="sd">    ul_model : torch.nn.Module</span>
+<span class="sd">        The upper-level model of the BLO problem.</span>
+<span class="sd">    ll_var : List[torch.Tensor]</span>
+<span class="sd">        The list of lower-level variables of the BLO problem.</span>
+<span class="sd">    ul_var : List[torch.Tensor]</span>
+<span class="sd">        The list of upper-level variables of the BLO problem.</span>
+<span class="sd">    lower_loop : int</span>
+<span class="sd">        Number of iterations for lower-level optimization.</span>
+<span class="sd">    solver_config : Dict[str, Any]</span>
+<span class="sd">        A dictionary containing solver configurations. Expected keys include:</span>
+
+<span class="sd">        - &quot;lower_level_opt&quot;: The optimizer for the lower-level model.</span>
+<span class="sd">        - &quot;GAFFO&quot; (Dict): A dictionary containing the following optional keys:</span>
+<span class="sd">            - &quot;lambda&quot; or &quot;gap_lambda&quot;: Regularization weight for the gap term.</span>
+<span class="sd">            - &quot;sigma&quot;: Probe step size used to estimate the regularized gap.</span>
+<span class="sd">            - &quot;lower_step_size&quot;: Step size for the lower-level update. If not</span>
+<span class="sd">              specified, the learning rate of &quot;lower_level_opt&quot; is used.</span>
+<span class="sd">            - &quot;use_sign_lower_step&quot;: Whether to use the sign of lower-level</span>
+<span class="sd">              gradients for the lower-level update.</span>
+<span class="sd">            - &quot;maximize&quot;: Whether to use the ascent-form GAFFO direction.</span>
+<span class="sd">            - &quot;sync_lower_from_upper&quot;: Whether to synchronize lower-level</span>
+<span class="sd">              variables from upper-level variables before each update.</span>
+<span class="sd">            - &quot;projection&quot;: Optional projection operator for constrained</span>
+<span class="sd">              lower-level variables.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    [1] Yao W, Yin H, Zeng S, and Zhang J. &quot;Overcoming Lower-Level Constraints</span>
+<span class="sd">    in Bilevel Optimization: A Novel Approach with Regularized Gap Functions,&quot;</span>
+<span class="sd">    arXiv:2406.01992, 2024.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">ll_objective</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">lower_loop</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">ul_model</span><span class="p">:</span> <span class="n">Module</span><span class="p">,</span>
+        <span class="n">ul_objective</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span>
+        <span class="n">ll_model</span><span class="p">:</span> <span class="n">Module</span><span class="p">,</span>
+        <span class="n">ll_var</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
+        <span class="n">ul_var</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span>
+        <span class="n">solver_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GAFFO</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">ll_objective</span><span class="p">,</span> <span class="n">ul_objective</span><span class="p">,</span> <span class="n">lower_loop</span><span class="p">,</span> <span class="n">ul_model</span><span class="p">,</span> <span class="n">ll_model</span><span class="p">,</span> <span class="n">solver_config</span>
+        <span class="p">)</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">solver_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;GAFFO&quot;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ll_var</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ul_var</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ul_var</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gap_lambda</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lambda&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;gap_lambda&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">))</span>
+        <span class="n">lower_step_size</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lower_step_size&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lower_step_size</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span>
+            <span class="n">solver_config</span><span class="p">[</span><span class="s2">&quot;lower_level_opt&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">defaults</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;lr&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">lower_step_size</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="n">lower_step_size</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_sign_lower_step</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;use_sign_lower_step&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">maximize</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;maximize&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sync_lower_from_upper</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;sync_lower_from_upper&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">projection</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;projection&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GAFFO.optimize"><a class="viewcode-back" href="../../../boat_torch.fo_ol.html#boat_torch.fo_ol.gaffo.GAFFO.optimize">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ll_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">ul_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">current_iter</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_meta_shapes</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sync_lower_from_upper</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_copy_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ul_var</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_project_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">)</span>
+
+        <span class="n">lower_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_objective</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span><span class="p">)</span>
+        <span class="n">lower_grads</span> <span class="o">=</span> <span class="n">grad_unused_zero</span><span class="p">(</span><span class="n">lower_loss</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lower_step</span><span class="p">(</span><span class="n">lower_grads</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_project_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">)</span>
+
+        <span class="n">lower_loss_next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_objective</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span><span class="p">)</span>
+        <span class="n">gap_base_grads</span> <span class="o">=</span> <span class="n">grad_unused_zero</span><span class="p">(</span><span class="n">lower_loss_next</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">)</span>
+
+        <span class="n">current_lower</span> <span class="o">=</span> <span class="p">[</span><span class="n">param</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_probe_params</span><span class="p">(</span><span class="n">current_lower</span><span class="p">,</span> <span class="n">gap_base_grads</span><span class="p">)</span>
+
+        <span class="n">lower_loss_probe</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_objective</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span><span class="p">)</span>
+        <span class="n">gap_probe_grads</span> <span class="o">=</span> <span class="n">grad_unused_zero</span><span class="p">(</span><span class="n">lower_loss_probe</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_copy_params</span><span class="p">(</span><span class="n">current_lower</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">)</span>
+
+        <span class="n">upper_loss</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_objective</span><span class="p">(</span><span class="n">ul_feed_dict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span><span class="p">)</span>
+        <span class="n">risk_grads</span> <span class="o">=</span> <span class="n">grad_unused_zero</span><span class="p">(</span><span class="n">upper_loss</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">)</span>
+
+        <span class="n">ascent_direction</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">risk_grad</span> <span class="o">/</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gap_lambda</span><span class="p">,</span> <span class="mf">1e-8</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">probe_grad</span> <span class="o">-</span> <span class="n">base_grad</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">risk_grad</span><span class="p">,</span> <span class="n">probe_grad</span><span class="p">,</span> <span class="n">base_grad</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                <span class="n">risk_grads</span><span class="p">,</span> <span class="n">gap_probe_grads</span><span class="p">,</span> <span class="n">gap_base_grads</span>
+            <span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">meta_grads</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="n">grad</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">maximize</span> <span class="k">else</span> <span class="n">grad</span> <span class="k">for</span> <span class="n">grad</span> <span class="ow">in</span> <span class="n">ascent_direction</span><span class="p">]</span>
+        <span class="n">update_tensor_grads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ul_var</span><span class="p">,</span> <span class="n">meta_grads</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;upper_loss&quot;</span><span class="p">:</span> <span class="n">upper_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()}</span></div>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_meta_shapes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ul_var</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;GAFFO expects lower_level_var and upper_level_var to have the &quot;</span>
+                <span class="s2">&quot;same structure.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">for</span> <span class="n">ll_param</span><span class="p">,</span> <span class="n">ul_param</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_var</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">ll_param</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">ul_param</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;GAFFO expects matching lower/upper variable shapes. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Got lower </span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">ll_param</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="si">}</span><span class="s2"> and upper </span><span class="si">{</span><span class="nb">tuple</span><span class="p">(</span><span class="n">ul_param</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+                <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_lower_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">grads</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]):</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">grad</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">,</span> <span class="n">grads</span><span class="p">):</span>
+                <span class="n">step_grad</span> <span class="o">=</span> <span class="n">grad</span><span class="o">.</span><span class="n">sign</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_sign_lower_step</span> <span class="k">else</span> <span class="n">grad</span>
+                <span class="n">param</span><span class="o">.</span><span class="n">sub_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lower_step_size</span> <span class="o">*</span> <span class="n">step_grad</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_probe_params</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">base_params</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span> <span class="n">base_grads</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]</span>
+    <span class="p">):</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">base_param</span><span class="p">,</span> <span class="n">grad</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">,</span> <span class="n">base_params</span><span class="p">,</span> <span class="n">base_grads</span><span class="p">):</span>
+                <span class="n">param</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">base_param</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigma</span> <span class="o">*</span> <span class="n">grad</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_project_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ll_var</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_project_params</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]):</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">projected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_projection</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">projected</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">projected_param</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">projected</span><span class="p">):</span>
+                <span class="n">param</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">projected_param</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_call_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]):</span>  <span class="c1"># pragma: no cover</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">projection</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_copy_params</span><span class="p">(</span><span class="n">source</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]):</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">src</span><span class="p">,</span> <span class="n">dst</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+                <span class="n">dst</span><span class="o">.</span><span class="n">copy_</span><span class="p">(</span><span class="n">src</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yaohua Liu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

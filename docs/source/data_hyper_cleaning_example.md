@@ -145,7 +145,7 @@ def main():
 1. **Argument Parsing**:
    - `gm_op`: Specifies the list of the gradient mapping operations, e.g., ["NGD","GDA"].
    - `na_op`: Specifies the list of numerical approximation operations, e.g., ["RAD","RGT"].
-   - `fo_op`: Optionally specifies a first-order gradient method, e.g., “MESO”.
+   - `fo_op`: Optionally specifies a first-order gradient method, e.g., “MESO”, “ALTO”, or “GAFFO”.
 
 2. **BOAT Configuration**:
    - Updates the `boat_config` with the parsed arguments and model components.

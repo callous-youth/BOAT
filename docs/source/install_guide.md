@@ -66,7 +66,7 @@ na_op = ["RGT","RAD"]          # Hyper-Gradient Methods (Demo Only)
 # NOTE:
 # - gm_op / na_op select valid GM-OL and NA-OL operator combinations.
 # - The execution order is internally resolved by BOAT priority rules.
-# - First-order methods (FO-OL), e.g., ["VSO", "VFO", "MESO", "PGDO"],
+# - First-order methods (FO-OL), e.g., ["VSO", "VFO", "MESO", "PGDO", "ALTO", "GAFFO"],
 #   are alternative optimization strategies and should generally not be
 #   enabled together with na_op.
 

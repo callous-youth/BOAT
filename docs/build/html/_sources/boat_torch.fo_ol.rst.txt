@@ -4,6 +4,22 @@ boat\_torch.fo_ol
 Submodules
 ----------
 
+boat\_torch.fo_ol.alto
+----------------------------
+
+.. automodule:: boat_torch.fo_ol.alto
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+boat\_torch.fo_ol.gaffo
+----------------------------
+
+.. automodule:: boat_torch.fo_ol.gaffo
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 boat\_torch.fo_ol.meso
 ----------------------------
 

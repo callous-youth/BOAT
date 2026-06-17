@@ -54,6 +54,8 @@
 <li class="toctree-l3"><a class="reference internal" href="boat_torch.gm_ol.html">boat_torch.gm_ol</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">boat_torch.fo_ol</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.fo_ol.alto">boat_torch.fo_ol.alto</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.fo_ol.gaffo">boat_torch.fo_ol.gaffo</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.fo_ol.meso">boat_torch.fo_ol.meso</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.fo_ol.pgdo">boat_torch.fo_ol.pgdo</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-boat_torch.fo_ol.vfo">boat_torch.fo_ol.vfo</a></li>
@@ -104,6 +106,79 @@
 <h1>boat_torch.fo_ol<a class="headerlink" href="#boat-torch-fo-ol" title="Permalink to this heading"></a></h1>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-boat_torch.fo_ol.alto">
+<span id="boat-torch-fo-ol-alto"></span><h2>boat_torch.fo_ol.alto<a class="headerlink" href="#module-boat_torch.fo_ol.alto" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_torch.fo_ol.alto.ALTO">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.fo_ol.alto.</span></span><span class="sig-name descname"><span class="pre">ALTO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fo_ol/alto.html#ALTO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fo_ol.alto.ALTO" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="boat_torch.gm_ol.html#boat_torch.gm_ol.dynamical_system.DynamicalSystem" title="boat_torch.gm_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
+<p>Implements a simple Alternating Optimization (ALT) procedure for bi-level optimization.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_torch.fo_ol.alto.ALTO.optimize">
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fo_ol/alto.html#ALTO.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fo_ol.alto.ALTO.optimize" title="Permalink to this definition"></a></dt>
+<dd><p>Executes the simple alternating optimization procedure.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-boat_torch.fo_ol.gaffo">
+<span id="boat-torch-fo-ol-gaffo"></span><h2>boat_torch.fo_ol.gaffo<a class="headerlink" href="#module-boat_torch.fo_ol.gaffo" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="boat_torch.fo_ol.gaffo.GAFFO">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_torch.fo_ol.gaffo.</span></span><span class="sig-name descname"><span class="pre">GAFFO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_loop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fo_ol/gaffo.html#GAFFO"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fo_ol.gaffo.GAFFO" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="boat_torch.gm_ol.html#boat_torch.gm_ol.dynamical_system.DynamicalSystem" title="boat_torch.gm_ol.dynamical_system.DynamicalSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicalSystem</span></code></a></p>
+<p>Implements the optimization procedure of Gap-Function-based First-Order
+Method (GAFFO) [1].</p>
+<p>This first-order implementation treats lower-level variables as the current
+task state and writes the meta-gradient to matching upper-level variables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ll_objective</strong> (<em>Callable</em>) – The lower-level objective of the BLO problem.</p></li>
+<li><p><strong>ul_objective</strong> (<em>Callable</em>) – The upper-level objective of the BLO problem.</p></li>
+<li><p><strong>ll_model</strong> (<em>torch.nn.Module</em>) – The lower-level model of the BLO problem.</p></li>
+<li><p><strong>ul_model</strong> (<em>torch.nn.Module</em>) – The upper-level model of the BLO problem.</p></li>
+<li><p><strong>ll_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – The list of lower-level variables of the BLO problem.</p></li>
+<li><p><strong>ul_var</strong> (<em>List</em><em>[</em><em>torch.Tensor</em><em>]</em>) – The list of upper-level variables of the BLO problem.</p></li>
+<li><p><strong>lower_loop</strong> (<em>int</em>) – Number of iterations for lower-level optimization.</p></li>
+<li><p><strong>solver_config</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – <p>A dictionary containing solver configurations. Expected keys include:</p>
+<ul>
+<li><p>”lower_level_opt”: The optimizer for the lower-level model.</p></li>
+<li><dl class="simple">
+<dt>”GAFFO” (Dict): A dictionary containing the following optional keys:</dt><dd><ul>
+<li><p>”lambda” or “gap_lambda”: Regularization weight for the gap term.</p></li>
+<li><p>”sigma”: Probe step size used to estimate the regularized gap.</p></li>
+<li><p>”lower_step_size”: Step size for the lower-level update. If not
+specified, the learning rate of “lower_level_opt” is used.</p></li>
+<li><p>”use_sign_lower_step”: Whether to use the sign of lower-level
+gradients for the lower-level update.</p></li>
+<li><p>”maximize”: Whether to use the ascent-form GAFFO direction.</p></li>
+<li><p>”sync_lower_from_upper”: Whether to synchronize lower-level
+variables from upper-level variables before each update.</p></li>
+<li><p>”projection”: Optional projection operator for constrained
+lower-level variables.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p>[1] Yao W, Yin H, Zeng S, and Zhang J. “Overcoming Lower-Level Constraints
+in Bilevel Optimization: A Novel Approach with Regularized Gap Functions,”
+arXiv:2406.01992, 2024.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="boat_torch.fo_ol.gaffo.GAFFO.optimize">
+<span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_torch/fo_ol/gaffo.html#GAFFO.optimize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_torch.fo_ol.gaffo.GAFFO.optimize" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-boat_torch.fo_ol.meso">
 <span id="boat-torch-fo-ol-meso"></span><h2>boat_torch.fo_ol.meso<a class="headerlink" href="#module-boat_torch.fo_ol.meso" title="Permalink to this heading"></a></h2>

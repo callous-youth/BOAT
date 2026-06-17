@@ -21,7 +21,7 @@
     "PGDO":{"y_hat_lr":0.1,"gamma_init": 0 ,"gamma_max": 0.2, "gamma_argmax_step": 5000, "update_y_ahead": true, "penalty": "gradient"},
     "VFO":{"eta":  0.5,"u1": 0.1,"y_hat_lr":0.1 },
     "MESO": {"eta": 0.001,"gamma_1": 0.001,"c0": 0.2,"y_hat_lr":0.001},
-    "MABT": {
+    "GAFFO": {
         "lambda": 0.01,
         "sigma": 0.01,
         "lower_step_size": 0.01,
