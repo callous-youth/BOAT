@@ -7,7 +7,7 @@ version: 2
 
 # Set the OS, Python version and other tools you might need
 build:
-  os: ubuntu-20.04  # 可用版本：ubuntu-20.04 或 ubuntu-22.04
+  os: ubuntu-22.04  # 可用版本：ubuntu-20.04 或 ubuntu-22.04
   tools:
     python: "3.9"  # 指定 Python 版本
 
