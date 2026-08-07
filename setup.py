@@ -15,7 +15,7 @@ def get_install_requirements():
 
 setup(
     name="boat-jit",
-    version="1.0.6",
+    version="1.1.0",
     packages=find_packages(),
     long_description=long_description,
     long_description_content_type="text/markdown",
