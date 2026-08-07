@@ -1,6 +1,6 @@
 
 # Introduction
-[![PyPI version](https://badge.fury.io/py/boat-jit.svg)](https://badge.fury.io/py/boat-jit)
+[![PyPI](https://img.shields.io/pypi/v/boat-jit.svg)](https://pypi.org/project/boat-jit/)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/callous-youth/BOAT/workflow.yml)
 [![codecov](https://codecov.io/github/callous-youth/BOAT/graph/badge.svg?token=0MKAOQ9KL3)](https://codecov.io/github/callous-youth/BOAT)
 [![pages-build-deployment](https://github.com/callous-youth/BOAT/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/callous-youth/BOAT/actions/workflows/pages/pages-build-deployment)

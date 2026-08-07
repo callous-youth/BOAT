@@ -37,10 +37,21 @@ Once Jittor is ready, install BOAT-jit via PyPI or Source:
 pip install boat-jit
 
 # Or install from Source (Specific Branch)
-git clone -b boat_jit --single-branch [https://github.com/callous-youth/BOAT.git](https://github.com/callous-youth/BOAT.git)
+git clone -b boat_jit --single-branch https://github.com/callous-youth/BOAT.git
 cd BOAT
 pip install -e .
 ```
+
+## ✅ Quick Verification
+
+Run the following commands from the root directory of the BOAT repository:
+
+```bash
+python examples/L2_Reg_jit/l2_regularization.py
+
+python examples/neural_architecture_search/neural_architecture_search.py
+```
+
 
 ##  ⚡ **How to Use BOAT**
 

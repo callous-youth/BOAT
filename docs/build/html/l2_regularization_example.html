@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L2 Regularization with Jittor &mdash; BOAT-Jittor 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css?v=4ff932f8" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -123,13 +123,13 @@
            <div itemprop="articleBody">
              
   <section id="l2-regularization-with-jittor">
-<h1>L2 Regularization with Jittor<a class="headerlink" href="#l2-regularization-with-jittor" title="Permalink to this heading"></a></h1>
+<h1>L2 Regularization with Jittor<a class="headerlink" href="#l2-regularization-with-jittor" title="Link to this heading"></a></h1>
 <p>This runnable example shows how to use the BOAT library with the Jittor backend to solve a bi-level optimization problem with L2 regularization, covering end-to-end data loading (sparse-to-dense conversion), model/optimizer setup, solver construction, and iterative training with evaluation.</p>
 <section id="step-by-step-explanation">
-<h2>Step-by-Step Explanation<a class="headerlink" href="#step-by-step-explanation" title="Permalink to this heading"></a></h2>
+<h2>Step-by-Step Explanation<a class="headerlink" href="#step-by-step-explanation" title="Link to this heading"></a></h2>
 </section>
 <section id="step-1-imports-path-setup">
-<h2>Step 1: Imports &amp; Path Setup<a class="headerlink" href="#step-1-imports-path-setup" title="Permalink to this heading"></a></h2>
+<h2>Step 1: Imports &amp; Path Setup<a class="headerlink" href="#step-1-imports-path-setup" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
@@ -148,14 +148,14 @@
 </pre></div>
 </div>
 <section id="explanation">
-<h3>Explanation:<a class="headerlink" href="#explanation" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#explanation" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Imports Jittor, BOAT-JIT, and scikit-learn utilities for dataset loading and splitting.</p></li>
 </ul>
 </section>
 </section>
 <section id="step-2-configuration-loading">
-<h2>Step 2: Configuration Loading<a class="headerlink" href="#step-2-configuration-loading" title="Permalink to this heading"></a></h2>
+<h2>Step 2: Configuration Loading<a class="headerlink" href="#step-2-configuration-loading" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">base_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
 
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base_folder</span><span class="p">,</span> <span class="s2">&quot;configs_jit/boat_config_l2.json&quot;</span><span class="p">),</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -166,7 +166,7 @@
 </pre></div>
 </div>
 <section id="id1">
-<h3>Explanation:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">boat_config_l2.json</span></code></strong>: Contains configuration for the bi-level optimization problem.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">loss_config_l2.json</span></code></strong>: Defines the loss functions for both upper-level and lower-level models.</p></li>
@@ -174,7 +174,7 @@
 </section>
 </section>
 <section id="step-3-data-preparation">
-<h2>Step 3: Data Preparation<a class="headerlink" href="#step-3-data-preparation" title="Permalink to this heading"></a></h2>
+<h2>Step 3: Data Preparation<a class="headerlink" href="#step-3-data-preparation" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">max_samples</span><span class="o">=</span><span class="mi">2000</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Load and process data for Jittor, with optional downsampling.</span>
@@ -231,7 +231,7 @@
 </pre></div>
 </div>
 <section id="id2">
-<h3>Explanation:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">get_data</span></code> function loads the dataset, processes it to Jittor tensors, and splits it into training, validation, test, and evaluation sets.</p></li>
 <li><p>Processed data is saved to a file for future use.</p></li>
@@ -239,7 +239,7 @@
 </section>
 </section>
 <section id="step-4-evaluation-helper">
-<h2>Step 4: Evaluation Helper<a class="headerlink" href="#step-4-evaluation-helper" title="Permalink to this heading"></a></h2>
+<h2>Step 4: Evaluation Helper<a class="headerlink" href="#step-4-evaluation-helper" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">testset</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluate the performance of the model on the test set.</span>
@@ -271,7 +271,7 @@
 </pre></div>
 </div>
 <section id="id3">
-<h3>Explanation:<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Computes cross-entropy loss using Jittor.</p></li>
 <li><p>Computes accuracy using NumPy for simplicity.</p></li>
@@ -279,7 +279,7 @@
 </section>
 </section>
 <section id="step-5-main-function-argument-parsing">
-<h2>Step 5: Main Function &amp; Argument Parsing<a class="headerlink" href="#step-5-main-function-argument-parsing" title="Permalink to this heading"></a></h2>
+<h2>Step 5: Main Function &amp; Argument Parsing<a class="headerlink" href="#step-5-main-function-argument-parsing" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_args</span><span class="p">():</span>
         <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
@@ -319,14 +319,14 @@
 </pre></div>
 </div>
 <section id="id4">
-<h3>Explanation:<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Defines CLI arguments controlling dataset path, strategies (<code class="docutils literal notranslate"><span class="pre">gm_op</span></code>, <code class="docutils literal notranslate"><span class="pre">na_op</span></code>) or <code class="docutils literal notranslate"><span class="pre">fo_op</span></code>, and seeds.</p></li>
 </ul>
 </section>
 </section>
 <section id="step-6-data-setting-and-model-initialization">
-<h2>Step 6: Data Setting and Model Initialization<a class="headerlink" href="#step-6-data-setting-and-model-initialization" title="Permalink to this heading"></a></h2>
+<h2>Step 6: Data Setting and Model Initialization<a class="headerlink" href="#step-6-data-setting-and-model-initialization" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">trainset</span><span class="p">,</span> <span class="n">valset</span><span class="p">,</span> <span class="n">testset</span><span class="p">,</span> <span class="n">tevalset</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 
 <span class="n">jit</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
@@ -359,7 +359,7 @@
 </pre></div>
 </div>
 <section id="id5">
-<h3>Explanation:<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Saves the processed dataset for reuse as <code class="docutils literal notranslate"><span class="pre">l2reg.pkl</span></code>.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">UpperModel</span></code></strong>: Represents the upper-level model with a single learnable parameter.</p></li>
@@ -368,7 +368,7 @@
 </section>
 </section>
 <section id="step-7-optimizer-strategy-setup">
-<h2>Step 7: Optimizer &amp; Strategy Setup<a class="headerlink" href="#step-7-optimizer-strategy-setup" title="Permalink to this heading"></a></h2>
+<h2>Step 7: Optimizer &amp; Strategy Setup<a class="headerlink" href="#step-7-optimizer-strategy-setup" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">upper_opt</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">upper_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="n">lower_opt</span> <span class="o">=</span> <span class="n">jit</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">lower_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 
@@ -378,7 +378,7 @@
 </pre></div>
 </div>
 <section id="id6">
-<h3>Explanation:<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Adam optimizer</strong>: Used for the upper-level model to update its parameters.</p></li>
 <li><p><strong>SGD optimizer</strong>: Applied to the lower-level model for efficient gradient updates.</p></li>
@@ -387,7 +387,7 @@
 </section>
 </section>
 <section id="step-8-bi-level-optimization-setup">
-<h2>Step 8: Bi-Level Optimization Setup<a class="headerlink" href="#step-8-bi-level-optimization-setup" title="Permalink to this heading"></a></h2>
+<h2>Step 8: Bi-Level Optimization Setup<a class="headerlink" href="#step-8-bi-level-optimization-setup" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure BOAT problem</span>
 <span class="k">if</span> <span class="n">na_op</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">if</span> <span class="s2">&quot;RGT&quot;</span> <span class="ow">in</span> <span class="n">na_op</span><span class="p">:</span>
@@ -408,7 +408,7 @@
 </pre></div>
 </div>
 <section id="id7">
-<h3>Explanation:<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Configures the <code class="docutils literal notranslate"><span class="pre">boat_config</span></code> with models, optimizers, and variables for both levels.</p></li>
 <li><p>Instantiates the <code class="docutils literal notranslate"><span class="pre">boat.Problem</span></code> class and builds the necessary lower-level and upper-level solvers.</p></li>
@@ -417,7 +417,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-9-optimization-loop">
-<h2>Step 9: Optimization Loop<a class="headerlink" href="#step-9-optimization-loop" title="Permalink to this heading"></a></h2>
+<h2>Step 9: Optimization Loop<a class="headerlink" href="#step-9-optimization-loop" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ul_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">trainset</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">trainset</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
 <span class="n">ll_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">valset</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">valset</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
 
@@ -441,7 +441,7 @@
 </pre></div>
 </div>
 <section id="id8">
-<h3>Explanation:<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">evaluate</span></code> function calculates the model’s loss and accuracy on the test dataset.</p></li>
 <li><p>Outputs the test performance metrics for monitoring optimization progress.</p></li>
@@ -451,21 +451,21 @@
 </section>
 <hr class="docutils" />
 <section id="step-10-entry-point">
-<h2>Step 10: Entry Point<a class="headerlink" href="#step-10-entry-point" title="Permalink to this heading"></a></h2>
+<h2>Step 10: Entry Point<a class="headerlink" href="#step-10-entry-point" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 
 </pre></div>
 </div>
 <section id="id9">
-<h3>Explanation:<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Standard Python entry point that makes the script runnable directly.</p></li>
 </ul>
 </section>
 </section>
 <section id="how-to-run">
-<h2>How to Run<a class="headerlink" href="#how-to-run" title="Permalink to this heading"></a></h2>
+<h2>How to Run<a class="headerlink" href="#how-to-run" title="Link to this heading"></a></h2>
 <p>To execute the example, use the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>your_script_name.py<span class="w"> </span>--data_path<span class="w"> </span>./data<span class="w"> </span>--model_path<span class="w"> </span>./save_l2reg<span class="w"> </span>--gm_op<span class="w"> </span>NGD<span class="w"> </span>--na_op<span class="w"> </span>RAD
 </pre></div>
