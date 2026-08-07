@@ -84,7 +84,7 @@ cd BOAT
 pip install -e .
 # Note: For `examples/meta_learning`, we recommend using `torchmeta==1.8.0` with `torch==1.9.1+cu111`, `python==3.8`.
 ```
-## Quick Verification
+## ✅ Quick Verification
 
 Run the following commands from the root directory of the BOAT repository:
 
