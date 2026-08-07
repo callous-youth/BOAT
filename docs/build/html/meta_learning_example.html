@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meta-Learning &mdash; BOAT-Torch 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dfc096c9" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -107,11 +107,11 @@
            <div itemprop="articleBody">
              
   <section id="meta-learning">
-<h1>Meta-Learning<a class="headerlink" href="#meta-learning" title="Permalink to this heading"></a></h1>
+<h1>Meta-Learning<a class="headerlink" href="#meta-learning" title="Link to this heading"></a></h1>
 <p>This example demonstrates how to use the BOAT library to perform meta-learning tasks, focusing on bi-level optimization using sinusoid functions as the dataset. The explanation is broken down into steps with corresponding code snippets.</p>
 <hr class="docutils" />
 <section id="step-1-importing-libraries-and-dependencies">
-<h2>Step 1: Importing Libraries and Dependencies<a class="headerlink" href="#step-1-importing-libraries-and-dependencies" title="Permalink to this heading"></a></h2>
+<h2>Step 1: Importing Libraries and Dependencies<a class="headerlink" href="#step-1-importing-libraries-and-dependencies" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
@@ -126,7 +126,7 @@
 </pre></div>
 </div>
 <section id="explanation">
-<h3>Explanation:<a class="headerlink" href="#explanation" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#explanation" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Import necessary libraries, including <code class="docutils literal notranslate"><span class="pre">torch</span></code>, <code class="docutils literal notranslate"><span class="pre">boat</span></code>, and <code class="docutils literal notranslate"><span class="pre">torchmeta</span></code>.</p></li>
 </ul>
@@ -134,7 +134,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-2-argument-and-dataset-setup">
-<h2>Step 2: Argument and Dataset Setup<a class="headerlink" href="#step-2-argument-and-dataset-setup" title="Permalink to this heading"></a></h2>
+<h2>Step 2: Argument and Dataset Setup<a class="headerlink" href="#step-2-argument-and-dataset-setup" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;BOAT Omniglot Meta-Training &quot;</span><span class="p">)</span>
 <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--gm_op&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;NGD&quot;</span><span class="p">)</span>
 <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--na_op&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;CG&quot;</span><span class="p">)</span>
@@ -156,7 +156,7 @@
 </pre></div>
 </div>
 <section id="id1">
-<h3>Explanation:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>Dataset</strong>: The Omniglot dataset is used for few-shot meta-learning.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ways</span></code> / <code class="docutils literal notranslate"><span class="pre">shots</span></code>: Control the number of classes and samples per class.</p></li>
@@ -166,8 +166,39 @@
 </section>
 <hr class="docutils" />
 <section id="step-3-model-and-optimizer-setup">
-<h2>Step 3: Model and Optimizer Setup<a class="headerlink" href="#step-3-model-and-optimizer-setup" title="Permalink to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">meta_model_x</span><span class="p">,</span> <span class="n">meta_model_y</span> <span class="o">=</span> <span class="n">get_cnn_omniglot</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">ways</span><span class="p">)</span>
+<h2>Step 3: Model and Optimizer Setup<a class="headerlink" href="#step-3-model-and-optimizer-setup" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Model definitions</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_cnn_omniglot</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">conv_block</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">oc</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">ic</span><span class="p">,</span> <span class="n">oc</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">oc</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">affine</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">track_running_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="n">feature_extractor</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+        <span class="n">conv_block</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">),</span>
+        <span class="n">conv_block</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">),</span>
+        <span class="n">conv_block</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">),</span>
+        <span class="n">conv_block</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">),</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+    <span class="p">)</span>
+
+    <span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">feature_extractor</span><span class="p">,</span> <span class="n">classifier</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">initialize</span><span class="p">(</span><span class="n">net</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">modules</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">):</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">kaiming_normal_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">bias</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">zeros_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">):</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">normal_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">zeros_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+
+<span class="n">meta_model_x</span><span class="p">,</span> <span class="n">meta_model_y</span> <span class="o">=</span> <span class="n">get_cnn_omniglot</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">ways</span><span class="p">)</span>
 <span class="n">meta_model_x</span> <span class="o">=</span> <span class="n">meta_model_x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 <span class="n">meta_model_y</span> <span class="o">=</span> <span class="n">meta_model_y</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 <span class="n">initialize</span><span class="p">(</span><span class="n">meta_model_x</span><span class="p">)</span>
@@ -175,11 +206,10 @@
 
 <span class="n">inner_opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">meta_model_y</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 <span class="n">outer_opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">meta_model_x</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-
 </pre></div>
 </div>
 <section id="id2">
-<h3>Explanation:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">meta_model_y</span></code> for the lower-level (task-specific learner).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">meta_model_x</span></code> for the upper-level (meta-learner).</p></li>
@@ -190,7 +220,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-4-dataloader-construction">
-<h2>Step 4: DataLoader Construction<a class="headerlink" href="#step-4-dataloader-construction" title="Permalink to this heading"></a></h2>
+<h2>Step 4: DataLoader Construction<a class="headerlink" href="#step-4-dataloader-construction" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">dataloader</span> <span class="o">=</span> <span class="n">BatchMetaDataLoader</span><span class="p">(</span>
     <span class="n">dataset</span><span class="p">,</span>
@@ -198,11 +228,10 @@
     <span class="n">num_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">pin_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span>
-
 </pre></div>
 </div>
 <section id="id3">
-<h3>Explanation:<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">BatchMetaDataLoader</span></code> constructs batches of tasks for meta-learning.</p></li>
 <li><p>Each batch contains multiple few-shot classification tasks.</p></li>
@@ -211,7 +240,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-5-bi-level-optimization-configuration">
-<h2>Step 5: Bi-Level Optimization Configuration<a class="headerlink" href="#step-5-bi-level-optimization-configuration" title="Permalink to this heading"></a></h2>
+<h2>Step 5: Bi-Level Optimization Configuration<a class="headerlink" href="#step-5-bi-level-optimization-configuration" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./configs/boat_config_CG.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">boat_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./configs/loss_config_CG.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -231,11 +260,10 @@
 <span class="n">b_optimizer</span> <span class="o">=</span> <span class="n">boat</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">boat_config</span><span class="p">,</span> <span class="n">loss_config</span><span class="p">)</span>
 <span class="n">b_optimizer</span><span class="o">.</span><span class="n">build_ll_solver</span><span class="p">()</span>
 <span class="n">b_optimizer</span><span class="o">.</span><span class="n">build_ul_solver</span><span class="p">()</span>
-
 </pre></div>
 </div>
 <section id="id4">
-<h3>Explanation:<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Configure and initialize the bi-level optimizer using BOAT.</p></li>
 <li><p>Define models, variables, and optimizers for both levels.</p></li>
@@ -244,7 +272,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-6-meta-training-loop">
-<h2>Step 6: Meta-Training Loop<a class="headerlink" href="#step-6-meta-training-loop" title="Permalink to this heading"></a></h2>
+<h2>Step 6: Meta-Training Loop<a class="headerlink" href="#step-6-meta-training-loop" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">max_iters</span> <span class="o">=</span> <span class="mi">20</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Start meta-training &quot;</span><span class="p">)</span>
 
@@ -275,11 +303,10 @@
         <span class="k">if</span> <span class="n">meta_iter</span> <span class="o">&gt;=</span> <span class="n">max_iters</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reached </span><span class="si">{</span><span class="n">max_iters</span><span class="si">}</span><span class="s2"> iterations. Stop.&quot;</span><span class="p">)</span>
             <span class="k">break</span>
-
 </pre></div>
 </div>
 <section id="id5">
-<h3>Explanation:<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Iterate through batches using <code class="docutils literal notranslate"><span class="pre">tqdm</span></code> for progress visualization.</p></li>
 <li><p>Prepare feed dictionaries for lower-level and upper-level optimizations.</p></li>

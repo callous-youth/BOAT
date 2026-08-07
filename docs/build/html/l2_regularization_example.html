@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>L2 Regularization &mdash; BOAT-Torch 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dfc096c9" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
-      <script src="_static/doctools.js?v=888ff710"></script>
-      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -107,11 +107,11 @@
            <div itemprop="articleBody">
              
   <section id="l2-regularization">
-<h1>L2 Regularization<a class="headerlink" href="#l2-regularization" title="Permalink to this heading"></a></h1>
+<h1>L2 Regularization<a class="headerlink" href="#l2-regularization" title="Link to this heading"></a></h1>
 <p>This example demonstrates how to use the BOAT library to perform bi-level optimization with L2 regularization. The example includes data preprocessing, model initialization, and the optimization process.</p>
 <hr class="docutils" />
 <section id="step-1-imports-and-environment-setup">
-<h2>Step 1: Imports and Environment Setup<a class="headerlink" href="#step-1-imports-and-environment-setup" title="Permalink to this heading"></a></h2>
+<h2>Step 1: Imports and Environment Setup<a class="headerlink" href="#step-1-imports-and-environment-setup" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">argparse</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
@@ -125,7 +125,7 @@
 </pre></div>
 </div>
 <section id="explanation">
-<h3>Explanation:<a class="headerlink" href="#explanation" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#explanation" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Core libraries such as <strong><code class="docutils literal notranslate"><span class="pre">torch</span></code></strong>, <strong><code class="docutils literal notranslate"><span class="pre">numpy</span></code></strong>, and <strong><code class="docutils literal notranslate"><span class="pre">boat_torch</span></code></strong> are imported.</p></li>
 <li><p>The project root directory is appended to  <strong><code class="docutils literal notranslate"><span class="pre">sys.path</span></code></strong> to allow importing local utility modules.</p></li>
@@ -135,7 +135,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-2-configuration-loading">
-<h2>Step 2: Configuration Loading<a class="headerlink" href="#step-2-configuration-loading" title="Permalink to this heading"></a></h2>
+<h2>Step 2: Configuration Loading<a class="headerlink" href="#step-2-configuration-loading" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">base_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
 <span class="n">parent_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">base_folder</span><span class="p">)</span>
 
@@ -148,7 +148,7 @@
 </pre></div>
 </div>
 <section id="id1">
-<h3>Explanation:<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>BOAT optimization settings are loaded from <code class="docutils literal notranslate"><span class="pre">boat_config_l2.json</span></code>.</p></li>
 <li><p>Loss functions for upper- and lower-level optimization are defined in <code class="docutils literal notranslate"><span class="pre">loss_config_l2.json</span></code>.</p></li>
@@ -157,7 +157,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-3-argument-parsing-and-reproducibility">
-<h2>Step 3: Argument Parsing and Reproducibility<a class="headerlink" href="#step-3-argument-parsing-and-reproducibility" title="Permalink to this heading"></a></h2>
+<h2>Step 3: Argument Parsing and Reproducibility<a class="headerlink" href="#step-3-argument-parsing-and-reproducibility" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">parse_args</span><span class="p">():</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
@@ -205,7 +205,7 @@
 </pre></div>
 </div>
 <section id="id2">
-<h3>Explanation:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Command-line arguments control dataset generation, optimization iterations, and BOAT operators.</p></li>
 <li><p>Random seeds are fixed to ensure reproducible experimental results.</p></li>
@@ -215,7 +215,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-4-data-preparation">
-<h2>Step 4: Data Preparation<a class="headerlink" href="#step-4-data-preparation" title="Permalink to this heading"></a></h2>
+<h2>Step 4: Data Preparation<a class="headerlink" href="#step-4-data-preparation" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">args</span> <span class="o">=</span> <span class="n">parse_args</span><span class="p">()</span>
 <span class="n">trainset</span><span class="p">,</span> <span class="n">valset</span><span class="p">,</span> <span class="n">testset</span><span class="p">,</span> <span class="n">tevalset</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 
@@ -226,7 +226,7 @@
 </pre></div>
 </div>
 <section id="id3">
-<h3>Explanation:<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Training, validation, test, and evaluation datasets are generated using <code class="docutils literal notranslate"><span class="pre">get_data</span></code>.</p></li>
 <li><p>The processed datasets are saved locally for later reuse.</p></li>
@@ -236,7 +236,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-5-model-definition">
-<h2>Step 5: Model Definition<a class="headerlink" href="#step-5-model-definition" title="Permalink to this heading"></a></h2>
+<h2>Step 5: Model Definition<a class="headerlink" href="#step-5-model-definition" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
 <span class="n">n_feats</span> <span class="o">=</span> <span class="n">trainset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
@@ -244,11 +244,10 @@
 <span class="n">lower_model</span> <span class="o">=</span> <span class="n">LowerModel</span><span class="p">(</span>
     <span class="n">n_feats</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="n">trainset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="p">)</span>
-
 </pre></div>
 </div>
 <section id="id4">
-<h3>Explanation:<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<h3>Explanation:<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">UpperModel</span></code></strong>: Represents the upper-level model, optimizing high-level objectives.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">LowerModel</span></code></strong>: Represents the lower-level model, focusing on optimizing low-level objectives.</p></li>
@@ -257,7 +256,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-6-optimizer-setup">
-<h2>Step 6: Optimizer Setup<a class="headerlink" href="#step-6-optimizer-setup" title="Permalink to this heading"></a></h2>
+<h2>Step 6: Optimizer Setup<a class="headerlink" href="#step-6-optimizer-setup" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">upper_opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">upper_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="n">lower_opt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">lower_model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 </pre></div>
@@ -265,7 +264,7 @@
 </section>
 <hr class="docutils" />
 <section id="step-7-boat-problem-construction">
-<h2>Step 7: BOAT Problem Construction<a class="headerlink" href="#step-7-boat-problem-construction" title="Permalink to this heading"></a></h2>
+<h2>Step 7: BOAT Problem Construction<a class="headerlink" href="#step-7-boat-problem-construction" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gm_op</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">gm_op</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">gm_op</span> <span class="k">else</span> <span class="p">[]</span>
 <span class="n">na_op</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">na_op</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">na_op</span> <span class="k">else</span> <span class="p">[]</span>
 
@@ -292,14 +291,13 @@
 </section>
 <hr class="docutils" />
 <section id="step-8-optimization-loop">
-<h2>Step 8: Optimization Loop<a class="headerlink" href="#step-8-optimization-loop" title="Permalink to this heading"></a></h2>
+<h2>Step 8: Optimization Loop<a class="headerlink" href="#step-8-optimization-loop" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ul_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">trainset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">trainset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)}</span>
 <span class="n">ll_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">valset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">valset</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)}</span>
 
-<span class="n">iterations</span> <span class="o">=</span> <span class="mi">30</span>
 <span class="k">for</span> <span class="n">x_itr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
-    <span class="n">b_optimizer</span><span class="o">.</span><span class="n">run_iter</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="n">ul_feed_dict</span><span class="p">,</span> <span class="n">current_iter</span><span class="o">=</span><span class="n">x_itr</span><span class="p">)</span>
-
+    <span class="n">log_results</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">b_optimizer</span><span class="o">.</span><span class="n">run_iter</span><span class="p">(</span><span class="n">ll_feed_dict</span><span class="p">,</span> <span class="n">ul_feed_dict</span><span class="p">,</span> <span class="n">current_iter</span><span class="o">=</span><span class="n">x_itr</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">log_results</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </section>

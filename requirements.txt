@@ -8,3 +8,4 @@ torch>=1.4         # PyTorch, the primary deep learning framework
 higher               # Library for higher-order optimization in PyTorch
 matplotlib
 
+torchvision

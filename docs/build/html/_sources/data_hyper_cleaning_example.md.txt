@@ -25,6 +25,7 @@ tr.data_polluting(0.5)
 tr.data_flatten()
 val.data_flatten()
 test.data_flatten()
+device = torch.device("cuda")
 ```
 
 ### Explanation:
@@ -138,14 +139,18 @@ def main():
     ll_feed_dict = {"data": tr.data.to(device), "target": tr.dirty_target.to(device)}
     iterations = 3
     for x_itr in range(iterations):
-        b_optimizer.run_iter(ll_feed_dict, ul_feed_dict, current_iter=x_itr)
+        log_results, _ =  b_optimizer.run_iter(ll_feed_dict, ul_feed_dict, current_iter=x_itr)
+        print(log_results[-1])
+
+    if __name__ == "__main__":
+        main()
 ```
 
 ### Explanation:
 1. **Argument Parsing**:
    - `gm_op`: Specifies the list of the gradient mapping operations, e.g., ["NGD","GDA"].
    - `na_op`: Specifies the list of numerical approximation operations, e.g., ["RAD","RGT"].
-   - `fo_op`: Optionally specifies a first-order gradient method, e.g., “MESO”, “ALTO”, or “GAFFO”.
+   - `fo_op`: Optionally specifies a first-order gradient method, e.g., “MESO”, “ALTO”.
 
 2. **BOAT Configuration**:
    - Updates the `boat_config` with the parsed arguments and model components.

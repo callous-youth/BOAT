@@ -5,3 +5,5 @@ meta_learning/ml_exmaple.py
 L2_Reg/l2_regularization_local.py
 L2_Reg/l2_reg_example.py
 examples/data
+.DS_Store
+**/.DS_Store

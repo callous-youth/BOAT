@@ -9,17 +9,35 @@ To install BOAT (PyTorch version), we recommend using a virtual environment.
 conda create -n boat python=3.12
 conda activate boat
 ```
-### 2. Create Environment
+### 2. Install BOAT
 You can install the latest stable version from PyPI or the latest development version from *GitHub*:
 ```bash
 # Install from PyPI
 pip install boat-torch
 
 # Or install from Source
-git clone [https://github.com/callous-youth/BOAT.git](https://github.com/callous-youth/BOAT.git)
+git clone https://github.com/callous-youth/BOAT.git
 cd BOAT
 pip install -e .
+# Note: For `examples/meta_learning`, we recommend using `torchmeta==1.8.0` with `torch==1.9.1+cu111`, `python==3.8`.
 ```
+
+## Quick Verification
+
+Run the following commands from the root directory of the BOAT repository:
+
+```bash
+python examples/data_hyper_cleaning/data_hyper_cleaning.py --gm_op NGD --na_op RAD
+
+python examples/L2_Reg/l2_regularization.py --gm_op NGD --na_op RAD
+
+python examples/meta_learning/meta_learning.py --fo_op GAFFO
+```
+Note: The test_*.py files under the data hyper-cleaning and
+meta-learning example directories are pytest coverage tests used by GitHub
+Actions. Reviewers and users should run the example commands above instead
+of invoking these CI test files directly.
+
 
 ##  ⚡ **How to Use BOAT**
 

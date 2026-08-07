@@ -1,21 +1,21 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>boat_torch.boat_opt &mdash; BOAT-Torch 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=dfc096c9" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=f6245a2f"></script>
-      <script src="../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -121,7 +121,9 @@
     <span class="p">)</span>
 
 
-<div class="viewcode-block" id="Problem"><a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Problem</span><span class="p">:</span>
+<div class="viewcode-block" id="Problem">
+<a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Problem</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Enhanced bi-level optimization problem class supporting flexible loss functions and operation configurations.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -182,7 +184,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">loss_log_path</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;loss_log_path&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span> <span class="o">=</span> <span class="p">[]</span>
 
-<div class="viewcode-block" id="Problem.build_ll_solver"><a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.build_ll_solver">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">build_ll_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Problem.build_ll_solver">
+<a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.build_ll_solver">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build_ll_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Configure the lower-level solver.</span>
 
@@ -224,7 +228,10 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="Problem.build_ul_solver"><a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.build_ul_solver">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">build_ul_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Problem.build_ul_solver">
+<a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.build_ul_solver">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build_ul_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Configure the lower-level solver.</span>
 
@@ -257,7 +264,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_ul_solver</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
-<div class="viewcode-block" id="Problem.run_iter"><a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.run_iter">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">run_iter</span><span class="p">(</span>
+
+<div class="viewcode-block" id="Problem.run_iter">
+<a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.run_iter">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_iter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">ll_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
         <span class="n">ul_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
@@ -424,10 +434,16 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_results</span><span class="p">,</span> <span class="n">run_time</span></div>
 
-<div class="viewcode-block" id="Problem.set_track_trajectory"><a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.set_track_trajectory">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">set_track_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track_traj</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Problem.set_track_trajectory">
+<a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.set_track_trajectory">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_track_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">track_traj</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_track_opt_traj</span> <span class="o">=</span> <span class="n">track_traj</span></div>
 
-<div class="viewcode-block" id="Problem.check_status"><a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.check_status">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">check_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Problem.check_status">
+<a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.check_status">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_na_op</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;PTT&quot;</span><span class="p">,</span> <span class="s2">&quot;IAD&quot;</span><span class="p">,</span> <span class="s2">&quot;RAD&quot;</span><span class="p">]):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set_track_trajectory</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">if</span> <span class="s2">&quot;DM&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">[</span><span class="s2">&quot;gm_op&quot;</span><span class="p">]:</span>
@@ -472,7 +488,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">[</span><span class="s2">&quot;RGT&quot;</span><span class="p">][</span><span class="s2">&quot;truncate_iter&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">[</span><span class="s2">&quot;lower_iters&quot;</span><span class="p">]</span>
         <span class="p">),</span> <span class="s2">&quot;The value of &#39;truncate_iter&#39; shouldn&#39;t be greater than &#39;lower_loop&#39;.&quot;</span></div>
 
-<div class="viewcode-block" id="Problem.plot_losses"><a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.plot_losses">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_losses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Problem.plot_losses">
+<a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.plot_losses">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_losses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">iters</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;iter&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">]</span>
         <span class="n">ll_losses</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;ll_loss&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">]</span>
         <span class="n">ul_losses</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;ul_loss&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">]</span>
@@ -498,7 +517,10 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Problem.save_losses"><a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.save_losses">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">save_losses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_iter</span><span class="p">,</span> <span class="n">ll_loss</span><span class="p">,</span> <span class="n">ul_loss</span><span class="p">):</span>
+
+<div class="viewcode-block" id="Problem.save_losses">
+<a class="viewcode-back" href="../../boat_torch.html#boat_torch.boat_opt.Problem.save_losses">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_losses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_iter</span><span class="p">,</span> <span class="n">ll_loss</span><span class="p">,</span> <span class="n">ul_loss</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the losses to a JSON file and update the loss history.</span>
 <span class="sd">        :param current_iter:iteration number</span>
@@ -513,7 +535,9 @@
         <span class="p">})</span>
 
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_log_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div></div>
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div>
+</div>
+
 </pre></div>
 
            </div>

@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://raw.githubusercontent.com/callous-youth/BOAT/refs/heads/main/_static/logo.jpg" alt="BOAT" width="50%" align="top">
+  <img src="_static/logo.jpg" alt="BOAT" width="50%" align="top">
 </h1>
 <p align="center">
   <b>A Compositional Operation Toolbox for Gradient-based Bi-Level Optimization</b><br>
@@ -72,17 +72,35 @@ To install BOAT (PyTorch version), we recommend using a virtual environment.
 conda create -n boat python=3.12
 conda activate boat
 ```
-### 2. Create Environment
+### 2. Install Boat
 You can install the latest stable version from PyPI or the latest development version from *GitHub*:
 ```bash
 # Install from PyPI
 pip install boat-torch
 
 # Or install from Source
-git clone [https://github.com/callous-youth/BOAT.git](https://github.com/callous-youth/BOAT.git)
+git clone https://github.com/callous-youth/BOAT.git
 cd BOAT
 pip install -e .
+# Note: For `examples/meta_learning`, we recommend using `torchmeta==1.8.0` with `torch==1.9.1+cu111`, `python==3.8`.
 ```
+## Quick Verification
+
+Run the following commands from the root directory of the BOAT repository:
+
+```bash
+python examples/data_hyper_cleaning/data_hyper_cleaning.py --gm_op NGD --na_op RAD
+
+python examples/L2_Reg/l2_regularization.py --gm_op NGD --na_op RAD
+
+python examples/meta_learning/meta_learning.py --fo_op GAFFO
+```
+Note: The test_*.py files under the data hyper-cleaning and
+meta-learning example directories are pytest coverage tests used by GitHub
+Actions. Reviewers and users should run the example commands above instead
+of invoking these CI test files directly.
+
+
 ##  ⚡ **How to Use BOAT**
 BOAT separates the **problem definition** from the **solver configuration**, allowing you to switch algorithms without changing your model code.
 
@@ -121,7 +139,7 @@ lower_opt = torch.optim.SGD(lower_model.parameters(), lr=1e-2)
 Inject your runtime objects (models, optimizers) into the configuration and initialize the `boat.Problem` instance.
 
 ```python
-# Example gradient mapping and numerical approximation opreation Combination.
+# Example gradient mapping and numerical approximation operation Combination.
 gm_op = ["NGD", "DI", "GDA"]  # Dynamic Methods (Demo Only)
 na_op = ["RGT","RAD"]          # Hyper-Gradient Methods (Demo Only)
 
@@ -192,7 +210,6 @@ If you find BOAT useful in your research, please consider citing our paper:
 @article{liu2025boat,
   title={BOAT: A Compositional Operation Toolbox for Gradient-based Bi-Level Optimization},
   author={Liu, Yaohua and Pan, Jibao and Jiao, Xianghao and Gao, Jiaxin and Liu, Zhu and Liu, Risheng},
-  journal={Submitted to Journal of Machine Learning Research (JMLR)},
   year={2025}
 }
 ```

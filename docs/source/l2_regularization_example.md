@@ -131,7 +131,6 @@ upper_model = UpperModel(n_feats, device)
 lower_model = LowerModel(
     n_feats, device, num_classes=trainset[1].unique().shape[-1]
 )
-
 ```
 
 ### Explanation:
@@ -179,8 +178,7 @@ b_optimizer.build_ul_solver()
 ul_feed_dict = {"data": trainset[0].to(device), "target": trainset[1].to(device)}
 ll_feed_dict = {"data": valset[0].to(device), "target": valset[1].to(device)}
 
-iterations = 30
 for x_itr in range(iterations):
-    b_optimizer.run_iter(ll_feed_dict, ul_feed_dict, current_iter=x_itr)
-
+    log_results, _ = b_optimizer.run_iter(ll_feed_dict, ul_feed_dict, current_iter=x_itr)
+    print(log_results[-1])
 ```

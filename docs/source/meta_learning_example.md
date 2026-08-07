@@ -58,6 +58,37 @@ dataset = omniglot(
 ## Step 3: Model and Optimizer Setup
 
 ```python
+# Model definitions
+def get_cnn_omniglot(hidden_size, n_classes):
+    def conv_block(ic, oc):
+        return nn.Sequential(
+            nn.Conv2d(ic, oc, 3, padding=1),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2),
+            nn.BatchNorm2d(oc, momentum=1.0, affine=True, track_running_stats=True),
+        )
+
+    feature_extractor = nn.Sequential(
+        conv_block(1, hidden_size),
+        conv_block(hidden_size, hidden_size),
+        conv_block(hidden_size, hidden_size),
+        conv_block(hidden_size, hidden_size),
+        nn.Flatten(),
+    )
+
+    classifier = nn.Linear(hidden_size, n_classes)
+    return feature_extractor, classifier
+
+def initialize(net):
+    for m in net.modules():
+        if isinstance(m, nn.Conv2d):
+            nn.init.kaiming_normal_(m.weight)
+            if m.bias is not None:
+                nn.init.zeros_(m.bias)
+        elif isinstance(m, nn.Linear):
+            nn.init.normal_(m.weight, 0, 0.01)
+            nn.init.zeros_(m.bias)
+
 meta_model_x, meta_model_y = get_cnn_omniglot(64, args.ways)
 meta_model_x = meta_model_x.to(device)
 meta_model_y = meta_model_y.to(device)
@@ -66,7 +97,6 @@ initialize(meta_model_y)
 
 inner_opt = torch.optim.SGD(meta_model_y.parameters(), lr=0.4)
 outer_opt = torch.optim.Adam(meta_model_x.parameters(), lr=0.05)
-
 ```
 
 ### Explanation:
@@ -87,7 +117,6 @@ dataloader = BatchMetaDataLoader(
     num_workers=1,
     pin_memory=False,
 )
-
 ```
 
 ### Explanation:
@@ -118,7 +147,6 @@ boat_config["upper_level_opt"] = outer_opt
 b_optimizer = boat.Problem(boat_config, loss_config)
 b_optimizer.build_ll_solver()
 b_optimizer.build_ul_solver()
-
 ```
 
 ### Explanation:
@@ -159,7 +187,6 @@ with tqdm(dataloader, total=max_iters, desc="Meta Training") as pbar:
         if meta_iter >= max_iters:
             print(f"Reached {max_iters} iterations. Stop.")
             break
-
 ```
 
 ### Explanation:
