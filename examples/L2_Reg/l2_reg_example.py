@@ -98,8 +98,8 @@ def main():
     ll_feed_dict = {"data": valset[0].to(device), "target": valset[1].to(device)}
     iterations = 30
     for x_itr in range(iterations):
-        b_optimizer.run_iter(ll_feed_dict, ul_feed_dict, current_iter=x_itr)
-
+        log_results, _ = b_optimizer.run_iter(ll_feed_dict, ul_feed_dict, current_iter=x_itr)
+        print(log_results[0])
 
 if __name__ == "__main__":
     main()
