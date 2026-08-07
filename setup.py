@@ -28,12 +28,7 @@ setup(
         "Deep learning",
         "Jittor",
     ],
-    install_requires=[
-        "numpy",
-        "tqdm",
-        "jittor",
-        "matplotlib",
-    ],
+    install_requires=get_install_requirements(),
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
