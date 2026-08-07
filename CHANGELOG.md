@@ -6,13 +6,13 @@ Historical entries are intentionally brief because detailed release notes were n
 
 ## [Unreleased]
 
-## [1.0.3] - 2026-08-06
+## [1.1.0] - 2026-08-07
 
 ### Added
 
-- Security policy
-- Code of conduct
-- Project changelog
+- Added new optimization operations.
+- Added security policy, code of conduct, and changelog.
+- Improved documentation for meta-learning and GAFFO.
 
 ## [1.0.2] - 2025-12-31
 
