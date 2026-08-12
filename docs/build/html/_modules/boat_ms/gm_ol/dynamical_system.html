@@ -1,21 +1,21 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>boat_ms.gm_ol.dynamical_system &mdash; BOAT-MS 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=4ff932f8" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=f6245a2f"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -83,7 +83,9 @@
 <span class="n">importlib</span> <span class="o">=</span> <span class="nb">__import__</span><span class="p">(</span><span class="s2">&quot;importlib&quot;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="DynamicalSystem"><a class="viewcode-back" href="../../../boat_ms.gm_ol.html#boat_ms.gm_ol.dynamical_system.DynamicalSystem">[docs]</a><span class="nd">@register_class</span>
+<div class="viewcode-block" id="DynamicalSystem">
+<a class="viewcode-back" href="../../../boat_ms.gm_ol.html#boat_ms.gm_ol.dynamical_system.DynamicalSystem">[docs]</a>
+<span class="nd">@register_class</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">DynamicalSystem</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">ll_objective</span><span class="p">,</span> <span class="n">ul_objective</span><span class="p">,</span> <span class="n">lower_loop</span><span class="p">,</span> <span class="n">ul_model</span><span class="p">,</span> <span class="n">ll_model</span><span class="p">,</span> <span class="n">solver_config</span>
@@ -112,9 +114,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ll_model</span> <span class="o">=</span> <span class="n">ll_model</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">solver_config</span> <span class="o">=</span> <span class="n">solver_config</span>
 
-<div class="viewcode-block" id="DynamicalSystem.optimize"><a class="viewcode-back" href="../../../boat_ms.gm_ol.html#boat_ms.gm_ol.dynamical_system.DynamicalSystem.optimize">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+<div class="viewcode-block" id="DynamicalSystem.optimize">
+<a class="viewcode-back" href="../../../boat_ms.gm_ol.html#boat_ms.gm_ol.dynamical_system.DynamicalSystem.optimize">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="k">pass</span></div></div>
+        <span class="k">pass</span></div>
+</div>
+
 </pre></div>
 
            </div>

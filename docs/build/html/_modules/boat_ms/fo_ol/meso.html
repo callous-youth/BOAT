@@ -1,21 +1,21 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>boat_ms.fo_ol.meso &mdash; BOAT-MS 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=4ff932f8" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=f6245a2f"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -87,7 +87,9 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">boat_ms.gm_ol.dynamical_system</span><span class="w"> </span><span class="kn">import</span> <span class="n">DynamicalSystem</span>
 
 
-<div class="viewcode-block" id="MESO"><a class="viewcode-back" href="../../../boat_ms.fo_ol.html#boat_ms.fo_ol.meso.MESO">[docs]</a><span class="nd">@register_class</span>
+<div class="viewcode-block" id="MESO">
+<a class="viewcode-back" href="../../../boat_ms.fo_ol.html#boat_ms.fo_ol.meso.MESO">[docs]</a>
+<span class="nd">@register_class</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">MESO</span><span class="p">(</span><span class="n">DynamicalSystem</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Implements the optimization procedure of Moreau Envelope based Single-loop Method (MESO) [1].</span>
@@ -153,7 +155,9 @@
             <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
         <span class="p">)</span>
 
-<div class="viewcode-block" id="MESO.optimize"><a class="viewcode-back" href="../../../boat_ms.fo_ol.html#boat_ms.fo_ol.meso.MESO.optimize">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ll_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">ul_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">current_iter</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<div class="viewcode-block" id="MESO.optimize">
+<a class="viewcode-back" href="../../../boat_ms.fo_ol.html#boat_ms.fo_ol.meso.MESO.optimize">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">optimize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ll_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">ul_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">current_iter</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Execute the optimization procedure with the data from feed_dict.</span>
 
@@ -228,7 +232,9 @@
             <span class="n">wrapped_ul_objective</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ul_model</span><span class="o">.</span><span class="n">trainable_params</span><span class="p">()</span>
         <span class="p">)()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ul_opt</span><span class="p">(</span><span class="n">grad_x_parameters</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">lower_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></div></div>
+        <span class="k">return</span> <span class="n">lower_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span></div>
+</div>
+
 </pre></div>
 
            </div>

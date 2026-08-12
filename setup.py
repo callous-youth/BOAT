@@ -15,7 +15,7 @@ def get_install_requirements():
 
 setup(
     name="boat-ms",
-    version="1.0.2",
+    version="1.1.0",
     packages=find_packages(),
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -28,7 +28,12 @@ setup(
         "Deep learning",
         "MindSpore",
     ],
-    install_requires=get_install_requirements(),
+    install_requires=[
+        "numpy",
+        "tqdm",
+        "mindspore-dev",
+        "matplotlib",
+    ],
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",

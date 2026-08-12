@@ -31,9 +31,17 @@ Once MindSpore is ready, install BOAT-ms via PyPI or Source:
 pip install boat-ms
 
 # Or install from Source (Specific Branch)
-git clone -b boat_ms --single-branch [https://github.com/callous-youth/BOAT.git](https://github.com/callous-youth/BOAT.git)
+git clone -b boat_ms --single-branch https://github.com/callous-youth/BOAT.git
 cd BOAT
 pip install -e .
+```
+
+## ✅ Quick Verification
+
+Run the following command from the root directory of the BOAT repository:
+
+```bash
+python examples/L2_Reg_ms/l2_regularization.py
 ```
 
 ##  ⚡ **How to Use BOAT**
