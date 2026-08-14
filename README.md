@@ -87,7 +87,7 @@ sudo apt-get install gcc-9 -y
 
 # 3. Install MindSpore (Adjust MS_VERSION as needed)
 export MS_VERSION=2.4.1
-pip install mindspore==${MS_VERSION} -i [https://repo.mindspore.cn/pypi/simple](https://repo.mindspore.cn/pypi/simple) --trusted-host repo.mindspore.cn
+pip install mindspore==${MS_VERSION} -i https://repo.mindspore.cn/pypi/simple --trusted-host repo.mindspore.cn
 ```
 
 ### 2. Install BOAT-ms
