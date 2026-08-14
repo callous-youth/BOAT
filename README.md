@@ -71,8 +71,12 @@ To install BOAT (PyTorch version), we recommend using a virtual environment.
 ```bash
 conda create -n boat python=3.12
 conda activate boat
-# Note: For `examples/meta_learning`, the examples require `torchmeta==1.8.0` and are recommended to run with `torch==1.9.1+cu111`, `python==3.8`.
 ```
+
+> **Note:** `examples/L2_Reg` additionally requires `scikit-learn` (`pip install scikit-learn`).
+
+> **Note:** `examples/meta_learning` requires `torchmeta==1.8.0` and is recommended to run with `torch==1.9.1+cu111` and `python==3.8`.
+
 ### 2. Install Boat
 You can install the latest stable version from PyPI or the latest development version from *GitHub*:
 ```bash
