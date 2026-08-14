@@ -102,6 +102,8 @@ cd BOAT
 pip install -e .
 ```
 
+> **Note:** `examples/L2_Reg_ms` additionally requires `scikit-learn` (`pip install scikit-learn`).
+
 ## ✅ Quick Verification
 
 Run the following command from the root directory of the BOAT repository:
