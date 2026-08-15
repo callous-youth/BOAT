@@ -155,10 +155,10 @@ def count_parameters_in_MB(model):
     return np.sum(np.prod(v.shape) for name, v in model.named_parameters() if "auxiliary" not in name) / 1e6
 
 def save_checkpoint(state, is_best, save):
-    filename = os.path.join(save, "checkpoint.pth.tar")
+    filename = os.path.join(save, "checkpoint.pkl")
     jt.save(state, filename)
     if is_best:
-        best_filename = os.path.join(save, "model_best.pth.tar")
+        best_filename = os.path.join(save, "model_best.pkl")
         shutil.copyfile(filename, best_filename)
 
 def save(model, model_path):

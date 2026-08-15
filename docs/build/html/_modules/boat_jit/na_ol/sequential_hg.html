@@ -1,21 +1,21 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>boat_jit.na_ol.sequential_hg &mdash; BOAT-Jittor 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=4ff932f8" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=d45e8c67"></script>
-      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -82,9 +82,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">boat_jit.operation_registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_registered_operation</span>
 
 
-<div class="viewcode-block" id="SequentialHG">
-<a class="viewcode-back" href="../../../boat_jit.na_ol.html#boat_jit.na_ol.sequential_hg.SequentialHG">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">SequentialHG</span><span class="p">:</span>
+<div class="viewcode-block" id="SequentialHG"><a class="viewcode-back" href="../../../boat_jit.na_ol.html#boat_jit.na_ol.sequential_hg.SequentialHG">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SequentialHG</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class for managing sequential hyper-gradient operations.</span>
 
@@ -105,9 +103,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">custom_order</span> <span class="o">=</span> <span class="n">custom_order</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">result_store</span> <span class="o">=</span> <span class="n">ResultStore</span><span class="p">()</span>  <span class="c1"># Use a dedicated result store</span>
 
-<div class="viewcode-block" id="SequentialHG.compute_gradients">
-<a class="viewcode-back" href="../../../boat_jit.na_ol.html#boat_jit.na_ol.sequential_hg.SequentialHG.compute_gradients">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">compute_gradients</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<div class="viewcode-block" id="SequentialHG.compute_gradients"><a class="viewcode-back" href="../../../boat_jit.na_ol.html#boat_jit.na_ol.sequential_hg.SequentialHG.compute_gradients">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">compute_gradients</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Compute hyper-gradients sequentially using the ordered instances.</span>
 
@@ -138,15 +134,11 @@
             <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">result_store</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;gradient_operator_results&quot;</span><span class="p">,</span> <span class="n">intermediate_result</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">result_store</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span></div>
-</div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">result_store</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span></div></div>
 
 
 
-
-<div class="viewcode-block" id="makes_functional_na_operation">
-<a class="viewcode-back" href="../../../boat_jit.na_ol.html#boat_jit.na_ol.sequential_hg.makes_functional_na_operation">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">makes_functional_na_operation</span><span class="p">(</span><span class="n">custom_order</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SequentialHG</span><span class="p">:</span>
+<div class="viewcode-block" id="makes_functional_na_operation"><a class="viewcode-back" href="../../../boat_jit.na_ol.html#boat_jit.na_ol.sequential_hg.makes_functional_na_operation">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">makes_functional_na_operation</span><span class="p">(</span><span class="n">custom_order</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SequentialHG</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Dynamically create a SequentialHG object with ordered gradient operators.</span>
 
@@ -185,10 +177,7 @@
     <span class="k">return</span> <span class="n">SequentialHG</span><span class="p">(</span><span class="n">ordered_instances</span><span class="p">,</span> <span class="n">custom_order</span><span class="p">)</span></div>
 
 
-
-<div class="viewcode-block" id="validate_and_adjust_order">
-<a class="viewcode-back" href="../../../boat_jit.na_ol.html#boat_jit.na_ol.sequential_hg.validate_and_adjust_order">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">validate_and_adjust_order</span><span class="p">(</span>
+<div class="viewcode-block" id="validate_and_adjust_order"><a class="viewcode-back" href="../../../boat_jit.na_ol.html#boat_jit.na_ol.sequential_hg.validate_and_adjust_order">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">validate_and_adjust_order</span><span class="p">(</span>
     <span class="n">custom_order</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">gradient_order</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -224,7 +213,6 @@
                 <span class="n">adjusted_order</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">adjusted_order</span></div>
-
 </pre></div>
 
            </div>
