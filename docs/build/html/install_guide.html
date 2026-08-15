@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Installation and Usage Guide &mdash; BOAT-Torch 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css?v=dfc096c9" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=d45e8c67"></script>
-      <script src="_static/doctools.js?v=9a2dae69"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -99,19 +99,25 @@
            <div itemprop="articleBody">
              
   <section id="installation-and-usage-guide">
-<h1>Installation and Usage Guide<a class="headerlink" href="#installation-and-usage-guide" title="Link to this heading"></a></h1>
+<h1>Installation and Usage Guide<a class="headerlink" href="#installation-and-usage-guide" title="Permalink to this heading"></a></h1>
 <section id="installation">
-<h2>🔨 Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<h2>🔨 Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
 <p>To install BOAT (PyTorch version), we recommend using a virtual environment.</p>
 <section id="create-environment">
-<h3>1. Create Environment<a class="headerlink" href="#create-environment" title="Link to this heading"></a></h3>
+<h3>1. Create Environment<a class="headerlink" href="#create-environment" title="Permalink to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>boat<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.12
 conda<span class="w"> </span>activate<span class="w"> </span>boat
 </pre></div>
 </div>
+<blockquote>
+<div><p><strong>Note:</strong> <code class="docutils literal notranslate"><span class="pre">examples/L2_Reg</span></code> additionally requires <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">scikit-learn</span></code>).</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Note:</strong> <code class="docutils literal notranslate"><span class="pre">examples/meta_learning</span></code> requires <code class="docutils literal notranslate"><span class="pre">torchmeta==1.8.0</span></code> and is recommended to run with <code class="docutils literal notranslate"><span class="pre">torch==1.9.1+cu111</span></code> and <code class="docutils literal notranslate"><span class="pre">python==3.8</span></code>.</p>
+</div></blockquote>
 </section>
 <section id="install-boat">
-<h3>2. Install BOAT<a class="headerlink" href="#install-boat" title="Link to this heading"></a></h3>
+<h3>2. Install BOAT<a class="headerlink" href="#install-boat" title="Permalink to this heading"></a></h3>
 <p>You can install the latest stable version from PyPI or the latest development version from <em>GitHub</em>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install from PyPI</span>
 pip<span class="w"> </span>install<span class="w"> </span>boat-torch
@@ -126,7 +132,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </section>
 </section>
 <section id="quick-verification">
-<h2>✅ Quick Verification<a class="headerlink" href="#quick-verification" title="Link to this heading"></a></h2>
+<h2>✅ Quick Verification<a class="headerlink" href="#quick-verification" title="Permalink to this heading"></a></h2>
 <p>Run the following commands from the root directory of the BOAT repository:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>examples/data_hyper_cleaning/data_hyper_cleaning.py<span class="w"> </span>--gm_op<span class="w"> </span>NGD<span class="w"> </span>--na_op<span class="w"> </span>RAD
 
@@ -141,9 +147,9 @@ Actions. Reviewers and users should run the example commands above instead
 of invoking these CI test files directly.</p>
 </section>
 <section id="how-to-use-boat">
-<h2>⚡ <strong>How to Use BOAT</strong><a class="headerlink" href="#how-to-use-boat" title="Link to this heading"></a></h2>
+<h2>⚡ <strong>How to Use BOAT</strong><a class="headerlink" href="#how-to-use-boat" title="Permalink to this heading"></a></h2>
 <section id="load-configuration-files">
-<h3><strong>1. Load Configuration Files</strong><a class="headerlink" href="#load-configuration-files" title="Link to this heading"></a></h3>
+<h3><strong>1. Load Configuration Files</strong><a class="headerlink" href="#load-configuration-files" title="Permalink to this heading"></a></h3>
 <p>BOAT relies on two key configuration files:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">boat_config.json</span></code>: Specifies optimization strategies and dynamic/hyper-gradient operations.</p></li>
@@ -163,7 +169,7 @@ of invoking these CI test files directly.</p>
 </div>
 </section>
 <section id="define-models-and-optimizers">
-<h3><strong>2. Define Models and Optimizers</strong><a class="headerlink" href="#define-models-and-optimizers" title="Link to this heading"></a></h3>
+<h3><strong>2. Define Models and Optimizers</strong><a class="headerlink" href="#define-models-and-optimizers" title="Permalink to this heading"></a></h3>
 <p>You need to specify both the upper-level and lower-level models along with their respective optimizers.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 
@@ -178,7 +184,7 @@ of invoking these CI test files directly.</p>
 </div>
 </section>
 <section id="customize-boat-configuration">
-<h3><strong>3. Customize BOAT Configuration</strong><a class="headerlink" href="#customize-boat-configuration" title="Link to this heading"></a></h3>
+<h3><strong>3. Customize BOAT Configuration</strong><a class="headerlink" href="#customize-boat-configuration" title="Permalink to this heading"></a></h3>
 <p>Modify the boat_config to include your gradient mapping and numerical approximation opreation, as well as model and variable details.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example gradient mapping and numerical approximation opreation Combination.</span>
 <span class="n">gm_op</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NGD&quot;</span><span class="p">,</span> <span class="s2">&quot;DI&quot;</span><span class="p">,</span> <span class="s2">&quot;GDA&quot;</span><span class="p">]</span>  <span class="c1"># Dynamic Methods (Demo Only)</span>
@@ -207,7 +213,7 @@ of invoking these CI test files directly.</p>
 </div>
 </section>
 <section id="initialize-the-boat-problem">
-<h3><strong>4. Initialize the BOAT Problem</strong><a class="headerlink" href="#initialize-the-boat-problem" title="Link to this heading"></a></h3>
+<h3><strong>4. Initialize the BOAT Problem</strong><a class="headerlink" href="#initialize-the-boat-problem" title="Permalink to this heading"></a></h3>
 <p>Modify the boat_config to include your gradient mapping and numerical approximation opreation, as well as model and variable details.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize the problem</span>
 <span class="n">b_optimizer</span> <span class="o">=</span> <span class="n">boat</span><span class="o">.</span><span class="n">Problem</span><span class="p">(</span><span class="n">boat_config</span><span class="p">,</span> <span class="n">loss_config</span><span class="p">)</span>
@@ -219,7 +225,7 @@ of invoking these CI test files directly.</p>
 </div>
 </section>
 <section id="define-data-feeds">
-<h3><strong>5. Define Data Feeds</strong><a class="headerlink" href="#define-data-feeds" title="Link to this heading"></a></h3>
+<h3><strong>5. Define Data Feeds</strong><a class="headerlink" href="#define-data-feeds" title="Permalink to this heading"></a></h3>
 <p>Prepare the data feeds for both levels of the BLO process, which was further fed into the the upper-level  and lower-level objective functions.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define data feeds (Demo Only)</span>
 <span class="n">ul_feed_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">upper_level_data</span><span class="p">,</span> <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">upper_level_target</span><span class="p">}</span>
@@ -228,7 +234,7 @@ of invoking these CI test files directly.</p>
 </div>
 </section>
 <section id="run-the-optimization-loop">
-<h3><strong>6. Run the Optimization Loop</strong><a class="headerlink" href="#run-the-optimization-loop" title="Link to this heading"></a></h3>
+<h3><strong>6. Run the Optimization Loop</strong><a class="headerlink" href="#run-the-optimization-loop" title="Permalink to this heading"></a></h3>
 <p>Execute the optimization loop, optionally customizing the solver strategy for gradient mapping operations.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set number of iterations</span>
 <span class="n">iterations</span> <span class="o">=</span> <span class="mi">1000</span>
