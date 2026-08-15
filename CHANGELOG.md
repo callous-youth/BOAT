@@ -6,6 +6,17 @@ Historical entries are intentionally brief because detailed release notes were n
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-08-15
+
+### Changed
+
+- Clarified the additional `scikit-learn` dependency required by `examples/L2_Reg`.
+- Updated and rebuilt the documentation.
+
+### Removed
+
+- Removed an obsolete script.
+
 ## [1.1.0] - 2026-08-07
 
 ### Added
