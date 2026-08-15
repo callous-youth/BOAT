@@ -41,6 +41,7 @@ git clone -b boat_jit --single-branch https://github.com/callous-youth/BOAT.git
 cd BOAT
 pip install -e .
 ```
+> **Note:** `examples/L2_Reg_jit` additionally requires `scikit-learn` (`pip install scikit-learn`).
 
 ## ✅ Quick Verification
 
