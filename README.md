@@ -73,21 +73,13 @@ BOAT-ms is built on top of **MindSpore**. Please install a suitable version for 
 ### 1. Install MindSpore
 Follow the [Official Installation Guide](https://www.mindspore.cn/install) or use the reference commands below:
 
-**CPU (Linux-x86_64) Example**
 ```bash
 # 1. Create environment
 conda create -n mindspore_py39 python=3.9.11 -y
 conda activate mindspore_py39
 
-# 2. Install GCC dependencies (Linux only)
-sudo apt-get install software-properties-common -y
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-sudo apt-get update
-sudo apt-get install gcc-9 -y
-
-# 3. Install MindSpore (Adjust MS_VERSION as needed)
-export MS_VERSION=2.4.1
-pip install mindspore==${MS_VERSION} -i https://repo.mindspore.cn/pypi/simple --trusted-host repo.mindspore.cn
+# 2. Install MindSpore
+pip install mindspore-dev
 ```
 
 ### 2. Install BOAT-ms

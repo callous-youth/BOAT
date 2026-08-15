@@ -1,22 +1,22 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="./">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BOAT-MS Structure &mdash; BOAT-MS 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css?v=4ff932f8" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=d45e8c67"></script>
-      <script src="_static/doctools.js?v=9a2dae69"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -104,34 +104,34 @@
            <div itemprop="articleBody">
              
   <section id="boat-ms-structure">
-<h1>BOAT-MS Structure<a class="headerlink" href="#boat-ms-structure" title="Link to this heading"></a></h1>
+<h1>BOAT-MS Structure<a class="headerlink" href="#boat-ms-structure" title="Permalink to this heading"></a></h1>
 <section id="module-boat_ms.boat_opt">
-<span id="core-problem-class"></span><h2>Core Problem Class<a class="headerlink" href="#module-boat_ms.boat_opt" title="Link to this heading"></a></h2>
+<span id="core-problem-class"></span><h2>Core Problem Class<a class="headerlink" href="#module-boat_ms.boat_opt" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="boat_ms.boat_opt.Problem">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_ms.boat_opt.</span></span><span class="sig-name descname"><span class="pre">Problem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/boat_opt.html#Problem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.boat_opt.Problem" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boat_ms.boat_opt.</span></span><span class="sig-name descname"><span class="pre">Problem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loss_config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/boat_opt.html#Problem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.boat_opt.Problem" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Enhanced bi-level optimization problem class supporting flexible loss functions and operation configurations.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_ms.boat_opt.Problem.build_ll_solver">
-<span class="sig-name descname"><span class="pre">build_ll_solver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/boat_opt.html#Problem.build_ll_solver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.boat_opt.Problem.build_ll_solver" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">build_ll_solver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/boat_opt.html#Problem.build_ll_solver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.boat_opt.Problem.build_ll_solver" title="Permalink to this definition"></a></dt>
 <dd><p>Configure the lower-level solver.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_ms.boat_opt.Problem.build_ul_solver">
-<span class="sig-name descname"><span class="pre">build_ul_solver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/boat_opt.html#Problem.build_ul_solver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.boat_opt.Problem.build_ul_solver" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">build_ul_solver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/boat_opt.html#Problem.build_ul_solver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.boat_opt.Problem.build_ul_solver" title="Permalink to this definition"></a></dt>
 <dd><p>Placeholder for UL solver configuration (FOGO manages updates internally in MindSpore setting).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_ms.boat_opt.Problem.plot_losses">
-<span class="sig-name descname"><span class="pre">plot_losses</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/boat_opt.html#Problem.plot_losses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.boat_opt.Problem.plot_losses" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plot_losses</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/boat_opt.html#Problem.plot_losses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.boat_opt.Problem.plot_losses" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_ms.boat_opt.Problem.run_iter">
-<span class="sig-name descname"><span class="pre">run_iter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/boat_opt.html#Problem.run_iter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.boat_opt.Problem.run_iter" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run_iter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ll_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_feed_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/boat_opt.html#Problem.run_iter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.boat_opt.Problem.run_iter" title="Permalink to this definition"></a></dt>
 <dd><p>Run a single iteration of the bi-level optimization process.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -142,7 +142,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boat_ms.boat_opt.Problem.save_losses">
-<span class="sig-name descname"><span class="pre">save_losses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_loss</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/boat_opt.html#Problem.save_losses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.boat_opt.Problem.save_losses" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">save_losses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_iter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ll_loss</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ul_loss</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/boat_opt.html#Problem.save_losses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.boat_opt.Problem.save_losses" title="Permalink to this definition"></a></dt>
 <dd><p>Save the losses to a JSON file and update the loss history.</p>
 </dd></dl>
 
@@ -150,7 +150,7 @@
 
 </section>
 <section id="main-subpackages">
-<h2>Main Subpackages<a class="headerlink" href="#main-subpackages" title="Link to this heading"></a></h2>
+<h2>Main Subpackages<a class="headerlink" href="#main-subpackages" title="Permalink to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="boat_ms.gm_ol.html">boat_ms.gm_ol</a><ul>
@@ -216,16 +216,16 @@
 </div>
 </section>
 <section id="module-boat_ms.operation_registry">
-<span id="extension-with-operation-registry"></span><h2>Extension with Operation_Registry<a class="headerlink" href="#module-boat_ms.operation_registry" title="Link to this heading"></a></h2>
+<span id="extension-with-operation-registry"></span><h2>Extension with Operation_Registry<a class="headerlink" href="#module-boat_ms.operation_registry" title="Permalink to this heading"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_ms.operation_registry.get_registered_operation">
-<span class="sig-prename descclassname"><span class="pre">boat_ms.operation_registry.</span></span><span class="sig-name descname"><span class="pre">get_registered_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/operation_registry.html#get_registered_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.operation_registry.get_registered_operation" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_ms.operation_registry.</span></span><span class="sig-name descname"><span class="pre">get_registered_operation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/operation_registry.html#get_registered_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.operation_registry.get_registered_operation" title="Permalink to this definition"></a></dt>
 <dd><p>Retrieve a registered operation class by name.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="boat_ms.operation_registry.register_class">
-<span class="sig-prename descclassname"><span class="pre">boat_ms.operation_registry.</span></span><span class="sig-name descname"><span class="pre">register_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/operation_registry.html#register_class"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.operation_registry.register_class" title="Link to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">boat_ms.operation_registry.</span></span><span class="sig-name descname"><span class="pre">register_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/boat_ms/operation_registry.html#register_class"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boat_ms.operation_registry.register_class" title="Permalink to this definition"></a></dt>
 <dd><p>Register a new operation class to the global registry.</p>
 </dd></dl>
 

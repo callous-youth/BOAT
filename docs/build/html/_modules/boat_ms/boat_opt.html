@@ -1,21 +1,21 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" data-content_root="../../">
+<html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>boat_ms.boat_opt &mdash; BOAT-MS 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=4ff932f8" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=d45e8c67"></script>
-      <script src="../../_static/doctools.js?v=9a2dae69"></script>
-      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=f6245a2f"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" /> 
@@ -113,9 +113,7 @@
     <span class="p">)</span>
 
 
-<div class="viewcode-block" id="Problem">
-<a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem">[docs]</a>
-<span class="k">class</span><span class="w"> </span><span class="nc">Problem</span><span class="p">:</span>
+<div class="viewcode-block" id="Problem"><a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Problem</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Enhanced bi-level optimization problem class supporting flexible loss functions and operation configurations.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -183,9 +181,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_fogo_batch_input</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;fogo_batch_input&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_return_grad</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;return_grad&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
 
-<div class="viewcode-block" id="Problem.build_ll_solver">
-<a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.build_ll_solver">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">build_ll_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Problem.build_ll_solver"><a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.build_ll_solver">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">build_ll_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Configure the lower-level solver.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -207,10 +203,7 @@
 
         <span class="k">return</span> <span class="bp">self</span></div>
 
-
-<div class="viewcode-block" id="Problem.build_ul_solver">
-<a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.build_ul_solver">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">build_ul_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Problem.build_ul_solver"><a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.build_ul_solver">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">build_ul_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Placeholder for UL solver configuration (FOGO manages updates internally in MindSpore setting).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -218,7 +211,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">boat_configs</span><span class="p">[</span><span class="s2">&quot;fo_op&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="p">),</span> <span class="s2">&quot;Choose FOGO based methods from [&#39;VSO&#39;,&#39;VFO&#39;,&#39;MESO&#39;] or set &#39;gm_ol&#39; and &#39;hyper_ol&#39; properly.&quot;</span>
         <span class="k">return</span> <span class="bp">self</span></div>
-
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_compute_current_losses</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -250,9 +242,7 @@
             <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">grads</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">grads</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Problem.run_iter">
-<a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.run_iter">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">run_iter</span><span class="p">(</span>
+<div class="viewcode-block" id="Problem.run_iter"><a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.run_iter">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">run_iter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">ll_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
         <span class="n">ul_feed_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
@@ -311,10 +301,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_results_dict</span><span class="p">[</span><span class="s2">&quot;upper_loss&quot;</span><span class="p">],</span> <span class="n">run_time</span></div>
 
-
-<div class="viewcode-block" id="Problem.plot_losses">
-<a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.plot_losses">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">plot_losses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Problem.plot_losses"><a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.plot_losses">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">plot_losses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">iters</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;iter&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">]</span>
         <span class="n">ll_losses</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;ll_loss&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">]</span>
         <span class="n">ul_losses</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;ul_loss&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">]</span>
@@ -340,10 +327,7 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
-
-<div class="viewcode-block" id="Problem.save_losses">
-<a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.save_losses">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">save_losses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_iter</span><span class="p">,</span> <span class="n">ll_loss</span><span class="p">,</span> <span class="n">ul_loss</span><span class="p">):</span>
+<div class="viewcode-block" id="Problem.save_losses"><a class="viewcode-back" href="../../boat_ms.html#boat_ms.boat_opt.Problem.save_losses">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">save_losses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">current_iter</span><span class="p">,</span> <span class="n">ll_loss</span><span class="p">,</span> <span class="n">ul_loss</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Save the losses to a JSON file and update the loss history.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -358,9 +342,7 @@
         <span class="p">})</span>
 
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_log_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div>
-</div>
-
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loss_history</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div></div>
 </pre></div>
 
            </div>
