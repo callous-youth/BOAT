@@ -219,9 +219,8 @@ def main():
         )
 
         logging.info("train_acc %f , train_obj %f ", train_acc, train_obj)
-        utils.save(model, os.path.join(args.save, "weights.pt"))
         print("epoch_step_time:", epoch_time)
-        utils.save(model, os.path.join(args.save, "weights.pt"))
+        utils.save(model, os.path.join(args.save, "weights.pkl"))
     print("average_step_time", average_runtime / 3)
 
 def train(train_queue, valid_queue, model, criterion, optimizer, boat_optimizer):
