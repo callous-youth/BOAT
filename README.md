@@ -104,6 +104,9 @@ meta-learning example directories are pytest coverage tests used by GitHub
 Actions. Reviewers and users should run the example commands above instead
 of invoking these CI test files directly.
 
+See the [custom operator tutorial](examples/custom_operator/README.md) to
+extend `RAD` with gradient clipping and run it through BOAT.
+
 
 ##  ⚡ **How to Use BOAT**
 BOAT separates the **problem definition** from the **solver configuration**, allowing you to switch algorithms without changing your model code.
