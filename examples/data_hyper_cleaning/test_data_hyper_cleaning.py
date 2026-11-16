@@ -1,6 +1,10 @@
 import pytest
 import subprocess
+import sys
+from pathlib import Path
 from unittest.mock import patch
+
+EXAMPLE_SCRIPT = Path(__file__).resolve().parent / "data_hyper_cleaning.py"
 
 gm_oplist = (
     ["NGD"],
@@ -38,8 +42,8 @@ fo_ol_method = (["VSO"], ["VFO"], ["MESO"], ["PGDO"], ["ALTO"])
 )
 def test_combination_dynamic_na_op(gm_op, na_op):
     command = [
-        "python",
-        "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
+        sys.executable,
+        str(EXAMPLE_SCRIPT),
         "--gm_op",
         ",".join(gm_op),
         "--na_op",
@@ -66,8 +70,8 @@ def test_combination_dynamic_na_op(gm_op, na_op):
 )
 def test_combination_dynamic_na_op_dm(gm_op, na_op):
     command = [
-        "python",
-        "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
+        sys.executable,
+        str(EXAMPLE_SCRIPT),
         "--gm_op",
         ",".join(gm_op),
         "--na_op",
@@ -87,8 +91,8 @@ def test_combination_dynamic_na_op_dm(gm_op, na_op):
 @pytest.mark.parametrize("fo_ol_method", fo_ol_method)
 def test_fo_ol_method(fo_ol_method):
     command = [
-        "python",
-        "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
+        sys.executable,
+        str(EXAMPLE_SCRIPT),
         "--fo_op",
         fo_ol_method[0],
     ]
