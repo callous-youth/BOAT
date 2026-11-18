@@ -1,6 +1,9 @@
+import os
 import pytest
 import subprocess
 from unittest.mock import patch
+
+SCRIPT_PATH = os.path.join(os.path.dirname(__file__), "data_hyper_cleaning.py")
 
 gm_oplist = (
     ["NGD"],
@@ -39,7 +42,7 @@ fo_ol_method = (["VSO"], ["VFO"], ["MESO"], ["PGDO"], ["ALTO"])
 def test_combination_dynamic_na_op(gm_op, na_op):
     command = [
         "python",
-        "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
+        SCRIPT_PATH,
         "--gm_op",
         ",".join(gm_op),
         "--na_op",
@@ -67,7 +70,7 @@ def test_combination_dynamic_na_op(gm_op, na_op):
 def test_combination_dynamic_na_op_dm(gm_op, na_op):
     command = [
         "python",
-        "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
+        SCRIPT_PATH,
         "--gm_op",
         ",".join(gm_op),
         "--na_op",
@@ -88,7 +91,7 @@ def test_combination_dynamic_na_op_dm(gm_op, na_op):
 def test_fo_ol_method(fo_ol_method):
     command = [
         "python",
-        "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
+        SCRIPT_PATH,
         "--fo_op",
         fo_ol_method[0],
     ]
