@@ -1,3 +1,5 @@
+import os
+
 import pytest
 import subprocess
 from unittest.mock import patch
@@ -39,7 +41,9 @@ fo_ol_method = (["VSO"], ["VFO"], ["MESO"], ["PGDO"], ["ALTO"])
 def test_combination_dynamic_na_op(gm_op, na_op):
     command = [
         "python",
-        "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
+        os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "data_hyper_cleaning.py"
+        ),
         "--gm_op",
         ",".join(gm_op),
         "--na_op",
@@ -67,7 +71,9 @@ def test_combination_dynamic_na_op(gm_op, na_op):
 def test_combination_dynamic_na_op_dm(gm_op, na_op):
     command = [
         "python",
-        "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
+        os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "data_hyper_cleaning.py"
+        ),
         "--gm_op",
         ",".join(gm_op),
         "--na_op",
@@ -88,7 +94,9 @@ def test_combination_dynamic_na_op_dm(gm_op, na_op):
 def test_fo_ol_method(fo_ol_method):
     command = [
         "python",
-        "/home/runner/work/BOAT/BOAT/examples/data_hyper_cleaning/data_hyper_cleaning.py",
+        os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "data_hyper_cleaning.py"
+        ),
         "--fo_op",
         fo_ol_method[0],
     ]
@@ -99,3 +107,31 @@ def test_fo_ol_method(fo_ol_method):
     assert (
         result.returncode == 0
     ), f"Test failed for fo_op={fo_ol_method}. Error: {result.stderr}"
+
+
+def test_subprocess_uses_portable_script_path(monkeypatch):
+    """Regression: every subprocess call must reference a script path that
+    resolves relative to this test file, not a hard-coded CI absolute path."""
+    captured = []
+
+    def fake_run(command, *args, **kwargs):
+        captured.append(command)
+        return subprocess.CompletedProcess(command, 0, "", "")
+
+    monkeypatch.setattr(subprocess, "run", fake_run)
+
+    expected = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "data_hyper_cleaning.py")
+    assert os.path.isfile(expected)
+
+    test_combination_dynamic_na_op(["NGD"], ["CG"])
+    test_combination_dynamic_na_op_dm(["DM", "NGD"], ["CG"])
+    test_fo_ol_method("VSO")
+
+    assert len(captured) == 3
+    for command in captured:
+        script = command[1]
+        assert os.path.isabs(script), (
+            f"Expected an absolute portable path, got {script!r}"
+        )
+        assert os.path.normpath(script) == os.path.normpath(expected)
